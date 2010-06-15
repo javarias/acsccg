@@ -1,0 +1,153 @@
+\section{DESIGN OVERVIEW}
+\subsection{EMF - Open Architecture Ware 5}
+The component code generator for Alma Common Software initially created before,
+was supported on Open Architecture Ware 4, since is a requirement have the
+code generator based on Open Architecture Ware 5, the previous work was
+migrated to oaW 5, this means that the code generator is based now on Eclipse
+Modeling Framework (EMF), mainly in Xtend and Xpand subprojects.\\
+\\
+EMF supports many types of models like Ecore (EMF native models), UML2 models,
+or, in this case meta-metamodels in XMI2.0 format. Actually the generator
+support a XMI2.0 meta-metamodels, mostly of this models are created and exported
+from MagicDraw UML Diagram Tool, this program generate the necessary XMI files
+for later generate the code component to be implemented. 
+Is important to specify that the models need a profile file, which defines the
+stereotypes for use in the generator, where they differentiate the
+characteristics of UML model.
+
+\subsubsection{Stereotypes}
+In UML models, the use of stereotypes helps to distinguish the classes that
+must be generated and how must be generated. This stereotypes are defined in
+the UML profile file, which is created when the UML model is exported from
+MagicDraw.\\
+One of each classes must have a stereotype defined to know how the code must be
+generated, i.e.: 
+
+\begin{figure*}[h!t]
+\begin{center}
+\includegraphics[scale=0.3]{images/idlstruct}
+\caption{\label{fig:ex_diag}Example class with a stereotype}
+\end{center}
+\end{figure*}
+
+The class robot status struct has the \verb+<<IDLStruct>>+ stereotype, then the
+generator call the IDLStruct template and generate the code of an IDL file of ACS.\\
+Full detail and description of the stereotypes used in this project, please
+refer to the Quick How To section in this document.\\
+\\
+Exist three types of stereotypes, see 'Quick Reference User Manual' for full
+description of each stereotype:
+\begin{itemize}
+	\item Class stereotype : applies to classes like \verb+<<IDLStruct>>+
+	stereotype.
+	\item Property stereotype : applies to class level variables. 
+	\item Operation stereotype : applies to a method of a class.
+\end{itemize}
+
+
+\subsubsection{Xtend/Xpand}
+Since owA was migrated to EMF, the code generator is based on a mixture of EMF
+subprojects(Xpand/Xtend/Xtext) , the EMF subprojects which are used, are:
+
+\begin{itemize}
+	\item Xtend : provides the possibility to define rich libraries of independent
+	operations and non-invasive metamodel extensions based on either Java methods
+	or oAW expressions. Those libraries can be referenced from all other textual
+	languages, that are based on the expressions framework, in this case Xpand.
+	\item Xpand : A programming language which allow to define the templates of
+	the generator and controll the output generation.
+\end{itemize}
+
+\subsubsection{Workflow File Configuration}
+The workflow, is a EMF XML configuration file that controll the workflow of the
+generator, in which, where configured the paths of UML expoted models,
+output folder, templates used, code beautifiers and the package name
+definition for the generated code.\\
+\\
+The path of the model to generate, the generated code output folder path and
+the UML profile file path are specified using dynamic workflow propertys by
+\$\{myVariable\} sintax. These properties can be configured dynamically in the
+Java program (using String Hashmap) that call the generator, or by command
+line.\\
+\\
+Also the templates to use in the generation are specified in the configuration
+file as 'Workflow Components'.\\
+\\
+The components must have defined :
+\begin{itemize}
+	\item Output path : the output path for the generated file, this is specified
+	by a global property in the workflow configuration as \$\{ouputFolderURI\} 
+	property.
+	\item UML profile : this is specified by a global property in the workflow
+	configuration as \$\{profileFileURI\} property, the generator only support
+	maximum three profile files.
+	\item Template : the template to use.
+	\item Beautifiers : XML or Java code beautifiers.
+	\item VetoStrategy : only is specified if the component will use a Veto
+	Strategy, see 'Generator Optimization' section for more info about this.
+	\item File encoding : by default UTF-8.
+\end{itemize}
+
+An example configuration for a component, in this case a java class files
+component generator :
+\begin{center}
+\begin{verbatim}
+    <component id="genjava" class="org.eclipse.xpand2.Generator"
+     skipOnErrors="true"> 
+    <fileEncoding value="UTF-8" />
+        <metaModel idRef="default_profile"/>
+        <expand value="templates::java::JavaRoot::Root FOR model"/>
+        <outlet path="${ouputFolderURI}">
+            <vetoStrategy
+             class="cl.alma.acs.ccg.vetostrategy.ACSCCGVetoStrategy" /> 
+            <postprocessor 
+             class="org.eclipse.xpand2.output.JavaBeautifier"/>
+        </outlet>
+        <prSrcPaths value="${ouputFolderURI}"/>
+    </component> 
+\end{verbatim}
+\end{center}
+
+In the project, exists three workflow files, a Java, C++ and Python. Python
+and C++ workflow files are ready to be implemented, only Java workflow is full
+implemented for the generator.\\
+\\
+The workflow file is based in oaW 5, this means that the file presents many
+changes from his previous version, more info about the migration of the
+workflow, see 'oaW 4 to oaW 5 Migration How To' section in this document. 
+
+\subsubsection{Template Files}
+Template files controll the output code generation. Each class in the UML model
+is analyzed by the template file, the template check the stereotype of the
+class and generate the output file. The templates are based in the Xpand
+programming language [4].\\
+All templates are encoded in UTF-8 by the use of 'guillimets' [4].
+
+\subsubsection{Xtend Util Helper}
+In the generator templates folder exists a Xtend file, this file is a helper
+for the templates files, in which, are defined helper functions like if a class
+is inherited from other class. More info about the functions, see 'Quick
+Reference User Manual' in this document.
+
+
+\subsection{Generator Optimization}
+With a simple model (20 classes) the generator can take about 8 or 10 seconds
+to generate the code in a Dual CPU@1.73GHz with 2048 MB RAM, but, if the model
+is more complex, then the generation can take longer, this is no problem at
+all, the problem comes when the code must be generated again for any
+reason, like add a method in a class or add another class in the model. This is
+a problem, because, every time we want re-generate the code, will take the same
+time as the first generation even if there are no changes in the model (same
+code to generate.)\\
+\\
+To fix this, the use of EMF Veto Strategy is implemented in the components
+workflow file configuration. This strategy is class that implements a EMF Veto
+interface class, in which each file to be generated, is analyzed if presents any
+changes, if there any changes, the files is generated again, if not, the file
+is not generated again.\\
+\\
+This strategy improves the generation time in regeneration, complex models,
+and model refactoring.
+%\begin{center}
+%TABLE OF TIMES
+%\end{center}
