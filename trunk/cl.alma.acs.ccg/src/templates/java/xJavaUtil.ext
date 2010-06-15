@@ -1,0 +1,101 @@
+import uml;
+import AlmaGenerator;
+import ecore;
+
+boolean haveInterfaces(Class class): !class.getAllImplementedInterfaces().isEmpty;
+
+boolean isAllOverride(Class class): !class.getAppliedStereotypes().select(e|e.name == 'alloverride').isEmpty;
+
+boolean isOverride(Class class): !class.getAppliedStereotypes().select(e|e.name == 'override').isEmpty;
+
+Class getParent(Class class): class.allParents().first();
+
+Interface getParentI(Interface class): class.allParents().first();
+
+string getParentName(Class class): class.allParents().first().name+"Base";
+
+boolean isInherited(Class class): !class.allParents().isEmpty;
+
+boolean isInheritedI(Interface class): !class.allParents().isEmpty;
+
+boolean isEnumeration(Class class): !class.getAppliedStereotypes().select(e|e.name == 'enumeration').isEmpty;
+
+boolean isIDLModule(Class class): !class.getAppliedStereotypes().select(e|e.name == 'idlmodule').isEmpty;
+
+boolean isGenerated(Class class): class.getAppliedStereotypes().select(e|e.name == 'void').isEmpty;
+        
+boolean isCharacteristic(Class class): !class.getAppliedStereotypes().select(e|e.name == 'characteristic').isEmpty;
+
+boolean isIDLStruct(Class class): !class.getAppliedStereotypes().select(e|e.name == 'idlstruct').isEmpty;
+
+boolean isContainer(Class class): !class.getAppliedStereotypes().select(e|e.name == 'container').isEmpty;
+        
+boolean isComponent(Class class): !(isIDLStruct(class) || isCharacteristic(class) || isContainer(class)  || isIDLModule(class) );
+        
+boolean isAsynchronous(Operation class): !class.getAppliedStereotypes().select(e|e.name == 'asynchronous').isEmpty;
+        
+boolean isVoid(Operation this): type.name.toLowerCase() == "void";
+
+boolean isROProperty(Property this): !getAppliedStereotypes().select(e|e.name == 'ReadOnlyProperty').isEmpty;
+
+boolean isRWProperty(Property this): !getAppliedStereotypes().select(e|e.name == 'ReadWriteProperty').isEmpty;
+
+boolean hasModifier(Parameter this): !getAppliedStereotypes().select(e|e.name == "typeModifier").isEmpty;
+
+Parameter getReturnParameter(Operation this): ownedParameter.select(e|e.direction.toString()== 'return').first();
+    
+string getModifier(Parameter this): getValue(getAppliedStereotypes().select(e|e.name == "typeModifier").first(), "typeModifier");
+ho	
+string getIDLCorrectCase(Parameter this):
+    if type.name == 'Boolean' || type.name == 'Long' || type.name == 'Double' || type.name == 'Float' || type.name == 'Char'|| type.name == 'String'  
+        then type.name.toLowerCase()
+    else type.name;   
+    
+string getJavaCorrectCase(Parameter this):
+    if type.name == 'Boolean' || type.name == 'Double' || type.name == 'Float' || type.name == 'Char'
+        then type.name.toLowerCase()
+    else if type.name == 'Long' || type.name == 'long'
+        then 'int'
+    else if type.name == 'string'
+        then 'String'
+    else type.name;   
+    
+string getJavaReturnType(Operation this):
+    if hasModifier(getReturnParameter(this))
+        then getJavaCorrectCase(getReturnParameter(this)) + getModifier(getReturnParameter(this))
+    else
+        getJavaCorrectCase(getReturnParameter(this));
+    
+string getIDLReturnType(Operation this):
+    if hasModifier(getReturnParameter(this))
+        then (getIDLCorrectCase(getReturnParameter(this)) + "_seq").trim()
+    else
+        getIDLCorrectCase(getReturnParameter(this)).trim();
+
+string getReturnValue(Operation this):
+    if getJavaReturnType(this) == 'boolean'
+       then 'false'
+    else
+    if getJavaReturnType(this) == 'int' || getJavaReturnType(this) == 'float' || getJavaReturnType(this) == 'double' || getJavaReturnType(this) == 'char'
+       then '0'
+    else
+    if hasModifier(getReturnParameter(this))
+       then 'new '+getJavaCorrectCase(getReturnParameter(this)) + '[0]'
+    else 'new '+ getJavaReturnType(this)+'()';
+
+string getJavaParam(Parameter this):
+    if  type.name == 'Long' || type.name == 'long'
+       then 'int'
+    else
+    if type.name == 'Boolean'
+        then type.name.toLowerCase()
+    else
+    type.name;
+    
+boolean isProperty (Property this):
+    if ( (! getAppliedStereotypes().select(e|e.name == 'ReadOnlyProperty').isEmpty) || 
+         (! getAppliedStereotypes().select(e|e.name == 'ReadWriteProperty').isEmpty) )
+        then true
+    else false;
+
+

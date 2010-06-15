@@ -1,0 +1,19 @@
+Main-Class: ACSCCG
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Alma Common Software Component Code Generator
+Bundle-SymbolicName: cl.alma.acs.ccg;singleton:=true
+Bundle-Version: 10.31.01
+Require-Bundle: org.eclipse.xpand,
+ org.eclipse.xtend,
+ org.eclipse.xtend.typesystem.emf,
+ org.eclipse.emf.mwe.utils;bundle-version="0.7.2",
+ org.eclipse.emf.ecore.xmi;bundle-version="2.5.0",
+ org.eclipse.jface.text;bundle-version="3.5.1",
+ org.antlr.runtime;bundle-version="3.0.0",
+ com.ibm.icu;bundle-version="4.0.1",
+ org.eclipse.core.runtime;bundle-version="3.5.0",
+ org.eclipse.jdt.core;bundle-version="3.5.1",
+ org.eclipse.xtend.typesystem.uml2;bundle-version="0.7.2",
+ org.eclipse.emf.mwe.core;bundle-version="0.7.2"
+Bundle-RequiredExecutionEnvironment: J2SE-1.5

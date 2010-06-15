@@ -1,0 +1,12 @@
+«IMPORT uml»
+«IMPORT Schema»
+«IMPORT AlmaGenerator»
+«EXTENSION templates::java::xJavaUtil»
+
+«DEFINE Root FOR uml::Model»
+     «FOREACH allOwnedElements().typeSelect(uml::Class) AS element »
+         «IF isCharacteristic(element) »
+             «EXPAND Schema::Root FOR element»
+         «ENDIF»
+     «ENDFOREACH»    
+«ENDDEFINE»
