@@ -1,0 +1,42 @@
+«REM»
+Tests expansion
+   «IF !(allOwnedElements().typeSelect(uml::Class).getAppliedStereotypes().select(e|e.name == 'CharacteristicComponent').isEmpty) »
+«ENDREM»
+«IMPORT uml»
+«IMPORT AlmaGenerator»
+«IMPORT JAVA»
+«IMPORT JavaHelper»
+«EXTENSION templates::java::xJavaUtil»
+«REM»
+«DEFINE Root FOR uml::Model»
+ 
+        «EXPAND JAVAChComp::Root FOREACH allOwnedElements().typeSelect(uml::Class).getAppliedStereotypes().select(e|e.name == 'CharacteristicComponent')»
+
+        «EXPAND JAVAComp::Root FOREACH allOwnedElements().typeSelect(uml::Class).getAppliedStereotypes().select(e|e.name != 'CharacteristicComponent')»
+ 
+    «EXPAND JAVAHelper::Root FOREACH allOwnedElements().typeSelect(uml::Class)»
+«ENDDEFINE»
+«ENDREM»
+
+«DEFINE Root FOR uml::Model»
+
+     «FOREACH allOwnedElements().typeSelect(uml::Class) AS element »
+     	 «IF isGenerated(element)-»
+	         «IF isCharacteristic(element) -»
+	             «EXPAND JavaCharacteristicComponent::Root FOR element»
+	         «ELSEIF (isComponent(element))»
+	             «EXPAND JavaComponent::Root FOR element»
+	         «ENDIF»
+         «ENDIF-»
+     «ENDFOREACH»
+     
+     «FOREACH allOwnedElements().typeSelect(uml::Class) AS element»
+	     «IF isGenerated(element)-»
+	         «IF (!isIDLStruct(element))»
+	             «EXPAND JavaHelper::Root FOR element»
+	         «ENDIF»
+	     «ENDIF-»    
+     «ENDFOREACH»
+     
+«ENDDEFINE»
+

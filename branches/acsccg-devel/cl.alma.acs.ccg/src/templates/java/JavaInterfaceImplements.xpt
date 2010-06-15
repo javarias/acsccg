@@ -1,0 +1,21 @@
+«IMPORT uml»
+«IMPORT AlmaGenerator»
+«EXTENSION templates::java::xJavaUtil»
+
+«DEFINE Root FOR uml::Class»
+«IF haveInterfaces(this)»
+	/*
+	 * Implements the Interface methods.
+	 */
+«FOREACH this.getAllImplementedInterfaces() AS interface-»
+«FOREACH interface.getOperations() AS operation-»
+	@Override
+	public «getJavaReturnType(operation)» «operation.name-»(«FOREACH operation.ownedParameter.select(e|e.direction.toString()!= 'return') AS param SEPARATOR ', '-»«getJavaParam(param)» «param.name»«ENDFOREACH-»)
+	{
+		 «IF ! isVoid(operation)»return «getReturnValue(operation)»;«ENDIF»      
+	}
+	
+«ENDFOREACH-»
+«ENDFOREACH-»
+«ENDIF»
+«ENDDEFINE»

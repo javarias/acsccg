@@ -1,0 +1,50 @@
+«IMPORT uml»
+«IMPORT AlmaGenerator»
+«EXTENSION templates::java::xJavaUtil»
+
+«DEFINE Root FOR uml::Class»
+	«IF isGenerated(this)-»
+    	«EXPAND IDL FOR this»
+    «ENDIF-»
+«ENDDEFINE»
+
+«DEFINE IDL FOR uml::Class»
+«FILE 'idl/'+this.name+"Base.idl"»
+#ifndef «this.name»_IDL
+#define «this.name»_IDL
+«IF isCharacteristic(this) -»
+#include <baci.idl>
+«ELSE-»
+#include <acscomponent.idl>
+«ENDIF-»
+#include <«this.package.name-»Common.idl>
+
+#pragma prefix "alma"
+
+module «this.package.name»
+{
+    «IF isCharacteristic(this)-»
+    interface «this.name»Base : ACS::CharacteristicComponent
+    «ELSE-»
+    interface «this.name»Base : ACS::ACSComponent
+    «ENDIF-»
+    {
+    «FOREACH this.getOperations() AS operation-»
+    «IF !(operation.getAppliedStereotypes().select(e|e.name == 'asynchronous').isEmpty)-»
+        void «operation.name-»(in ACS::CBvoid cb, in ACS::CBDescIn desc);
+    «ELSE-»
+        «getIDLReturnType(operation)» «operation.name-»(«FOREACH operation.ownedParameter.select(e|e.direction.toString()!= 'return') AS param SEPARATOR ', '-»«param.direction.toString()-» «param.type.name.toLowerCase()-» «param.name-»«ENDFOREACH-»);
+    «ENDIF-»
+    «ENDFOREACH-»
+    «FOREACH this.getAllAttributes() AS attr-»
+        «IF !(attr.getAppliedStereotypes().select(e|e.name == 'ReadOnlyProperty').isEmpty)-»
+        readonly attribute ACS::RO«attr.type.name» «attr.name»;
+        «ELSEIF !(attr.getAppliedStereotypes().select(e|e.name == 'ReadWriteProperty').isEmpty)-»
+        readonly attribute ACS::RW«attr.type.name» «attr.name»;
+        «ENDIF-»
+    «ENDFOREACH-»
+    };
+};
+#endif /* «this.name»_IDL */
+    «ENDFILE»
+«ENDDEFINE»
