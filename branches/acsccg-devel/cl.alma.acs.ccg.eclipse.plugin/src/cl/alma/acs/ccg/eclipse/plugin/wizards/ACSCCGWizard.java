@@ -12,6 +12,10 @@ import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWizard;
 
+import cl.alma.acs.ccg.strategy.CodeJavaGeneration;
+import cl.alma.acs.ccg.strategy.ContextCodeGeneration;
+import cl.alma.acs.ccg.vo.VOGenerator;
+
 /**
  * This is a sample new wizard. Its role is to create a new file resource in the
  * provided container. If the container resource (a folder or a project) is
@@ -51,13 +55,15 @@ public class ACSCCGWizard extends Wizard implements INewWizard {
 	 */
 	public boolean performFinish() {
 
-		 String model = acsCodeGeneratorMainPage.getModel();
-		 String profile = acsCodeGeneratorMainPage.getProfile();
-		 String output = acsCodeGeneratorMainPage.getOutputFolder();
+		 String modelPath = acsCodeGeneratorMainPage.getModel();
+		 String profilePath = acsCodeGeneratorMainPage.getProfile();
+		 String outputPath = acsCodeGeneratorMainPage.getOutputFolder();
 		 
-		 System.out.println(model);
-		 System.out.println(profile);
-		 System.out.println(output);
+		 System.out.println(modelPath);
+		 System.out.println(profilePath);
+		 System.out.println(outputPath);
+		 
+		 new ContextCodeGeneration(new CodeJavaGeneration(new VOGenerator(modelPath, profilePath, outputPath))).generateACSCode();
 		 
 		//Java
 		return true;
