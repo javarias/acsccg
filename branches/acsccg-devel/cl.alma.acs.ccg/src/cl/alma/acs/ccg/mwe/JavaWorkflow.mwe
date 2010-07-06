@@ -16,10 +16,11 @@
         <modelSlot value="model" />
     </component>
 
-	<!-- Clean output already generated before -->	
+	<!-- Clean output already generated before 
 	<component id="dirCleaner" 
 		class="org.eclipse.emf.mwe.utils.DirectoryCleaner"
 		directory="${ouputFolderURI}"/>
+	-->	
 	
 	<!-- Generators -->
 	<component id="gencdb" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
