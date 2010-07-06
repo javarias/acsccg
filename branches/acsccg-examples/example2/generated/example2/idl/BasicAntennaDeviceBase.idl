@@ -1,0 +1,17 @@
+#ifndef BasicAntennaDevice_IDL
+#define BasicAntennaDevice_IDL
+#include <baci.idl>
+#include <example2Common.idl>
+
+#pragma prefix "alma"
+
+module example2
+{
+    interface BasicAntennaDeviceBase : ACS::CharacteristicComponent
+    {
+        void setDeviceID(in string id);
+        string getDeviceID();
+    };
+};
+#endif /* example2_IDL */
+    

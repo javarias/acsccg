@@ -1,0 +1,21 @@
+#ifndef BasicAntenna_IDL
+#define BasicAntenna_IDL
+#include <acscomponent.idl>
+#include <example3Common.idl>
+
+#pragma prefix "alma"
+
+module example3
+{
+    interface BasicAntennaBase : ACS::ACSComponent
+    {
+        void setAntennaPosition(in position_struct position);
+        position_struct getAntennaPosition();
+	 	boolean getAntennaStatus();
+	 	void setAntennaStatus(in boolean status);
+	 	string getAntennaID();
+	 	void setAntennaID(in string id);
+    };
+};
+#endif /* example3_IDL */
+    

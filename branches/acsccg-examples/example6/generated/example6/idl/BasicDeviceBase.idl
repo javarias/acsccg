@@ -1,0 +1,20 @@
+#ifndef BasicDevice_IDL
+#define BasicDevice_IDL
+#include <acscomponent.idl>
+#include <ACSErrTypeCommon.idl>
+#include <example6Common.idl>
+
+#pragma prefix "alma"
+
+module example6
+{
+    interface BasicDeviceBase : ACS::ACSComponent
+    {
+        boolean getDeviceStatus();
+        void setDeviceStatus(in boolean status);
+	    string getDeviceID();
+	    void setDeviceID(in string id);
+    };
+};
+#endif /* example6_IDL */
+    

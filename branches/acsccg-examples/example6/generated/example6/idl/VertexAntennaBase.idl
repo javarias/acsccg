@@ -1,0 +1,19 @@
+#ifndef VertexAntenna_IDL
+#define VertexAntenna_IDL
+#include <acscomponent.idl>
+#include <ACSErrTypeCommon.idl>
+#include <example6Common.idl>
+#include <BasicAntennaBase.idl>
+
+#pragma prefix "alma"
+
+module example6
+{
+    interface VertexAntennaBase : BasicAntennaBase  
+    {
+        string getVertexID();
+	    void sendEvents () raises (ACSErrTypeCommon::CouldntPerformActionEx);
+    };
+};
+#endif /* example6_IDL */
+    

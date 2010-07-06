@@ -1,0 +1,29 @@
+#ifndef example2_IDL
+#define example2_IDL
+#pragma prefix "alma"
+
+module example2
+{
+	enum antenna_model { vertex, alcatel, mitsubishi };
+	
+	struct antenna_status_struct {
+		long id;
+		position_struct position;
+	};
+	typedef sequence<antenna_status_struct> antenna_status_struct_seq;
+	
+	struct position_struct {
+		long x;
+		long y;
+	};
+	typedef sequence<position_struct> position_struct_seq;
+	
+	struct sensor_status_struct {
+		long id;
+		position_struct position;
+	};
+	typedef sequence<sensor_status_struct> sensor_status_struct_seq;
+	
+	typedef sequence<long> long_seq;
+};
+#endif //example2_IDL

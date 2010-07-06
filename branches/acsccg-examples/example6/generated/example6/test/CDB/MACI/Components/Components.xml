@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Components  xmlns="urn:schemas-cosylab-com:Components:1.0"
+       xmlns:cdb="urn:schemas-cosylab-com:CDB:1.0"
+       xmlns:baci="urn:schemas-cosylab-com:BACI:1.0"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+       
+         <_ Name="ProxyComunicationComponent" 
+            Code="cl.alma.acsccg.example6.ProxyComunicationComponentBaseHelper"
+            Type="IDL:alma/example6/ProxyComunicationComponentBase:1.0"
+            Container="antennaContainer" 
+            ImplLang="java" />
+            
+         <_ Name="BasicAntenna" 
+            Code="cl.alma.acsccg.example6.BasicAntennaBaseHelper"
+            Type="IDL:alma/example6/BasicAntennaBase:1.0"
+            Container="javaContainer" 
+            ImplLang="java" />
+            
+         <_ Name="BasicDevice" 
+            Code="cl.alma.acsccg.example6.BasicDeviceBaseHelper"
+            Type="IDL:alma/example6/BasicDeviceBase:1.0"
+            Container="javaContainer" 
+            ImplLang="java" />
+            
+         <_ Name="VertexAntenna" 
+            Code="cl.alma.acsccg.example6.VertexAntennaBaseHelper"
+            Type="IDL:alma/example6/VertexAntennaBase:1.0"
+            Container="antennaContainer" 
+            ImplLang="java" />
+            
+      
+</Components>                                 
