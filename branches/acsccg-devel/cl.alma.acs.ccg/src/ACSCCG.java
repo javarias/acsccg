@@ -15,40 +15,35 @@ public class ACSCCG {
 	 */
 	public static void main(String[] args) {
 		
-		String modelPath, profilePath, outputPath;
+		String modelPath, profilePath, outputPath;	
 		
-		try {
-			
-			Options opt = new Options();
-			
-			opt.addOption("h", false,"Print help for the generator");
-			opt.addOption("m", true, "Specify the model input XMI");
-			opt.addOption("p", true, "Specify the profile of the model");
-			opt.addOption("o", true, "Specify the output path for the code generated");
-			opt.addOption("a", true, "About the code generator");
-			
-			BasicParser parser = new BasicParser();
-			CommandLine cl = parser.parse(opt, args);
-			
-			if ( cl.hasOption('h') ) {
-                HelpFormatter f = new HelpFormatter();
-                f.printHelp("OptionsTip", opt);
-            }
-			
-			//args[0]
-			modelPath =  "/home/atejeda/Desktop/Models/example6/xmi/NotificationChannel.uml";
-			//args[1]
-			profilePath = "/home/atejeda/Desktop/Models/example6/xmi/AlmaGenerator.profile.uml";
-			//args[2]
-			outputPath = "/home/atejeda/Desktop/Models/example6/generated/";
-		} catch(Exception e) {
+		if(args.length < 3) {
+			System.out.println("Usage: java -jar ACSCCG model-path profile-path output-path");
 			return;
 		}
 		
+		//args[0]
+		//modelPath =  "/home/atejeda/Desktop/Models/example6/xmi/NotificationChannel.uml";
+		//args[1]
+		//profilePath = "/home/atejeda/Desktop/Models/example6/xmi/AlmaGenerator.profile.uml";
+		//args[2]
+		//outputPath = "/home/atejeda/Desktop/Models/example6/generated/";
+		
+		modelPath =  args[0];
+		profilePath = args[1];
+		outputPath = args[2];
+			
 		// TODO Auto-generated method stub
 		System.out.println("");
 		System.out.println("ACSCodeGenerator");
+		System.out.println("Compilation 100615");
 		System.out.println("");
+		System.out.println("");
+		System.out.println("ACSCodeGenerator");
+		System.out.println("Compilation 100615");
+	    System.out.println("http://code.google.com/p/acsccg/");
+		System.out.println(" Alexis Tejeda <alexis.tejeda@gmail.com>");
+		System.out.println(" Nicolas Troncoso <ntroncos@alma.cl>");
 		
 		//Calling to the Java strategy...
 		new ContextCodeGeneration(new CodeJavaGeneration(new VOGenerator(modelPath, profilePath, outputPath))).generateACSCode();
@@ -59,40 +54,4 @@ public class ACSCCG {
 		//Calling to the Python strategy..
 		//new ContextCodeGeneration(new CodePythonGeneration(new VOGenerator(modelPath, profilePath, outputPath))).generateACSCode();
 	}
-	
-	public static void showHelp() {
-	}
 }
-
-
-/*
-http://commons.apache.org/cli/
-http://people.csail.mit.edu/milch/blog/apidocs/common/cmdline/Parser.html
-public class OptionsTip {
-    public static void main(String args[]) {
-        try {
-            Options opt = new Options();
-
-            opt.addOption("h", false, "Print help for this application");
-            opt.addOption("u", true, "The username to use");
-            opt.addOption("dsn", true, "The data source to use");
-
-            BasicParser parser = new BasicParser();
-            CommandLine cl = parser.parse(opt, args);
-
-            if ( cl.hasOption('h') ) {
-                HelpFormatter f = new HelpFormatter();
-                f.printHelp("OptionsTip", opt);
-            }
-            else {
-                System.out.println(cl.getOptionValue("u"));
-                System.out.println(cl.getOptionValue("dsn"));
-            }
-        }
-        catch (ParseException e) {
-            e.printStackTrace();
-        }
-    }
-}
- 
-*/
