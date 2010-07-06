@@ -1,0 +1,38 @@
+«IMPORT uml»
+«IMPORT AlmaGenerator»
+«IMPORT JAVA»
+«IMPORT JavaHelper»
+«EXTENSION templates::java::xJavaUtil»
+
+«DEFINE Root FOR uml::Model»
+
+     «FOREACH allOwnedElements().typeSelect(uml::Class) AS element»
+         «IF (!isNCConfig(element))» 
+         «IF (!isIDLStruct(element))» 
+     	 «IF (!isContainer(element))»
+     	 «IF isGenerated(element)-»
+	         «IF isCharacteristic(element) -»
+	             «EXPAND JavaCharacteristicComponent::Root FOR element»
+	         «ELSEIF (isComponent(element))»
+	             «EXPAND JavaComponent::Root FOR element»
+	         «ENDIF»
+         «ENDIF-»
+         «ENDIF-»
+         «ENDIF-»
+         «ENDIF-»
+     «ENDFOREACH»
+     
+     «FOREACH allOwnedElements().typeSelect(uml::Class) AS element»
+         «IF (!isNCConfig(element))» 
+	     «IF isGenerated(element)-»
+	         «IF (!isIDLStruct(element))»
+	         «IF (!isContainer(element))»
+	             «EXPAND JavaHelper::Root FOR element»
+	         «ENDIF»
+	         «ENDIF»
+	     «ENDIF-»
+	     «ENDIF-»
+     «ENDFOREACH»
+     
+«ENDDEFINE»
+

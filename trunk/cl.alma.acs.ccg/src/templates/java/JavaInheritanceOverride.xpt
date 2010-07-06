@@ -1,0 +1,24 @@
+«IMPORT uml»
+«IMPORT AlmaGenerator»
+«EXTENSION templates::java::xJavaUtil»
+
+«DEFINE Root FOR uml::Class»
+    «IF isInherited(this)-»
+	«IF isOverride(this)-»
+	/*
+	 * Override inherited methods
+	 */
+	«FOREACH getParent(this).getOperations() AS operation-»
+	
+	@Override
+	public «getJavaReturnType(operation)» «operation.name-»(«FOREACH operation.ownedParameter.select(e|e.direction.toString()!= 'return') AS param SEPARATOR ', '-»«getJavaParam(param)» «param.name»«ENDFOREACH-»)
+	{
+	     «PROTECT CSTART '/*' CEND '*/' ID this.name+"."+operation.name»
+		 «IF ! isVoid(operation)»return «getReturnValue(operation)»;«ENDIF»
+		  «ENDPROTECT»           
+	}
+	
+	«ENDFOREACH-»
+	«ENDIF»	
+	«ENDIF»	
+«ENDDEFINE»
