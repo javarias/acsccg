@@ -1,1 +1,0 @@
-#summary Eclipse Setup for the developer
