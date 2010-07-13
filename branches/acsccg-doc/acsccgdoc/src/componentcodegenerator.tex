@@ -22,9 +22,223 @@ can be imported to other environments running Java.
 All the binarys can be dowloaded, for this, see the `Project Paths` in this
 document.
 
+\subsection{Basic Component Modeling}
+
+The basic component model contains a at least a Container and a Component
+class also a IDL struct or enumeration class.
+
+\begin{figure*}[h!t]
+\begin{center}
+\includegraphics[scale=0.36]{images/example1}
+\caption{\label{fig:vs_diag}Basic Model Definition}
+\end{center}
+\end{figure*} 
+
+This example can be downloaded from:
+http://acsccg.googlecode.com/files/example1.tar.gz
+
+\subsubsection{Container Definition}
+Every model should have defined at least one container. This is defined by the
+stereotype  \verb+<<container>>+ and the class must have defined a property
+called  `language`, the value of this property is the programming language that
+the container will support (cpp, java, python).
+All the containers defined are generated in the CDB configuration in the
+generated code.
+
+\begin{figure*}[h!t]
+\begin{center}
+\includegraphics[scale=0.18]{images/container}
+\caption{\label{fig:vs_diag}Container Definition}
+\end{center}
+\end{figure*} 
+
+In the example above, the class \verb+javaContainer+ has the stereotype
+\verb+<<container>>+ and the languaje for this container is \verb+java+.
+Below, is the code generated for the containers, in this case the
+\verb+javaContainer+.
+\begin{center}
+\begin{verbatim}
+test/
+`-- CDB
+    `-- MACI
+        |-- Components
+        |   `-- Components.xml
+        |-- Containers
+        |   `-- javaContainer
+        |       `-- javaContainer.xml
+        `-- Managers
+            `-- Manager
+                `-- Manager.xml
+\end{verbatim}
+\end{center}
+
+And the \verb+javaContainer.xml+ code:
+\begin{center}
+\begin{verbatim}
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Container 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns="urn:schemas-cosylab-com:Container:1.0" 
+    xmlns:log="urn:schemas-cosylab-com:LoggingConfig:1.0" 
+    ImplLang="java"
+    >
+    <Autoload>
+     </Autoload>
+     <LoggingConfig>
+        <log:_ Name="jacorb@javaContainer" 
+        minLogLevel="5" 
+        minLogLevelLocal="5"/>
+    </LoggingConfig>
+</Container>
+\end{verbatim}
+\end{center}
+
+\subsubsection{Component Definition}
+Every class without a stereotype, the generator will recognize the class as a
+component. Every class must be related to a container class, if the class is not
+related to a container, the generator will not config the component in the CDB.
+All component classes that are related to a container the generator will
+generate:
+\begin{itemize}
+	\item The source component Java code (with his methods).
+	\item The source java helper class.
+	\item The IDL interface (with component methods).
+	\item The CDB configuration for the component.
+	\item The Makefile is generated with all IDL interfaces which represents each
+	class component in the model.
+\end{itemize}
+
+ \begin{figure*}[h!t]
+\begin{center}
+\includegraphics[scale=0.4]{images/basiccomponent}
+\caption{\label{fig:vs_diag}Basic Component Definition}
+\end{center}
+\end{figure*} 
+
+In the example above the class  \verb+BasicAntenna+ is a ACS component and is
+related to the  \verb+javaContainer+ the name of the Java classes are prefixed
+by `Base` also the IDL interfaces generated are prefixed by `Base` and example
+of this the \verb+BasicAntenna+ class is generated as
+\verb+BasicAntennaBase.java+ class.
+
+\subsubsection{IDL Structs Definition}
+
+The IDL structs are defined in a class with the stereotype \verb+<<idlstruct>>+.
+In the example below the class \verb+<<antenna_status_struct>>+ has two property
+that the generator will implement.
+
+\begin{figure*}[h!t]
+\begin{center}
+\includegraphics[scale=0.2]{images/idlstructb}
+\caption{\label{fig:vs_diag}IDL Struct Definition}
+\end{center}
+\end{figure*} 
+
+The code generated for that struct is defined in a common IDL interface, this
+IDL file has the name of the project, in this case \verb+example1Common.idl+,
+an example of the code generated:
+
+\begin{center}
+\begin{verbatim}
+#ifndef example3_IDL
+#define example3_IDL
+#pragma prefix "alma"
+
+module example3
+{
+    struct position_struct {
+        long x;
+        long y;
+    };
+    typedef sequence<position_struct> position_struct_seq;
+	
+    struct antenna_status_struct {
+        long id;
+        position_struct position;
+    };
+    typedef sequence<antenna_status_struct> antenna_status_struct_seq;
+};
+#endif //example3_IDL
+\end{verbatim}
+\end{center}
+
+The code above also implement a  \verb+position_struct+ which is used by
+\verb+antenna_status_struct+.
+
+\subsubsection{Enumerations Definition}
+
+The enumerations are defined as a class with the  \verb+<<enumeration>>+
+stereotype in the model. The code for the enumerations is generated in the IDL
+common file, t, in this case \verb+example1Common.idl+.
+
+\begin{figure*}[h!t]
+\begin{center}
+\includegraphics[scale=0.2]{images/enumeration}
+\caption{\label{fig:vs_diag}Basic Enumeration Definition}
+\end{center}
+\end{figure*} 
+
+An example of the code generated:
+
+\begin{center}
+\begin{verbatim}
+....
+module example3
+{
+    enum antenna_model { vertex, alcatel, mitsubishi };
+....
+\end{verbatim}
+\end{center}
+
+\subsubsection{Code Generated}
+
+For convention, the model name has to be in a reverse domain name syntax,
+(see the examples) i.e.:
+\begin{center}
+\begin{verbatim}
+cl.alma.acsccg.example1
+\end{verbatim}
+\end{center}
+The generator will generate the source code using the reverse domain name
+syntax for generate the Java code. An example of the code generated for the
+Figure 5 with the model name as \verb+cl.alma.acsccg.example1+ (this can be viewed in the folder structure).
+\begin{center}
+\begin{verbatim}
+example3/
+|-- idl
+|   |-- BasicAntennaBase.idl
+|   `-- example1Common.idl
+|-- src
+|   |-- cl
+|   |   `-- alma
+|   |       `-- acsccg
+|   |           `-- example1
+|   |               |-- BasicAntennaBaseHelper.java
+|   |               `-- BasicAntennaBase.java
+|   `-- Makefile
+`-- test
+    `-- CDB
+        `-- MACI
+            |-- Components
+            |   `-- Components.xml
+            |-- Containers
+            	|-- javaContainer
+            |   |   `-- javaContainer.xml
+            |   `-- frodoContainer
+            |       `-- frodoContainer.xml
+            `-- Managers
+                `-- Manager
+                    `-- Manager.xml
+\end{verbatim}
+\end{center}
+
+Also is generated the project Makefile, in which is defined the name of
+the Jar file and the IDL interfaces to compile. The name of the Jar file is the last
+name in the model name.
+
 \newpage
 
-\subsubsection{Java Interfaces}
+\subsection{Java Interfaces}
 The generator was designed to support Java interfaces in the UML model, this
 interfaces are implemented by the generator writing the methods in the
 component generated code.\\ 
@@ -117,67 +331,113 @@ http://acsccg.googlecode.com/files/example3.tar.gz
 The generator is designed to support inheritance in one ore more inherited
 levels, with the ability to override the inherited methods from the parenet, or,
 override all methods inherited in all inherited levels.\\
-This can be viewed in figure 5.
+This can be viewed in figure 11.
 
 \begin{figure*}[h!t]
 \begin{center}
-\includegraphics[scale=0.75]{images/simpleinheritance}
+\includegraphics[scale=0.88]{images/example4}
 \caption{\label{fig:vs_diag}Inheritance in the generator}
 \end{center}
 \end{figure*}
 
-The class SMN is extended from FD class and inherits implicitly the methods
-from FD without override them.\\ 
-The class SMNSh is extended from SMN, and override the methods from SMN.\\
-The class SMNTh is extended from SMNSh and override all methods inherited, the
-methos from FD, SMN and SMNh.\\
-\\
-A stereotype will differentiate if the class generated must apply the override
-policy in the inhertance.
+This example can be downloaded from:
+http://acsccg.googlecode.com/files/example4.tar.gz
 
-\subsubsubsection{Characteristic Component}
+In the example above the classes with the  \verb+<<override>>+ stereotype will
+override the methods from his parents in the Java generated code, and the
+classes with the  \verb+<<alloverride>>+ will override all methods inherited in all
+leves, i.e.: the class  \verb+SimulationTest+ will have his own methods, the 
+\verb+TestAntenna+ methods, the  \verb+BasicAntenna+ methods (with the methods
+of the implemented interface  \verb+IAntennaBase+).\\
+\\
+The IDL files also implement the inheritance, an example of this:
+\begin{center}
+\begin{verbatim}
+...
+module example4
+{
+     interface AlcatelAntennaBase : BasicAntennaBase  
+    {
+        string getAlcatelID();
+        void setAntennaPosition(in position_struct position);
+        position_struct getAntennaPosition();
+...
+\end{verbatim}
+\end{center}
+Also if the class component is not inherited from other component or other
+class, the IDL interface is extended from \verb+ACS::ACSComponent+.
+
+The AlcatelAntennaBase is extended from BasicAntennaBase
+\subsection{Characteristic Component}
 A class with the stereotype \verb+<<Characteristic>>+, if is extended from
 other class, the generator will not implement the inheritance in the Java code,
 because the Java OOP paradigm not support multiple inheritance (parallel
 inheritance) and the class with \verb+<<Characteristic>>+, the generator will
-generate the class already extended from ACS class 'CharacteristicComponentImpl'.
+generate the class already extended from ACS class
+`CharacteristicComponentImpl`, also is generated the schema configuration .
+
+\subsection{Notification Channel} 
  
-
-
-\newpage
-
-\subsection{Interfaces and Abstract classes}
-For desing pattern implementations, the generator support basic features of
-Java OOP as Interfaces or Abstract Classes.
-\subsubsection{Interface Classes}
-The generator support the interface implementation specified in the model and
-provides the generated code under the Java OOP standard. It follow the OOP Java
-Paradigm.\\
-Any class can implemented one or more interfaces, the methods implemented from
-the interface will be generated.
-An example of this can be viewed in Figure 8.
-\begin{figure*}[h!t]
+ The ACS Notification Channel also is supported in the UML model.
+ 
+ \begin{figure*}[h!t]
 \begin{center}
-\includegraphics[scale=0.6]{images/interface}
-\caption{\label{fig:vs_diag}Interface Example}
+\includegraphics[scale=0.88]{images/example6}
+\caption{\label{fig:vs_diag}Inheritance in the generator}
 \end{center}
 \end{figure*}
+ 
+This example can be downloaded from:
+http://acsccg.googlecode.com/files/example6.tar.gz\\
+\\
+In the example above exists a class with the \verb+<<ncconfig>>+ stereotype,
+this class define the channels to use in the project, in the example they are
+defined three channels \verb+statuschannel+, \verb+positionchannel+ and
+\verb+infochannel+ generated in the common IDL interface, in this case
+\verb+example6Common.idl+ , should only be one class with this stereotype.
+\\
+Also when this class is defined in the model, the generator define a common or
+default channel called in this case \verb+defaultexample6channel+, the
+\verb+example6+ in the channel name, is from the reverse domain name syntax on
+model naming and a IDL struct for test the channel implementation, this struct
+is called \verb+testMessageBlockEvent+, an example of the code generated :
 
-Will generate :
+\begin{center}
 \begin{verbatim}
-public class InterfaceHosted implements ComponentLifecycle,
-InterfaceHostedOperations, JavaInterface, JavaSecondInterface {
 ...
-}
+//Channels
+const string CHANNELNAME_DEFAULTEXAMPLE6CHANNEL = "defaultexample6channel";
+const string CHANNELNAME_STATUSCHANNEL = "statuschannel";
+const string CHANNELNAME_POSITIONCHANNEL = "positionchannel";
+const string CHANNELNAME_INFOCHANNEL = "infochannel";
+
+ //Test Struct Event for the notification channels
+struct testMessageBlockEvent
+{
+     double randomID;  
+     string message;
+ };
+  typedef sequence<testMessageBlockEvent> testMessageBlockEvent_seq;
+...
 \end{verbatim}
+\end{center}
 
-\subsubsection{Abstract Classes}
-Same as interface implementation, the generator support the abstract class
-definition and generate the code.\\
-Classes with the \verb+<<Characteristic>>+ stereotype, the generator will no
-generate this classes as Abstract.
+Also in the example, they are classes with the \verb+<<ncsupplier>>+,
+\verb+<<ncconsumer>>+ and the \verb+<<nchybrid>>+:
 
-\subsection{Implemented Code v/s Generated Code}
+\subsubsection{nccupplier}
+
+\subsubsection{ncconsumer}
+
+\subsubsection {ncsupplier}
+ 
+%\subsubsection{Abstract Classes}
+%Same as interface implementation, the generator support the abstract class
+%definition and generate the code.\\
+%Classes with the \verb+<<Characteristic>>+ stereotype, the generator will no
+%generate this classes as Abstract.
+
+\subsection{Implemented Code vs Generated Code}
 In every model driven development and code generators, is important how make a
 strategy to separate the code already generated with the code implemented over
 the generated code.\\
