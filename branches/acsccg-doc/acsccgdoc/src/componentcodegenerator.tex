@@ -1,239 +1,121 @@
-\section{COMPONENT CODE GENERATOR}
+\section{COMPONENT CODE GENERATOR FEATURES}
 
-\subsection{Source Code Structure}
-The generator is packaged in a JAR Java file, under the reverse domain name
-cl.alma.acs.ccg which follow the Java package folder structure.
+In this section will be describe the main features of the code generator, such
+as the inheritance, notification channels, a standalone generator, code
+regeneration strategies.
 
-\begin{verbatim}
-cl.alma.acs.ccg/
-|-- cl/
-|   `-- alma/
-|       `-- acs/
-|           `-- ccg/
-|               `-- mwe/
-|               |   |-- CppWorkflow.mwe
-|               |   |-- JavaWorkflow.mwe
-|               |   |-- PythonWorkflow.mwe
-|             |   
-|               |-- strategy/
-|               |   |-- CodeCppGeneration.java
-|               |   |-- CodeJavaGeneration.java
-|               |   |-- CodePythonGeneration.java
-|               |   |-- ContextCodeGeneration.java
-|               |   |-- ICodeGenerationStrategy.java
-|             |   
-|               `-- vetostrategy/
-|               |   `-- ACSCCGVetoStrategy.java
-|             |     
-|               |-- vo/
-|                   `-- VOGenerator.java
-|
-`── templates/
-    `-- java/
-        |-- AllOverride.xpt
-        |-- CDB.xpt
-        |-- CommonRoot.xpt
-        |-- IDLCommon.xpt
-        |-- IDLComp.xpt
-        |-- Implements.xpt
-        |-- info.xpt
-        |-- Interfaces.xpt
-        |-- JAVAChComp.xpt
-        |-- JAVAComp.xpt
-        |-- JAVAHelper.xpt
-        |-- JavaRoot.xpt
-        |-- Makefile.xpt
-        |-- Override.xpt
-        |-- SchemaRoot.xpt
-        |-- Schema.xpt
-        `-- util.ext
-\end{verbatim}
-
-\subsubsection{Class Diagram}
-In the class diagram, the only classes not developed (in the project) are those
-which belongs to the packages {\tt org.eclipse.xpand2.output}  and {\tt
-org.eclipse.emf.mew.core}.\\ 
-\begin{figure*}[h!t]
-\begin{center}
-\includegraphics[scale=0.85]{images/ccgclassdiagram}
-\caption{\label{fig:main_diag}Component Code Generator Class Diagram}
-\end{center}
-\end{figure*}
-
-\newpage
-
-\subsubsubsection{Strategy Pattern}
-A Strategy Pattern (Policy Pattern) was implemented in the component code
-generator to generate the code for each programming languaje in ACS whithout
-change top levels algorithms, due to the scope of the project, only Java
-strategy is full implemented. 
-\begin{figure*}[h!t]
-\begin{center}
-\includegraphics[scale=0.85]{images/strategypattern}
-\caption{\label{fig:sp_diag}Strategy Pattern}
-\end{center}
-\end{figure*}
-\\The {\tt ContextCodeGeneration} is the main class to be called for implement
-the generator in plugins, Java programs or other enviroments.
-
-\newpage
-
-\subsubsubsection{EMF Veto Strategy}
-The class {\tt ACSCCGVetoStrategy} is called by WorkflowRunner in runtime of
-the component code generator, for more info about Veto, see Generator
-Optimization section in this document. 
-\begin{figure*}[h!t]
-\begin{center}
-\includegraphics[scale=0.65]{images/vetostrategy}
-\caption{\label{fig:vs_diag}EMF Veto Strategy}
-\end{center}
-\end{figure*}
-
-\newpage
-
-\subsubsection{Sequence Diagram}
-To be implemented
-\subsubsection{Process Diagram}
-To be implemented
-
-\subsection{Stand-alone Generator}
-The component code generator was designed to be a stand-alone code generator,
+\subsection{A Stand-alone Generator}
+The component code generator was designed to be a standalone application,
 this means, can be executed in any O.S. as a Java Program, JAR Package or
-Eclipse Plugin. More info how to use, see the Quick How To section in this
-document.\\
+Eclipse Plugin outside of EMF or Eclipse EMF project.\\
 \\
-The generator supports three ways to be a standa-lone :
+The generator supports three ways to be a standalone :
 \begin{itemize}
-  \item JAR Package : The binary files are packaged in a JAR Java file.
-  \item Eclipse Plugin : A simple Eclipse plugin.
+  \item JAR Package : The binary files are packaged in a JAR Java file using
+  Ant or Eclipse Ant.
+  \item Eclipse Plugin : A simple Eclipse plugin as a Jar file.
   \item Command Line : A Java command line program.
 \end{itemize}
 Also, the generator contains all the packages to be executed without EMF and 
 can be imported to other environments running Java.
 
-%-----------begin.gzamora-------------------------------------------------------------------------
-\subsection{Notification Channel}
+All the binarys can be dowloaded, for this, see the `Project Paths` in this
+document.
 
-The ACS Notification Channels API provides all the necessary to allow the
-communication of data between components. In more detail, this is the minimal
-list of a necessary set of components.
+\newpage
 
-\begin{itemize}
-
-\item Channel Data:\\\\ This struct provides the sharing of data events between
-two or more diffent components. Basically consists in common data types:
- 	 \begin{itemize}
- 	 	\item A common data
- 	 	\item A common Channel name
- 	 \end{itemize}
-
-\item Simple Supplier:\\\\ This component has the function of control over all
-the data in the context of send the events to the Notification Channel:
- 	 \begin{itemize}
- 	 	\item Send simple data events
- 	 	\item Send special data events
- 	 	\item Data control in case of problems
- 	 \end{itemize}
-\item Consumer:\\\\ This component has the functionality of obtain all the data
-from the common Notification Channel. The consumer gets the data automatically
-when a event is available on the Notification Channel.
- 	 \begin{itemize}
- 	 	\item Receive the data events
-      \end{itemize}      
-
-\item Simple Supplier Client:\\\\ This client activate the Simple Supplier
-component and set the user data events to send between the Simple Supplier and
-the Consumer.
-
-\item Consumer Client:\\\\ This client maintains the activation of the Consumer
-component to receive the data events from the Notification Channel
-
-\end{itemize}
-
-\subsubsection{Diagrams}
-
-This is a overview of the Notification Channel implementation on the ACS Code Generator
-
+\subsubsection{Java Interfaces}
+The generator was designed to support Java interfaces in the UML model, this
+interfaces are implemented by the generator writing the methods in the
+component generated code.\\ 
 \begin{figure*}[h!t]
 \begin{center}
-\includegraphics*[scale=0.75]{images/notificationchannel}
-\caption{\label{fig:not_chan}Example Notification Channels class diagram}
+\includegraphics[scale=0.8]{images/example3}
+\caption{\label{fig:vs_diag}Interfaces.}
 \end{center}
 \end{figure*}
+\\
+In the figure above, the class  \verb+BasicAntenna+ implements the Interface
+\verb+IAntennaCommon+ and \verb+IAntennaCommon+ is extended from
+\verb+IAntennaBase+, the generator also can implement the inheritance in
+Interfaces. The code generated for the \verb+BasicAntenna+ component implements
+the all the methods of all  implemented interfaces, if the interface is extended
+in one or multiple levels, the generator implements all methods of the interface
+inheritance (Java OOP constraints) and the IDL file implement this methods to.
 
-%
-%\begin{figure*}[h!t]
-%\begin{center}
-%\includegraphics*[scale=0.4]{images/NC}
-%\caption{\label{fig:main_diag}Notification Channels dependency diagram}
-%\end{center}
-%\end{figure*}
-%
-%\newpage
-%\begin{figure*}[h!t]
-%\begin{center}
-%\includegraphics*[scale=0.8]{images/NC3}
-%\caption{\label{fig:main_diag}Notification Channels Supplier secuence diagram}
-%\end{center}
-%\end{figure*}
-
-%\begin{figure*}[h!t]
-%\begin{center}
-%\includegraphics*[scale=0.8]{images/NC4}
-%\caption{\label{fig:main_diag}Notification Channels Consumer secuence diagram}
-%\end{center}
-%\end{figure*}
-
-The generator provides a fully implementation of all the necessary to make use
-of this functionality. The code is generated in base of the Notification
-Channel UML Model, taken attributes and operations from the model and building
-a customizable Supplier-Consumer structure. The code generated in detail:
+Code generated, the component implementes the java interface defined in the
+model above.
+\begin{center}
 \begin{verbatim}
-src-gen/
-|-- config/
-|   `-- CDB/
-|       `-- MACI/
-|           |-- Channels/
-|           |   `-- mychanneldata
-|           |       `-- mychanneldata.xml
-|           |-- Components/
-|           |   `-- Components.xml
-|           `-- Managers/
-|               `-- Manager/
-|                   `-- Manager.xml
-|-- idl/
-|   |-- MyConsumerBase.idl
-|   |-- MyConsumerClientBase.idl
-|   |-- MySimpleSupplierBase.idl
-|   |-- MySimpleSupplierClientBase.idl
-|   `-- NCCommon.idl
-`-- src/
-    |-- Makefile
-    `-- alma/
-        `-- acsgenerator/
-            `-- NC/
-                |-- MyConsumerBase.java
-                |-- MyConsumerBaseHelper.java
-                |-- MyConsumerClientBase.java
-                |-- MySimpleSupplierBase.java
-                |-- MySimpleSupplierBaseHelper.java
-                `-- MySimpleSupplierClientBase.java
+...
+public class BasicAntennaBase
+      implements
+         ComponentLifecycle,
+              BasicAntennaBaseOperations,
+              IAntennaCommon {
+...
 \end{verbatim}
+\end{center}
 
-In the tree view is possible see three sub directories:
-\begin{itemize}
- 	 \item config: Includes the manager, components and notification channel configurations to the CDB.
- 	 \item idl: Includes the IDL Interfaces for the Supplier, Consumer, clients and the common data to share.
- 	 \item src: Includes the source code of the Supplier and Consumer components and clients.
-\end{itemize}
+And all methods from \verb+IAntennaCommon+, \verb+IAntennaBase+  are implemented
+in the component.
+\begin{center}
+\begin{verbatim}
+...
+    /*
+     * Implements the Interface methods.
+     */
+    @Override
+    public boolean getAntennaStatus() {...
 
-%----------end.gzamora---------------------------------------------------------------
+    @Override
+    public void setAntennaStatus(boolean status) {...
+
+    @Override
+    public String getAntennaID() {...
+
+    @Override
+    public void setAntennaID(String id) {....
+ ...
+\end{verbatim}
+\end{center}
+
+Also the IDL file of the component is implemented with this methods to:
+\begin{center}
+\begin{verbatim}
+...
+#ifndef BasicAntenna_IDL
+#define BasicAntenna_IDL
+#include <acscomponent.idl>
+#include <example3Common.idl>
+
+#pragma prefix "alma"
+
+module example3
+{
+    interface BasicAntennaBase : ACS::ACSComponent
+    {
+        void setAntennaPosition(in position_struct position);
+        position_struct getAntennaPosition();
+        boolean getAntennaStatus();
+        void setAntennaStatus(in boolean status);
+        string getAntennaID();
+        void setAntennaID(in string id);
+    };
+};
+#endif /* example3_IDL */
+...
+\end{verbatim}
+\end{center}
+
+This example can be downloaded from:
+http://acsccg.googlecode.com/files/example3.tar.gz
 
 \subsection{Inheritance}
 
 \subsubsection{Multiple Level}
-The generator can support inheritance in one ore more inherited levels
-with the ability to override the inherited methods from the parenet, or,
+The generator is designed to support inheritance in one ore more inherited
+levels, with the ability to override the inherited methods from the parenet, or,
 override all methods inherited in all inherited levels.\\
 This can be viewed in figure 5.
 
@@ -260,17 +142,7 @@ because the Java OOP paradigm not support multiple inheritance (parallel
 inheritance) and the class with \verb+<<Characteristic>>+, the generator will
 generate the class already extended from ACS class 'CharacteristicComponentImpl'.
  
-\subsubsection{Interface}
-The inheritance can be applied to Interface Classes, the interface will not
-override the methods (Java OOP aspect) from the super-interface (parent
-interface). But, the class will have to implement the methods from child
-Interface and all his inherited methods.\\
-\begin{figure*}[h!t]
-\begin{center}
-\includegraphics[scale=0.45]{images/interfaceinheritance}
-\caption{\label{fig:vs_diag}Inheritance in interfaces.}
-\end{center}
-\end{figure*}
+
 
 \newpage
 
