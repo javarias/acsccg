@@ -1,4 +1,4 @@
-#summary Knowing Problems in the code generation.
+#summary Knowing Problems in the code generation
 
  * Since theres no order when the generator reads the model, must fix the IDL compiling order
 in the Makefile following the the inheritance order, i.e.: first compile the `BasicAntenna`, then compile the `VertexAntenna` IDL (`VertextAntenna` is extended from `BasicAntenna`) files.
