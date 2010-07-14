@@ -4,7 +4,7 @@ The usage of the code generator is pretty simple:
 
  * Since the generator was designed to work better with Magic-Draw models, first create the model with the stereotypes defined in this document, a template Magic-Draw file can be downloaded from http://acsccg.googlecode.com/files/TemplateModelMagicDraw.tar.gz
 
- * It is recommended to create a folder with 3 subfolders inside, a `generated` folder, a `model` folder and a `xmi` folder in which goes the exported XMI files from MagicDraw.
+ * It is recommended to create a folder with 3 subfolders inside, a `generated` folder, a `model` folder and a `xmi` folder in which goes the exported XMI files from Magic-Draw.
 
  * Once the model is defined export the model in : `Eclipse UML2 (v2.x) XMI FILE` export menu in Magic-Draw.
 
@@ -18,4 +18,4 @@ java -jar ACSCCG.jar -m /my/very/path/to/MyProject.uml -p  /my/very/path/to/Alma
 ----
  * In the project code page, they are 6 examples of models, image models, XMI, generated code (tested), ready to download and run, each example represents a feature of the generator.
 
- * Update the make file, see the `Knowing Problems` section in this document.
+ * Update the make file, see the KnowingProblems section.
