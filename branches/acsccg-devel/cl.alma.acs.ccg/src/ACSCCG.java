@@ -69,7 +69,7 @@ public class ACSCCG {
 				//new ContextCodeGeneration(new CodePythonGeneration(new VOGenerator(modelPath, profilePath, outputPath))).generateACSCode();
 	
 			} 
-		} catch (ParseException e) {
+		} catch (Exception e) {
 			about();
 			HelpFormatter f = new HelpFormatter();
 			f.printHelp("java -jar ACSCCG.jar -model /my/very/path/to/MyProject.uml -profile  /my/very/path/to/Alma.profile.uml -output /user/home/MyProject/generated/folder [options]\n", opt);
