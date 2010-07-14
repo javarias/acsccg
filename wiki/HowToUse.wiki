@@ -1,0 +1,27 @@
+#summary How to use the generator
+
+The usage of the code generator is pretty simple:
+
+ * Since the generator was designed to work better with MagicDraw models,
+first create the model with the stereotypes defined in this document, a template
+MagicDraw file can be downloded from:\\
+http://acsccg.googlecode.com/files/TemplateModelMagicDraw.tar.gz
+
+ * It is recommended to create a folder with 3 subfolders inside, a
+`generated` folder, a `model` folder and a `xmi` folder in which goes the
+exported XMI files from MagicDraw.
+
+ * Once the model is defined export the model in : `Eclipse UML2 (v2.x) XMI
+FILE` export menu in MagicDraw.
+
+ * Download the Jar Binary from:\\
+http://acsccg.googlecode.com/files/ACSCCG.jar
+
+ * Run the generator specifying the model path exported, profile file path
+exported and the code path for the code generated:\\ 
+\verb+java -jar ACSCCG.jar model-path profile-path output-path+
+\item In the project code page, they are 6 examples of models, image models,
+XMI, generated code (tested), ready to download and run, each example represents
+a feature of the generator.
+
+ * Update the make file, see the `Knowing Problems` section in this document.
