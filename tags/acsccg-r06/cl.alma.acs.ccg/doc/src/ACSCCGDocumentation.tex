@@ -1,0 +1,341 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage[dvips]{graphicx}
+\usepackage{epsfig}
+\usepackage{url}
+\usepackage{palatino}
+\usepackage{geometry}
+
+\raggedbottom
+%\topmargin=-.9cm
+%\topskip=-3.5cm
+%\textheight=24.5cm
+%\textwidth=16.8cm
+%\oddsidemargin=-0.5cm
+%\evensidemargin=-0.5cm 
+\parindent=0mm
+\topsep=0.5ex
+\itemsep=0.5ex
+\geometry{tmargin=3.5cm, lmargin=3.0cm, rmargin=3.0cm, bmargin=1.0cm}
+
+\makeatletter
+
+\newcommand\subsubsubsection{\@startsection {paragraph}{1}{\z@}%
+                                   {-3.5ex \@plus -1ex \@minus -.2ex}%
+                                   {1.5ex \@plus.2ex}%
+                                   {\normalfont\bfseries}}
+%\makeatother
+
+%\def\thebibliography#1{\section*{}\list
+% {[\arabic{enumi}]}{\settowidth\labelwidth{[#1]}\leftmargin\labelwidth
+% \advance\leftmargin\labelsep
+% \usecounter{enumi}}
+% \def\newblock{\hskip .11em plus .33em minus .07em}
+% \sloppy\clubpenalty4000\widowpenalty4000
+% \sfcode`\.=1000\relax}
+%\let\endthebibliography=\endlist
+
+\def\contentsname{Table of Contents}
+%\def\listfigurename{List of Figuras}
+
+%\input{psfig}
+
+\newcommand\Observatory{Atama Large Millimiter/submillimiter Array}
+\newcommand\Title{Alma Common Software Component Code Generation}
+\newcommand\Subtitle{Alma Common Software}
+\newcommand\Type{Project Documentation}
+\newcommand\Version{B}
+\newcommand\Document{ALMA-BBB-CCC-A-DDD}
+\newcommand\PreparedA{Alexis Tejeda}
+\newcommand\PDate{2010-04-23 }
+\newcommand\Approved{}
+\newcommand\Released{}
+\newcommand\Keywords{Alma Common Software Component Java Code Generator}
+\newcommand\Department{JAO Computing Group}
+\newcommand\Date{2010-31-01}
+\newcommand\Status{Final Draft}
+\newcommand{\smartmonitor}{{\bf SmartMonitor} }
+\newcommand{\control}{{\tt CONTROL} }
+
+\begin{document}
+\pagenumbering{roman}
+
+\pagestyle{empty}
+
+
+%\begin{picture}(0,0)
+%\vadjust{\vskip 1 cm}
+%\centerline{
+
+%\special{ps: plotfile /vlt/templates/forLaTeX/pbvlt.000}}
+%\medskip
+%\vadjust{\vskip 1 cm}
+%\end{picture}
+
+%\begin{center}
+%\bf
+%\Large
+%\hspace{-1.0cm} {\Large{E U R O P E A N\hspace{0.5cm}S O U T H E R N\hspace{0.5cm} O B S E R V A T O R Y}\\%
+%\small{Organisation Europ\'{e}enne pour des Recherches Astronomiques dans 
+%l'H\'{e}misph\`{e} Austral}\\%
+%\small{Europ\"{a}ische Organisation f\"{u}r astronomische Forschung in der
+% s\"{u}dlichen Hemisph\"{a}re}}
+\begin{center}%
+%    \begin{tabular}{ll}
+%    \hspace{-1.5cm}
+%    \epsfig{file=images/alma_logo}
+
+\vspace{-1.5cm}
+\begin{figure*}[h!t]
+\begin{center}
+\includegraphics*[scale=0.8]{images/alma_logo}
+\end{center}
+\end{figure*}
+\vspace{1cm}
+
+%    &
+%  %  \hspace{0.2cm}
+%\vspace{-5cm}
+%    \begin{tabular}{l}
+%      \Large{E U R O P E A N\hspace{0.5cm} S O U T H E R N\hspace{0.5cm} O B S E
+% R V A T O R Y}\bigskip\\%
+%      \small{Organisation Europ\'{e}enne pour des Recherches Astronomiques dans 
+%l'H\'{e}misph\`{e} Austral}\bigskip\\
+%      \small{Europ\"{a}ische Organisation f\"{u}r astronomische Forschung in der
+% s\"{u}dlichen Hemisph\"{a}re}
+% %     \hspace{8.0cm}
+%\vspace{5cm}
+%    \end{tabular}
+%  \end{tabular}
+%
+%\vspace{-2.4cm}
+%\Huge
+%\hspace{-1.7cm} {\Observatory}
+%\vspace{2.6cm}
+
+\begin{picture}(10,1)(0,0)
+\put(-190,0){\line(0,-1){6}}
+\put(-190,0){\line(1,0){6}}
+\put(190,0){\line(0,-1){6}}
+\put(184,0){\line(1,0){6}}
+\end{picture}
+
+% ***********************************************************************************
+% DOCUMENT IDENTIFICATION SECTION
+%
+% Document Title, Up to four lines. The first or the last should be the
+% document type (e.g., Statement of Work, Functional Specification, etc.)
+% 
+
+\large
+%\hspace{-1.7cm} {\bf \Department }             % <<<<<<< update (if needed)
+%
+%\hspace{-1.7cm} {\bf -- }                      % <<<<<<< available extra line (for long title)
+
+\vspace{0.5cm}
+\hspace{-0.5cm} {\bf \Large \Title }     
+             % <<<<<<< subject
+%\begin{center}
+%{\bf \Subtitle }   
+%\end{center}  % <<<<<<< f.i., Functional Specification, User Manual, etc. 
+
+\begin{center} 
+{\bf \Type }  
+\end{center}  
+
+\normalsize
+\vspace{0.5cm}
+
+\hspace{-0.5cm} { \Document }          % <<<<<<< Document number 
+\vspace{0.5cm}
+
+\hspace{-0.5cm} {Version: \Version}                 % <<<<<<< Version [/preparation]
+\vspace{0.1cm}
+
+\hspace{-0.5cm} {Status: \Status }          % <<<<<<< Status
+\vspace{0.5cm}
+
+\hspace{-0.5cm} { \Date }                  % <<<<<<< Date 
+\vspace{0.5cm}
+
+\begin{picture}(10,1)(0,0)
+\put(-196,0){\line(0,1){6}}
+\put(-196,0){\line(1,0){6}}
+\put(196,0){\line(0,1){6}}
+\put(190,0){\line(1,0){6}}
+\end{picture}
+
+% **************
+%  WARNING NOTICE FOR PRELIMINARY VERSION ISSUED FOR REVIEW AND NOT ARCHIVED
+%
+% <<<<<<<< Comment the following in the final version
+
+%\vspace{1.0cm}
+%\begin{center}
+%\LARGE
+%{\bf Prepared for Review}
+%\end{center}
+%\vspace{1.6cm}
+
+% <<<<<<<< Uncomment the following in the final version (ARCHIVE)
+%\vspace{3.6cm}
+\vspace{2.5cm}
+
+%
+% ***********************************************************************************
+% SIGNATURE SECTION
+%
+%   - AUTHOR
+%
+
+\vspace{-1.5cm}
+\begin{center}
+\normalsize
+{\bf Keywords: \Keywords}
+%\vspace{0.5cm}
+\end{center}
+\vspace{0.5cm}
+
+%{\small {\tt \hspace{-1cm}{\Prepared} \hspace{0.8cm}{\PDate }}}  % <<<<<<< Author name and Date
+{\small {\tt \hspace{-0.8cm}{\PreparedA} \hspace{2.2cm}{\PDate }}}  % <<<<<<<Author name and Date
+\vspace{-0.3cm}
+
+\large
+\hspace{-0.7cm} {Prepared  \small . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .}
+
+\footnotesize
+\hspace{2.5cm}{Name} \hspace{4cm}{Date}  \hspace{2cm}{Signature}
+\vspace{1cm}
+
+%{\small {\tt \hspace{-1cm}{\Prepared} \hspace{0.8cm}{\PDate }}}  % <<<<<<< Author name and Date
+%{\small {\tt \hspace{0.5cm}{\Prepared} \hspace{3cm}{\PDate }}}  % <<<<<<< Author name and Date
+
+\vspace{-0.3cm}
+
+
+%   - APPROVER
+
+\normalsize
+{\small {\tt \hspace{-5.5cm}{\Approved}}}     % <<<<<<< approver name
+\vspace{-0.3cm}
+
+\large
+\hspace{-0.7cm} {Approved  \small . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .}
+
+\footnotesize
+\hspace{2.5cm}{Name} \hspace{4cm}{Date} \hspace{2cm}{Signature}
+\vspace{1cm}
+
+%   - RELEASER
+
+\normalsize
+{\small {\tt \hspace{-5.5cm}{\Released}}}  %  <<<<<<< releaser name
+\vspace{-0.3cm}
+
+\large
+\hspace{-0.7cm} {Released  \small . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .}
+
+\footnotesize
+\hspace{2.5cm}{Name} \hspace{4cm}{Date} \hspace{2cm}{Signature}
+\end{center}
+
+% ***********************************************************************************
+% PAGE HEADING SECTION
+%
+\clearpage
+\pagestyle{myheadings}
+\markboth
+{\underline{ \Title - \Version \hspace*{2.5cm} \Document}}   %  <<<<<<<
+%comment for single side document 
+{\underline{ \Title - \Version \hspace*{2.5cm} }}   %
+
+ %  <<<<<<< comment for single side document
+%{\underline{ \Title - \Version \hspace*{2.5cm} \Document}}   %  <<<<<<<
+%comment for single side document
+% {}                                                                                   %  <<<<<<< uncomment for single side document
+% {\underline{ Document Title - n.m[/prep.k] \hspace*{2.5cm} VLT-xxxx-ESO-ccccc-nnnn}} %  <<<<<<< uncomment for single side document
+% <<<<<<<< comment the following in the case of a single side document 
+%\vspace*{8 cm}
+%\begin{center}
+%This page was intentionally left blank
+%\end{center}
+%\newpage
+
+
+% ***********************************************************************************
+% CHANGE RECORD SECTION
+%
+\normalsize
+\begin{center}
+{\bf Change Record}
+\vskip 0.5 cm
+\begin{tabular}{|c|c|l|l|}   
+\hline& & & \\
+Issue/Rev. & Date &  Section/Parag. affected &
+ Reason/Initiation/Documents/Remarks  \\
+& & &  \\     \hline
+%            &            &          &              \\
+%n.m[/prep.k]& dd/mm/yy   & .....    &  .........   \\   %  <<<<<<< (prep. record shall be deleted in the final edition)
+            &            &          &              \\
+ A          & 2010-02-10 & All      &  Creation, A.TEJEDA.   \\
+            & & &  \\     \hline
+            &            &          &              \\
+ B          & 2010-04-23 & All      &  Update all document, ATEJEDA.   \\
+            &            &          &              \\
+\hline
+\end{tabular}
+\end{center}
+\normalsize
+
+% <<<<<<<< comment the following in the case of a single side document 
+%\newpage
+%\vspace*{8 cm}
+%\begin{center}
+%This page was intentionally left blank
+%\end{center}
+
+% ***********************************************************************************
+% INDEX SECTION   (INDEX IS MANDATORY FOR DOCUMENTS OF MORE THAN 6 PAGES
+%
+\newpage
+
+\tableofcontents
+\listoffigures         %  <<<<<<< optional
+
+% <<<<<<<< comment the following in the case of a double side document and 
+%          an even number of index pages.
+\newpage
+%\vspace*{8 cm}
+%\begin{center}
+%This page was intentionally left blank
+%\end{center}
+%\pagebreak
+
+% ***********************************************************************************
+% BEGINNING OF TEXT 
+%
+\parskip=2mm
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+%% INTRODUCTION
+\include{introduction}
+\include{projectoverview}
+\include{desingoverview}
+\include{componentcodegenerator}
+\include{howtouse}
+\include{kproblems}
+\include{futurework}
+\include{projectsite}
+
+
+
+%% LAST PAGE AND DOCUMENT END
+%\newpage
+%\vspace*{10cm}
+%\begin{figure*}[h!t]
+%\begin{center}
+%\includegraphics*[scale=2.2]{images/end-symbol.eps}
+%\end{center}
+%\end{figure*}
+
+\end{document}
