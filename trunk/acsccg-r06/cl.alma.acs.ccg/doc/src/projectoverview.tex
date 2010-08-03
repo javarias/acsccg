@@ -1,0 +1,97 @@
+\section{PROJECT OVERVIEW}
+\subsection{Previous Work}
+The work done before this project is related to the thesis$[1]$ of Nicolas
+Troncoso, which gives the very beginning to the ACS Code Generation based on UML
+metamodels, this project will cover and continue the work already done
+, proposed in the thesis as a 'Future Work', like the implementation of
+inheritance, more complex models, separation of implemented and generated
+classes and have a full implemented code generator for ACS.
+
+\subsection{Project Objectives}
+The main goal/objective in the project is have a full Standalone Java Component
+Code Generator for Alma Common Software under Eclipse Modeling Framework
+umbrella, this, is divided in specific objectives:
+
+\begin{itemize}
+\item Project based in Open Architecture Ware 5:\\
+All the project has to be based on Open Architecture Ware 5, now under the EMF
+umbrella.
+ 
+\item Managment of complex UML Models:\\
+In complex UML models, the use of stereotypes that allow to filter the models
+to generate, this mean that a class will have a stereotype to identify if this
+class will be generated or not, this is for not re-write classes already
+generated. This objective is considered a critical factor for the success of
+the project.
+
+\item Alma Common Software - Notification Channels Support:\\ 
+A full code generation support for ACS Notification Channels, generate all
+necessary code from a UML model that represents the association between the
+Supplier and Consumers, the generator must be able to generate the
+ready-to-implement code for Notification Channels. This objective is
+considered a critical factor for the success of the project.
+
+\item Standalone Code Generator: \\
+The development of the generator should be under the EMF, however one of the
+critical requirements is have the generator as Standalone, this means that the
+generator have to work outside the Eclipse IDE dinamicly with any UML
+model/metamodel specified by command line. The generator have to generate all
+the classes, plus empty skelletons for the user implementation. or regenerate
+only the basic classes, this mean only generates the templates for user
+modification. This objective is considered a critical factor for the success
+of the project.
+
+\item The generated code must be Java:\\ 
+At first, all the code generated must be in Java, later, if the time allow,
+then implement the code generator templates for C++ and Python, it's more
+importante in this project have a full support Java for the code generated
+than a semi-implementation of all programming languages.
+
+\item Separation between the generated classes and implemented classes:\\
+Complete the separation between the generated classes and the implemented
+classes, this mean the code generator has to know how to separate the
+implemented classes and the already generated classesfor the code generation
+for not overwriting.
+
+\item Inheritance implementation:\\
+Actually, the implementation in the generator of model-inheritance is not fully
+supported, the developers should define how implement this model behavior in
+the code generator without affect all work already done.
+\end{itemize}
+
+\subsection{Project Scope}
+The project scope cover the development of the Code Generator for ACS,
+initially the project will only generate the Java code implementation from a
+UML model under the XMI2.0 standard, in which, there are three importants
+points defined as critical and project milestones.
+
+\begin{itemize}
+	\item Standalone Java Component Code Generator.
+	\item Notification Channels and Inheritance Support for UML models.
+	\item Code Generator based on Open Architecture Ware 5.
+\end{itemize}
+Each one of this points are explained more consistently in Goals and Objectives
+sections in this document.
+
+\subsection{Roles and Responsibilities}
+\begin{itemize}
+\item Alexis Tejeda (UCN) Deployment Manager, Requirements Reviewer,
+Architecture Reviewer, Configuration Manager, Change Control Manager . 
+\item Gianluca Chiozzi (ESO) Client, End User, Requirements Reviewer, Change
+Control Manager.
+\item Jorge Ibsen (ESO / JAO Computing Manager) Project Manager, Requirements
+Reviewer.
+\item Nicolas Troncoso (JAO/AUI) Project Manager, Requirements Reviewer,
+Architecture Reviewer.
+\end{itemize} 
+
+\newpage
+
+
+
+
+
+
+
+
+

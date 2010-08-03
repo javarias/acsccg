@@ -1,0 +1,54 @@
+«IMPORT uml»
+«IMPORT AlmaGenerator»
+«EXTENSION templates::java::xJavaUtil»
+
+«DEFINE Root FOR uml::Model»
+
+«FILE getProyectNamebyModel(this)+'/idl/'+getProyectNamebyModel(this)+"Common.idl"-»
+#ifndef «getProyectNamebyModel(this)-»_IDL
+#define «getProyectNamebyModel(this)-»_IDL
+#pragma prefix "alma"
+
+module «getProyectNamebyModel(this)»
+{
+    //enumerations
+	«FOREACH allOwnedElements().typeSelect(uml::Enumeration) AS class-»
+	enum «class.name» { «FOREACH class.ownedLiteral AS attr SEPARATOR ', '»«attr.name»«ENDFOREACH» };
+	«ENDFOREACH-»
+	
+	 //Structs
+	«FOREACH allOwnedElements().typeSelect(uml::Class) AS class-»
+	«IF isIDLStruct(class) -»
+	struct «class.name» {
+		«FOREACH class.getAllAttributes() AS attr-»
+		«attr.type.name.toLowerCase()» «attr.name»;
+		«ENDFOREACH-»
+	};
+	typedef sequence<«class.name»> «class.name»_seq;
+	
+	«ENDIF-»	
+«ENDFOREACH-»
+	typedef sequence<long> long_seq;
+	
+	//Channels
+	«FOREACH allOwnedElements().typeSelect(uml::Class) AS class-»
+	«IF isNCConfig(class) -»
+	const string CHANNELNAME_DEFAULT«getProyectNamebyModel(this).toUpperCase()»CHANNEL = "default«getProyectNamebyModel(this).toLowerCase()»channel";
+	«FOREACH class.getAllAttributes() AS attr-»
+	const string CHANNELNAME_«attr.name.toUpperCase()» = "«attr.name.toLowerCase()»";
+	«ENDFOREACH-»
+	«ENDIF-»	
+	«ENDFOREACH-»
+	
+	//Test Struct Event for the notification channels
+	struct testMessageBlockEvent
+	{
+	    double randomID; 
+	    string message;
+	 };
+     typedef sequence<testMessageBlockEvent> testMessageBlockEvent_seq;
+	
+};
+#endif //«getProyectNamebyModel(this)»_IDL
+«ENDFILE»
+«ENDDEFINE»
