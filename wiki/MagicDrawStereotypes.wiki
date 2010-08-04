@@ -1,4 +1,4 @@
-#summary The actual stereotypes used by Magic-Draw
+#summary The actual stereotypes in the generador for Magic-Draw
 
   * `<<enumeration>>`: UML class is implemented as an enumeration and is generatedin a common IDL file.
 
