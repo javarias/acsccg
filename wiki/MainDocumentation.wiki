@@ -1,3 +1,0 @@
-#summary General Documentation
-
-http://acsccg.googlecode.com/files/ACSCCGDocumentation.pdf
