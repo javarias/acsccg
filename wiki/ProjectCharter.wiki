@@ -1,8 +1,8 @@
 #summary Project Charter for ACS Component Code Generation
 
-#sidebar TableOfContents
-
 <wiki:toc max_depth="4" />
+
+#sidebar TableOfContents
 
 = Project Charter  =
 
