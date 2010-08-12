@@ -1,5 +1,0 @@
-#summary Known Problems in the code generation
-
- * Since there no order when the generator reads the model, the developer must fix the  struct order for the IDL in the Makefile following the the inheritance order, i.e.: first compile the `BasicAntenna`, then the `VertexAntenna` IDL (`VertextAntenna` is extended from `BasicAntenna`).
-
- * The common IDL file have common structs, channel names..etc... many structs depends of other structs, data types, etc..., for fix this, just reorder the structs in the common IDL file.
