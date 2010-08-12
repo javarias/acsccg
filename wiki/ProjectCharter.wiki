@@ -58,10 +58,6 @@ The main goal/objective in the project is have a full Standalone Java Code Gener
 
 In complex UML models, the use of stereotypes that allow to filter the models to generate, this mean that a class will have a stereotype to identify if this class will be generated or not, this is for not re-write classes already generated. This objective is considered a critical factor for the success of the project.
 
-=== Alma Common Software - Notification Channels ===
-
-A full code generation support for ACS Notification Channels, generate all necessary code from a UML model that represents the association between the Publisher and Subscribers, the generator must be able to generate the ready-to-implement code for Notification Channels. This objective is considered a critical factor for the success of the project.
-
 === Standalone Code Generator ===
 
 The development of the generator should be under the EMF, however one of the critical requirements is have the generator as Standalone, this means that the generator have to work outside the Eclipse IDE dinamicly with any UML model/metamodel specified by command line. The generator have to generate all the classes, plus empty skelletons for the user implementation. or regenerate only the basic classes, this mean only generates the templates for user modification. This objective is considered a critical factor for the success of the project.
