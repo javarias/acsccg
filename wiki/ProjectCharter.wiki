@@ -1,19 +1,10 @@
 #summary Project Charter for ACS Component Code Generation
 
+= Project Charter  =
+
+== Table of Contents ==
 <wiki:toc max_depth="4" />
 
-#sidebar TableOfContents
-
-* [Articles HOWTO articles]
-    * [ArticlesXSS Web security]
-    * [ArticlesDom DOM manipulation]
-    * [ArticlesStyle CSS and style]
-    * [ArticlesTips Tips and tricks]
-  * [DOMReference DOM reference]
-  * [HTMLElements HTML reference]
-  * [CSSReference CSS reference]
-
-= Project Charter  =
 
 == Project Charter Purpose ==
 This section describes the overall plan to be used by the ACS Component Code Generation  project, including deployment of the product.
