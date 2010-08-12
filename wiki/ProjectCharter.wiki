@@ -1,5 +1,7 @@
 #summary Project Charter for ACS Component Code Generation
 
+#sidebar TableOfContents
+
 = Project Charter  =
 
 == Project Charter Purpose ==
