@@ -154,3 +154,4 @@ http://almasw.hq.eso.org/almasw/bin/view/JAO/ACSCodeGenerationDiscuss
     * [http://almasw.hq.eso.org/almasw/bin/view/ACS/StateMachinesCG200901 State Machine Code Generation for ACS Components] (Arturo Hoffstadt's summer job)
     * [https://csrg.inf.utfsm.cl/twiki4/pub/ACS/AlmaTheses/thesis-mmora08.pdf Towards a Generic Hardware Device Simulation Framework applied to Telescope Control Systems] (Matias Mora's thesis)
     * [https://csrg.inf.utfsm.cl/twiki4/pub/ACS/AlmaTheses/thesis-ntroncos09.pdf ACS Component Code Generation Framework] (Nicolas Troncoso's thesis) 
+    *[http://almasw.hq.eso.org/almasw/bin/view/JAO/ACSCodeGeneration Component Code Generator for ACS] (Alexis Tejeda summer job)
