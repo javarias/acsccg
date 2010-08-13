@@ -67,11 +67,11 @@
     </target>
     <target name="clean">
         <delete dir="bin"/>
-    	<delete dir="../bin" />
+    	<delete file="../bin/cl.alma.acs.ccg.eclipse.plugin.jar" />
     </target>
 	<target name="install">
 		<mkdir dir="../bin" />
-		<jar destfile="../bin/cl.alma.acs.ccg.eclipse.plugin.jar">
+		<jar destfile="../lib/cl.alma.acs.ccg.eclipse.plugin.jar">
 			<zipfileset dir="${LIB_PATH}"  includes="${LIB_PATH}/org.eclipse.ui_3.5.2.201004121542.jar"/>
 			<zipfileset dir="${LIB_PATH}"  includes="${LIB_PATH}/org.eclipse.swt_3.5.2.201004121542.jar"/>
 			<zipfileset dir="${LIB_PATH}"  includes="${LIB_PATH}/org.eclipse.swt.gtk.linux.x86_3.5.2.201004121542.jar"/>
