@@ -56,6 +56,7 @@
 	</target>
 	<target name="clean">
 		<delete dir="bin" />
+		<delete file="../lib/acsComponentCodeGenerator.jar" />
 	</target>
 	<target depends="clean" name="cleanall" />
 	<target depends="build-subprojects,build-project" name="build" />
