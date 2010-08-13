@@ -56,7 +56,7 @@
 	</target>
 	<target name="clean">
 		<delete dir="bin" />
-		<delete dir="../bin" />
+		<delete file="../lib/acsComponentCodeGenerator.jar" />
 	</target>
 	<target depends="clean" name="cleanall" />
 	<target depends="build-subprojects,build-project" name="build" />
@@ -69,8 +69,7 @@
 		</javac>
 	</target>
 	<target name="install">
-		<mkdir dir="../bin" />
-		<jar destfile="../bin/acsComponentCodeGenerator.jar">
+		<jar destfile="../lib/acsComponentCodeGenerator.jar">
 			<manifest>
 				<attribute name="Main-Class" value="org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader" />
 				<attribute name="Rsrc-Main-Class" value="ACSCCG" />

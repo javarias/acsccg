@@ -8,7 +8,7 @@
 ANT=ant
 RM=rm
 
-all: install
+all: clean install
 
 install:
 	$(ANT) -f src/build.xml install
