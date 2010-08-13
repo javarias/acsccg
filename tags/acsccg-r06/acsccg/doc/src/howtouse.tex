@@ -16,7 +16,7 @@ FILE` export menu in MagicDraw.
 http://acsccg.googlecode.com/files/ACSCCG.jar
 \item Run the generator specifying the model path exported, profile file path
 exported and the code path for the code generated:\\ 
-\verb+java -jar acsComponentCodeGenerator.jar -model /my/very/path/to/MyProject.uml+ \\
+\verb+java -jar ACSCCG.jar -model /my/very/path/to/MyProject.uml+ \\
 \verb+-profile /my/very/path/to/Alma.profile.uml -output+\\
 \verb+/user/home/MyProject/generated/folder+\\
 \item In the project code page, they are 6 examples of models, image models,
@@ -27,7 +27,7 @@ a feature of the generator.
 
 \subsection {Generator Command line Help} 
 \begin{verbatim}
-[atejeda@backorg Desktop]$ java -jar acsComponentCodeGenerator.jar 
+[atejeda@backorg Desktop]$ java -jar ACSCCG.jar 
 
 ACSCodeGenerator
 Compilation 100615
@@ -36,7 +36,7 @@ http://code.google.com/p/acsccg/
 - Alexis Tejeda <alexis.tejeda@gmail.com>
 - Nicolas Troncoso <ntroncos@alma.cl>
 
-usage: java -jar acsComponentCodeGenerator.jar -model /my/very/path/to/MyProject.uml -profile
+usage: java -jar ACSCCG.jar -model /my/very/path/to/MyProject.uml -profile
             /my/very/path/to/Alma.profile.uml -output
             /user/home/MyProject/generated/folder [options]
  -a              About this application
@@ -49,7 +49,7 @@ usage: java -jar acsComponentCodeGenerator.jar -model /my/very/path/to/MyProject
             /my/very/path/to/AlmaGenerator.profile.uml
 
  An Error has been found, see the help...
-                                run: java -jar acsComponentCodeGenerator.jar -h
+                                run: java -jar ACSCCG.jar -h
 
 \end{verbatim}
 
