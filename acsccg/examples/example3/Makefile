@@ -4,7 +4,7 @@
 # Created Alexis Tejeda 27/06/2010
 # Updated
 #
-GEN=../../bin/acsComponentCodeGenerator.jar
+GEN=../../lib/acsComponentCodeGenerator.jar
 ANT=ant
 RM=rm
 MK=mkdir
