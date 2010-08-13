@@ -67,6 +67,7 @@
     </target>
     <target name="clean">
         <delete dir="bin"/>
+        <delete file="../lib/cl.alma.acs.ccg.eclipse.plugin.jar"/>
     </target>
 	<target name="install">
 		<jar destfile="../lib/cl.alma.acs.ccg.eclipse.plugin.jar">
