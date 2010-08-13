@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            name="Alma Command Category"
+            id="cl.alma.acs.codegenerator.eclipse.plugin.commands.category">
+      </category>
+      <command
+            name="ACS Component Code Generator"
+            categoryId="cl.alma.acs.codegenerator.eclipse.plugin.commands.category"
+            id="cl.alma.acs.codegenerator.eclipse.plugin.commands.AlmaCommand">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            commandId="cl.alma.acs.codegenerator.eclipse.plugin.commands.AlmaCommand"
+            class="cl.alma.acs.ccg.eclipse.plugin.handlers.ACSCCGCommandHandler">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.bindings">
+      <key
+            commandId="cl.alma.acs.codegenerator.eclipse.plugin.commands.AlmaCommand"
+            contextId="org.eclipse.ui.contexts.window"
+            sequence="M1+6"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
+      </key>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu?after=additions">
+         <menu
+               label="ALMA"
+               mnemonic="M"
+               id="cl.alma.acs.codegenerator.eclipse.plugin.menus.sampleMenu">
+            <command
+                  commandId="cl.alma.acs.codegenerator.eclipse.plugin.commands.AlmaCommand"
+                  mnemonic="S"
+                  id="cl.alma.acs.codegenerator.eclipse.plugin.commands.AlmaCommand">
+            </command>
+         </menu>
+      </menuContribution>
+      <menuContribution
+            locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
+         <toolbar
+               id="cl.alma.acs.codegenerator.eclipse.plugin.toolbars.AlmaToolbar">
+            <command
+                  commandId="cl.alma.acs.codegenerator.eclipse.plugin.commands.AlmaCommand"
+                  icon="icons/sample.gif"
+                  tooltip="Alma Common Software Component Code Generator"
+                  id="cl.alma.acs.codegenerator.eclipse.plugin.toolbars.AlmaCommand">
+            </command>
+         </toolbar>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="cl.alma.acs.codegenerator.eclipse.plugin.wizard.category"
+            name="Category Wizards">
+      </category>
+      <wizard
+            category="cl.alma.acs.codegenerator.eclipse.plugin.wizard.category"
+            class="cl.alma.acs.ccg.eclipse.plugin.wizards.ACSCCGWizard"
+            descriptionImage="icons/logo.gif"
+            icon="icons/logo.gif"
+            id="cl.alma.acs.codegenerator.eclipse.plugin.wizards.ACSCodeGeneratorWizard"
+            name="ACS Component Code Generator Wizard">
+      </wizard>
+   </extension>
+
+</plugin>
