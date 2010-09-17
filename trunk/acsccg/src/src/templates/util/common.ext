@@ -78,7 +78,7 @@ Package getPackage(Model model):
  * Get EEnumerations list
  */
  List getEEnumerations(Package package):
- 	package.allOwnedElements().select(e|isEEnumeration(e));
+ 	package.allOwnedElements().select(e|isEEnumeration(e)) ;
  	
 /**
  * Get ETopics list

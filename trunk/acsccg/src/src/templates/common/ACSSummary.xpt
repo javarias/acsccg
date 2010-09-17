@@ -25,6 +25,10 @@ EInterfaces:
 EContainers:
 «FOREACH getEContainers(getPackage(this)) AS eElement -»
 	«eElement.name»
+		Instances:
+		«FOREACH eElement.getStereotypeApplications() AS eAttribute-»
+			«eAttribute»
+		«ENDFOREACH»
 «ENDFOREACH»
 
 EEnumerations:
