@@ -2,20 +2,86 @@ import uml;
 import AlmaGenerator;
 import ecore;
 
-boolean isEComponent(Class class): 
-	!class.getAppliedStereotypes().select(e|e.name == 'EComponent').isEmpty;
+/**
+ * Check if the element is a component definition
+ */
+boolean isEComponent(Element element): 
+	!element.getAppliedStereotypes().select(e|e.name == 'EComponent').isEmpty;
 
-boolean isEComponentImpl(Class class): 
-	!class.getAppliedStereotypes().select(e|e.name == 'EComponentImpl').isEmpty;
+/**
+ * Check if the element is a component implementation
+ */
+boolean isEComponentImpl(Element element): 
+	!element.getAppliedStereotypes().select(e|e.name == 'EComponentImpl').isEmpty;
 
-boolean isEInteface(Class class): 
-	!class.getAppliedStereotypes().select(e|e.name == 'EInterface').isEmpty;
+/**
+ * Check if the element is a Interface
+ */
+boolean isEInteface(Element element): 
+	!element.getAppliedStereotypes().select(e|e.name == 'EInterface').isEmpty;
 
-boolean isEContainer(Class class): 
-	!class.getAppliedStereotypes().select(e|e.name == 'EContainer').isEmpty;
+/**
+ * Check if the element is a container
+ */
+boolean isEContainer(Element element): 
+	!element.getAppliedStereotypes().select(e|e.name == 'EContainer').isEmpty;
 
-boolean isEEnumeration(Class class): 
-	!class.getAppliedStereotypes().select(e|e.name == 'EEnumeration').isEmpty;
+/**
+ * Check if the class is a enumeration
+ */
+boolean isEEnumeration(Element element): 
+	!element.getAppliedStereotypes().select(e|e.name == 'EEnumeration').isEmpty;
 
-boolean isETopic(Class class): 
-	!class.getAppliedStereotypes().select(e|e.name == 'ETopic').isEmpty;
+/**
+ * Check if the element is a topic
+ */
+boolean isETopic(Element element): 
+	!element.getAppliedStereotypes().select(e|e.name == 'ETopic').isEmpty;
+
+/**
+ * Get the package name
+ */	
+string getPackage():
+	((String)GLOBALVAR ACSPackage);
+
+/**
+ * Get the package object to generate
+ */	
+Package getPackage(Model model):
+	model.allOwnedElements().typeSelect(uml::Package).select(e|e.name == getPackage()).first();
+	
+/**
+ * Get EComponent list
+ */
+ List getEComponents(Package package):
+ 	package.allOwnedElements().select(e|isEComponent(e));
+ 	
+/**
+ * Get EComponentImpl list
+ */
+ List getEComponentsImpl(Package package):
+ 	package.allOwnedElements().select(e|isEComponentImpl(e));
+ 	
+/**
+ * Get EInterfaces list
+ */
+ List getEInterfaces(Package package):
+ 	package.allOwnedElements().select(e|isEInteface(e));
+
+/**
+ * Get EEContainers list
+ */
+ List getEContainers(Package package):
+ 	package.allOwnedElements().select(e|isEContainer(e));
+
+/**
+ * Get EEnumerations list
+ */
+ List getEEnumerations(Package package):
+ 	package.allOwnedElements().select(e|isEEnumeration(e));
+ 	
+/**
+ * Get ETopics list
+ */
+ List getETopics(Package package):
+ 	package.allOwnedElements().select(e|isETopic(e));

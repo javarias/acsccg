@@ -1,0 +1,41 @@
+«IMPORT uml»
+«EXTENSION templates::util::common»
+
+«DEFINE Root FOR uml::Model»
+«FILE  'ACS_Summary.txt'-»
+# ACSCCG - ACS Component Code Generator
+# Summary of the components generated
+# This is only for development
+
+EComponents:
+«FOREACH getEComponents(getPackage(this)) AS eElement -»
+	«eElement.name»
+«ENDFOREACH»
+
+EComponentsImpl:
+«FOREACH getEComponentsImpl(getPackage(this)) AS eElement -»
+	«eElement.name»
+«ENDFOREACH»
+
+EInterfaces:
+«FOREACH getEInterfaces(getPackage(this)) AS eElement -»
+	«eElement.name»
+«ENDFOREACH»
+
+EContainers:
+«FOREACH getEContainers(getPackage(this)) AS eElement -»
+	«eElement.name»
+«ENDFOREACH»
+
+EEnumerations:
+«FOREACH getEEnumerations(getPackage(this)) AS eElement -»
+	«eElement.name»
+«ENDFOREACH»
+
+ETopics:
+«FOREACH getETopics(getPackage(this)) AS eElement -»
+	«eElement.name»
+«ENDFOREACH»
+
+«ENDFILE»
+«ENDDEFINE»

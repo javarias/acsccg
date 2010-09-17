@@ -12,7 +12,7 @@
     
 	<!-- load uml model -->
     <component class="org.eclipse.emf.mwe.utils.Reader">
-          <uri value="${modelFileURI}" />
+        <uri value="${modelFileURI}" />
         <modelSlot value="model" />
     </component>
 
@@ -23,11 +23,14 @@
 	-->	
 	
 	<!-- Generators -->
-	<component id="gencdb" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
+	
+	<!-- Summary -->
+	<component id="ACS_CDB" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
 		<fileEncoding value="UTF-8" />
 		<metaModel idRef="default_profile"/>
 		<genPath value="${ouputFolderURI}"/>
-		<expand value="templates::java::CDB::Root FOR model"/>
+		<expand value="templates::common::ACSSummary::Root FOR model"/>
+		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
 	</component>
 		
 </workflow>

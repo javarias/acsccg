@@ -25,7 +25,7 @@ public class ACSCCG
 	 */
 	public static void main(String[] args)
 	{
-		String modelPath, profilePath, outputPath;
+		String modelPath, profilePath, outputPath, acspackage;
 		Options opt = new Options();;	
 		
 		try 
@@ -35,6 +35,7 @@ public class ACSCCG
 			opt.addOption("m", true, "Model file path, i.e.: /my/very/path/to/MyProject.uml");
 			opt.addOption("p", true, "Profile UML path, i.e.: /my/very/path/to/AlmaGenerator.profile.uml");
 			opt.addOption("o", true, "The output folder path");
+			opt.addOption("k", true, "The name of the package to generate");
 			opt.addOption("d", true, "True if want to clean the output folder.. ! BEWARE ! will erase all from folder an parent folder !");
 			opt.addOption("c", true, "the output code language, values are (default) java , cpp, python - for now only java is supported");
 			
@@ -50,27 +51,31 @@ public class ACSCCG
 			} else if( 
 					(!cl.getOptionValue("m").isEmpty() || 
 					!cl.getOptionValue("p").isEmpty() || 
-					!cl.getOptionValue("o").isEmpty()) 
+					!cl.getOptionValue("o").isEmpty() ||
+					!cl.getOptionValue("k").isEmpty() ) 
 					&&
 					(cl.hasOption('m') && 
 					cl.hasOption('p') && 
-					cl.hasOption('o')) 
+					cl.hasOption('o') &&
+					cl.hasOption('k')) 
 					)
 			{
 				
 				modelPath = cl.getOptionValue("m");
 				profilePath = cl.getOptionValue("p");
 				outputPath = cl.getOptionValue("o");
+				acspackage = cl.getOptionValue("k");
 				
 				System.out.println("Model:"+cl.getOptionValue("m"));
 				System.out.println("Profile: "+cl.getOptionValue("p"));
 				System.out.println("Output folder: "+cl.getOptionValue("o"));
+				System.out.println("Package: "+cl.getOptionValue("k"));
 				System.out.println("");
 				System.out.println("Generating the code...");
 				System.out.println("");
 				
 				//Calling to the Java strategy...
-				new ContextCodeGeneration(new CodeJavaGeneration(new VOGenerator(modelPath, profilePath, outputPath))).generateACSCode();
+				new ContextCodeGeneration(new CodeJavaGeneration(new VOGenerator(modelPath, profilePath, outputPath, acspackage))).generateACSCode();
 				
 				//Calling to the Cpp strategy..
 				//new ContextCodeGeneration(new CodeCppGeneration(new VOGenerator(modelPath, profilePath, outputPath))).generateACSCode();
@@ -80,6 +85,7 @@ public class ACSCCG
 	
 			} 
 		} 
+		
 		catch (Exception e)
 		{
 			about();
