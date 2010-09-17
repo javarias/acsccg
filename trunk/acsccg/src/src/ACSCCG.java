@@ -13,18 +13,23 @@ import cl.alma.acs.ccg.strategy.CodeJavaGeneration;
 import cl.alma.acs.ccg.strategy.ContextCodeGeneration;
 import cl.alma.acs.ccg.vo.VOGenerator;
 
-public class ACSCCG {
+/**
+ * Main class of the generator
+ * @author atejeda
+ */
+public class ACSCCG 
+{
 	
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
-		
+	public static void main(String[] args)
+	{
 		String modelPath, profilePath, outputPath;
 		Options opt = new Options();;	
 		
-		try {
-			
+		try 
+		{
 			opt.addOption("h", false, "Print help for this application");
 			opt.addOption("a", false, "About this application");
 			opt.addOption("m", true, "Model file path, i.e.: /my/very/path/to/MyProject.uml");
@@ -36,7 +41,8 @@ public class ACSCCG {
 			BasicParser parser = new BasicParser();
 			CommandLine cl = parser.parse(opt, args);
 			
-			if ( cl.hasOption('h') ) {
+			if ( cl.hasOption('h') ) 
+			{
 				about();
 				HelpFormatter f = new HelpFormatter();
 				f.printHelp("java -jar acsComponentCodeGenerator.jar  [options]\n", opt);
@@ -48,7 +54,9 @@ public class ACSCCG {
 					&&
 					(cl.hasOption('m') && 
 					cl.hasOption('p') && 
-					cl.hasOption('o')) ){
+					cl.hasOption('o')) 
+					)
+			{
 				
 				modelPath = cl.getOptionValue("m");
 				profilePath = cl.getOptionValue("p");
@@ -71,7 +79,9 @@ public class ACSCCG {
 				//new ContextCodeGeneration(new CodePythonGeneration(new VOGenerator(modelPath, profilePath, outputPath))).generateACSCode();
 	
 			} 
-		} catch (Exception e) {
+		} 
+		catch (Exception e)
+		{
 			about();
 			HelpFormatter f = new HelpFormatter();
 			f.printHelp("java -jar acsComponentCodeGenerator.jar [options]\n", opt);
@@ -80,10 +90,11 @@ public class ACSCCG {
 		}
 	}
 	
-	/*
+	/**
 	 *  Print a little info about the generator...
 	 */
-	public static void about() {
+	public static void about() 
+	{
 		System.out.println("");
 		System.out.println("ACS Component Code Generator");
 		System.out.println("Compilation " + new Date().toString());

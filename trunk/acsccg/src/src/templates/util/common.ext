@@ -1,0 +1,21 @@
+import uml;
+import AlmaGenerator;
+import ecore;
+
+boolean isEComponent(Class class): 
+	!class.getAppliedStereotypes().select(e|e.name == 'EComponent').isEmpty;
+
+boolean isEComponentImpl(Class class): 
+	!class.getAppliedStereotypes().select(e|e.name == 'EComponentImpl').isEmpty;
+
+boolean isEInteface(Class class): 
+	!class.getAppliedStereotypes().select(e|e.name == 'EInterface').isEmpty;
+
+boolean isEContainer(Class class): 
+	!class.getAppliedStereotypes().select(e|e.name == 'EContainer').isEmpty;
+
+boolean isEEnumeration(Class class): 
+	!class.getAppliedStereotypes().select(e|e.name == 'EEnumeration').isEmpty;
+
+boolean isETopic(Class class): 
+	!class.getAppliedStereotypes().select(e|e.name == 'ETopic').isEmpty;

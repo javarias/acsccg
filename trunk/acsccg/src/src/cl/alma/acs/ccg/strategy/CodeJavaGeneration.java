@@ -6,20 +6,36 @@ import org.eclipse.emf.mwe.core.WorkflowRunner;
 
 import cl.alma.acs.ccg.vo.VOGenerator;
 
+/**
+ * This class implement the Strategy desing pattern of the generator
+ * and execute the workflow for the generation.
+ * @author atejeda
+ */
 public class CodeJavaGeneration  implements ICodeGenerationStrategy{
 	
 	private VOGenerator __voGenerator;
 	
-	public CodeJavaGeneration(VOGenerator voGenerator) {
+	/**
+	 * Constructor
+	 * @param voGenerator
+	 */
+	public CodeJavaGeneration(VOGenerator voGenerator) 
+	{
 		__voGenerator = voGenerator;
 	}
 
+	/**
+	 * Generate code function, see strategy pattern desing
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void generateCode() {
+	public void generateCode() 
+	{
 		
+		//Calling the workflow file
 		String mweFile = "cl/alma/acs/ccg/mwe/JavaWorkflow.mwe";
 		
+		//Map the properties to the workflow
 		Map properties = new HashMap();
 		properties.put("modelFileURI", __voGenerator.getWellFormedModel());
 		properties.put("profileFileURI",__voGenerator.getWellFormedProfile());
@@ -28,9 +44,14 @@ public class CodeJavaGeneration  implements ICodeGenerationStrategy{
 		Map slotContents = new HashMap();
 		
 		WorkflowRunner wrunner = new WorkflowRunner();
-		try {
+		
+		//calling the workflow runner
+		try 
+		{
 			wrunner.run(mweFile ,null, properties, slotContents);
-		} catch(Exception e) {
+		} 
+		catch(Exception e) 
+		{
 			System.out.println(e.getMessage());
 			return;
 		}
