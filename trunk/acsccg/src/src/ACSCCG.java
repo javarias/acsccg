@@ -1,5 +1,6 @@
 import java.io.FileNotFoundException;
 import java.util.Date;
+import java.util.Vector;
 
 import org.eclipse.emf.mwe.utils.DirectoryCleaner;
 
@@ -9,6 +10,7 @@ import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.ParseException;
 
+import cl.alma.acs.ccg.emodule.EModules;
 import cl.alma.acs.ccg.strategy.CodeJavaGeneration;
 import cl.alma.acs.ccg.strategy.ContextCodeGeneration;
 import cl.alma.acs.ccg.vo.VOGenerator;
@@ -35,7 +37,6 @@ public class ACSCCG
 			opt.addOption("m", true, "Model file path, i.e.: /my/very/path/to/MyProject.uml");
 			opt.addOption("p", true, "Profile UML path, i.e.: /my/very/path/to/AlmaGenerator.profile.uml");
 			opt.addOption("o", true, "The output folder path");
-			opt.addOption("k", true, "The name of the package to generate");
 			opt.addOption("d", true, "True if want to clean the output folder.. ! BEWARE ! will erase all from folder an parent folder !");
 			opt.addOption("c", true, "the output code language, values are (default) java , cpp, python - for now only java is supported");
 			
@@ -48,31 +49,35 @@ public class ACSCCG
 				HelpFormatter f = new HelpFormatter();
 				f.printHelp("java -jar acsComponentCodeGenerator.jar  [options]\n", opt);
 				
-			} else if( 
-					(!cl.getOptionValue("m").isEmpty() || 
-					!cl.getOptionValue("p").isEmpty() || 
-					!cl.getOptionValue("o").isEmpty() ||
-					!cl.getOptionValue("k").isEmpty() ) 
-					&&
-					(cl.hasOption('m') && 
-					cl.hasOption('p') && 
-					cl.hasOption('o') &&
-					cl.hasOption('k')) 
+			} 
+			else if
+					( 
+						(!cl.getOptionValue("m").isEmpty() || !cl.getOptionValue("p").isEmpty() || !cl.getOptionValue("o").isEmpty()) 
+						&&
+						(cl.hasOption('m') && cl.hasOption('p') && cl.hasOption('o')) 
 					)
 			{
 				
 				modelPath = cl.getOptionValue("m");
 				profilePath = cl.getOptionValue("p");
 				outputPath = cl.getOptionValue("o");
-				acspackage = cl.getOptionValue("k");
 				
-				System.out.println("Model:"+cl.getOptionValue("m"));
-				System.out.println("Profile: "+cl.getOptionValue("p"));
-				System.out.println("Output folder: "+cl.getOptionValue("o"));
-				System.out.println("Package: "+cl.getOptionValue("k"));
+				// Print some information about the paths
+				System.out.println("Mode file:\t\t"+cl.getOptionValue("m"));
+				System.out.println("Profile file:\t\t"+cl.getOptionValue("p"));
+				System.out.println("Output folder:\t"+cl.getOptionValue("o"));
 				System.out.println("");
 				System.out.println("Generating the code...");
 				System.out.println("");
+				
+				// EModules info
+				// --------------------------------------------------------------------------------------
+				EModules eModules = new EModules(new VOGenerator(modelPath, profilePath, outputPath));
+				Vector<String> eModulesVector = eModules.getEModules();
+				eModulesInfo(eModulesVector);
+				// --------------------------------------------------------------------------------------
+				
+				acspackage = eModulesVector.toArray()[8].toString();
 				
 				//Calling to the Java strategy...
 				new ContextCodeGeneration(new CodeJavaGeneration(new VOGenerator(modelPath, profilePath, outputPath, acspackage))).generateACSCode();
@@ -110,6 +115,23 @@ public class ACSCCG
 		System.out.println("- Alexis Tejeda <alexis.tejeda@gmail.com>");
 		System.out.println("- Nicolas Troncoso <ntroncos@alma.cl>");
 		System.out.println("- Gianluca Chiozzi <gchiozzi@eso.org>");
+		System.out.println("");
+	}
+	
+	/**
+	 * Print info about the EModules found
+	 */
+	public static void eModulesInfo(Vector<String> eModules)
+	{
+		System.out.println("");
+		System.out.println(" The generator found "+eModules.size()+" <<EModules>>");
+		System.out.println(" --------------------------------------------------------------------------------------");
+		
+		for(int i=0;i < eModules.size(); i++ )
+		{
+			System.out.println(" ["+(i+1)+"] "+eModules.toArray()[i]);
+		}
+		
 		System.out.println("");
 	}
 }

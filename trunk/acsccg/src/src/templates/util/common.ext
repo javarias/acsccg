@@ -37,6 +37,12 @@ boolean isEEnumeration(Element element):
  */
 boolean isETopic(Element element): 
 	!element.getAppliedStereotypes().select(e|e.name == 'ETopic').isEmpty;
+	
+/**
+ * Check if the element is a module
+ */
+boolean isEModule(Element element): 
+	!element.getAppliedStereotypes().select(e|e.name == 'EModule').isEmpty;
 
 /**
  * Get the package name
@@ -85,3 +91,9 @@ Package getPackage(Model model):
  */
  List getETopics(Package package):
  	package.allOwnedElements().select(e|isETopic(e));
+ 	
+/**
+ * Get EModule list
+ */
+ List getEModules(Model model):
+ 	model.allOwnedElements().select(e|isEModule(e));

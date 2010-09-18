@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import org.eclipse.emf.mwe.core.WorkflowRunner;
 
+import cl.alma.acs.ccg.util.BaseStaticConfig;
 import cl.alma.acs.ccg.vo.VOGenerator;
 
 /**
@@ -22,6 +23,7 @@ public class CodeJavaGeneration  implements ICodeGenerationStrategy{
 	public CodeJavaGeneration(VOGenerator voGenerator) 
 	{
 		__voGenerator = voGenerator;
+		
 	}
 
 	/**
@@ -34,7 +36,7 @@ public class CodeJavaGeneration  implements ICodeGenerationStrategy{
 	{
 		
 		//Calling the workflow file
-		String mweFile = "cl/alma/acs/ccg/mwe/JavaWorkflow.mwe";
+		String mweFile = BaseStaticConfig.MWE_JAVA;
 		
 		//Map the properties to the workflow
 		Map properties = new HashMap();

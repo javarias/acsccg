@@ -2,10 +2,12 @@
 «EXTENSION templates::util::common»
 
 «DEFINE Root FOR uml::Model»
-«FILE  'ACS_Summary.txt'-»
+«FILE  'ACSSummary_'+getPackage(this).name+'.txt'-»
 # ACSCCG - ACS Component Code Generator
 # Summary of the components generated
 # This is only for development
+
+# EModule: «getPackage(this).name»
 
 EComponents:
 «FOREACH getEComponents(getPackage(this)) AS eElement -»

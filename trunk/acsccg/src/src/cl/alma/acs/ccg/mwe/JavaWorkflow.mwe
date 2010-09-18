@@ -32,5 +32,13 @@
 		<expand value="templates::common::ACSSummary::Root FOR model"/>
 		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
 	</component>
+	
+	<!-- EModules XML -->
+	<component id="ACS_CDB" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
+		<fileEncoding value="UTF-8" />
+		<metaModel idRef="default_profile"/>
+		<genPath value="${ouputFolderURI}"/>
+		<expand value="templates::common::ACSEModules::Root FOR model"/>
+	</component>
 		
 </workflow>

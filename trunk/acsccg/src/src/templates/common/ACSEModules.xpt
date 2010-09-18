@@ -1,0 +1,13 @@
+«IMPORT uml»
+«EXTENSION templates::util::common»
+
+«DEFINE Root FOR uml::Model»
+«FILE  'tmp/EModules.xml'-»
+<?xml version="1.0" encoding="utf-8"?>
+<EModules>
+	«FOREACH getEModules(this) AS eElement -»
+	<EModule>«eElement.name»</EModule>
+	«ENDFOREACH-»
+</EModules>
+«ENDFILE»
+«ENDDEFINE»

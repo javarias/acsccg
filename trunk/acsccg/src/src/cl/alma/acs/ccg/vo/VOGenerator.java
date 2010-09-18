@@ -27,6 +27,19 @@ public class VOGenerator
 		this.output = output;
 		this.acspackage = acspacakge;
 	}
+	
+	/**
+	 * Constructor
+	 * @param model
+	 * @param profile
+	 * @param output
+	 */
+	public VOGenerator(String model, String profile, String output) 
+	{
+		this.model = model;
+		this.profile = profile;
+		this.output = output;
+	}
 
 	/**
 	 * Return the model path
