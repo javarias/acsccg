@@ -25,7 +25,7 @@
 	<!-- Generators -->
 	
 	<!-- EModules XML -->
-	<component id="ACS_CDB" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
+	<component id="ACS_EMODULES" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
 		<fileEncoding value="UTF-8" />
 		<metaModel idRef="default_profile"/>
 		<genPath value="${ouputFolderURI}"/>

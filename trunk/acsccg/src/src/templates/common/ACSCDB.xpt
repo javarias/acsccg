@@ -2,5 +2,23 @@
 «EXTENSION templates::util::common»
 
 «DEFINE Root FOR uml::Model»
-
+«FILE  getPackage(this).name+'/test/CDB/MACI/Components/Components.xml'-»
+<?xml version="1.0" encoding="utf-8"?>
+<Components  xmlns="urn:schemas-cosylab-com:Components:1.0"
+       xmlns:cdb="urn:schemas-cosylab-com:CDB:1.0"
+       xmlns:baci="urn:schemas-cosylab-com:BACI:1.0"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+       
+       «FOREACH getEContainers(getPackage(this)) AS eElement -»
+	   «FOREACH eElement.getAllAttributes() AS eAttribute -»
+	   <_ Name="«eAttribute.name»" 
+			Code=""
+            Type="IDL:alma/«getPackage(this).name-»/Base:1.0"
+            Container="«eElement.name»" 
+            ImplLang="java" />
+	   «ENDFOREACH-»
+	   «ENDFOREACH-»
+       
+</Components>
+«ENDFILE»
 «ENDDEFINE»

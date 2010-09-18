@@ -77,7 +77,7 @@ public class ACSCCG
 				eModulesInfo(eModulesVector);
 				// --------------------------------------------------------------------------------------
 				
-				acspackage = eModulesVector.toArray()[8].toString();
+				acspackage = eModulesVector.toArray()[0].toString();
 				
 				//Calling to the Java strategy...
 				new ContextCodeGeneration(new CodeJavaGeneration(new VOGenerator(modelPath, profilePath, outputPath, acspackage))).generateACSCode();
@@ -129,7 +129,7 @@ public class ACSCCG
 		
 		for(int i=0;i < eModules.size(); i++ )
 		{
-			System.out.println(" ["+(i+1)+"] "+eModules.toArray()[i]);
+			System.out.println(" ["+i+"] "+eModules.toArray()[i]);
 		}
 		
 		System.out.println("");
