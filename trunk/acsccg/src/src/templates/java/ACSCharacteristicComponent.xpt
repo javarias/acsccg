@@ -2,5 +2,22 @@
 «EXTENSION templates::util::common»
 
 «DEFINE Root FOR uml::Model»
+«FILE  getPackage(this).name+'/src/test.java'-»
 
+«FOREACH getEComponentsImpl(getPackage(this)) AS eElement -»
+	«eElement.name»
+	«FOREACH getEManifestations(eElement) AS eManifestationContainer-»
+		Manifestation:
+				«FOREACH getESuppliers(eManifestationContainer) AS eManifestationClass-»
+				«eManifestationClass»
+						Interface:
+								«FOREACH ((uml::Class) eManifestationClass).getAllImplementedInterfaces() AS eInterface-»
+								«eInterface»
+								«ENDFOREACH-»
+				«ENDFOREACH-»
+	«ENDFOREACH-»
+«ENDFOREACH-»
+
+
+«ENDFILE»
 «ENDDEFINE»

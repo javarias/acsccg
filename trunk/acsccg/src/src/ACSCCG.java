@@ -77,7 +77,7 @@ public class ACSCCG
 				eModulesInfo(eModulesVector);
 				// --------------------------------------------------------------------------------------
 				
-				acspackage = eModulesVector.toArray()[0].toString();
+				acspackage = eModulesVector.toArray()[3].toString();
 				
 				//Calling to the Java strategy...
 				new ContextCodeGeneration(new CodeJavaGeneration(new VOGenerator(modelPath, profilePath, outputPath, acspackage))).generateACSCode();

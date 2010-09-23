@@ -17,7 +17,17 @@ EComponents:
 EComponentsImpl:
 «FOREACH getEComponentsImpl(getPackage(this)) AS eElement -»
 	«eElement.name»
-«ENDFOREACH»
+	«FOREACH getEManifestations(eElement) AS eManifestationContainer-»
+		Manifestation:
+			«FOREACH getESuppliers(eManifestationContainer) AS eManifestationClass-»
+			«eManifestationClass»
+				Interface:
+					«FOREACH ((uml::Class) eManifestationClass).getUsedInterfaces() AS eInterface-»
+						«eInterface.name»
+					«ENDFOREACH-»
+			«ENDFOREACH-»
+	«ENDFOREACH-»
+«ENDFOREACH-»
 
 EInterfaces:
 «FOREACH getEInterfaces(getPackage(this)) AS eElement -»

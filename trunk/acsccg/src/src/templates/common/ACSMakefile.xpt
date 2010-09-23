@@ -136,7 +136,8 @@ CDB_SCHEMAS = #!!!!!!!!!!!!!!!!!!!for each characteristic component add it eleme
 # Chec the inheritance in componentes, order the IDL compilation queque
 # in the same order of the inheritance model
 #
-IDL_FILES = #!!!!!!!!!!!!!!!!!!!!!!!!!add the common IDL, custom IDL and componentes IDL
+#!!!!!!!!!!!!!!!!!!!!!!!!!add the common IDL, custom IDL and componentes IDL
+IDL_FILES = «getPackage(this).name»Common
 TAO_IDLFLAGS =
 USER_IDL =
 

@@ -1,0 +1,33 @@
+«IMPORT uml»
+«EXTENSION templates::util::common»
+
+«DEFINE Root FOR uml::Model»
+
+«FILE  getPackage(this).name+'/idl/'+getPackage(this).name+'Common.idl'-»
+#ifndef «getPackage(this).name-»_IDL
+#define «getPackage(this).name-»_IDL
+
+#pragma prefix "alma"
+
+module «getPackage(this).name»
+{
+	«FOREACH getEEnumerations(getPackage(this)) AS eElement -»
+	enum «eElement.name» { «FOREACH eElement.ownedLiteral AS eAttribute SEPARATOR ', '»«eAttribute.name»«ENDFOREACH» };
+	«ENDFOREACH-»
+
+	«FOREACH getETopics(getPackage(this)) AS eElement -»
+	struct «eElement.name» 
+	{
+		«FOREACH eElement.getAllAttributes() AS eAttribute-»
+		«eAttribute.type.name.toLowerCase()» «eAttribute.name»;
+		«ENDFOREACH-»
+	};
+	typedef sequence<«eElement.name»> «eElement.name»_seq;
+	
+	«ENDFOREACH-»
+	typedef sequence<long> long_seq;
+}
+#endif //«getPackage(this).name»_IDL
+«ENDFILE»
+
+«ENDDEFINE»

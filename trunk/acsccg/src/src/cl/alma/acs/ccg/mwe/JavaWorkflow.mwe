@@ -59,5 +59,32 @@
 		<expand value="templates::java::ACSComponent::Root FOR model"/>
 		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
 	</component>
+	
+	<!-- CharacteristicComponent -->
+	<component id="ACS_CHARACTERISTICCOMPONENT" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
+		<fileEncoding value="UTF-8" />
+		<metaModel idRef="default_profile"/>
+		<genPath value="${ouputFolderURI}"/>
+		<expand value="templates::java::ACSCharacteristicComponent::Root FOR model"/>
+		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
+	</component>
+	
+	<!-- IDL Component -->
+	<component id="ACS_IDLCOMPONENT" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
+		<fileEncoding value="UTF-8" />
+		<metaModel idRef="default_profile"/>
+		<genPath value="${ouputFolderURI}"/>
+		<expand value="templates::common::ACSIDLComponent::Root FOR model"/>
+		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
+	</component>
+	
+	<!-- IDL Common -->
+	<component id="ACS_IDLCOMMON" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
+		<fileEncoding value="UTF-8" />
+		<metaModel idRef="default_profile"/>
+		<genPath value="${ouputFolderURI}"/>
+		<expand value="templates::common::ACSIDLCommon::Root FOR model"/>
+		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
+	</component>
 		
 </workflow>

@@ -4,96 +4,187 @@ import ecore;
 
 /**
  * Check if the element is a component definition
+ * @param Element
+ * @return Boolean
  */
 boolean isEComponent(Element element): 
 	!element.getAppliedStereotypes().select(e|e.name == 'EComponent').isEmpty;
 
 /**
+ * @deprecated
  * Check if the element is a component implementation
+ * @param Element
+ * @return Boolean
  */
 boolean isEComponentImpl(Element element): 
 	!element.getAppliedStereotypes().select(e|e.name == 'EComponentImpl').isEmpty;
 
 /**
  * Check if the element is a Interface
+ * @param Element
+ * @return Boolean
  */
 boolean isEInteface(Element element): 
 	!element.getAppliedStereotypes().select(e|e.name == 'EInterface').isEmpty;
 
 /**
  * Check if the element is a container
+ * @param Element
+ * @return Boolean
  */
 boolean isEContainer(Element element): 
 	!element.getAppliedStereotypes().select(e|e.name == 'EContainer').isEmpty;
 
 /**
  * Check if the class is a enumeration
+ * @param Element
+ * @return Boolean
  */
 boolean isEEnumeration(Element element): 
 	!element.getAppliedStereotypes().select(e|e.name == 'EEnumeration').isEmpty;
 
 /**
  * Check if the element is a topic
+ * @param Element
+ * @return Boolean
  */
 boolean isETopic(Element element): 
 	!element.getAppliedStereotypes().select(e|e.name == 'ETopic').isEmpty;
 	
 /**
  * Check if the element is a module
+ * @param Element
+ * @return Boolean
  */
 boolean isEModule(Element element): 
 	!element.getAppliedStereotypes().select(e|e.name == 'EModule').isEmpty;
 
 /**
- * Get the package name
+ * Get the package name from the glovar var
+ * ACSPackage already defined in the templates
+ * @return String
  */	
-string getPackage():
+String getPackage():
 	((String)GLOBALVAR ACSPackage);
 
 /**
- * Get the package object to generate
+ * Get the package object reference to generate
+ * @param Model
+ * @return Package
  */	
 Package getPackage(Model model):
 	model.allOwnedElements().typeSelect(uml::Package).select(e|e.name == getPackage()).first();
 	
 /**
- * Get EComponent list
+ * Get EComponent list from a certain package
+ * @param Package
+ * @return List
  */
- List getEComponents(Package package):
- 	package.allOwnedElements().select(e|isEComponent(e));
+List getEComponents(Package package):
+	package.allOwnedElements().select(e|isEComponent(e));
  	
 /**
- * Get EComponentImpl list
+ *@deprected
+ * Get EComponentImpl list from a certain package
+ * @param Package
+ * @return List
  */
- List getEComponentsImpl(Package package):
- 	package.allOwnedElements().select(e|isEComponentImpl(e));
+List getEComponentsImpl(Package package):
+	package.allOwnedElements().select(e|isEComponentImpl(e));
+	
+/**
+ * Get the artifacts list from a certain package
+ * this function gets the same that getEComponentsImpl
+ * @param Package
+ * @return List
+ */
+List getArtifacts(Package package):
+	package.allOwnedElements().select(e|isEComponentImpl(e));
  	
 /**
- * Get EInterfaces list
+ * Get EInterfaces list from a certain package
+ * @param Package
+ * @return List
  */
- List getEInterfaces(Package package):
- 	package.allOwnedElements().select(e|isEInteface(e));
+List getEInterfaces(Package package):
+	package.allOwnedElements().select(e|isEInteface(e));
 
 /**
- * Get EEContainers list
+ * Get EEContainers list from a certain package
+ * @param Package
  */
- List getEContainers(Package package):
- 	package.allOwnedElements().select(e|isEContainer(e));
+List getEContainers(Package package):
+	package.allOwnedElements().select(e|isEContainer(e));
 
 /**
- * Get EEnumerations list
+ * Get EEnumerations list from a certain package
+ * @param Package
+ * @return List
  */
- List getEEnumerations(Package package):
- 	package.allOwnedElements().select(e|isEEnumeration(e)) ;
+List getEEnumerations(Package package):
+	package.allOwnedElements().select(e|isEEnumeration(e)) ;
  	
 /**
- * Get ETopics list
+ * Get ETopics list from a certain package
+ * @param Package
+ * @return List
  */
- List getETopics(Package package):
- 	package.allOwnedElements().select(e|isETopic(e));
+List getETopics(Package package):
+	package.allOwnedElements().select(e|isETopic(e));
  	
 /**
- * Get EModule list
+ * Get EModule list from a certain package
+ * @param Package
+ * @return List
  */
- List getEModules(Model model):
- 	model.allOwnedElements().select(e|isEModule(e));
+List getEModules(Model model):
+	model.allOwnedElements().select(e|isEModule(e));
+
+/**
+ * Get the stereotype reference of an Element or uml::Class
+ * this method only work with the EProfile stereotypes
+ * @param Element
+ * @param String
+ * @return Stereotype
+ */
+Stereotype getEStereotypeReference(Element eElement, String eStereotype):
+	eElement.getAppliedStereotype('EProfile::'+eStereotype);
+
+/**
+ * Get the tag value from a specific applied stereotype
+ * @param Element
+ * @param String
+ * @param String
+ * @return String
+ */
+String getETagValue(Element eElement, String eStereotype, String tag):
+	eElement.getValue(getEStereotypeReference(eElement, eStereotype) ,tag);
+	
+/**
+ * Check if the eElement is a ECharacteristicComponent
+ * @param eElement
+ * @return Boolean
+ */
+boolean isECharacteristic(Element eElement):
+	if getETagValue(eElement,'EInterface','configurable') == 'true' then
+		true
+	else
+		false;
+ 		
+/**
+ * Get the manifest List from a certain Artifact
+ * this method return the list manifest
+ * @param Artifact
+ * @return List
+ */
+List getEManifestations(Artifact eArtifact):
+	eArtifact.manifestation;
+	
+/**
+ * Get the supplier of the manifest from the artifact
+ * this method return the list of supplier of the artifact
+ * @param Manifes
+ * @return List
+ */
+List getESuppliers(Manifestation eManifest):
+	eManifest.supplier;

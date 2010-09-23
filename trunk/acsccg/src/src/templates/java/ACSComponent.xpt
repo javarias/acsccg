@@ -3,4 +3,64 @@
 
 «DEFINE Root FOR uml::Model»
 
+«FOREACH getEComponents(getPackage(this)) AS eElement -»
+
+«FILE  getPackage(this).name+'/src/'+eElement.name+'.java'-»
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import alma.ACS.ComponentStates;
+import alma.acs.component.ComponentLifecycle;
+import alma.acs.component.ComponentLifecycleException;
+import alma.acs.container.ContainerServices;
+import alma.ACSErrTypeCommon.CouldntPerformActionEx;
+import alma.ACSErrTypeCommon.wrappers.AcsJCouldntPerformActionEx;
+
+import alma.«eElement.name»BaseOperations;
+
+public class «eElement.name» implements ComponentLifecycle, «eElement.name»BaseOperations
+{
+
+	//added by default
+	private ContainerServices m_containerServices;
+    private Logger m_logger;
+
+	/* 
+     * Implementation of ComponentLifecycle
+     */
+	public void initialize(ContainerServices containerServices)
+	{
+		m_containerServices = containerServices;
+		m_logger = m_containerServices.getLogger();
+        m_logger.info("initialize() called...");
+	}
+	
+	public void execute() {
+        m_logger.info("execute() called...");
+    }
+    
+    public void cleanUp() {
+        m_logger.info("cleanUp() called...");
+    }
+    
+    public void aboutToAbort() {
+        cleanUp();
+        m_logger.info("aboutToAbort() called...");
+    }
+    
+    /* 
+     * Implementation of ACSComponent
+     */
+    public ComponentStates componentState() 
+    {
+        return m_containerServices.getComponentStateManager().getCurrentState();
+    }
+    
+    public String name() 
+    {
+        return m_containerServices.getName();
+    }
+} 
+«ENDFILE»
+
+«ENDFOREACH»
 «ENDDEFINE»

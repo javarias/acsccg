@@ -114,7 +114,7 @@ public class VOGenerator
 	}
 	
 	/**
-	 * Get the model formated for internal EMF enviroment
+	 * Get the model formated for internal EMF environment
 	 * @return String
 	 */
 	public String getWellFormedModel() 
@@ -123,7 +123,7 @@ public class VOGenerator
 	}
 	
 	/**
-	 * Get the model formated for internal EMF enviroment
+	 * Get the model formated for internal EMF environment
 	 * @return String
 	 */
 	public String getWellFormedProfile()

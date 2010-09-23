@@ -1,0 +1,30 @@
+«IMPORT uml»
+«EXTENSION templates::util::common»
+
+«DEFINE Root FOR uml::Model»
+«FOREACH getEInterfaces(getPackage(this)) AS eElement -»
+
+«FILE  getPackage(this).name+'/idl/'+eElement.name+'.idl'-»
+#ifndef «eElement.name-»_IDL
+#define «eElement.name-»_IDL
+
+#include <acscomponent.idl>
+#include <ACSErrTypeCommon.idl>
+#include <«getPackage(this).name»Common.idl>
+
+#pragma prefix "alma"
+
+module «getPackage(this).name»
+{
+	interface «eElement.name» : ACS::ACSComponent
+	{
+		«FOREACH eElement.getOperations() AS eOperation-»
+		«eOperation.name-»();
+		«ENDFOREACH-»
+	}
+};
+#endif /* «getPackage(this).name»_IDL */
+«ENDFILE»
+
+«ENDFOREACH»
+«ENDDEFINE»
