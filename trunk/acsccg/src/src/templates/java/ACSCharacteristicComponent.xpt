@@ -7,12 +7,12 @@
 «FOREACH getEComponentsImpl(getPackage(this)) AS eElement -»
 	«eElement.name»
 	«FOREACH getEManifestations(eElement) AS eManifestationContainer-»
-		Manifestation:
+		Manifest:
 				«FOREACH getESuppliers(eManifestationContainer) AS eManifestationClass-»
-				«eManifestationClass»
+				«eManifestationClass.name»
 						Interface:
 								«FOREACH ((uml::Class) eManifestationClass).getAllImplementedInterfaces() AS eInterface-»
-								«eInterface»
+								«eInterface.name»,  characteristic = «isECharacteristic(eInterface)»
 								«ENDFOREACH-»
 				«ENDFOREACH-»
 	«ENDFOREACH-»

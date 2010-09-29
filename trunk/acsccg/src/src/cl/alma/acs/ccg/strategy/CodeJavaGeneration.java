@@ -31,7 +31,6 @@ public class CodeJavaGeneration  implements ICodeGenerationStrategy{
 	 * this is the function where the workflow are called
 	 */
 	@SuppressWarnings("unchecked")
-	@Override
 	public void generateCode() 
 	{
 		

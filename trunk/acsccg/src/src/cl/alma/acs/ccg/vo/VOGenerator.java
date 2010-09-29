@@ -12,7 +12,7 @@ public class VOGenerator
 	private String output;
 	private String acspackage;
 	
-	private static final String protocol = "file:/";
+	private final static  String protocol = "file:/";
 
 	/**
 	 * Constructor

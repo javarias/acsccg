@@ -29,7 +29,6 @@ public class ACSCCGVetoStrategy implements VetoStrategy
 	 * @return 	boolean	 
 	 * @see		org.eclipse.xpand2.output.VetoStrategy#hasVeto(org.eclipse.xpand2.output.FileHandle)
 	 */
-	@Override
 	public boolean hasVeto(FileHandle handle) 
 	{
 		return !hasChanges(handle);

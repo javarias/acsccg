@@ -20,10 +20,10 @@ EComponentsImpl:
 	«FOREACH getEManifestations(eElement) AS eManifestationContainer-»
 		Manifestation:
 			«FOREACH getESuppliers(eManifestationContainer) AS eManifestationClass-»
-			«eManifestationClass»
+			«eManifestationClass.name»
 				Interface:
-					«FOREACH ((uml::Class) eManifestationClass).getUsedInterfaces() AS eInterface-»
-						«eInterface.name»
+					«FOREACH ((uml::Class) eManifestationClass).getAllImplementedInterfaces() AS eInterface-»
+					«eInterface.name»
 					«ENDFOREACH-»
 			«ENDFOREACH-»
 	«ENDFOREACH-»

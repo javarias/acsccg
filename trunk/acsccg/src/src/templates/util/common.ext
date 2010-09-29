@@ -166,10 +166,7 @@ String getETagValue(Element eElement, String eStereotype, String tag):
  * @return Boolean
  */
 boolean isECharacteristic(Element eElement):
-	if getETagValue(eElement,'EInterface','configurable') == 'true' then
-		true
-	else
-		false;
+	getETagValue(eElement,'EInterface','configurable');
  		
 /**
  * Get the manifest List from a certain Artifact

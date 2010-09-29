@@ -15,7 +15,6 @@ public class CodePythonGeneration  implements ICodeGenerationStrategy {
 	}
 	
 	@SuppressWarnings("unchecked")
-	@Override
 	public void generateCode() {
 		
 		String mweFile = "cl/alma/codegeneration/mwe/JavaWorkflow.mwe";
