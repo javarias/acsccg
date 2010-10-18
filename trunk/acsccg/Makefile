@@ -37,14 +37,14 @@ install:
 clean:
 	$(ANT) -f src/build.xml clean
 	$(MAKE) -C doc/src clean
-	for example in $(EXAMPLES); do \
-		$(MAKE) -C examples/$$example clean; \
-	done
+#	for example in $(EXAMPLES); do \
+#		$(MAKE) -C examples/$$example clean; \
+#	done
 	
-example:
-	for example in $(EXAMPLES); do \
-		$(MAKE) -C examples/$$example; \
-	done
+#example:
+#	for example in $(EXAMPLES); do \
+#		$(MAKE) -C examples/$$example; \
+#	done
 	
 doc:
 	$(MAKE) -C doc/src clean

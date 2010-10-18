@@ -4,8 +4,8 @@
 «DEFINE Root FOR uml::Model»
 
 «FILE  getPackage(this).name+'/idl/'+getPackage(this).name+'Common.idl'-»
-#ifndef «getPackage(this).name-»_IDL
-#define «getPackage(this).name-»_IDL
+#ifndef «getPackage(this).name-»Common_IDL
+#define «getPackage(this).name-»Common_IDL
 
 #pragma prefix "alma"
 
@@ -26,8 +26,8 @@ module «getPackage(this).name»
 	
 	«ENDFOREACH-»
 	typedef sequence<long> long_seq;
-}
-#endif //«getPackage(this).name»_IDL
+};
+#endif /* «getPackage(this).name»Common_IDL */
 «ENDFILE»
 
 «ENDDEFINE»

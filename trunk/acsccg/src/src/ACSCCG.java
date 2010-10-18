@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 import java.util.Vector;
+import java.util.Scanner;
 
 import org.apache.commons.cli.BasicParser;
 import org.apache.commons.cli.CommandLine;
@@ -27,15 +28,18 @@ public class ACSCCG
 	public static void main(String[] args) throws IOException
 	{
 	
-		File log4properties = new File(BaseStaticConfig.LO4J_PROPERTIES);
+		Scanner inputScanner = new Scanner(System.in);
+		
+		//File log4properties = new File(BaseStaticConfig.LO4J_PROPERTIES);
 
-		PropertyConfigurator.configure(log4properties.getAbsolutePath());
+		//PropertyConfigurator.configure(log4properties.getAbsolutePath());
 		
 		//string paths containers
 		String modelPath; 
 		String profilePath;
 		String outputPath;
 		String acspackage;
+		int modelOption = -1;
 		
 		//set up options
 		Options opt = new Options();;	
@@ -79,12 +83,32 @@ public class ACSCCG
 				
 				// EModules info
 				// --------------------------------------------------------------------------------------
+				System.out.println("Searching EModules...");
+				
 				EModules eModules = new EModules(new VOGenerator(modelPath, profilePath, outputPath));
 				Vector<String> eModulesVector = eModules.getEModules();
 				eModulesInfo(eModulesVector);
+				//Choose the model
+				try 
+				{
+					System.out.print("Choose the model (number): ");	
+					modelOption=inputScanner.nextInt();
+					inputScanner.close();
+					if(modelOption <  0 || modelOption > eModulesVector.size()) 
+					{
+						System.out.println("Choose a valid model...");	
+						System.out.println("End...");	
+						return;
+					}
+				} catch(Exception e) 
+				{
+					System.out.println("Choose a valid model...");
+					System.out.println("End...");	
+					return;
+				}
 				// --------------------------------------------------------------------------------------
 				
-				acspackage = eModulesVector.toArray()[3].toString();
+				acspackage = eModulesVector.toArray()[modelOption].toString();
 				
 				//Calling to the Java strategy...
 				new ContextCodeGeneration(new CodeJavaGeneration(new VOGenerator(modelPath, profilePath, outputPath, acspackage))).generateACSCode();
@@ -130,6 +154,8 @@ public class ACSCCG
 	 */
 	public static void eModulesInfo(Vector<String> eModules)
 	{
+		if(eModules.size()>0)
+		{
 		System.out.println("");
 		System.out.println(" The generator has found "+eModules.size()+" EModules");
 		System.out.println(" --------------------------------------------------------------------------------------");
@@ -140,6 +166,12 @@ public class ACSCCG
 		}
 		
 		System.out.println("");
+		}
+		else
+		{
+			System.out.println("No models found...");
+			System.out.println("");
+		}
 	}
 	
 	/**
@@ -165,6 +197,7 @@ public class ACSCCG
 	 */
 	public static void printFinal()
 	{
+		System.out.println("");
 		System.out.println("Done.");
 	}
 }

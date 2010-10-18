@@ -84,7 +84,7 @@ List getEComponents(Package package):
 	package.allOwnedElements().select(e|isEComponent(e));
  	
 /**
- *@deprected
+ * @deprected
  * Get EComponentImpl list from a certain package
  * @param Package
  * @return List
@@ -185,3 +185,19 @@ List getEManifestations(Artifact eArtifact):
  */
 List getESuppliers(Manifestation eManifest):
 	eManifest.supplier;
+	
+/**
+ * Get Container (EContainer) Language tag
+ * @param eElement
+ * @return String
+ */
+String getContainerLanguage(Element eElement):
+	getETagValue(eElement,'EContainer','language').name.toLowerCase();
+
+/**
+ * Get Artifact (EComponentImpl) Language tag
+ * @param eElement
+ * @return String
+ */
+String getEComponentLanguage(Element eElement):
+	getETagValue(eElement,'EComponentImpl','language').name.toLowerCase();

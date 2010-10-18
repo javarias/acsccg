@@ -1,0 +1,32 @@
+import uml;
+import AlmaGenerator;
+import ecore;
+
+/**
+ * 
+ */
+Parameter getReturnParameter(Operation this): 
+	ownedParameter.select(e|e.direction.toString()== 'return').first();
+
+/**
+ * 
+ */	
+boolean hasModifier(Parameter this): 
+	!getAppliedStereotypes().select(e|e.name == "typeModifier").isEmpty;
+
+/**
+ * 
+ */	
+string getIDLCorrectCase(Parameter this):
+    if type.name == 'Boolean' || type.name == 'Long' || type.name == 'Double' || type.name == 'Float' || type.name == 'Char'|| type.name == 'String'  
+        then type.name.toLowerCase()
+    else type.name;  
+
+/**
+ * 
+ */
+string getIDLReturnType(Operation this):
+    if hasModifier(getReturnParameter(this))
+        then (getIDLCorrectCase(getReturnParameter(this)) + "_seq").trim()
+    else
+        getIDLCorrectCase(getReturnParameter(this)).trim();

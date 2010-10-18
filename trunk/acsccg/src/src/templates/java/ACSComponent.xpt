@@ -1,11 +1,13 @@
 «IMPORT uml»
 «EXTENSION templates::util::common»
+«EXTENSION templates::util::java»
 
 «DEFINE Root FOR uml::Model»
 
-«FOREACH getEComponents(getPackage(this)) AS eElement -»
+«FOREACH getEComponentsImpl(getPackage(this)) AS eElement -»
+«FILE  getPackage(this).name+'/src/'+getPackage(this).name+'/'+eElement.name+'.java'-»
+package «getPackage(this).name»;
 
-«FILE  getPackage(this).name+'/src/'+eElement.name+'.java'-»
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import alma.ACS.ComponentStates;
@@ -15,18 +17,33 @@ import alma.acs.container.ContainerServices;
 import alma.ACSErrTypeCommon.CouldntPerformActionEx;
 import alma.ACSErrTypeCommon.wrappers.AcsJCouldntPerformActionEx;
 
-import alma.«eElement.name»BaseOperations;
+import alma.«getPackage(this).name».*;
+«FOREACH getEManifestations(eElement) AS eManifestationContainer-»
+«FOREACH getESuppliers(eManifestationContainer) AS eManifestationClass-»
+«FOREACH ((uml::Class) eManifestationClass).getAllImplementedInterfaces() AS eInterface-»
+import alma.«getPackage(this).name».«eInterface.name»;
+import alma.«getPackage(this).name».«eInterface.name»Operations;
+«ENDFOREACH-»
+«ENDFOREACH-»
+«ENDFOREACH-»
 
-public class «eElement.name» implements ComponentLifecycle, «eElement.name»BaseOperations
+public class «eElement.name» implements ComponentLifecycle 
+	«FOREACH getEManifestations(eElement) AS eManifestationContainer-»
+	«FOREACH getESuppliers(eManifestationContainer) AS eManifestationClass-»
+	«FOREACH ((uml::Class) eManifestationClass).getAllImplementedInterfaces() AS eInterface-»
+	,«eInterface.name»Operations
+	«ENDFOREACH-»
+	«ENDFOREACH-»
+	«ENDFOREACH-»
 {
 
-	//added by default
 	private ContainerServices m_containerServices;
     private Logger m_logger;
 
-	/* 
-     * Implementation of ComponentLifecycle
-     */
+    /////////////////////////////////////////////////////////////
+	// Implementation of ComponentLifecycle
+	/////////////////////////////////////////////////////////////
+	 
 	public void initialize(ContainerServices containerServices)
 	{
 		m_containerServices = containerServices;
@@ -34,22 +51,26 @@ public class «eElement.name» implements ComponentLifecycle, «eElement.name»B
         m_logger.info("initialize() called...");
 	}
 	
-	public void execute() {
+	public void execute() 
+	{
         m_logger.info("execute() called...");
     }
     
-    public void cleanUp() {
+    public void cleanUp() 
+    {
         m_logger.info("cleanUp() called...");
     }
     
-    public void aboutToAbort() {
+    public void aboutToAbort() 
+    {
         cleanUp();
         m_logger.info("aboutToAbort() called...");
     }
     
-    /* 
-     * Implementation of ACSComponent
-     */
+	/////////////////////////////////////////////////////////////
+	// Implementation of ACSComponent
+	/////////////////////////////////////////////////////////////
+
     public ComponentStates componentState() 
     {
         return m_containerServices.getComponentStateManager().getCurrentState();
@@ -59,8 +80,26 @@ public class «eElement.name» implements ComponentLifecycle, «eElement.name»B
     {
         return m_containerServices.getName();
     }
+   
+	«FOREACH getEManifestations(eElement) AS eManifestationContainer-»
+	«FOREACH getESuppliers(eManifestationContainer) AS eManifestationClass-»
+	«FOREACH ((uml::Class) eManifestationClass).getAllImplementedInterfaces() AS eInterface-»
+	/////////////////////////////////////////////////////////////
+	// Implementation of «eInterface.name»Operations
+	/////////////////////////////////////////////////////////////
+	
+	«FOREACH eInterface.getOperations() AS eOperation-»
+	public «getJavaReturnType(eOperation)» «eOperation.name-»(«FOREACH eOperation.ownedParameter.select(e|e.direction.toString()!= 'return') AS param SEPARATOR ', '-»«getJavaParam(param)» «param.name»«ENDFOREACH-») 
+    {
+    	«IF !isVoid(eOperation)»return «getReturnValue(eOperation)»;«ENDIF»  
+	}
+	
+	«ENDFOREACH-»
+	
+	«ENDFOREACH-»
+	«ENDFOREACH-»
+	«ENDFOREACH-»
 } 
 «ENDFILE»
-
 «ENDFOREACH»
 «ENDDEFINE»

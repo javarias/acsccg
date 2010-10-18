@@ -1,5 +1,6 @@
 «IMPORT uml»
 «EXTENSION templates::util::common»
+«EXTENSION templates::util::idl»
 
 «DEFINE Root FOR uml::Model»
 «FOREACH getEInterfaces(getPackage(this)) AS eElement -»
@@ -19,9 +20,9 @@ module «getPackage(this).name»
 	interface «eElement.name» : ACS::ACSComponent
 	{
 		«FOREACH eElement.getOperations() AS eOperation-»
-		«eOperation.name-»();
+		«getIDLReturnType(eOperation)» «eOperation.name-»(«FOREACH eOperation.ownedParameter.select(e|e.direction.toString()!= 'return') AS param SEPARATOR ', '-»«param.direction.toString()-» «param.type.name.toLowerCase()-» «param.name-»«ENDFOREACH-»);
 		«ENDFOREACH-»
-	}
+	};
 };
 #endif /* «getPackage(this).name»_IDL */
 «ENDFILE»

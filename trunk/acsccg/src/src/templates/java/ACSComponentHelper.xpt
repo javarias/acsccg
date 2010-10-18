@@ -1,0 +1,83 @@
+«IMPORT uml»
+«EXTENSION templates::util::common»
+
+«DEFINE Root FOR uml::Model»
+
+«FOREACH getEComponentsImpl(getPackage(this)) AS eElement -»
+
+«FILE  getPackage(this).name+'/src/'+getPackage(this).name+'/'+eElement.name+'Helper.java'-»
+package «getPackage(this).name»;
+
+import java.util.logging.Logger;
+import alma.acs.component.ComponentLifecycle;
+import alma.acs.container.ComponentHelper;
+
+«FOREACH getEManifestations(eElement) AS eManifestationContainer-»
+«FOREACH getESuppliers(eManifestationContainer) AS eManifestationClass-»
+«FOREACH ((uml::Class) eManifestationClass).getAllImplementedInterfaces() AS eInterface-»
+import alma.«getPackage(this).name».«eInterface.name»POATie;
+import alma.«getPackage(this).name».«eInterface.name»Operations;
+«ENDFOREACH-»
+«ENDFOREACH-»
+«ENDFOREACH-»
+
+public class «eElement.name»Helper extends ComponentHelper
+{
+
+	/**
+	 * Passes a logger to the callback object.
+	 * @param containerLogger
+	 */
+	public «eElement.name»Helper(Logger containerLogger)
+	{
+		super(containerLogger);
+	}
+
+    /**
+     * Gets an instance of the implementation class of the LampAccess component.
+     * @return ComponentLifecycle
+	 * @see alma.acs.container.ComponentHelper#_createComponentImpl()
+	 */
+	protected ComponentLifecycle _createComponentImpl()
+	{
+		return new «eElement.name»();
+	}
+
+	/**
+	 * Gets an instance of the POATie class of the LampAccess component.
+	 * @return Class
+	 * @see alma.acs.container.ComponentHelper#_getPOATieClass()
+	 */
+	protected Class _getPOATieClass()
+	{
+		«FOREACH getEManifestations(eElement) AS eManifestationContainer-»
+		«FOREACH getESuppliers(eManifestationContainer) AS eManifestationClass-»
+		«FOREACH ((uml::Class) eManifestationClass).getAllImplementedInterfaces() AS eInterface-»
+		return «eInterface.name»POATie.class;
+		«ENDFOREACH-»
+		«ENDFOREACH-»
+		«ENDFOREACH-»
+	}
+
+	/**
+	 * Gets an instance of the operations of the LampAccess component.
+	 * @return Class
+	 * @see alma.acs.container.ComponentHelper#getOperationsInterface()
+	 */
+	protected Class _getOperationsInterface()
+	{
+		«FOREACH getEManifestations(eElement) AS eManifestationContainer-»
+		«FOREACH getESuppliers(eManifestationContainer) AS eManifestationClass-»
+		«FOREACH ((uml::Class) eManifestationClass).getAllImplementedInterfaces() AS eInterface-»
+		return «eInterface.name»Operations.class;
+		«ENDFOREACH-»
+		«ENDFOREACH-»
+		«ENDFOREACH-»
+	}
+	
+}
+
+«ENDFILE»
+
+«ENDFOREACH»
+«ENDDEFINE»
