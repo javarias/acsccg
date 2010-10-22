@@ -5,8 +5,8 @@
 «DEFINE Root FOR uml::Model»
 
 «FOREACH getEComponentsImpl(getPackage(this)) AS eElement -»
-«FILE  getPackage(this).name+'/src/'+getPackage(this).name+'/'+eElement.name+'.java'-»
-package «getPackage(this).name»;
+«FILE  getPackage(this).name+'/src/alma/'+getPackage(this).name+'/'+eElement.name+'.java'-»
+package alma.«getPackage(this).name»;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;

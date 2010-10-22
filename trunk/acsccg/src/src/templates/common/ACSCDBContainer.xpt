@@ -14,6 +14,12 @@
 	<Autoload>
     </Autoload>
     
+    «IF getContainerLanguage(eElement)=='java'-»
+    <LoggingConfig>
+    	<log:_ Name="jacorb@frodoContainer" minLogLevel="5" minLogLevelLocal="5" />
+    </LoggingConfig>
+    «ENDIF-»
+    
 </Container>
 «ENDFILE»
 «ENDFOREACH-»

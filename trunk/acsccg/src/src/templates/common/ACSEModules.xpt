@@ -1,14 +1,9 @@
-«REM»
- ACSEModules
- EModules XML generator for menu selection in the generator
- Do not touch unless you know what are you doing
- Created by  A.TEJEDA (09/2010)
- Modified by
-«ENDREM» 
 «IMPORT uml»
 «EXTENSION templates::util::common»
+
 «DEFINE Root FOR uml::Model»
-«FILE  'tmp/EModules.xml'-»
+
+«FILE  'EModules.xml'-»
 <?xml version="1.0" encoding="utf-8"?>
 <EModules>
 	«FOREACH getEModules(this) AS eElement -»
@@ -16,4 +11,5 @@
 	«ENDFOREACH-»
 </EModules>
 «ENDFILE»
+
 «ENDDEFINE»

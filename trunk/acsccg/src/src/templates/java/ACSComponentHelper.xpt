@@ -5,8 +5,8 @@
 
 «FOREACH getEComponentsImpl(getPackage(this)) AS eElement -»
 
-«FILE  getPackage(this).name+'/src/'+getPackage(this).name+'/'+eElement.name+'Helper.java'-»
-package «getPackage(this).name»;
+«FILE  getPackage(this).name+'/src/alma/'+getPackage(this).name+'/'+eElement.name+'Helper.java'-»
+package alma.«getPackage(this).name»;
 
 import java.util.logging.Logger;
 import alma.acs.component.ComponentLifecycle;

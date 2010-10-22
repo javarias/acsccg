@@ -147,7 +147,7 @@ USER_IDL =
 # Jarfiles and their directories
 #
 JARFILES = $(MODULE)
-$(MODULE)_DIRS = «getPackage(this).name»
+$(MODULE)_DIRS = alma/«getPackage(this).name»
 jjj_EXTRAS = 
 
 #

@@ -34,7 +34,7 @@
 	</component>
 	
 	<!-- Makefile -->
-	<component id="ACS_Makefile" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
+	<component id="ACS_MAKEFILE" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
 		<fileEncoding value="UTF-8" />
 		<metaModel idRef="default_profile"/>
 		<genPath value="${ouputFolderURI}"/>
@@ -43,7 +43,7 @@
 	</component>
 	
 	<!-- CDBComponent -->
-	<component id="ACS_CDB_Component" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
+	<component id="ACS_CDB_COMPONENT" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
 		<fileEncoding value="UTF-8" />
 		<metaModel idRef="default_profile"/>
 		<genPath value="${ouputFolderURI}"/>
@@ -52,11 +52,20 @@
 	</component>
 	
 	<!-- CDBContainer -->
-	<component id="ACS_CDB_Container" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
+	<component id="ACS_CDB_CONTAINER" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
 		<fileEncoding value="UTF-8" />
 		<metaModel idRef="default_profile"/>
 		<genPath value="${ouputFolderURI}"/>
 		<expand value="templates::common::ACSCDBContainer::Root FOR model"/>
+		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
+	</component>
+	
+	<!-- CDBContainer -->
+	<component id="ACS_CDB_MANAGER" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
+		<fileEncoding value="UTF-8" />
+		<metaModel idRef="default_profile"/>
+		<genPath value="${ouputFolderURI}"/>
+		<expand value="templates::common::ACSCDBManager::Root FOR model"/>
 		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
 	</component>
 	

@@ -24,7 +24,7 @@ module «getPackage(this).name»
 		«ENDFOREACH-»
 	};
 };
-#endif /* «getPackage(this).name»_IDL */
+#endif /* «eElement.name»_IDL */
 «ENDFILE»
 
 «ENDFOREACH»

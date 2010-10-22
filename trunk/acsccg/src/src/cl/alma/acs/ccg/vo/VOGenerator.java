@@ -40,6 +40,17 @@ public class VOGenerator
 		this.profile = profile;
 		this.output = output;
 	}
+	
+	/**
+	 * Constructor
+	 * @param model
+	 * @param profile
+	 */
+	public VOGenerator(String model, String profile) 
+	{
+		this.model = model;
+		this.profile = profile;
+	}
 
 	/**
 	 * Return the model path
