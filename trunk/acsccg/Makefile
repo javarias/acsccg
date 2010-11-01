@@ -72,6 +72,8 @@ clean:
 	@$(ANT) -f src/build.xml clean
 
 example:
+	@rm -rf $(EXF)/output
+	@mkdir $(EXF)/output
 	@for module in $(EMODULES); do \
 		echo $(JCLI) -jar $(ACSCCG) -e $$module -m $(EXF)/exported/ACSCodeGenerator.uml -p $(EXF)/exported/EProfile.profile.uml -o $(EXF)/output/;\
     	$(JCLI) -jar $(ACSCCG) -e $$module -m $(EXF)/exported/ACSCodeGenerator.uml -p $(EXF)/exported/EProfile.profile.uml -o $(EXF)/output/;\
