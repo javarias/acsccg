@@ -1,3 +1,22 @@
+/**
+ * ACS Component Code Generator - http://code.google.com/p/acsccg/
+ * Copyright (C) 2010  Alexis Tejeda, alexis.tejeda@gmail.com
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ *  who       			when      			what
+ * --------				--------					----------------------------------------------
+ * atejeda 			2010-00-00  		Created
+ * 
+ */
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
@@ -20,9 +39,12 @@ import cl.alma.acs.ccg.util.Validation;
 import cl.alma.acs.ccg.vo.VOGenerator;
 
 /**
- * Main class of the generator
- * @author atejeda
- */
+* Component Code Generator Main class
+* The start point of an standalone class 
+* @name ACSCCG.java
+* @author Alexis Tejeda, alexis.tejeda@gmail.com
+* @version 
+*/
 public class ACSCCG 
 {
 	/**
@@ -153,13 +175,14 @@ public class ACSCCG
 	{
 		System.out.println("");
 		System.out.println("ACS Component Code Generator");
-		System.out.println("Build " + "20101021");
+		System.out.println(" Revision " + "122");
 		System.out.println("");
 	    System.out.println("http://code.google.com/p/acsccg/");
 		System.out.println("");
 	}
 		
 	/**
+	 * @deprecated
 	 * Print the info about the paths
 	 * @param modelPath
 	 * @param profilePath

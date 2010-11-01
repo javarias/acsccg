@@ -1,8 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+/**
+ * ACS Component Code Generator - http://code.google.com/p/acsccg/
+ * Copyright (C) 2010  Alexis Tejeda, alexis.tejeda@gmail.com
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ *  who       			when      			what
+ * 
+ * atejeda 			2010-00-00  		Created
+ * 
+ */
+-->
 <?eclipse.ant.import?>
 <project basedir="." default="build" name="cl.alma.acs.ccg">
 	<property environment="env" />
-	<property name="LIB_PATH" value="../lib" />
+	<property name="LIB_PATH" value="lib" />
+	<property name="OUTPUT_PATH" value="../lib" />
 	<property name="debuglevel" value="source,lines,vars" />
 	<property name="target" value="1.6" />
 	<property name="source" value="1.6" />
@@ -45,7 +67,7 @@
 	<path id="cl.alma.acs.ccg.classpath">
 		<path refid="Plug-in Dependencies.libraryclasspath" />
 		<pathelement location="bin" />
-		<pathelement location="../lib/commons-cli-1.2.jar" />
+		<pathelement location="${LIB_PATH}/commons-cli-1.2.jar" />
 	</path>
 	<target name="init">
 		<mkdir dir="bin" />
@@ -58,7 +80,7 @@
 	</target>
 	<target name="clean">
 		<delete dir="bin" />
-		<delete file="../lib/acsComponentCodeGenerator.jar" />
+		<delete file="${OUTPUT_PATH}/acsComponentCodeGenerator.jar" />
 	</target>
 	<target depends="clean" name="cleanall" />
 	<target depends="build-subprojects,build-project" name="build" />
@@ -71,7 +93,7 @@
 		</javac>
 	</target>
 	<target name="install">
-		<jar destfile="../lib/acsComponentCodeGenerator.jar">
+		<jar destfile="${OUTPUT_PATH}/acsComponentCodeGenerator.jar">
 			<manifest>
 				<attribute name="Main-Class" value="org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader" />
 				<attribute name="Rsrc-Main-Class" value="ACSCCG" />
@@ -148,8 +170,9 @@
 			<zipfileset dir="${LIB_PATH}" includes="org.eclipse.emf.mapping.ecore2xml_2.5.0.v200906151043.jar" />
 			<zipfileset dir="${LIB_PATH}" includes="log4j-1.2.16.jar" />
 			<zipfileset dir="${LIB_PATH}" includes="jdom.jar" />
-			<fileset dir="bin" />
 			<zipfileset dir="${LIB_PATH}" includes="commons-cli-1.2.jar" />
+			<zipfileset dir="${LIB_PATH}" includes="log4j-1.2.16.jar" />
+			<fileset dir="bin" />
 		</jar>
 	</target>
 	<target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects" />
