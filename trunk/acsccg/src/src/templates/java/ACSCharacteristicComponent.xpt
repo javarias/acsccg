@@ -2,6 +2,7 @@
 «EXTENSION templates::util::common»
 
 «DEFINE Root FOR uml::Model»
+«REM»
 «FILE  getPackage(this).name+'/src/test.java'-»
 
 «FOREACH getEComponentsImpl(getPackage(this)) AS eElement -»
@@ -18,6 +19,7 @@
 	«ENDFOREACH-»
 «ENDFOREACH-»
 
-
 «ENDFILE»
+
+«ENDREM»
 «ENDDEFINE»

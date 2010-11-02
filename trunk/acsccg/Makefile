@@ -21,6 +21,7 @@
 ANT=ant
 RM=rm
 JCLI=java
+ENVDIR=$(shell pwd)
 
 # Example-test var
 LIBF=lib
@@ -29,8 +30,8 @@ ACSCCG=$(LIBF)/acsComponentCodeGenerator.jar
 
 # These modules exists in the example file, others will not work
 # Upper and Lower case are sensitive.
-EMODULES=	MARS \
-			singleComponent	
+EMODULES=	singleComponent	\
+			MARS
 
 all: clean build install
 
@@ -72,12 +73,15 @@ clean:
 	@$(ANT) -f src/build.xml clean
 
 example:
-	@rm -rf $(EXF)/output
-	@mkdir $(EXF)/output
+	@rm -rf $(EXF)/generated
+	@mkdir $(EXF)/generated
 	@for module in $(EMODULES); do \
-		echo $(JCLI) -jar $(ACSCCG) -e $$module -m $(EXF)/exported/ACSCodeGenerator.uml -p $(EXF)/exported/EProfile.profile.uml -o $(EXF)/output/;\
-    	$(JCLI) -jar $(ACSCCG) -e $$module -m $(EXF)/exported/ACSCodeGenerator.uml -p $(EXF)/exported/EProfile.profile.uml -o $(EXF)/output/;\
+		echo $(JCLI) -jar $(ACSCCG) -m $(ENVDIR)/$(EXF)/xmi/ACSCodeGenerator.uml -p $(ENVDIR)/$(EXF)/xmi/EProfile.profile.uml -o $(ENVDIR)/$(EXF)/generated/ -e $$module;\
+    	$(JCLI) -jar $(ACSCCG) -m $(ENVDIR)/$(EXF)/xmi/ACSCodeGenerator.uml -p $(ENVDIR)/$(EXF)/xmi/EProfile.profile.uml -o $(ENVDIR)/$(EXF)/generated/ -e $$module;\
     done
-
-
+	@echo ""
+	@echo "###########################################"
+	@echo "# Done"
+	@echo "###########################################"
+	@echo ""
 

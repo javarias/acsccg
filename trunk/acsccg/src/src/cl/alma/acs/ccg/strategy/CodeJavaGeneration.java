@@ -21,6 +21,9 @@ package cl.alma.acs.ccg.strategy;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.eclipse.emf.mwe.core.WorkflowRunner;
 
 import cl.alma.acs.ccg.util.BaseStaticConfig;
@@ -70,11 +73,13 @@ public class CodeJavaGeneration  implements ICodeGenerationStrategy{
 		//calling the workflow runner
 		try 
 		{
+			Logger.getLogger(BaseStaticConfig.ACSCCG_LOGGER).log(Level.INFO, "Generating the code... wait");
 			wrunner.run(mweFile ,null, properties, slotContents);
 		} 
 		catch(Exception e) 
 		{
-			System.out.println(e.getMessage());
+			//System.out.println(e.getMessage());
+			Logger.getLogger(BaseStaticConfig.ACSCCG_LOGGER).log(Level.ERROR, e.getMessage());
 			return;
 		}
 	}

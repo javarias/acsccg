@@ -93,7 +93,6 @@ public class ACSCCG
 		} 
 		catch (Exception e) 
 		{
-			
 			Logger.getLogger(BaseStaticConfig.ACSCCG_LOGGER).log(Level.ERROR, e.getMessage());
 			System.out.println("");
 			printHelp(opt);
@@ -145,17 +144,29 @@ public class ACSCCG
 		Logger.getLogger(BaseStaticConfig.ACSCCG_LOGGER).log(Level.INFO, "Check if the module exists");
 		Validation.checkModuleExistence(eModulesVector, Validation.getEModuleArg(cl));
 		
-		//////////////////////////////////////////////////////////////////////////////////////////////
-		// Code Generation
-		//////////////////////////////////////////////////////////////////////////////////////////////
 		// if there's any errors, halt
 		if(!Validation.getInstance().noErrors())
 		{
 			Logger.getLogger(BaseStaticConfig.ACSCCG_LOGGER).log(Level.ERROR, "Program terminated due errors in the validation, see the logs");
+			return;
 		}
 		
-		//Start the code generation	
+		//////////////////////////////////////////////////////////////////////////////////////////////
+		// Code Generation
+		//////////////////////////////////////////////////////////////////////////////////////////////
 		
+		//Calling to the Java strategy...
+        new ContextCodeGeneration(
+        		new CodeJavaGeneration(
+        				new VOGenerator(
+        						Validation.getModelPathArg(cl), 
+        						Validation.getProfilePathArg(cl), 
+        						Validation.getOutputPathArg(cl),
+        						Validation.getEModuleArg(cl)
+        						)
+        				)
+        		).generateACSCode();
+        Logger.getLogger(BaseStaticConfig.ACSCCG_LOGGER).log(Level.INFO, "Done");
 	}
 	
 	/**

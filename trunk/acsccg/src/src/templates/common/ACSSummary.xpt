@@ -23,7 +23,7 @@
 «EXTENSION templates::util::common»
 
 «DEFINE Root FOR uml::Model»
-«FILE  'ACSSummary_'+getPackage(this).name+'.txt'-»
+«FILE  'summary_'+getPackage(this).name+'.txt'-»
 # ACSCCG - ACS Component Code Generator
 # Summary of the components generated
 # This is only for development
