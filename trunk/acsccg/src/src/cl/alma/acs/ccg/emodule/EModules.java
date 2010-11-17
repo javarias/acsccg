@@ -26,6 +26,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.eclipse.emf.mwe.core.WorkflowRunner;
 
 import cl.alma.acs.ccg.util.BaseStaticConfig;
@@ -102,7 +104,8 @@ public class EModules
 		} 
 		catch(Exception e) 
 		{
-			System.out.println(e.getMessage());
+			//System.out.println(e.getMessage());
+			 Logger.getLogger(BaseStaticConfig.ACSCCG_LOGGER).log(Level.ERROR, "There's a problem reading the modules");
 			return;
 		}
 	}
@@ -125,11 +128,13 @@ public class EModules
 		} 
 		catch (JDOMException e) 
 		{
-			e.printStackTrace();
+			//e.printStackTrace();
+			 Logger.getLogger(BaseStaticConfig.ACSCCG_LOGGER).log(Level.ERROR, "There's a problem reading the modules");
 		} 
 		catch (IOException e) 
 		{
-			e.printStackTrace();
+			///e.printStackTrace();
+			 Logger.getLogger(BaseStaticConfig.ACSCCG_LOGGER).log(Level.ERROR, "There's a problem reading the modules");
 		}
 		
 		Element root = __doc.getRootElement();
