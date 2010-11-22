@@ -22,6 +22,14 @@ import AlmaGenerator;
 import ecore;
 
 /**
+ * Check if the element has a typeModifier
+ * @param Element
+ * @return Boolean
+ */
+boolean isETypeModifier(Element element): 
+	!element.getAppliedStereotypes().select(e|e.name == 'typeModifier').isEmpty;
+
+/**
  * Check if the element is a component definition
  * @param Element
  * @return Boolean
@@ -77,6 +85,22 @@ boolean isETopic(Element element):
  */
 boolean isEModule(Element element): 
 	!element.getAppliedStereotypes().select(e|e.name == 'EModule').isEmpty;
+	
+/**
+ * Check if the element is a EReadOnlyProperty
+ * @param Element
+ * @return Boolean
+ */
+boolean isEReadOnlyProperty(Element element): 
+	!element.getAppliedStereotypes().select(e|e.name == 'EReadOnlyProperty').isEmpty;
+	
+/**
+ * Check if the element is a EReadWriteProperty
+ * @param Element
+ * @return Boolean
+ */
+boolean isEReadWriteProperty(Element element): 
+	!element.getAppliedStereotypes().select(e|e.name == 'EReadWriteProperty').isEmpty;
 
 /**
  * Get the package name from the glovar var
@@ -160,6 +184,23 @@ List getEModules(Model model):
 	model.allOwnedElements().select(e|isEModule(e));
 
 /**
+ * Get EReadOnlyProperties list from a certain element
+ * @param eElement
+ * @return List
+ */
+List getEReadOnlyProperties(Element eElement):
+	eElement.allOwnedElements().select(e|isEReadOnlyProperty(e));
+	
+/**
+ * Get EReadWriteProperties list from a certain element
+ * @param eElement
+ * @return List
+ */
+List getEReadWriteProperties(Element eElement):
+	eElement.allOwnedElements().select(e|isEReadWriteProperty(e));
+	
+
+/**
  * Get the stereotype reference of an Element or uml::Class
  * this method only work with the EProfile stereotypes
  * @param Element
@@ -184,7 +225,7 @@ String getETagValue(Element eElement, String eStereotype, String tag):
  * @param eElement
  * @return Boolean
  */
-boolean isECharacteristic(Element eElement):
+String isECharacteristic(Element eElement):
 	getETagValue(eElement,'EInterface','configurable');
  		
 /**
@@ -220,3 +261,11 @@ String getContainerLanguage(Element eElement):
  */
 String getEComponentLanguage(Element eElement):
 	getETagValue(eElement,'EComponentImpl','language').name.toLowerCase();
+	
+/**
+ * Get list of used interfaces in the EComponentImpl
+ * @param eElement
+ * @return List
+ */
+String getERealizations(Element eElement):
+	((uml::Class) getESuppliers(getEManifestations(eElement).first()).first()).getImplementedInterfaces();

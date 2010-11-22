@@ -52,7 +52,7 @@ EComponentsImpl:
 
 EInterfaces:
 «FOREACH getEInterfaces(getPackage(this)) AS eElement -»
-	«eElement.name»
+	«eElement.name» - «isECharacteristic(eElement)»
 «ENDFOREACH»
 
 EContainers:

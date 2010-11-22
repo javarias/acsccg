@@ -6,40 +6,59 @@
 
 «FOREACH getEComponentsImpl(getPackage(this)) AS eElement -»
 «FILE  getPackage(this).name+'/src/alma/'+getPackage(this).name+'/'+eElement.name+'.java'-»
+/*******************************************************************************
+*    ALMA - Atacama Large Millimiter Array
+*
+*    (c) European Southern Observatory, 2002
+*    Copyright by ESO (in the framework of the ALMA collaboration)
+*    and Cosylab 2002, All rights reserved
+*
+*    This library is free software; you can redistribute it and/or
+*    modify it under the terms of the GNU Lesser General Public
+*    License as published by the Free Software Foundation; either
+*    version 2.1 of the License, or (at your option) any later version.
+*
+*    This library is distributed in the hope that it will be useful,
+*    but WITHOUT ANY WARRANTY; without even the implied warranty of
+*    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+*    Lesser General Public License for more details.
+*
+*    You should have received a copy of the GNU Lesser General Public
+*    License along with this library; if not, write to the Free Software
+*    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307  USA
+*
+*
+* "@(#) $Id: «eElement.name».java,v 0.00  0000-00-00 00:00:00  ZZZ $"
+*
+* who       when      what
+* --------  --------  ----------------------------------------------
+*/
+
 package alma.«getPackage(this).name»;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import alma.ACS.ComponentStates;
+
+import alma.acs.container.ContainerServices;
 import alma.acs.component.ComponentLifecycle;
 import alma.acs.component.ComponentLifecycleException;
-import alma.acs.container.ContainerServices;
+
+import alma.ACS.ComponentStates;
 import alma.ACSErrTypeCommon.CouldntPerformActionEx;
 import alma.ACSErrTypeCommon.wrappers.AcsJCouldntPerformActionEx;
 
 import alma.«getPackage(this).name».*;
-«FOREACH getEManifestations(eElement) AS eManifestationContainer-»
-«FOREACH getESuppliers(eManifestationContainer) AS eManifestationClass-»
-«FOREACH ((uml::Class) eManifestationClass).getAllImplementedInterfaces() AS eInterface-»
+«FOREACH getERealizations(eElement) AS eInterface-»
 import alma.«getPackage(this).name».«eInterface.name»;
 import alma.«getPackage(this).name».«eInterface.name»Operations;
 «ENDFOREACH-»
-«ENDFOREACH-»
-«ENDFOREACH-»
 
-public class «eElement.name» implements ComponentLifecycle 
-	«FOREACH getEManifestations(eElement) AS eManifestationContainer-»
-	«FOREACH getESuppliers(eManifestationContainer) AS eManifestationClass-»
-	«FOREACH ((uml::Class) eManifestationClass).getAllImplementedInterfaces() AS eInterface-»
-	,«eInterface.name»Operations
-	«ENDFOREACH-»
-	«ENDFOREACH-»
-	«ENDFOREACH-»
+public class «eElement.name» implements ComponentLifecycle«FOREACH getERealizations(eElement) AS eInterface-», «eInterface.name»Operations«ENDFOREACH»
 {
 
 	private ContainerServices m_containerServices;
     private Logger m_logger;
-
+		
     /////////////////////////////////////////////////////////////
 	// Implementation of ComponentLifecycle
 	/////////////////////////////////////////////////////////////
@@ -49,7 +68,7 @@ public class «eElement.name» implements ComponentLifecycle
 		m_containerServices = containerServices;
 		m_logger = m_containerServices.getLogger();
         m_logger.info("initialize() called...");
-	}
+     }
 	
 	public void execute() 
 	{
@@ -81,9 +100,7 @@ public class «eElement.name» implements ComponentLifecycle
         return m_containerServices.getName();
     }
    
-	«FOREACH getEManifestations(eElement) AS eManifestationContainer-»
-	«FOREACH getESuppliers(eManifestationContainer) AS eManifestationClass-»
-	«FOREACH ((uml::Class) eManifestationClass).getAllImplementedInterfaces() AS eInterface-»
+	«FOREACH getERealizations(eElement) AS eInterface-»
 	/////////////////////////////////////////////////////////////
 	// Implementation of «eInterface.name»Operations
 	/////////////////////////////////////////////////////////////
@@ -96,8 +113,6 @@ public class «eElement.name» implements ComponentLifecycle
 	
 	«ENDFOREACH-»
 	
-	«ENDFOREACH-»
-	«ENDFOREACH-»
 	«ENDFOREACH-»
 } 
 «ENDFILE»

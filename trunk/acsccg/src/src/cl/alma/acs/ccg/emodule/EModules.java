@@ -92,6 +92,7 @@ public class EModules
 		properties.put("modelFileURI", __voGenerator.getWellFormedModel());
 		properties.put("profileFileURI",__voGenerator.getWellFormedProfile());
 		properties.put("ouputFolderURI",BaseStaticConfig.TEMP_OS_DIR);
+		System.out.println(BaseStaticConfig.TEMP_OS_DIR);
 		
 		Map slotContents = new HashMap();
 		

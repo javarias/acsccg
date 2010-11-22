@@ -26,4 +26,11 @@
 		<nature>org.eclipse.pde.PluginNature</nature>
 		<nature>org.eclipse.xtend.shared.ui.xtendXPandNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>xmi</name>
+			<type>2</type>
+			<location>/home/atejeda/Desktop/awu2010/xmi</location>
+		</link>
+	</linkedResources>
 </projectDescription>

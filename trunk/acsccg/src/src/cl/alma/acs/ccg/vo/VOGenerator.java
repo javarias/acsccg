@@ -19,6 +19,9 @@
  */
 package cl.alma.acs.ccg.vo;
 
+import java.io.File;
+import java.io.IOException;
+
 /**
  * Value Object for the model and profile
  * @author atejeda
@@ -31,7 +34,7 @@ public class VOGenerator
 	private String output;
 	private String acspackage;
 	
-	private final static  String protocol = "file:/";
+	private final static  String protocol = "file:///";
 
 	/**
 	 * Constructor
@@ -149,7 +152,20 @@ public class VOGenerator
 	 */
 	public String getWellFormedModel() 
 	{
-		return protocol+this.model;
+		File modelFileObj = new File(this.model);
+	    try {
+			System.out.println(modelFileObj.getCanonicalPath());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			return protocol+modelFileObj.getCanonicalPath();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "";
 	}
 	
 	/**
@@ -158,6 +174,19 @@ public class VOGenerator
 	 */
 	public String getWellFormedProfile()
 	{
-		return protocol+this.profile;
+		File modelFileObj = new File(this.profile);
+		try {
+			System.out.println(modelFileObj.getCanonicalPath());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			return protocol+modelFileObj.getCanonicalPath();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "";
 	}
 }

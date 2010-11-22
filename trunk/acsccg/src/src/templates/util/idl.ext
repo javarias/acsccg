@@ -24,6 +24,30 @@ import ecore;
 /**
  * 
  */
+Element getParent(Interface eElement): 
+	eElement.allParents().first();
+
+/**
+ * 
+ */
+boolean hasParent(Interface eElement): 
+	!eElement.allParents().isEmpty;
+
+/**
+ * 
+ */
+List getROProperties(Interface eElement): 
+	eElement.getAllAttributes().select(e|e.isReadOnly);
+	
+/**
+ * 
+ */
+List getStaticProperties(Interface eElement): 
+	eElement.getAllAttributes().select(e|e.isStatic);
+
+/**
+ * 
+ */
 Parameter getReturnParameter(Operation this): 
 	ownedParameter.select(e|e.direction.toString()== 'return').first();
 
@@ -46,6 +70,6 @@ string getIDLCorrectCase(Parameter this):
  */
 string getIDLReturnType(Operation this):
     if hasModifier(getReturnParameter(this))
-        then (getIDLCorrectCase(getReturnParameter(this)) + "_seq").trim()
+        then (getIDLCorrectCase(getReturnParameter(this)) + "Sequence").trim()
     else
         getIDLCorrectCase(getReturnParameter(this)).trim();
