@@ -107,5 +107,14 @@
 		<expand value="templates::common::ACSIDLCommon::Root FOR model"/>
 		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
 	</component>
+	
+	<!-- IDL Common -->
+	<component id="ACS_MODULEERROR" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
+		<fileEncoding value="UTF-8" />
+		<metaModel idRef="default_profile"/>
+		<genPath value="${ouputFolderURI}"/>
+		<expand value="templates::common::ACSModuleErr::Root FOR model"/>
+		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
+	</component>
 		
 </workflow>

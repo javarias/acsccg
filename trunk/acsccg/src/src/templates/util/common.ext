@@ -22,6 +22,30 @@ import AlmaGenerator;
 import ecore;
 
 /**
+ * Check if the element is diagram info - this only works in MagicDraw
+ * @param Element
+ * @return Boolean
+ */
+boolean isDiagramInfo(Element element): 
+	!element.getAppliedStereotypes().select(e|e.name == 'DiagramInfo').isEmpty;
+
+/**
+ * Check if the element has a EtopicError
+ * @param Element
+ * @return Boolean
+ */
+boolean isETopicError(Element element): 
+	!element.getAppliedStereotypes().select(e|e.name == 'ETopicError').isEmpty;
+
+/**
+ * Check if the element has a EtopicSequence
+ * @param Element
+ * @return Boolean
+ */
+boolean isETopicSequence(Element element): 
+	!element.getAppliedStereotypes().select(e|e.name == 'ETopicSequence').isEmpty;
+
+/**
  * Check if the element has a typeModifier
  * @param Element
  * @return Boolean
@@ -199,6 +223,14 @@ List getEReadOnlyProperties(Element eElement):
 List getEReadWriteProperties(Element eElement):
 	eElement.allOwnedElements().select(e|isEReadWriteProperty(e));
 	
+/**
+ * Get ETopicSequence list from a certain element
+ * @param eElement
+ * @return List
+ */
+List getETopicSequences(Element eElement):
+	eElement.allOwnedElements().select(e|isETopicSequence(e));	
+	
 
 /**
  * Get the stereotype reference of an Element or uml::Class
@@ -245,6 +277,22 @@ List getEManifestations(Artifact eArtifact):
  */
 List getESuppliers(Manifestation eManifest):
 	eManifest.supplier;
+
+/**
+ * Get a list of ETopicError
+ * @param Manifes
+ * @return List
+ */
+List getETopicErrors(Element eElement):
+	eElement.allOwnedElements().select(e|isETopicError(e));
+	
+/**
+ * Get a list of DiagramInfo
+ * @param Manifes
+ * @return List
+ */
+Element getDiagramInfo(Element eElement):
+	eElement.allOwnedElements().select(e|isDiagramInfo(e));	
 	
 /**
  * Get Container (EContainer) Language tag
@@ -253,6 +301,22 @@ List getESuppliers(Manifestation eManifest):
  */
 String getContainerLanguage(Element eElement):
 	getETagValue(eElement,'EContainer','language').name.toLowerCase();
+	
+/**
+ * Get ETopicError description tag
+ * @param eElement
+ * @return String
+ */
+String getETopicErrorDescription(Element eElement):
+	getETagValue(eElement,'ETopicError','description');
+	
+/**
+ * Get ETopicError shortDescription tag
+ * @param eElement
+ * @return String
+ */
+String getETopicErrorShortDescription(Element eElement):
+	getETagValue(eElement,'ETopicError','shortDescription');
 
 /**
  * Get Artifact (EComponentImpl) Language tag
@@ -269,3 +333,40 @@ String getEComponentLanguage(Element eElement):
  */
 String getERealizations(Element eElement):
 	((uml::Class) getESuppliers(getEManifestations(eElement).first()).first()).getImplementedInterfaces();
+	
+/**
+ * Get the comment
+ * @param eElement
+ * @return String
+ */
+String getComment(Element eElement): 
+	eElement.ownedComment.first().body;
+	
+/**
+ * Check the element has comments
+ * @param eElement
+ * @return Boolean
+ */
+boolean hasComment(Element eElement): 
+	!eElement.ownedComment.isEmpty;
+	
+/**
+ * Return full actual date
+ * @return String
+ */
+String getFullActualDate(): 
+	JAVA cl.alma.acs.ccg.util.xtend.JavaExtension.getFullActualDate();
+	
+/**
+ * Return full actual date for the comments
+ * @return String
+ */
+String getCommentDate(): 
+	JAVA cl.alma.acs.ccg.util.xtend.JavaExtension.getCommentDate();	
+	
+/**
+ * Return the comments wrapped as a List<String>
+ * @return List
+ */
+List getCommentsWrapped(String comments): 
+	JAVA cl.alma.acs.ccg.util.xtend.JavaExtension.getCommentsWrapped(java.lang.String);

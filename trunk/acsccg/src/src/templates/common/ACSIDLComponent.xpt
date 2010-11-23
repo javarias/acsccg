@@ -27,9 +27,6 @@
 «FOREACH getEInterfaces(getPackage(this)) AS eElement -»
 
 «FILE  getPackage(this).name+'/idl/'+eElement.name+'.idl'-»
-#ifndef _«eElement.name-»_IDL
-#define _«eElement.name-»_IDL
-
 /*******************************************************************************
 *    ALMA - Atacama Large Millimiter Array
 *
@@ -52,11 +49,16 @@
 *    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307  USA
 *
 *
-* "@(#) $Id: «eElement.name».idl, v 0.00  0000-00-00 00:00:00  ZZZ $"
+* "@(#) $Id: «eElement.name».idl, v 1.00 «getCommentDate()» «eElement.name.toLowerCase()» Exp $"
 *
-* who       when      what
-* --------  --------  ----------------------------------------------
+* who                  when              what
+* ----------------    -------------      ----------------------------------------------
+* ACSCCG              «getCommentDate()»   Creation of the file
+* 
 */
+
+#ifndef _«eElement.name-»_IDL
+#define _«eElement.name-»_IDL
 
 #include <«getPackage(this).name»Common.idl>
 «IF isECharacteristic(eElement)-»
@@ -71,27 +73,45 @@
 
 #pragma prefix "alma"
 
+/** 
+ * @file «eElement.name».idl
+ */
 module «getPackage(this).name»
 {
-	interface «eElement.name» : «IF isECharacteristic(eElement)»ACS::CharacteristicComponent«ELSE»«IF hasParent(eElement)»«getParent(eElement).name»«ELSE»ACS::ACSComponent«ENDIF»«ENDIF» 
+	/**«IF hasComment(eElement)»«FOREACH getCommentsWrapped(getComment(eElement)) AS comment»
+	 *«comment»«ENDFOREACH»«ENDIF»
+     * @interface «eElement.name»
+     */
+	interface «eElement.name» : «IF isECharacteristic(eElement)»ACS::CharacteristicComponent«ELSE»«IF hasParent(eElement)»«FOREACH getParents(eElement) AS eParent SEPARATOR ', '-»«eParent.name»«ENDFOREACH-»«ELSE»ACS::ACSComponent«ENDIF»«ENDIF» 
 	{
 		«IF isECharacteristic(eElement)-»
 		«FOREACH getEReadOnlyProperties(eElement) AS eCharacteristicProperty»
-		readonly attribute ACS::RO«eCharacteristicProperty.type.name»«IF isETypeModifier(eCharacteristicProperty)»Sequence«ENDIF» «eCharacteristicProperty.name»;
+		«IF hasComment(eCharacteristicProperty)»/* «getComment(eCharacteristicProperty)» */«ELSE-»«ENDIF»
+		readonly attribute ACS::RO«eCharacteristicProperty.type.name»«IF isETypeModifier(eCharacteristicProperty)»«IF eCharacteristicProperty.type.name=='long'»Seq«ENDIF»«ENDIF» «eCharacteristicProperty.name»;
 		«ENDFOREACH-»
 		«FOREACH getEReadWriteProperties(eElement) AS eCharacteristicProperty»
+		«IF hasComment(eCharacteristicProperty)»/* «getComment(eCharacteristicProperty)» */«ELSE-»«ENDIF»
 		readonly attribute ACS::RW«eCharacteristicProperty.type.name» «eCharacteristicProperty.name»;
 		«ENDFOREACH-»
 		«ENDIF-»
 		
 		«FOREACH eElement.getOperations() AS eOperation-»
-		«getIDLReturnType(eOperation)» «eOperation.name-»(«FOREACH eOperation.ownedParameter.select(e|e.direction.toString()!= 'return') AS param SEPARATOR ', '-»«param.direction.toString()-» «param.type.name-»«IF isETypeModifier(param)»Sequence«ENDIF» «param.name-»«ENDFOREACH-»);
+		/**«IF hasComment(eOperation)»«FOREACH getCommentsWrapped(getComment(eOperation)) AS comment»
+		 *«comment»«ENDFOREACH»«ENDIF»
+		«FOREACH eOperation.ownedParameter.select(e|e.direction.toString()!= 'return') AS cParam-»
+		 * @param «cParam.name» «IF hasComment(cParam)»«getComment(cParam)»«ELSE-»«ENDIF»
+		 «ENDFOREACH-»
+		 * @return «getIDLReturnType(eOperation)»
+		 */
+		«getIDLReturnType(eOperation)» «eOperation.name-»(«FOREACH eOperation.ownedParameter.select(e|e.direction.toString()!= 'return') AS param SEPARATOR ', '-»«param.direction.toString()-» «getIDLCorrectCaseString(param.type.name)-»«IF isETypeModifier(param)»Sequence«ENDIF» «param.name-»«ENDFOREACH-»);
 		
 		«ENDFOREACH-»
 		«FOREACH getROProperties(eElement) AS roAttribute»
+		«IF hasComment(roAttribute)»/* «getComment(roAttribute)» */«ELSE-»«ENDIF»
 		readonly attribute «roAttribute.type.name.toLowerCase()» «roAttribute.name»;
 		«ENDFOREACH-»
 		«FOREACH getStaticProperties(eElement) AS roAttribute»
+		«IF hasComment(roAttribute)»/* «getComment(roAttribute)» */«ELSE-»«ENDIF»
 		const «roAttribute.type.name.toLowerCase()» «roAttribute.name» = «roAttribute.getDefault()»;
 		«ENDFOREACH-»
 	};

@@ -21,11 +21,25 @@ import uml;
 import AlmaGenerator;
 import ecore;
 
+extension templates::util::common;
+
+/**
+ * 
+ */
+Element getSequenceType(Element eElement): 
+	eElement.getAllAttributes().first().type.name;
+
 /**
  * 
  */
 Element getParent(Interface eElement): 
 	eElement.allParents().first();
+	
+/**
+ * 
+ */
+List getParents(Interface eElement): 
+	eElement.parents();
 
 /**
  * 
@@ -37,13 +51,13 @@ boolean hasParent(Interface eElement):
  * 
  */
 List getROProperties(Interface eElement): 
-	eElement.getAllAttributes().select(e|e.isReadOnly);
+	eElement.getAllAttributes().select(e|e.isReadOnly).select(e|!isEReadOnlyProperty(e)).select(e|!isEReadWriteProperty(e)).select(e|!e.isStatic);
 	
 /**
  * 
  */
 List getStaticProperties(Interface eElement): 
-	eElement.getAllAttributes().select(e|e.isStatic);
+	eElement.getAllAttributes().select(e|e.isStatic).select(e|!isEReadOnlyProperty(e)).select(e|!isEReadWriteProperty(e)).select(e|!e.isReadOnly);
 
 /**
  * 
@@ -63,7 +77,16 @@ boolean hasModifier(Parameter this):
 string getIDLCorrectCase(Parameter this):
     if type.name == 'Boolean' || type.name == 'Long' || type.name == 'Double' || type.name == 'Float' || type.name == 'Char'|| type.name == 'String'  
         then type.name.toLowerCase()
-    else type.name;  
+    else type.name; 
+    
+/**
+ * 
+ */	
+string getIDLCorrectCaseString(String str):
+    if str == 'Boolean' || str == 'Long' || str == 'Double' || str == 'Float' || str == 'Char'|| str == 'String'  
+        then str.toLowerCase()
+    else str; 
+ 
 
 /**
  * 

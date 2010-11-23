@@ -21,13 +21,11 @@
 «ENDREM»
 «IMPORT uml»
 «EXTENSION templates::util::common»
+«EXTENSION templates::util::idl»
 
 «DEFINE Root FOR uml::Model»
 
 «FILE  getPackage(this).name+'/idl/'+getPackage(this).name+'Common.idl'-»
-#ifndef _«getPackage(this).name-»Common_IDL
-#define _«getPackage(this).name-»Common_IDL
-
 /*******************************************************************************
 *    ALMA - Atacama Large Millimiter Array
 *
@@ -50,11 +48,16 @@
 *    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307  USA
 *
 *
-* "@(#) $Id: «getPackage(this).name»Common.idl, v 0.00  0000-00-00 00:00:00  ZZZ $"
+* "@(#) $Id: «getPackage(this).name-»Common.idl, v 1.00 «getCommentDate()» «getPackage(this).name-»Common Exp $"
 *
-* who       when      what
-* --------  --------  ----------------------------------------------
+* who                  when              what
+* ----------------    -------------      ----------------------------------------------
+* ACSCCG              «getCommentDate()»   Creation of the file
+* 
 */
+
+#ifndef _«getPackage(this).name-»Common_IDL
+#define _«getPackage(this).name-»Common_IDL
 
 #pragma prefix "alma"
 
@@ -63,6 +66,12 @@ module «getPackage(this).name»
 	«FOREACH getEEnumerations(getPackage(this)) AS eElement -»
 	enum «eElement.name» { «FOREACH eElement.ownedLiteral AS eAttribute SEPARATOR ', '»«eAttribute.name»«ENDFOREACH» };
 	«ENDFOREACH-»
+
+	«FOREACH getETopicSequences(getPackage(this)) AS eElement -»
+	typedef sequence<«getSequenceType(eElement)»> «eElement.name»;
+	
+	«ENDFOREACH-»
+	typedef sequence<long> longSequence;
 
 	«FOREACH getETopics(getPackage(this)) AS eElement -»
 	struct «eElement.name» 
@@ -74,7 +83,7 @@ module «getPackage(this).name»
 	typedef sequence<«eElement.name»> «eElement.name»Sequence;
 	
 	«ENDFOREACH-»
-	typedef sequence<long> longSequence;
+		
 };
 #endif /* _«getPackage(this).name»Common_IDL */
 «ENDFILE»
