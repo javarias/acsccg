@@ -22,6 +22,7 @@
 «IMPORT uml»
 «EXTENSION templates::util::common»
 «EXTENSION templates::util::idl»
+«EXTENSION templates::util::tsort»
 
 «DEFINE Root FOR uml::Model»
 
@@ -50,9 +51,9 @@
 *
 * "@(#) $Id: «getPackage(this).name-»Common.idl, v 1.00 «getCommentDate()» «getPackage(this).name-»Common Exp $"
 *
-* who                  when              what
-* ----------------    -------------      ----------------------------------------------
-* ACSCCG              «getCommentDate()»   Creation of the file
+* who                  when                 what
+* ----------------    ------------------    ----------------------------------------------
+* ACSCCG              «getCommentDate()»     Creation of the file
 * 
 */
 
@@ -73,7 +74,7 @@ module «getPackage(this).name»
 	«ENDFOREACH-»
 	typedef sequence<long> longSequence;
 
-	«FOREACH getETopics(getPackage(this)) AS eElement -»
+	«FOREACH getETopicSorted(getETopics(getPackage(this))) AS eElement -»
 	struct «eElement.name» 
 	{
 		«FOREACH eElement.getAllAttributes() AS eAttribute-»

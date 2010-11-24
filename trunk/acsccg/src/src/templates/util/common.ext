@@ -22,14 +22,6 @@ import AlmaGenerator;
 import ecore;
 
 /**
- * Check if the element is diagram info - this only works in MagicDraw
- * @param Element
- * @return Boolean
- */
-boolean isDiagramInfo(Element element): 
-	!element.getAppliedStereotypes().select(e|e.name == 'DiagramInfo').isEmpty;
-
-/**
  * Check if the element has a EtopicError
  * @param Element
  * @return Boolean
@@ -370,3 +362,11 @@ String getCommentDate():
  */
 List getCommentsWrapped(String comments): 
 	JAVA cl.alma.acs.ccg.util.xtend.JavaExtension.getCommentsWrapped(java.lang.String);
+	
+/**
+ * Return the list of raisedExceptions
+ * @param eElement
+ * @return String
+ */
+List getRaisedExceptions(Operation eElement): 
+	eElement.raisedException;

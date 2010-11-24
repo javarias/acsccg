@@ -44,11 +44,12 @@
 #
 # "@(#) $Id$"
 #
-# Makefile of ........
+# Makefile of «getPackage(this).name».
 #
-# who       when      what
-# --------  --------  ----------------------------------------------
-# almamgr  2009-07-22  created
+# who                  when                 what
+# ----------------    ------------------    ----------------------------------------------
+# ACSCCG              «getCommentDate()»     Creation of the file
+# 
 #
 
 #*******************************************************************************
@@ -152,12 +153,9 @@ CDB_SCHEMAS = #!!!!!!!!!!!!!!!!!!!for each characteristic component add it eleme
 
 # 
 # IDL Files and flags
-#
-# ACS Component Code Generator 
-# Chec the inheritance in componentes, order the IDL compilation queque
-# in the same order of the inheritance model
-#
+# ----------------------------
 IDL_FILES = «getPackage(this).name»Common
+«IF !getETopicErrors(getPackage(this)).isEmpty-»IDL_FILES += «getPackage(this).name»Err«ENDIF»
 «FOREACH getEInterfaces(getPackage(this)) AS eElement -»
 IDL_FILES += «eElement.name»
 «ENDFOREACH-»
@@ -167,8 +165,8 @@ USER_IDL =
 #
 # Jarfiles and their directories
 #
-JARFILES = $(MODULE)
-$(MODULE)_DIRS = alma/«getPackage(this).name»
+JARFILES = #$(MODULE)
+$(MODULE)_DIRS = #alma/«getPackage(this).name»
 jjj_EXTRAS = 
 
 #

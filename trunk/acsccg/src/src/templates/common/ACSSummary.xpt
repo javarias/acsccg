@@ -21,6 +21,7 @@
 «ENDREM»
 «IMPORT uml»
 «EXTENSION templates::util::common»
+«EXTENSION templates::util::tsort»
 
 «DEFINE Root FOR uml::Model»
 «FILE  'summary_'+getPackage(this).name+'.txt'-»
@@ -29,6 +30,14 @@
 # This is only for development
 
 # EModule: «getPackage(this).name»
+
+
+TopologicalSort
+************************************************************************************
+«FOREACH  getETopicSorted(getETopics(getPackage(this))) AS experiment-»
+«experiment.name»
+«ENDFOREACH»
+************************************************************************************
 
 EComponents:
 «FOREACH getEComponents(getPackage(this)) AS eElement -»

@@ -41,7 +41,6 @@
 			</ErrorCode>
                    
 			«ENDFOREACH-»
-			
 </Type>			
 «ENDFILE»
 

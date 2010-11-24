@@ -21,8 +21,9 @@
 package cl.alma.acs.ccg.util.xtend;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Vector;
+
+import cl.alma.acs.ccg.util.BaseStaticConfig;
 
 /**
  * Java extension for xtend functions
@@ -44,6 +45,7 @@ public class JavaExtension
 	 * The function return the date formated for the comments
 	 * @return String - the actual date for the comments
 	 */
+	@SuppressWarnings("deprecation")
 	public final static String getCommentDate()
 	{
 		Date date = new Date();
@@ -68,9 +70,6 @@ public class JavaExtension
 	 */
 	public final static Vector<String> getCommentsWrapped(String comment)
 	{
-		// set the limits of words
-		int wordLimit = 10;
-		
 		String tmpLine="";
 		int tmpCounter = 0;
 		String[] wordArray = comment.split(" ");
@@ -82,7 +81,7 @@ public class JavaExtension
 				tmpLine += word; 
 				tmpCounter++;
 				
-			if(tmpCounter > wordLimit)
+			if(tmpCounter > BaseStaticConfig.WORD_WRAP_MAX)
 			{
 				commentsWrapped.add(tmpLine);
 				tmpLine = "";
