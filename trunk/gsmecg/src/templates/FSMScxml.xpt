@@ -123,6 +123,16 @@
 «REM» TODO: what we want to do with do-activities? «ENDREM»
 «DEFINE Invoke FOR State»
 <invoke targettype="scxml" id="«this.doActivity.name»" src="«this.doActivity.name».xml"/>
+	«FILE this.doActivity.name+".xml"»
+		<scxml xmlns="http://www.w3.org/2005/07/scxml" 
+			version="1.0" initial="A">
+			<final id="A">
+				<onentry>
+        			<log expr="'«this.doActivity.name»'"/>
+      			</onentry>
+			</final>
+		</scxml>
+	«ENDFILE»
 «ENDDEFINE»
 
  
