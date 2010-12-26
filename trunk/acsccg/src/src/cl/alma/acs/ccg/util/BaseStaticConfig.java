@@ -44,4 +44,6 @@ public final class BaseStaticConfig
 	public final static String TEMP_OS_DIR = System.getProperty("java.io.tmpdir");
 	
 	public final static String ACSCCG_LOGGER = "cl.alma.acs.ccg";
+	
+	public final static int WORD_WRAP_MAX = 10;
 }

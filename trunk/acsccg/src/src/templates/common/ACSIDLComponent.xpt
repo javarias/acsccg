@@ -90,11 +90,11 @@ module «getPackage(this).name»
 		«IF isECharacteristic(eElement)-»
 		«FOREACH getEReadOnlyProperties(eElement) AS eCharacteristicProperty»
 		«IF hasComment(eCharacteristicProperty)»/* «getComment(eCharacteristicProperty)» */«ELSE-»«ENDIF»
-		readonly attribute ACS::RO«eCharacteristicProperty.type.name»«IF isETypeModifier(eCharacteristicProperty)»«IF eCharacteristicProperty.type.name=='long'»Seq«ENDIF»«ENDIF» «eCharacteristicProperty.name»;
+		readonly attribute ACS::RO«eCharacteristicProperty.getBaciType()» «eCharacteristicProperty.name»;
 		«ENDFOREACH-»
 		«FOREACH getEReadWriteProperties(eElement) AS eCharacteristicProperty»
 		«IF hasComment(eCharacteristicProperty)»/* «getComment(eCharacteristicProperty)» */«ELSE-»«ENDIF»
-		readonly attribute ACS::RW«eCharacteristicProperty.type.name» «eCharacteristicProperty.name»;
+		readonly attribute ACS::RW«eCharacteristicProperty.getBaciType()» «eCharacteristicProperty.name»;
 		«ENDFOREACH-»
 		«ENDIF-»
 		

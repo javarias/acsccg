@@ -32,10 +32,16 @@
 # EModule: «getPackage(this).name»
 
 
-TopologicalSort
+TopologicalSort of Structs
 ************************************************************************************
 «FOREACH  getETopicSorted(getETopics(getPackage(this))) AS experiment-»
 «experiment.name»
+«ENDFOREACH»
+************************************************************************************
+
+If is Characteristic
+************************************************************************************
+«FOREACH getEComponentsImpl(getPackage(this)) AS eElement -»
 «ENDFOREACH»
 ************************************************************************************
 

@@ -42,8 +42,18 @@ boolean isETopicSequence(Element element):
  * @param Element
  * @return Boolean
  */
-boolean isETypeModifier(Element element): 
-	!element.getAppliedStereotypes().select(e|e.name == 'typeModifier').isEmpty;
+boolean isETypeModifier(Element eElement): 
+	!eElement.getAppliedStereotypes().select(e|e.name == 'typeModifier').isEmpty;
+
+/**
+ * Get the baci correct name
+ * @param Element
+ * @return String
+ */
+String getBaciType(Element eElement): 
+	if isETypeModifier(eElement) && eElement.type.name == 'long'
+	then eElement.type.name.toLowerCase()+'Seq'
+	else eElement.type.name.toLowerCase();
 
 /**
  * Check if the element is a component definition
@@ -249,8 +259,26 @@ String getETagValue(Element eElement, String eStereotype, String tag):
  * @param eElement
  * @return Boolean
  */
-String isECharacteristic(Element eElement):
+boolean isECharacteristic(Element eElement):
 	getETagValue(eElement,'EInterface','configurable');
+	
+/**
+ * Check if the eElement is a ECharacteristicComponentImpl
+ * this method is only for artifacts
+ * @param eElement
+ * @return Boolean
+ */
+boolean isECharacteristicImpl(Element eElement):
+	getETagValue(getERealization(eElement),'EInterface','configurable');
+
+/**
+ * Check if the eElement is has any ECharacteristic EInterface
+ * this method is only for artifacts
+ * @param eElement
+ * @return Boolean
+ */
+boolean hasECharacteristicInterfaces(Element eElement):
+	 !getERealizations(eElement).isEmpty && !getERealizations(eElement).select(e|isECharacteristic(e)).isEmpty;
  		
 /**
  * Get the manifest List from a certain Artifact
@@ -323,8 +351,8 @@ String getEComponentLanguage(Element eElement):
  * @param eElement
  * @return List
  */
-String getERealizations(Element eElement):
-	((uml::Class) getESuppliers(getEManifestations(eElement).first()).first()).getImplementedInterfaces();
+List getERealizations(Element eElement):
+	((uml::Interface) getESuppliers(getEManifestations(eElement).first()).first()).getImplementedInterfaces();
 	
 /**
  * Get the comment
@@ -370,3 +398,12 @@ List getCommentsWrapped(String comments):
  */
 List getRaisedExceptions(Operation eElement): 
 	eElement.raisedException;
+
+/**
+ * Return the first realization
+ * @param eElement
+ * @return Element
+ */
+Element getERealization(Element eElement):
+	getERealizations(eElement).first();
+

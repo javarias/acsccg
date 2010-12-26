@@ -1,3 +1,24 @@
+«REM»
+/**
+ * ACS Component Code Generator - http://code.google.com/p/acsccg/
+ * Copyright (C) 2010  Alexis Tejeda, alexis.tejeda@gmail.com
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ *  who       			when      			what
+ * --------				--------					----------------------------------------------
+ * atejeda 			2010-00-00  		Created
+ * 
+ */
+«ENDREM»
 «IMPORT uml»
 «EXTENSION templates::util::common»
 
@@ -27,11 +48,12 @@
 *    License along with this library; if not, write to the Free Software
 *    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307  USA
 *
+* "@(#) $Id: «eElement.name»Helper.java, v 1.00 «getCommentDate()» «eElement.name» Exp $"
 *
-* "@(#) $Id: «eElement.name»Helper.java,v 0.00  0000-00-00 00:00:00  ZZZ $"
-*
-* who       when      what
-* --------  --------  ----------------------------------------------
+* who                  when                 what
+* ----------------    ------------------    ----------------------------------------------
+* ACSCCG              «getCommentDate()»     Creation of the file
+* 
 */
 
 package alma.«getPackage(this).name»;

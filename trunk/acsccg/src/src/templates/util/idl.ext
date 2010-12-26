@@ -76,7 +76,7 @@ boolean hasModifier(Parameter this):
  */	
 string getIDLCorrectCase(Parameter this):
     if type.name == 'Boolean' || type.name == 'Long' || type.name == 'Double' || type.name == 'Float' || type.name == 'Char'|| type.name == 'String'  
-        then type.name.toLowerCase()
+    then type.name.toLowerCase()
     else type.name; 
     
 /**
@@ -84,7 +84,7 @@ string getIDLCorrectCase(Parameter this):
  */	
 string getIDLCorrectCaseString(String str):
     if str == 'Boolean' || str == 'Long' || str == 'Double' || str == 'Float' || str == 'Char'|| str == 'String'  
-        then str.toLowerCase()
+    then str.toLowerCase()
     else str; 
  
 
@@ -93,6 +93,5 @@ string getIDLCorrectCaseString(String str):
  */
 string getIDLReturnType(Operation this):
     if hasModifier(getReturnParameter(this))
-        then (getIDLCorrectCase(getReturnParameter(this)) + "Sequence").trim()
-    else
-        getIDLCorrectCase(getReturnParameter(this)).trim();
+    then (getIDLCorrectCase(getReturnParameter(this)) + "Sequence").trim()
+    else getIDLCorrectCase(getReturnParameter(this)).trim();
