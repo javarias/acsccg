@@ -33,44 +33,49 @@ ACSCCG=$(LIBF)/acsComponentCodeGenerator.jar
 EMODULES=	singleComponent	\
 			MARS
 
-all: clean build install
+all: clean build install message_done
 
 build:
 	@echo ""
-	@echo "###########################################"
-	@echo "# Ant script clean and build."
+	@echo "# Compiling the project (build)"
 	@echo "###########################################"
 	@# Calling the ant build script
 	@$(ANT) -f src/build.xml clean build
 	@echo ""
-	@echo "###########################################"
-	@echo "# Now run: make install"
-	@echo "###########################################"
-	@echo ""
 
 install:
 	@echo ""
-	@echo "###########################################"
-	@echo "# Ant script install."
+	@echo "# Building the JAR file"
 	@echo "###########################################"
 	@# Calling the ant build script
 	@$(ANT) -f src/build.xml install
 	@echo ""
-	@echo "###########################################"
 	@echo "# Project binary (Jar) build into:"
-	@echo "#         lib/acsComponentCodeGenerator.jar"
-	@echo "# test the examples: make example"
+	@echo "          lib/acsComponentCodeGenerator.jar"
 	@echo "###########################################"
 	@echo ""
 	
 clean:
 	@echo ""
-	@echo "###########################################"
-	@echo "# Cleaning the project"
+	@echo "# Cleaning out the project"
 	@echo "###########################################"
 	@echo ""
 	@# Calling the ant clean script
 	@$(ANT) -f src/build.xml clean
+	
+man:
+	@echo ""
+	@echo "# Generating the code documentation"
+	@echo "###########################################"
+	@echo ""
+	@# Calling the ant doc script
+	@$(ANT) -f src/build.xml man
+	
+message_done:
+	@echo "###########################################"
+	@echo "# Done"
+	@echo "###########################################"
+		
 
 example:
 	@rm -rf $(EXF)/generated

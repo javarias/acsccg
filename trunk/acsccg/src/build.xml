@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!--
-/**
+<?eclipse.ant.import?>
+<!-- 
  * ACS Component Code Generator - http://code.google.com/p/acsccg/
  * Copyright (C) 2010  Alexis Tejeda, alexis.tejeda@gmail.com
  * 
@@ -14,171 +14,107 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  * 
- *  who       			when      			what
- * 
- * atejeda 			2010-00-00  		Created
- * 
- */
--->
-<?eclipse.ant.import?>
+ * who      when      	 what
+ *
+ * atejeda 	 2010-23-11  Created
+!-->
 <project basedir="." default="build" name="cl.alma.acs.ccg">
-	<property environment="env" />
-	<property name="LIB_PATH" value="lib" />
+    <property environment="env"/>
+	<property name="ACSCCG_JAR_FILE" value="acsComponentCodeGenerator" />
+    <property name="LIBRARIES_DIRECTORY" value="lib"/>
 	<property name="OUTPUT_PATH" value="../lib" />
-	<property name="debuglevel" value="source,lines,vars" />
-	<property name="target" value="1.6" />
-	<property name="source" value="1.6" />
-	<path id="Plug-in Dependencies.libraryclasspath">
-		<pathelement location="${LIB_PATH}/org.eclipse.xpand_0.7.2.v200908120436.jar" />
-		<pathelement location="${LIB_PATH}/org.eclipse.xtend_0.7.2.v200908120436.jar" />
-		<pathelement location="${LIB_PATH}/org.eclipse.emf.mwe.core_0.7.2.v200908120417.jar" />
-		<pathelement location="${LIB_PATH}org.eclipse.emf.ecore_2.5.0.v200906151043.jar" />
-		<pathelement location="${LIB_PATH}org.eclipse.emf.common_2.5.0.v200906151043.jar" />
-		<pathelement location="${LIB_PATH}/org.apache.commons.logging_1.1.1.v200904062255.jar" />
-		<pathelement location="${LIB_PATH}/org.apache.commons.cli_1.0.0.v20080604-1500.jar" />
-		<pathelement location="${LIB_PATH}/org.eclipse.xtend.typesystem.emf_0.7.2.v200908120436.jar" />
-		<pathelement location="${LIB_PATH}/org.eclipse.emf.mwe.utils_0.7.2.v200908120417.jar" />
-		<pathelement location="${LIB_PATH}/org.eclipse.emf.ecore.xmi_2.5.0.v200906151043.jar" />
-		<pathelement location="${LIB_PATH}/org.eclipse.jface.text_3.5.2.201004121542.jar" />
-		<pathelement location="${LIB_PATH}/org.eclipse.text_3.5.0.201004121542.jar" />
-		<pathelement location="${LIB_PATH}/org.antlr.runtime_3.0.0.v200908120607.jar" />
-		<pathelement location="${LIB_PATH}/com.ibm.icu_4.0.1.v20090415.jar" />
-		<pathelement location="${LIB_PATH}/org.eclipse.core.runtime_3.5.0.201004121542.jar" />
-		<pathelement location="${LIB_PATH}/org.eclipse.osgi_3.5.2.201004121542.jar" />
-		<pathelement location="${LIB_PATH}/javax.transaction_1.1.1.v201002111330.jar" />
-		<pathelement location="${LIB_PATH}/org.eclipse.equinox.common_3.5.1.201004121542.jar" />
-		<pathelement location="${LIB_PATH}/org.eclipse.core.jobs_3.4.100.201004121542.jar" />
-		<pathelement location="${LIB_PATH}/org.eclipse.core.runtime.compatibility.registry_3.2.200.201004121542/runtime_registry_compatibility.jar" />
-		<pathelement location="${LIB_PATH}/org.eclipse.equinox.registry_3.4.100.201004121542.jar" />
-		<pathelement location="${LIB_PATH}/org.eclipse.equinox.preferences_3.2.301.201004121542.jar" />
-		<pathelement location="${LIB_PATH}/org.eclipse.core.contenttype_3.4.1.201004121542.jar" />
-		<pathelement location="${LIB_PATH}/org.eclipse.equinox.app_1.2.1.201004121542.jar" />
-		<pathelement location="${LIB_PATH}/org.eclipse.jdt.core_3.5.2.201004121542.jar" />
-		<pathelement location="${LIB_PATH}/dropins/jdt/plugins/org.eclipse.jdt.compiler.apt_1.0.201.201004121542.jar" />
-		<pathelement location="${LIB_PATH}/org.eclipse.jdt.compiler.tool_1.0.100.201004121542.jar" />
-		<pathelement location="${LIB_PATH}/org.eclipse.xtend.typesystem.uml2_0.7.2.v200908120436.jar" />
-		<pathelement location="${LIB_PATH}/org.eclipse.uml2.uml_3.0.1.v200908281330.jar" />
-		<pathelement location="${LIB_PATH}/org.eclipse.uml2.common_1.5.0.v200905041045.jar" />
-		<pathelement location="${LIB_PATH}/org.eclipse.uml2.uml.resources_3.0.0.v200906011111.jar" />
-		<pathelement location="${LIB_PATH}/org.eclipse.emf.mapping.ecore2xml_2.5.0.v200906151043.jar" />
-		<pathelement location="${LIB_PATH}/log4j-1.2.16.jar" />
-		<pathelement location="${LIB_PATH}/jdom.jar" />
-	</path>
-	<path id="cl.alma.acs.ccg.classpath">
-		<path refid="Plug-in Dependencies.libraryclasspath" />
-		<pathelement location="bin" />
-		<pathelement location="${LIB_PATH}/commons-cli-1.2.jar" />
-	</path>
-	<target name="init">
-		<mkdir dir="bin" />
-		<copy includeemptydirs="false" todir="bin">
-			<fileset dir="src">
-				<exclude name="**/*.launch" />
-				<exclude name="**/*.java" />
-			</fileset>
-		</copy>
-	</target>
-	<target name="clean">
-		<delete dir="bin" />
-		<delete file="${OUTPUT_PATH}/acsComponentCodeGenerator.jar" />
-	</target>
-	<target depends="clean" name="cleanall" />
-	<target depends="build-subprojects,build-project" name="build" />
-	<target name="build-subprojects" />
-	<target depends="init" name="build-project">
-		<echo message="${ant.project.name}: ${ant.file}" />
-		<javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
-			<src path="src" />
-			<classpath refid="cl.alma.acs.ccg.classpath" />
-		</javac>
-	</target>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.5"/>
+    <property name="source" value="1.5"/>
+	
+    <import file="build.xml"/>
+	
+    <path id="cl.alma.acs.ccg.classpath">
+    	<fileset dir="${LIBRARIES_DIRECTORY}" includes="*.jar"/>
+    </path>
+	
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            	<exclude name="**/*.svn"/>
+            	<exclude name="**/*.project"/>
+            	<exclude name="**/*.settings"/>
+            </fileset>
+        </copy>
+    </target>
+	
+    <target name="clean">
+        <delete dir="bin"/>
+    	<delete dir="../doc/code"/>
+    	<delete file="${OUTPUT_PATH}/${ACSCCG_JAR_FILE}.jar" />
+    </target>
+	
+    <target depends="clean" name="cleanall"/>
+	
+    <target depends="build-subprojects,build-project" name="build"/>
+	
+    <target name="build-subprojects"/>
+            	
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="cl.alma.acs.ccg.classpath"/>
+        </javac>
+    </target>
+    	
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+        	
+    <target description="copy library jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${LIBRARIES_DIRECTORY}" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${LIBRARIES_DIRECTORY}" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+	
+    <target description="compile project with eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+	
 	<target name="install">
-		<jar destfile="${OUTPUT_PATH}/acsComponentCodeGenerator.jar">
+		<jar destfile="${OUTPUT_PATH}/${ACSCCG_JAR_FILE}.jar">
 			<manifest>
-				<attribute name="Main-Class" value="org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader" />
-				<attribute name="Rsrc-Main-Class" value="ACSCCG" />
-				<attribute name="Class-Path" value="." />
-				<attribute name="Rsrc-Class-Path" value="./ org.eclipse.xpand_0.7.2.v200908120436.jar 
-					org.eclipse.xtend_0.7.2.v200908120436.jar 
-					org.eclipse.emf.mwe.core_0.7.2.v200908120417.jar 
-					org.eclipse.emf.ecore_2.5.0.v200906151043.jar 
-					org.eclipse.emf.common_2.5.0.v200906151043.jar 
-					org.apache.commons.logging_1.1.1.v200904062255.jar 
-					org.apache.commons.cli_1.0.0.v20080604-1500.jar 
-					org.eclipse.xtend.typesystem.emf_0.7.2.v200908120436.jar 
-					org.eclipse.emf.mwe.utils_0.7.2.v200908120417.jar 
-					org.eclipse.emf.ecore.xmi_2.5.0.v200906151043.jar 
-					org.eclipse.jface.text_3.5.2.201004121542.jar 
-					org.eclipse.text_3.5.0.201004121542.jar 
-					org.antlr.runtime_3.0.0.v200908120607.jar 
-					com.ibm.icu_4.0.1.v20090415.jar 
-					org.eclipse.core.runtime_3.5.0.201004121542.jar 
-					org.eclipse.osgi_3.5.2.201004121542.jar 
-					javax.transaction_1.1.1.v201002111330.jar 
-					org.eclipse.equinox.common_3.5.1.201004121542.jar 
-					org.eclipse.core.jobs_3.4.100.201004121542.jar 
-					runtime_registry_compatibility.jar 
-					org.eclipse.equinox.registry_3.4.100.201004121542.jar 
-					org.eclipse.equinox.preferences_3.2.301.201004121542.jar 
-					org.eclipse.core.contenttype_3.4.1.201004121542.jar 
-					org.eclipse.equinox.app_1.2.1.201004121542.jar org.
-					eclipse.jdt.core_3.5.2.201004121542.jar 
-					org.eclipse.jdt.compiler.apt_1.0.201.201004121542.jar 
-					org.eclipse.jdt.compiler.tool_1.0.100.201004121542.jar 
-					org.eclipse.xtend.typesystem.uml2_0.7.2.v200908120436.jar 
-					org.eclipse.uml2.uml_3.0.1.v200908281330.jar 
-					org.eclipse.uml2.common_1.5.0.v200905041045.jar 
-					org.eclipse.uml2.uml.resources_3.0.0.v200906011111.jar 
-					org.eclipse.emf.mapping.ecore2xml_2.5.0.v200906151043.jar 
-					commons-cli-1.2.jar 
-					log4j-1.2.16.jar 
-					jdom.jar
-					" />
+				<attribute name="Main-Class" value="ACSCCG" />
+				<attribute name="Manifest-Version" value="2.0" />
+				<attribute name="Bundle-Name" value="Alma Common Software Component Code Generator" />
+				<attribute name="Bundle-Version" value="11.04.01" />
+				<attribute name="Bundle-RequiredExecutionEnvironment" value="J2SE-1.5" />
 			</manifest>
-			<zipfileset src="${LIB_PATH}/jar-in-jar-loader.zip" />
-			<zipfileset dir="${LIB_PATH}" includes="org.eclipse.xpand_0.7.2.v200908120436.jar" />
-			<zipfileset dir="${LIB_PATH}" includes="org.eclipse.xtend_0.7.2.v200908120436.jar" />
-			<zipfileset dir="${LIB_PATH}" includes="org.eclipse.emf.mwe.core_0.7.2.v200908120417.jar" />
-			<zipfileset dir="${LIB_PATH}" includes="org.eclipse.emf.ecore_2.5.0.v200906151043.jar" />
-			<zipfileset dir="${LIB_PATH}" includes="org.eclipse.emf.common_2.5.0.v200906151043.jar" />
-			<zipfileset dir="${LIB_PATH}" includes="org.apache.commons.logging_1.1.1.v200904062255.jar" />
-			<zipfileset dir="${LIB_PATH}" includes="org.apache.commons.cli_1.0.0.v20080604-1500.jar" />
-			<zipfileset dir="${LIB_PATH}" includes="org.eclipse.xtend.typesystem.emf_0.7.2.v200908120436.jar" />
-			<zipfileset dir="${LIB_PATH}" includes="org.eclipse.emf.mwe.utils_0.7.2.v200908120417.jar" />
-			<zipfileset dir="${LIB_PATH}" includes="org.eclipse.emf.ecore.xmi_2.5.0.v200906151043.jar" />
-			<zipfileset dir="${LIB_PATH}" includes="org.eclipse.jface.text_3.5.2.201004121542.jar" />
-			<zipfileset dir="${LIB_PATH}" includes="org.eclipse.text_3.5.0.201004121542.jar" />
-			<zipfileset dir="${LIB_PATH}" includes="org.antlr.runtime_3.0.0.v200908120607.jar" />
-			<zipfileset dir="${LIB_PATH}" includes="com.ibm.icu_4.0.1.v20090415.jar" />
-			<zipfileset dir="${LIB_PATH}" includes="org.eclipse.core.runtime_3.5.0.201004121542.jar" />
-			<zipfileset dir="${LIB_PATH}" includes="org.eclipse.osgi_3.5.2.201004121542.jar" />
-			<zipfileset dir="${LIB_PATH}" includes="javax.transaction_1.1.1.v201002111330.jar" />
-			<zipfileset dir="${LIB_PATH}" includes="org.eclipse.equinox.common_3.5.1.201004121542.jar" />
-			<zipfileset dir="${LIB_PATH}" includes="org.eclipse.core.jobs_3.4.100.201004121542.jar" />
-			<zipfileset dir="${LIB_PATH}" includes="runtime_registry_compatibility.jar" />
-			<zipfileset dir="${LIB_PATH}" includes="org.eclipse.equinox.registry_3.4.100.201004121542.jar" />
-			<zipfileset dir="${LIB_PATH}" includes="org.eclipse.equinox.preferences_3.2.301.201004121542.jar" />
-			<zipfileset dir="${LIB_PATH}" includes="org.eclipse.core.contenttype_3.4.1.201004121542.jar" />
-			<zipfileset dir="${LIB_PATH}" includes="org.eclipse.equinox.app_1.2.1.201004121542.jar" />
-			<zipfileset dir="${LIB_PATH}" includes="org.eclipse.jdt.core_3.5.2.201004121542.jar" />
-			<zipfileset dir="${LIB_PATH}" includes="org.eclipse.jdt.compiler.apt_1.0.201.201004121542.jar" />
-			<zipfileset dir="${LIB_PATH}" includes="org.eclipse.jdt.compiler.tool_1.0.100.201004121542.jar" />
-			<zipfileset dir="${LIB_PATH}" includes="org.eclipse.xtend.typesystem.uml2_0.7.2.v200908120436.jar" />
-			<zipfileset dir="${LIB_PATH}" includes="org.eclipse.uml2.uml_3.0.1.v200908281330.jar" />
-			<zipfileset dir="${LIB_PATH}" includes="org.eclipse.uml2.common_1.5.0.v200905041045.jar" />
-			<zipfileset dir="${LIB_PATH}" includes="org.eclipse.uml2.uml.resources_3.0.0.v200906011111.jar" />
-			<zipfileset dir="${LIB_PATH}" includes="org.eclipse.emf.mapping.ecore2xml_2.5.0.v200906151043.jar" />
-			<zipfileset dir="${LIB_PATH}" includes="log4j-1.2.16.jar" />
-			<zipfileset dir="${LIB_PATH}" includes="jdom.jar" />
-			<zipfileset dir="${LIB_PATH}" includes="commons-cli-1.2.jar" />
-			<zipfileset dir="${LIB_PATH}" includes="log4j-1.2.16.jar" />
 			<fileset dir="bin" />
+			<zipfileset dir="${LIBRARIES_DIRECTORY}"/>
 		</jar>
 	</target>
-	<target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects" />
-	<target name="ACSCCG">
-		<java classname="ACSCCG" failonerror="true" fork="yes">
-			<classpath refid="cl.alma.acs.ccg.classpath" />
-		</java>
-	</target>
+	
+	<target name="man">
+	        <javadoc 
+	        	access="public" 
+	        	author="true" 
+	        	classpath="."
+	        	destdir="../doc/code" 
+	        	doctitle="ACSComponentCodeGeneration - Code Documentation" 
+	        	nodeprecated="false" 
+	        	nodeprecatedlist="false" 
+	        	noindex="false" 
+	        	nonavbar="false" 
+	        	notree="false" 
+	        	packagenames="cl.alma.acs.ccg.vetostrategy, cl.alma.acs.ccg.vo,cl.alma.acs.ccg.util, cl.alma.acs.ccg.emodule,cl.alma.acs.ccg.strategy" 
+	        	source="1.5" 
+	        	sourcefiles="src/ACSCCG.java" 
+	        	sourcepath="src" 
+	        	splitindex="true" 
+	        	use="true" 
+	        	version="true"/>
+	    </target>
 </project>
