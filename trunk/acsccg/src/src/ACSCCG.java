@@ -12,9 +12,9 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  * 
- *  who       			when      			what
- * --------				--------					----------------------------------------------
- * atejeda 			2010-00-00  		Created
+ *  who       	when      		what
+ * --------	--------		----------------------------------------------
+ * atejeda 	2010-00-00  		Created
  * 
  */
 import java.io.File;
@@ -186,7 +186,7 @@ public class ACSCCG
 	{
 		System.out.println("");
 		System.out.println("ACS Component Code Generator");
-		System.out.println("Revision " + "125");
+		System.out.println("Revision " + "r147");
 		System.out.println("");
 	    System.out.println("http://code.google.com/p/acsccg/");
 		System.out.println("");
@@ -203,7 +203,7 @@ public class ACSCCG
 	{
 		System.out.println("");
 		System.out.println("ACS Component Code Generator");
-		System.out.println("Compilation " + new Date().toString());
+		System.out.println("Compilation 20100105");
 		System.out.println("");
 		System.out.println("Model file:\t\t"+modelPath);
 		System.out.println("Profile file:\t\t"+profilePath);
