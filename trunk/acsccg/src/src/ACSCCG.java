@@ -81,8 +81,8 @@ public class ACSCCG
 		
 		// adding the options
 		opt.addOption("h", false, "Print help for this application");
-		opt.addOption("m", true, "Model file path, i.e.: /my/very/path/to/MyProject.uml");
-		opt.addOption("p", true, "Profile UML path, i.e.: /my/very/path/to/AlmaGenerator.profile.uml");
+		opt.addOption("m", true, "Model file path");
+		opt.addOption("p", true, "Profile UML path");
 		opt.addOption("o", true, "The output folder path");
 		opt.addOption("e", true, "Specify the EModule to generate");
 		
