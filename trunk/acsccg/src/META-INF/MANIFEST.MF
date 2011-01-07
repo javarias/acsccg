@@ -1,0 +1,11 @@
+Main-Class: ACSCCG
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Alma Common Software Component Code Generator
+Bundle-SymbolicName: cl.alma.acs.ccg;singleton:=true
+Bundle-Version: 10.06.04
+Require-Bundle: org.eclipse.jface.text;bundle-version="3.5.1",
+ com.ibm.icu;bundle-version="4.0.1",
+ org.eclipse.core.runtime;bundle-version="3.5.0",
+ org.eclipse.jdt.core;bundle-version="3.5.1"
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
