@@ -24,9 +24,9 @@ JCLI=java
 ENVDIR=$(shell pwd)
 
 # Example-test var
-LIBF=lib
+BINF=lib
 EXF=examples
-ACSCCG=$(LIBF)/acsComponentCodeGenerator.jar
+ACSCCG=$(BINF)/acsComponentCodeGenerator.jar
 
 # These modules exists in the example file, others will not work
 # Upper and Lower case are sensitive.
@@ -40,7 +40,7 @@ build:
 	@echo "# Compiling the project (build)"
 	@echo "###########################################"
 	@# Calling the ant build script
-	@$(ANT) -f build.xml clean build
+	@$(ANT) -f $(ENVDIR)/build.xml clean build
 	@echo ""
 
 install:
@@ -48,7 +48,7 @@ install:
 	@echo "# Building the JAR file"
 	@echo "###########################################"
 	@# Calling the ant build script
-	@$(ANT) -f build.xml install
+	@$(ANT) -f $(ENVDIR)/build.xml install
 	@echo ""
 	@echo "# Project binary (Jar) build into:"
 	@echo "          bin/acsComponentCodeGenerator.jar"
@@ -61,7 +61,7 @@ clean:
 	@echo "###########################################"
 	@echo ""
 	@# Calling the ant clean script
-	@$(ANT) -f build.xml clean
+	@$(ANT) -f $(ENVDIR)/build.xml clean
 	
 man:
 	@echo ""
@@ -69,7 +69,7 @@ man:
 	@echo "###########################################"
 	@echo ""
 	@# Calling the ant doc script
-	@$(ANT) -f build.xml man
+	@$(ANT) -f $(ENVDIR)/build.xml man
 	
 message_done:
 	@echo "###########################################"
