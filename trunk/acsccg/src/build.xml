@@ -72,7 +72,7 @@
 	<target name="install">
 		<manifest file="ACSCCG_MANIFEST_GENERATED.MF">
 			<attribute name="Main-Class" value="org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader"/>
-			<attribute name="Rsrc-Main-Class" value="ACSCCG"/>
+			<attribute name="Rsrc-Main-Class" value="alma.ACSCCG"/>
 			<attribute name="Class-Path" value="."/>
 			<attribute name="Built-By" value="ACS Component Code Generator - Make/Ant" />
 			<attribute name="Built-Date" value="${TODAY}"/>

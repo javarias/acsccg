@@ -1,0 +1,194 @@
+«REM»
+/**
+ * ACS Component Code Generator - http://code.google.com/p/acsccg/
+ * Copyright (C) 2010  Alexis Tejeda, alexis.tejeda@gmail.com
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ *  who       			when      			what
+ * --------				--------					----------------------------------------------
+ * atejeda 			2010-00-00  		Created
+ * 
+ */
+«ENDREM»
+«IMPORT uml»
+«EXTENSION templates::util::common»
+«EXTENSION templates::util::java»
+«EXTENSION templates::util::idl»
+
+«DEFINE Root FOR uml::Model»
+
+«FOREACH getEComponentsImpl(getPackage(this)) AS eElement -»
+«FILE  getPackage(this).name+'/src/alma/'+getPackage(this).name+'/'+eElement.name+'.java'-»
+/*******************************************************************************
+*    ALMA - Atacama Large Millimiter Array
+*
+*    (c) European Southern Observatory, 2002
+*    Copyright by ESO (in the framework of the ALMA collaboration)
+*    and Cosylab 2002, All rights reserved
+*
+*    This library is free software; you can redistribute it and/or
+*    modify it under the terms of the GNU Lesser General Public
+*    License as published by the Free Software Foundation; either
+*    version 2.1 of the License, or (at your option) any later version.
+*
+*    This library is distributed in the hope that it will be useful,
+*    but WITHOUT ANY WARRANTY; without even the implied warranty of
+*    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+*    Lesser General Public License for more details.
+*
+*    You should have received a copy of the GNU Lesser General Public
+*    License along with this library; if not, write to the Free Software
+*    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307  USA
+*
+* "@(#) $Id: «eElement.name».java, v 1.00 «getCommentDate()» «eElement.name» Exp $"
+*
+* who                  when                 what
+* ----------------    ------------------    ----------------------------------------------
+* ACSCCG              «getCommentDate()»     Creation of the file
+* 
+*/
+
+package alma.«getPackage(this).name»;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import alma.acs.container.ContainerServices;
+import alma.acs.component.ComponentLifecycle;
+import alma.acs.component.ComponentLifecycleException;
+
+import alma.ACS.ComponentStates;
+import alma.ACSErrTypeCommon.CouldntPerformActionEx;
+import alma.ACSErrTypeCommon.wrappers.AcsJCouldntPerformActionEx;
+
+import alma.«getPackage(this).name».*;
+«FOREACH getERealizations(eElement) AS eInterface-»
+import alma.«getPackage(this).name».«eInterface.name»;
+import alma.«getPackage(this).name».«eInterface.name»Operations;
+«ENDFOREACH-»
+
+«IF hasECharacteristicInterfaces(eElement)-»
+import alma.ACS.jbaci.*;
+import alma.ACS.impl.*;
+«ENDIF-»
+
+public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»extends CharacteristicComponentImpl«ENDIF-» implements ComponentLifecycle«FOREACH getERealizations(eElement) AS eInterface-», «eInterface.name»Operations«ENDFOREACH»
+{
+
+	private ContainerServices m_containerServices;
+    private Logger m_logger;
+    
+    «IF hasECharacteristicInterfaces(eElement)-»
+	«FOREACH getERealizations(eElement) AS eInterface-»
+	«FOREACH getEReadOnlyProperties(eInterface) AS eCharacteristicProperty-»
+	«IF hasComment(eCharacteristicProperty)»/* «getComment(eCharacteristicProperty)» */«ELSE-»«ENDIF»
+	protected RO«eCharacteristicProperty.getBaciType()» «eCharacteristicProperty.name»;
+	protected DataAcess «eCharacteristicProperty.name»DataAcess = new MemoryDataAccess();
+	
+	«ENDFOREACH-»
+	«FOREACH getEReadWriteProperties(eInterface) AS eCharacteristicProperty-»
+	«IF hasComment(eCharacteristicProperty)»/* «getComment(eCharacteristicProperty)» */«ELSE-»«ENDIF»
+	protected RW«eCharacteristicProperty.getBaciType()» «eCharacteristicProperty.name»;
+	protected DataAcess «eCharacteristicProperty.name»DataAcess = new MemoryDataAccess();
+	
+	«ENDFOREACH-»
+	«ENDFOREACH-»
+	«ENDIF-»
+			
+    /////////////////////////////////////////////////////////////
+	// Implementation of ComponentLifecycle
+	/////////////////////////////////////////////////////////////
+	 
+	public void initialize(ContainerServices containerServices)
+	{
+		m_containerServices = containerServices;
+		m_logger = m_containerServices.getLogger();
+		
+        m_logger.info("initialize() called...");
+        
+        «IF eElement.hasECharacteristicInterfaces()-»
+        super.initialize(containerServices);
+        
+        try
+		{
+			«FOREACH getERealizations(eElement) AS eInterface-»
+			«FOREACH getEReadOnlyProperties(eInterface) AS eCharacteristicProperty-»
+			RO«eCharacteristicProperty.type.name.toLowerCase()»Impl «eCharacteristicProperty.name»Impl = new RO«eCharacteristicProperty.type.name.toLowerCase()»Impl("«eCharacteristicProperty.name»", this, «eCharacteristicProperty.name»DataAccess»); 
+			
+			«ENDFOREACH-»
+			«FOREACH getEReadWriteProperties(eInterface) AS eCharacteristicProperty-»
+			RW«eCharacteristicProperty.type.name.toLowerCase()»Impl «eCharacteristicProperty.name»Impl = new RW«eCharacteristicProperty.type.name.toLowerCase()»Impl("«eCharacteristicProperty.name»", this, «eCharacteristicProperty.name»DataAccess»); 
+			
+			«ENDFOREACH-»«ENDFOREACH-»
+		}
+		catch(Throwable throwable)
+		{
+			throw new ComponentLifecycleException("Failed to create properties.", throwable); 
+		}
+        «ENDIF-»
+     }
+	
+	public void execute() 
+	{
+        m_logger.info("execute() called...");
+    }
+    
+    public void cleanUp() 
+    {
+        m_logger.info("cleanUp() called...");
+    }
+    
+    public void aboutToAbort() 
+    {
+        cleanUp();
+        m_logger.info("aboutToAbort() called...");
+    }
+    
+	/////////////////////////////////////////////////////////////
+	// Implementation of ACSComponent
+	/////////////////////////////////////////////////////////////
+
+    public ComponentStates componentState() 
+    {
+        return m_containerServices.getComponentStateManager().getCurrentState();
+    }
+    
+    public String name() 
+    {
+        return m_containerServices.getName();
+    }
+   
+	«FOREACH getERealizations(eElement) AS eInterface-»
+	/////////////////////////////////////////////////////////////
+	// Implementation of «eInterface.name»Operations
+	/////////////////////////////////////////////////////////////
+		
+	«FOREACH eInterface.getOperations() AS eOperation-»
+	/**«IF hasComment(eOperation)»«FOREACH getCommentsWrapped(getComment(eOperation)) AS comment»
+	 *«comment»«ENDFOREACH»«ENDIF»
+	«FOREACH eOperation.ownedParameter.select(e|e.direction.toString()!= 'return') AS cParam-»
+	 * @param «cParam.name» «IF hasComment(cParam)»«getComment(cParam)»«ELSE-»«ENDIF»
+	 «ENDFOREACH-»
+	 * @return «getIDLReturnType(eOperation)»
+	 */	
+	public «getJavaReturnType(eOperation)» «eOperation.name-»(«FOREACH eOperation.ownedParameter.select(e|e.direction.toString()!= 'return') AS param SEPARATOR ', '-»«getJavaParam(param)» «param.name»«ENDFOREACH-») 
+    {
+    	«IF !isVoid(eOperation)»return «getReturnValue(eOperation)»;«ENDIF»  
+	}
+	
+	«ENDFOREACH-»
+	
+	«ENDFOREACH-»
+} 
+«ENDFILE»
+«ENDFOREACH»
+«ENDDEFINE»

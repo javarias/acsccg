@@ -1,0 +1,89 @@
+«REM»
+/**
+ * ACS Component Code Generator - http://code.google.com/p/acsccg/
+ * Copyright (C) 2010  Alexis Tejeda, alexis.tejeda@gmail.com
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ *  who       			when      			what
+ * --------				--------					----------------------------------------------
+ * atejeda 			2010-00-00  		Created
+ * 
+ */
+«ENDREM»
+«IMPORT uml»
+«EXTENSION templates::util::common»
+«EXTENSION templates::util::tsort»
+
+«DEFINE Root FOR uml::Model»
+«FILE  'summary_'+getPackage(this).name+'.txt'-»
+# ACSCCG - ACS Component Code Generator
+# Summary of the components generated
+# This is only for development
+
+# EModule: «getPackage(this).name»
+
+
+TopologicalSort of Structs
+************************************************************************************
+«FOREACH  getETopicSorted(getETopics(getPackage(this))) AS experiment-»
+«experiment.name»
+«ENDFOREACH»
+************************************************************************************
+
+If is Characteristic
+************************************************************************************
+«FOREACH getEComponentsImpl(getPackage(this)) AS eElement -»
+«ENDFOREACH»
+************************************************************************************
+
+EComponents:
+«FOREACH getEComponents(getPackage(this)) AS eElement -»
+	«eElement.name»
+«ENDFOREACH»
+
+EComponentsImpl:
+«FOREACH getEComponentsImpl(getPackage(this)) AS eElement -»
+	«eElement.name»
+	«FOREACH getEManifestations(eElement) AS eManifestationContainer-»
+		Manifestation:
+			«FOREACH getESuppliers(eManifestationContainer) AS eManifestationClass-»
+			«eManifestationClass.name»
+				Interface:
+					«FOREACH ((uml::Class) eManifestationClass).getAllImplementedInterfaces() AS eInterface-»
+					«eInterface.name»
+					«ENDFOREACH-»
+			«ENDFOREACH-»
+	«ENDFOREACH-»
+«ENDFOREACH-»
+
+EInterfaces:
+«FOREACH getEInterfaces(getPackage(this)) AS eElement -»
+	«eElement.name» - «isECharacteristic(eElement)»
+«ENDFOREACH»
+
+EContainers:
+«FOREACH getEContainers(getPackage(this)) AS eElement -»
+	«eElement.name»
+«ENDFOREACH»
+
+EEnumerations:
+«FOREACH getEEnumerations(getPackage(this)) AS eElement -»
+	«eElement.name»
+«ENDFOREACH»
+
+ETopics:
+«FOREACH getETopics(getPackage(this)) AS eElement -»
+	«eElement.name»
+«ENDFOREACH»
+
+«ENDFILE»
+«ENDDEFINE»
