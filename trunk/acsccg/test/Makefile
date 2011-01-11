@@ -19,3 +19,50 @@
 
 # General Vars
 ENVDIR=$(shell pwd)
+
+# Model list (xmi files)
+MODELS_XMI= ELT/ELT-InsPrototype.uml MARS/MARS.uml awu2010/awu2010.uml examples/examples.uml prsModule/prsModule
+PROFILE_XMI = EEProfile.profile.uml
+
+# Code Generation Testing variables
+OUTPUT_PATH = output
+XMI_PATH = xmi 
+MODEL_PATH = model
+PROFILE_PATH = ../../include
+
+all:
+		@echo ""
+		@echo "Run: make test - to generate the code from the models"
+		@echo ""
+
+test: clean_output generate_models
+
+cleanxmi:
+		@echo ""
+		@rm -rf $(XMI_PATH)/
+		@echo "# XMI folders cleaned"
+		@echo "###########################################"
+		@echo ""
+
+clean_output:
+		@rm -rf $(OUTPUT_PATH)/
+		@echo "# Output folders cleaned"
+		@echo "###########################################"
+		@echo ""
+
+clean_md:
+		@echo ""
+		@find $(MODEL_PATH) -name '.mdr' | xargs rm -r
+		@find $(MODEL_PATH) -name '.mdzip.back' | xargs rm -r
+		@find $(PROFILE_PATH) '.mdr' | xargs rm -r 
+		@find $(PROFILE_PATH) '.mdzip.back' | xargs rm -r
+		@echo "# MagicDraw .mdr and .mdzip.back of models"
+		@echo "# folders and profile path cleaned"
+		@echo "###########################################"
+
+generate_models:
+		@echo ""
+		@echo "# Generating the models"
+		@echo "###########################################"
+		@echo "Done."
+		@echo ""

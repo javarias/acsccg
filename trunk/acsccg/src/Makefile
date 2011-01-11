@@ -28,11 +28,6 @@ BINF=lib
 EXF=examples
 ACSCCG=$(BINF)/acsComponentCodeGenerator.jar
 
-# These modules exists in the example file, others will not work
-# Upper and Lower case are sensitive.
-EMODULES=	singleComponent	\
-			MARS
-
 all: clean build install message_done
 
 build:
