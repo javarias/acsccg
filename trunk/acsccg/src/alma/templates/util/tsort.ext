@@ -27,4 +27,4 @@ import ecore;
  * @return List
  */
 List getETopicSorted(List list):
-	JAVA acsccg.util.xtend.TopologicalSort.getETopicSorted(java.util.List);
+	JAVA alma.acsccg.util.xtend.TopologicalSort.getETopicSorted(java.util.List);

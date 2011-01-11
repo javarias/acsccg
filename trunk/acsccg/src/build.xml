@@ -34,10 +34,12 @@
 	
     <import file="build.xml"/>
 	
+	<!-- Classpath !-->
     <path id="cl.alma.acs.ccg.classpath">
     	<fileset dir="${LIBRARIES_DIRECTORY}" includes="*.jar"/>
     </path>
 	
+	<!-- Directories Initializations !-->
     <target name="init">
         <mkdir dir="bin"/>
         <copy includeemptydirs="false" todir="bin">
@@ -51,45 +53,23 @@
         </copy>
     </target>
 	
+	<!-- Clean Target !-->
     <target name="clean">
         <delete dir="bin"/>
     	<delete dir="../doc/code"/>
 		<delete file="ACSCCG_MANIFEST_GENERATED.MF" />
     	<delete file="${OUTPUT_PATH}/${ACSCCG_JAR_FILE}.jar" />
     </target>
-	
-    <target depends="clean" name="cleanall"/>
-	
-    <target depends="build-subprojects,build-project" name="build"/>
-	
-    <target name="build-subprojects"/>
-            	
-    <target depends="init" name="build-project">
+	        	
+    <target depends="init" name="build">
         <echo message="${ant.project.name}: ${ant.file}"/>
         <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
             <src path="alma"/>
             <classpath refid="cl.alma.acs.ccg.classpath"/>
         </javac>
     </target>
-    	
-    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
-        	
-    <target description="copy library jars to ant lib directory" name="init-eclipse-compiler">
-        <copy todir="${ant.library.dir}">
-            <fileset dir="${LIBRARIES_DIRECTORY}" includes="*.jar"/>
-        </copy>
-        <unzip dest="${ant.library.dir}">
-            <patternset includes="jdtCompilerAdapter.jar"/>
-            <fileset dir="${LIBRARIES_DIRECTORY}" includes="*.jar"/>
-        </unzip>
-    </target>
 	
-    <target description="compile project with eclipse compiler" name="build-eclipse-compiler">
-        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
-        <antcall target="build"/>
-    </target>
-	
-	<target name="install" depends="build">
+	<target name="install">
 		<manifest file="ACSCCG_MANIFEST_GENERATED.MF">
 			<attribute name="Main-Class" value="org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader"/>
 			<attribute name="Rsrc-Main-Class" value="ACSCCG"/>

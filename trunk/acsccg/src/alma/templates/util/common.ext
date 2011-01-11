@@ -375,21 +375,21 @@ boolean hasComment(Element eElement):
  * @return String
  */
 String getFullActualDate(): 
-	JAVA acsccg.util.xtend.JavaExtension.getFullActualDate();
+	JAVA alma.acsccg.util.xtend.JavaExtension.getFullActualDate();
 	
 /**
  * Return full actual date for the comments
  * @return String
  */
 String getCommentDate(): 
-	JAVA acsccg.util.xtend.JavaExtension.getCommentDate();	
+	JAVA alma.acsccg.util.xtend.JavaExtension.getCommentDate();	
 	
 /**
  * Return the comments wrapped as a List<String>
  * @return List
  */
 List getCommentsWrapped(String comments): 
-	JAVA acsccg.util.xtend.JavaExtension.getCommentsWrapped(java.lang.String);
+	JAVA alma.acsccg.util.xtend.JavaExtension.getCommentsWrapped(java.lang.String);
 	
 /**
  * Return the list of raisedExceptions

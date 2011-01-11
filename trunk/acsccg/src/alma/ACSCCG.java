@@ -31,12 +31,12 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
-import cl.alma.acs.ccg.emodule.EModules;
-import cl.alma.acs.ccg.strategy.CodeJavaGeneration;
-import cl.alma.acs.ccg.strategy.ContextCodeGeneration;
-import cl.alma.acs.ccg.util.BaseStaticConfig;
-import cl.alma.acs.ccg.util.Validation;
-import cl.alma.acs.ccg.vo.VOGenerator;
+import alma.acsccg.emodule.EModules;
+import alma.acsccg.strategy.CodeJavaGeneration;
+import alma.acsccg.strategy.ContextCodeGeneration;
+import alma.acsccg.util.BaseStaticConfig;
+import alma.acsccg.util.Validation;
+import alma.acsccg.vo.VOGenerator;
 
 /**
 * Component Code Generator Main class
@@ -186,7 +186,7 @@ public class ACSCCG
 	{
 		System.out.println("");
 		System.out.println("ACS Component Code Generator");
-		System.out.println("Revision " + "r147");
+		System.out.println("Revision " + "r149");
 		System.out.println("");
 	    System.out.println("http://code.google.com/p/acsccg/");
 		System.out.println("");
