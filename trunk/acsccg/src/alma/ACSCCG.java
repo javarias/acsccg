@@ -21,19 +21,16 @@ package alma;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Date;
+import java.io.InputStream;
 import java.util.Vector;
-import java.util.Scanner;
 
 import org.apache.commons.cli.BasicParser;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 import org.apache.log4j.Level;
-import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
-import org.apache.log4j.BasicConfigurator;
 
 import alma.acsccg.emodule.EModules;
 import alma.acsccg.strategy.CodeJavaGeneration;
@@ -57,7 +54,7 @@ public class ACSCCG
 	public static void main(String[] args) throws IOException
 	{	
 		
-		Logger.getLogger(BaseStaticConfig.ACSCCG_LOGGER).log(Level.INFO, "--");
+		Logger.getLogger(BaseStaticConfig.ACSCCG_LOGGER).log(Level.INFO, "");
 	
 		//////////////////////////////////////////////////////////////////////////////////////////////
 		// Development setup - only for development proposes
@@ -116,13 +113,12 @@ public class ACSCCG
 			return;
 		}
 		
+		loadDebuglog4j();
 		//////////////////////////////////////////////////////////////////////////////////////////////
 		// Debug information
 		//////////////////////////////////////////////////////////////////////////////////////////////
 		if(cl.hasOption('d'))
 		{
-			//BasicConfigurator.configure();
-			//new LogManager().getLogger("org.eclipse.emf.mwe.core.WorkflowRunner").shutdown();  
 			Logger.getLogger(BaseStaticConfig.ACSCCG_LOGGER).log(Level.INFO, "Debug option activated");
 			
 		}
@@ -240,4 +236,51 @@ public class ACSCCG
 		System.out.println("Done");
 		Logger.getLogger(BaseStaticConfig.ACSCCG_LOGGER).log(Level.INFO, "Done");
 	}
+	
+	/**
+	 * Load the log4 properties file of debug or normal log
+	 */
+	public static void loadDebuglog4j()
+	{
+		try
+		{
+			ClassLoader classLoader = ACSCCG.class.getClassLoader();
+			InputStream debugIs = classLoader.getResourceAsStream("debug.log4j.properties");
+			System.out.println(debugIs.toString());
+		}
+		catch (Exception e)
+		{
+			// if the file is not loaded propertly, ends the execution of the program.
+			Logger.getLogger(BaseStaticConfig.ACSCCG_LOGGER).log(Level.ERROR, "SEVERE - Can't load the debug properties file - exiting..");
+			return;
+		}
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
