@@ -70,7 +70,7 @@
 #include <acscomponent.idl>
 «ENDIF-»
 «ENDIF-»
-«IF !getETopicErrors(getPackage(this)).isEmpty-»
+«IF !getEExceptions(getPackage(this)).isEmpty-»
 #include <«getPackage(this).name»Err.idl>
 «ENDIF-»
 

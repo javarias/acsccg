@@ -26,8 +26,8 @@ import ecore;
  * @param Element
  * @return Boolean
  */
-boolean isETopicError(Element element): 
-	!element.getAppliedStereotypes().select(e|e.name == 'ETopicError').isEmpty;
+boolean isEException(Element element): 
+	!element.getAppliedStereotypes().select(e|e.name == 'EException').isEmpty;
 
 /**
  * Check if the element has a EtopicSequence
@@ -303,8 +303,8 @@ List getESuppliers(Manifestation eManifest):
  * @param Manifes
  * @return List
  */
-List getETopicErrors(Element eElement):
-	eElement.allOwnedElements().select(e|isETopicError(e));
+List getEExceptions(Element eElement):
+	eElement.allOwnedElements().select(e|isEException(e));
 	
 /**
  * Get a list of DiagramInfo
@@ -327,7 +327,7 @@ String getContainerLanguage(Element eElement):
  * @param eElement
  * @return String
  */
-String getETopicErrorDescription(Element eElement):
+String getEExceptionDescription(Element eElement):
 	getETagValue(eElement,'ETopicError','description');
 	
 /**
@@ -335,7 +335,7 @@ String getETopicErrorDescription(Element eElement):
  * @param eElement
  * @return String
  */
-String getETopicErrorShortDescription(Element eElement):
+String getEExceptionShortDescription(Element eElement):
 	getETagValue(eElement,'ETopicError','shortDescription');
 
 /**

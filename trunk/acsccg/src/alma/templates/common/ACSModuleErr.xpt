@@ -25,6 +25,7 @@
 
 «DEFINE Root FOR uml::Model»
 
+«IF !getEExceptions(getPackage(this)).isEmpty-»
 «FILE  getPackage(this).name+'/idl/'+getPackage(this).name+'Err.xml'-»
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <Type xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
@@ -34,14 +35,15 @@
 	  type="900907" 
 	  _prefix="alma">
 			
-			«FOREACH getETopicErrors(getPackage(this)) AS eElement-»
+			«FOREACH getEExceptions(getPackage(this)) AS eElement-»
 			<ErrorCode name="«eElement.name»" 
-					   shortDescription="«getETopicErrorDescription(eElement)»" 
-					   description="«getETopicErrorShortDescription(eElement)»">
+					   shortDescription="«getEExceptionDescription(eElement)»" 
+					   description="«getEExceptionShortDescription(eElement)»">
 			</ErrorCode>
                    
 			«ENDFOREACH-»
 </Type>			
 «ENDFILE»
+«ENDIF»
 
 «ENDDEFINE»
