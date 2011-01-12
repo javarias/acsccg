@@ -55,7 +55,10 @@ public class ACSCCG
 	 * @param args
 	 */
 	public static void main(String[] args) throws IOException
-	{		
+	{	
+		
+		Logger.getLogger(BaseStaticConfig.ACSCCG_LOGGER).log(Level.INFO, "--");
+	
 		//////////////////////////////////////////////////////////////////////////////////////////////
 		// Development setup - only for development proposes
 		// File log4properties = new File(BaseStaticConfig.LO4J_PROPERTIES);
@@ -203,7 +206,7 @@ public class ACSCCG
 	{
 		System.out.println("");
 		System.out.println("ACS Component Code Generator");
-		System.out.println("Revision " + "r157");
+		System.out.println("Revision " + "r165");
 		System.out.println("");
 	    System.out.println("http://code.google.com/p/acsccg/");
 		System.out.println("");
