@@ -30,8 +30,10 @@ import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 import org.apache.log4j.Level;
+import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
+import org.apache.log4j.BasicConfigurator;
 
 import alma.acsccg.emodule.EModules;
 import alma.acsccg.strategy.CodeJavaGeneration;
@@ -87,6 +89,7 @@ public class ACSCCG
 		opt.addOption("p", true, "Profile UML path");
 		opt.addOption("o", true, "The output folder path");
 		opt.addOption("e", true, "Specify the EModule to generate");
+		opt.addOption("d", false, "Debug information");
 		
 		// parse the options
 		try 
@@ -108,7 +111,19 @@ public class ACSCCG
 		{
 			printHelp(opt);
 			return;
-		}	
+		}
+		
+		//////////////////////////////////////////////////////////////////////////////////////////////
+		// Debug information
+		//////////////////////////////////////////////////////////////////////////////////////////////
+		if(cl.hasOption('d'))
+		{
+			//BasicConfigurator.configure();
+			new LogManager().resetConfiguration();  
+			Logger.getLogger(BaseStaticConfig.ACSCCG_LOGGER).log(Level.INFO, "Debug option activated");
+			
+		}
+		
 		
 		//////////////////////////////////////////////////////////////////////////////////////////////
 		// Program Lifecycle

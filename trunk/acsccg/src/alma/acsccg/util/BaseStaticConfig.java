@@ -27,7 +27,7 @@ public final class BaseStaticConfig
 {
 	
 	//private var for internal usage
-	private final static String BASE_MWE_DIR = "alma/acsccg/mwe";
+	private final static String BASE_MWE_DIR = "acsccg/mwe";
 	
 	public final static String MWE_JAVA = BASE_MWE_DIR + "/JavaWorkflow.mwe";
 	

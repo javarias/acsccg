@@ -20,11 +20,11 @@
  */
 «ENDREM»
 «IMPORT uml»
-«EXTENSION alma::templates::util::common»
+«EXTENSION templates::util::common»
 
 «DEFINE Root FOR uml::Model»
 
-«FILE  'EModules.xml'-»
+«FILE 'EModules.xml'-»
 <?xml version="1.0" encoding="utf-8"?>
 <EModules>
 	«FOREACH getEModules(this) AS eElement -»
