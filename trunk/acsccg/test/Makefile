@@ -66,3 +66,29 @@ generate_models:
 		@echo "###########################################"
 		@echo "Done."
 		@echo ""
+
+# General Vars
+JCLI=java
+ENVDIR=$(shell pwd)
+
+# Example-test var
+LIBF=../bin
+EXF=../test/xmi
+ACSCCG=$(LIBF)/acsComponentCodeGenerator.jar
+
+# These modules exists in the example file, others will not work
+# Upper and Lower case are sensitive.
+EMODULES=	singleComponent	\
+			MARS
+
+eltins:
+	@rm -rf $(EXF)/generated
+	@mkdir $(EXF)/generated
+	$(JCLI) -jar $(ACSCCG) -m $(EXF)/ELT/ELT-InsPrototype.uml -p $(EXF)/ELT/EProfile.profile.uml -o generated/ELT -e prototype;
+	@echo ""
+	@echo "###########################################"
+	@echo "# Done"
+	@echo "###########################################"
+	@echo ""
+
+
