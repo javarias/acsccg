@@ -119,7 +119,7 @@ public class ACSCCG
 		if(cl.hasOption('d'))
 		{
 			//BasicConfigurator.configure();
-			new LogManager().resetConfiguration();  
+			//new LogManager().getLogger("org.eclipse.emf.mwe.core.WorkflowRunner").shutdown();  
 			Logger.getLogger(BaseStaticConfig.ACSCCG_LOGGER).log(Level.INFO, "Debug option activated");
 			
 		}
