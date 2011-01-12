@@ -19,6 +19,7 @@
  */
 package alma.acsccg.emodule;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -92,7 +93,6 @@ public class EModules
 		properties.put("modelFileURI", __voGenerator.getWellFormedModel());
 		properties.put("profileFileURI",__voGenerator.getWellFormedProfile());
 		properties.put("ouputFolderURI",BaseStaticConfig.TEMP_OS_DIR);
-		System.out.println(BaseStaticConfig.TEMP_OS_DIR);
 		
 		Map slotContents = new HashMap();
 		
@@ -105,7 +105,6 @@ public class EModules
 		} 
 		catch(Exception e) 
 		{
-			//System.out.println(e.getMessage());
 			 Logger.getLogger(BaseStaticConfig.ACSCCG_LOGGER).log(Level.ERROR, "There's a problem reading the modules");
 			return;
 		}
@@ -120,6 +119,14 @@ public class EModules
 		Document __doc = null;
 		String xmURI = BaseStaticConfig.TEMP_OS_DIR + "/EModules.xml";
 		
+		// if the file not exist log the error
+		if (!(new File(xmURI).exists())) 
+		{
+			Logger.getLogger(BaseStaticConfig.ACSCCG_LOGGER).log(Level.ERROR, "There's a problem reading the modules - the EModules temp file was not generated");
+			//End the program.
+			return;
+		}
+		
 		SAXBuilder parser = new SAXBuilder();
 		
 		//parse the document
@@ -129,12 +136,10 @@ public class EModules
 		} 
 		catch (JDOMException e) 
 		{
-			//e.printStackTrace();
 			 Logger.getLogger(BaseStaticConfig.ACSCCG_LOGGER).log(Level.ERROR, "There's a problem reading the modules");
 		} 
 		catch (IOException e) 
 		{
-			///e.printStackTrace();
 			 Logger.getLogger(BaseStaticConfig.ACSCCG_LOGGER).log(Level.ERROR, "There's a problem reading the modules");
 		}
 		

@@ -37,15 +37,15 @@ all:
 
 test: clean_output generate_models
 
-cleanxmi:
+clean_xmi:
 		@echo ""
-		@rm -rf $(XMI_PATH)/
+		@rm -rf $(XMI_PATH)/*
 		@echo "# XMI folders cleaned"
 		@echo "###########################################"
 		@echo ""
 
 clean_output:
-		@rm -rf $(OUTPUT_PATH)/
+		@rm -rf $(OUTPUT_PATH)/*
 		@echo "# Output folders cleaned"
 		@echo "###########################################"
 		@echo ""

@@ -29,7 +29,7 @@
 		<fileEncoding value="UTF-8" />
 		<metaModel idRef="default_profile"/>
 		<genPath value="${ouputFolderURI}"/>
-		<expand value="templates::common::ACSEModules::Root FOR model"/>
+		<expand value="alma::templates::common::ACSEModules::Root FOR model"/>
 	</component>
 		
 </workflow>

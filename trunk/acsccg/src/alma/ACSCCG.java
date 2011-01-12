@@ -130,10 +130,10 @@ public class ACSCCG
 		//////////////////////////////////////////////////////////////////////////////////////////////
 		// Print the arguments and paths
 		//////////////////////////////////////////////////////////////////////////////////////////////
-		Logger.getLogger(BaseStaticConfig.ACSCCG_LOGGER).log(Level.INFO, "Model:\t"+Validation.getModelPathArg(cl));
-		Logger.getLogger(BaseStaticConfig.ACSCCG_LOGGER).log(Level.INFO, "Profile:\t"+Validation.getProfilePathArg(cl));
-		Logger.getLogger(BaseStaticConfig.ACSCCG_LOGGER).log(Level.INFO, "Output:\t"+Validation.getOutputPathArg(cl));
-		Logger.getLogger(BaseStaticConfig.ACSCCG_LOGGER).log(Level.INFO, "Module:\t"+Validation.getEModuleArg(cl));
+		Logger.getLogger(BaseStaticConfig.ACSCCG_LOGGER).log(Level.INFO, "Model selected: "+Validation.getModelPathArg(cl));
+		Logger.getLogger(BaseStaticConfig.ACSCCG_LOGGER).log(Level.INFO, "Profile selected: "+Validation.getProfilePathArg(cl));
+		Logger.getLogger(BaseStaticConfig.ACSCCG_LOGGER).log(Level.INFO, "Output selected: "+Validation.getOutputPathArg(cl));
+		Logger.getLogger(BaseStaticConfig.ACSCCG_LOGGER).log(Level.INFO, "Module selected: "+Validation.getEModuleArg(cl));
 		
 		//////////////////////////////////////////////////////////////////////////////////////////////
 		// Get a list of modules to validate the module existence
@@ -188,7 +188,7 @@ public class ACSCCG
 	{
 		System.out.println("");
 		System.out.println("ACS Component Code Generator");
-		System.out.println("Revision " + "r153");
+		System.out.println("Revision " + "r157");
 		System.out.println("");
 	    System.out.println("http://code.google.com/p/acsccg/");
 		System.out.println("");

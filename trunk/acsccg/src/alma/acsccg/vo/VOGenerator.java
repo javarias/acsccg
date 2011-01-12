@@ -152,15 +152,17 @@ public class VOGenerator
 	 */
 	public String getWellFormedModel() 
 	{
-		File modelFileObj = new File(this.model);
+		File profileFileObj = new File(this.model);
+		/*
 	    try {
-			System.out.println(modelFileObj.getCanonicalPath());
+			System.out.println(profileFileObj.getCanonicalPath());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		*/
 		try {
-			return protocol+modelFileObj.getCanonicalPath();
+			return protocol+profileFileObj.getCanonicalPath();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -175,12 +177,14 @@ public class VOGenerator
 	public String getWellFormedProfile()
 	{
 		File modelFileObj = new File(this.profile);
+		/*
 		try {
 			System.out.println(modelFileObj.getCanonicalPath());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		*/
 		try {
 			return protocol+modelFileObj.getCanonicalPath();
 		} catch (IOException e) {

@@ -20,7 +20,7 @@
  */
 «ENDREM»
 «IMPORT uml»
-«EXTENSION templates::util::common»
+«EXTENSION alma::templates::util::common»
 
 «DEFINE Root FOR uml::Model»
 
