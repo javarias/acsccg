@@ -66,7 +66,7 @@ public class JavaExtension
 	}
 	
 	/**
-	 * Get a list of comment wrapped, 15 word per each line
+	 * Get a list of comment wrapped, 10 word per each line
 	 * @return Vector<String> a list of comments wrapped
 	 */
 	public final static Vector<String> getCommentsWrapped(String comment)
