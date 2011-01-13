@@ -51,7 +51,7 @@ public final class BaseStaticConfig
 	
 	public final static String DATE_VERSION = ("$Date$").replace("$", "");
 	
-	public final static String LAST_CHANGE_BY = ("$Author$").replace("$", "");
+	public final static String LAST_CHANGE_BY = ("$Author: alexis.tejeda $").replace("$", "");
 	
 	public final static int WORD_WRAP_MAX = 10;
 }
