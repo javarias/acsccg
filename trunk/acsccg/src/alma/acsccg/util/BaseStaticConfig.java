@@ -47,9 +47,9 @@ public final class BaseStaticConfig
 	
 	public final static String DEBUG_LOG_PATH = TEMP_OS_DIR + File.separator  + DEBUG_LOG_FILE;
 	
-	public final static String RELEASE_VERSION = ("$Revision: 169 $").replace("$", "");
+	public final static String RELEASE_VERSION = ("$Revision$").replace("$", "");
 	
-	public final static String DATE_VERSION = ("$Date$").replace("$", "");
+	public final static String DATE_VERSION = ("$Date: 2011-01-13 11:07:40 -0300 (Thu, 13 Jan 2011) $").replace("$", "");
 	
 	public final static String LAST_CHANGE_BY = ("$Author: alexis.tejeda $").replace("$", "");
 	
