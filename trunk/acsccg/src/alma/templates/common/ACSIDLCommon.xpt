@@ -17,7 +17,7 @@
  * --------		--------		----------------------------------------------
  * atejeda 		2010-00-00  	Created
  * 
- * $Id$
+ * $Id: ACSIDLCommon.xpt 170 2011-01-13 13:07:52Z alexis.tejeda $
  */
 «ENDREM»
 
@@ -51,7 +51,7 @@
 *    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307  USA
 *
 *
-* "@(#) $Id$"
+* "@(#) $Id: ACSIDLCommon.xpt 170 2011-01-13 13:07:52Z alexis.tejeda $"
 *
 * who                  when                 what
 * ----------------    ------------------    ----------------------------------------------

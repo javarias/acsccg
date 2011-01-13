@@ -16,7 +16,7 @@
  * --------		--------		----------------------------------------------
  * atejeda 		2010-00-00  	Created
  * 
- * $Id$
+ * $Id: VOGenerator.java 170 2011-01-13 13:07:52Z alexis.tejeda $
  */
 
 package alma.acsccg.vo;
