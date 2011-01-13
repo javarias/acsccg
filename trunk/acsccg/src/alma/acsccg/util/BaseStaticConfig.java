@@ -25,8 +25,6 @@ package alma.acsccg.util;
  */
 public final class BaseStaticConfig 
 {
-	
-	//private var for internal usage
 	private final static String BASE_MWE_DIR = "acsccg/mwe";
 	
 	public final static String MWE_JAVA = BASE_MWE_DIR + "/JavaWorkflow.mwe";
@@ -40,6 +38,10 @@ public final class BaseStaticConfig
 	public final static String TEMP_OS_DIR = System.getProperty("java.io.tmpdir");
 	
 	public final static String ACSCCG_LOGGER = "cl.alma.acs.ccg";
+	
+	public final static String DEBUG_LOG_FILE = "debug.log4j.properties";
+	
+	public final static String DEBUG_LOG_PATH = TEMP_OS_DIR + DEBUG_LOG_FILE;
 	
 	public final static int WORD_WRAP_MAX = 10;
 }

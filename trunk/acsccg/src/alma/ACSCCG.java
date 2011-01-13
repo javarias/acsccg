@@ -20,8 +20,10 @@
 package alma;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Vector;
 
 import org.apache.commons.cli.BasicParser;
@@ -55,12 +57,6 @@ public class ACSCCG
 	{	
 		
 		Logger.getLogger(BaseStaticConfig.ACSCCG_LOGGER).log(Level.INFO, "");
-	
-		//////////////////////////////////////////////////////////////////////////////////////////////
-		// Development setup - only for development proposes
-		// File log4properties = new File(BaseStaticConfig.LO4J_PROPERTIES);
-		// PropertyConfigurator.configure(log4properties.getAbsolutePath());
-		//////////////////////////////////////////////////////////////////////////////////////////////
 		
 		//////////////////////////////////////////////////////////////////////////////////////////////
 		// String paths variables
@@ -113,16 +109,14 @@ public class ACSCCG
 			return;
 		}
 		
-		loadDebuglog4j();
 		//////////////////////////////////////////////////////////////////////////////////////////////
 		// Debug information
 		//////////////////////////////////////////////////////////////////////////////////////////////
 		if(cl.hasOption('d'))
 		{
+			loadDebuglog4j();
 			Logger.getLogger(BaseStaticConfig.ACSCCG_LOGGER).log(Level.INFO, "Debug option activated");
-			
 		}
-		
 		
 		//////////////////////////////////////////////////////////////////////////////////////////////
 		// Program Lifecycle
@@ -207,33 +201,12 @@ public class ACSCCG
 	    System.out.println("http://code.google.com/p/acsccg/");
 		System.out.println("");
 	}
-		
-	/**
-	 * @deprecated
-	 * Print the info about the paths
-	 * @param modelPath
-	 * @param profilePath
-	 * @param outputPath
-	 */
-	public static void printPaths(String modelPath, String profilePath, String outputPath, String acspackage)
-	{
-		System.out.println("");
-		System.out.println("ACS Component Code Generator");
-		System.out.println("Compilation 20100105");
-		System.out.println("");
-		System.out.println("Model file:\t\t"+modelPath);
-		System.out.println("Profile file:\t\t"+profilePath);
-		System.out.println("Output folder:\t"+outputPath);
-		System.out.println("Module:\t\t\t"+acspackage);
-		System.out.println("");
-	}
 	
 	/**
-	 * Print when the generation its done
+	 * Print when the generation is done
 	 */
 	public static void printFinal()
 	{
-		System.out.println("Done");
 		Logger.getLogger(BaseStaticConfig.ACSCCG_LOGGER).log(Level.INFO, "Done");
 	}
 	
@@ -245,15 +218,32 @@ public class ACSCCG
 		try
 		{
 			ClassLoader classLoader = ACSCCG.class.getClassLoader();
-			InputStream debugIs = classLoader.getResourceAsStream("debug.log4j.properties");
-			System.out.println(debugIs.toString());
+			InputStream debugIs = classLoader.getResourceAsStream(BaseStaticConfig.DEBUG_LOG_FILE);
+			
+			File debugFile = new File(BaseStaticConfig.DEBUG_LOG_PATH);
+			
+			OutputStream debugOs = new FileOutputStream(debugFile);
+			
+			byte[] buffer = new byte[1024];
+			
+			int len;
+			
+			   while((len=debugIs.read(buffer))>0)
+			   {
+				   debugOs.write(buffer,0,len);
+			   }
+			   debugOs.close();
+			   debugIs.close();
+
+			PropertyConfigurator.configure(debugFile.getAbsolutePath());
 		}
 		catch (Exception e)
 		{
-			// if the file is not loaded propertly, ends the execution of the program.
+			// if the file is not loaded properly, ends the execution of the program.
 			Logger.getLogger(BaseStaticConfig.ACSCCG_LOGGER).log(Level.ERROR, "SEVERE - Can't load the debug properties file - exiting..");
 			return;
 		}
+		
 	}
 }
 
