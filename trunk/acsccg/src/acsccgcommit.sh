@@ -55,6 +55,7 @@ function addsvnps
 		-name "*.sh" -o \
 		-name "*.properties" \) | xargs svn propset svn:keywords "$kword"; \
 	done
+	echo "" >> $ENVDIR/alma/acsccg/util/BaseStaticConfig.java
 }
 
 # Remove logs to commit
@@ -64,6 +65,16 @@ function removelog
 	echo "--Removing logs"
         find $ENVDIR/../ \( -name "*.log" \) | xargs rm 
 }
+
+
+####################################################################
+# Lifecycle - clean all - execute the functions and show svn status
+####################################################################
+
+# make clean, for clean everything
+echo ""
+make -C $ENVDIR clean
+make -C $ENVDIR/../test cleanoutput
 
 # execute functions
 removelog;

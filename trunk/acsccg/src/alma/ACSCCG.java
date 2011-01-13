@@ -128,7 +128,7 @@ public class ACSCCG
 			Logger.getLogger(BaseStaticConfig.ACSCCG_LOGGER).log(Level.INFO, "Build "+readBuildNumber());
 			Logger.getLogger(BaseStaticConfig.ACSCCG_LOGGER).log(Level.INFO, BaseStaticConfig.RELEASE_VERSION);
 			Logger.getLogger(BaseStaticConfig.ACSCCG_LOGGER).log(Level.INFO, BaseStaticConfig.DATE_VERSION);
-			Logger.getLogger(BaseStaticConfig.ACSCCG_LOGGER).log(Level.INFO, "Last change by:" + BaseStaticConfig.LAST_CHANGE_BY);
+			Logger.getLogger(BaseStaticConfig.ACSCCG_LOGGER).log(Level.INFO, "Last change by - " + BaseStaticConfig.LAST_CHANGE_BY);
 			Logger.getLogger(BaseStaticConfig.ACSCCG_LOGGER).log(Level.INFO, "----------------------");
 		}
 		

@@ -55,3 +55,5 @@ public final class BaseStaticConfig
 	
 	public final static int WORD_WRAP_MAX = 10;
 }
+
+
