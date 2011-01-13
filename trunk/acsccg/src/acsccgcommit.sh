@@ -41,7 +41,7 @@ function addsvnps
 	echo ""
 	echo "--Adding keywords";
 	
-	KLIST="Id Revision Author Date";	
+	KLIST="Revision Id Author Date";	
 
 	for kword in `echo $KLIST`; do \
 		echo ""
