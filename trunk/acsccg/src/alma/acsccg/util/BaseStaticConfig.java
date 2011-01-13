@@ -43,5 +43,7 @@ public final class BaseStaticConfig
 	
 	public final static String DEBUG_LOG_PATH = TEMP_OS_DIR + DEBUG_LOG_FILE;
 	
+	public final static String RELEASE_VERSION = ("$Rev$").split(" ")[1].toString();
+	
 	public final static int WORD_WRAP_MAX = 10;
 }

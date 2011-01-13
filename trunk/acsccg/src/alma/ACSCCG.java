@@ -196,7 +196,7 @@ public class ACSCCG
 	{
 		System.out.println("");
 		System.out.println("ACS Component Code Generator");
-		System.out.println("Revision " + "r$Rev$");
+		System.out.println("Revision: " + BaseStaticConfig.RELEASE_VERSION);
 		System.out.println("");
 	    System.out.println("http://code.google.com/p/acsccg/");
 		System.out.println("");
