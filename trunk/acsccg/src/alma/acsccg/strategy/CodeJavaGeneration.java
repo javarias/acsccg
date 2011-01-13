@@ -12,11 +12,13 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  * 
- *  who       			when      			what
- * --------				--------					----------------------------------------------
- * atejeda 			2010-00-00  		Created
+ * who     		when      		what
+ * --------		--------		----------------------------------------------
+ * atejeda 		2010-00-00  	Created
  * 
+ * $Id$
  */
+
 package alma.acsccg.strategy;
 
 import java.util.HashMap;

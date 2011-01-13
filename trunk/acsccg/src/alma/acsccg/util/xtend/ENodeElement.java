@@ -12,11 +12,13 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  * 
- *  who       			when      			what
- * --------				--------					----------------------------------------------
- * atejeda 			2010-23-11  		Created
+ * who     		when      		what
+ * --------		--------		----------------------------------------------
+ * atejeda 		2010-00-00  	Created
  * 
+ * $Id$
  */
+
 package alma.acsccg.util.xtend;
 
 /**

@@ -12,11 +12,13 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  * 
- *  who       	when      		what
- * --------	--------		----------------------------------------------
- * atejeda 	2010-00-00  		Created
+ * who     		when      		what
+ * --------		--------		----------------------------------------------
+ * atejeda 		2010-00-00  	Created
  * 
+ * $Id$
  */
+
 package alma;
 
 import java.io.File;
@@ -221,7 +223,6 @@ public class ACSCCG
 			InputStream debugIs = classLoader.getResourceAsStream(BaseStaticConfig.DEBUG_LOG_FILE);
 			
 			File debugFile = new File(BaseStaticConfig.DEBUG_LOG_PATH);
-			
 			OutputStream debugOs = new FileOutputStream(debugFile);
 			
 			byte[] buffer = new byte[1024];

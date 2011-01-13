@@ -12,11 +12,13 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  * 
- *  who       			when      			what
- * --------				--------					----------------------------------------------
- * atejeda 			2010-00-00  		Created
+ * who     		when      		what
+ * --------		--------		----------------------------------------------
+ * atejeda 		2010-00-00  	Created
  * 
+ * $Id$
  */
+
 package alma.acsccg.emodule;
 
 import java.io.File;
@@ -117,7 +119,7 @@ public class EModules
 	private void readXMLEmodules()
 	{
 		Document __doc = null;
-		String xmURI = BaseStaticConfig.TEMP_OS_DIR + "/EModules.xml";
+		String xmURI = BaseStaticConfig.TEMP_OS_DIR + File.separator + "EModules.xml";
 		
 		// if the file not exist log the error
 		if (!(new File(xmURI).exists())) 
