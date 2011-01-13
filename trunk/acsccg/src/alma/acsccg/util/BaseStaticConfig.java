@@ -16,7 +16,7 @@
  * --------		--------		----------------------------------------------
  * atejeda 		2010-00-00  	Created
  * 
- * $Id$
+ * $Id: BaseStaticConfig.java 170 2011-01-13 13:07:52Z alexis.tejeda $
  */
 
 package alma.acsccg.util;
@@ -41,13 +41,17 @@ public final class BaseStaticConfig
 	
 	public final static String TEMP_OS_DIR = System.getProperty("java.io.tmpdir");
 	
-	public final static String ACSCCG_LOGGER = "cl.alma.acs.ccg";
+	public final static String ACSCCG_LOGGER = "cl.alma.acs.ccg"; 
 	
 	public final static String DEBUG_LOG_FILE = "debug.log4j.properties";
 	
 	public final static String DEBUG_LOG_PATH = TEMP_OS_DIR + File.separator  + DEBUG_LOG_FILE;
 	
-	public final static String RELEASE_VERSION = ("$Rev: 169 $").split(" ")[1].toString();
+	public final static String RELEASE_VERSION = ("$Revision: 169 $").replace("$", "");
+	
+	public final static String DATE_VERSION = ("$Date$").replace("$", "");
+	
+	public final static String LAST_CHANGE_BY = ("$Author$").replace("$", "");
 	
 	public final static int WORD_WRAP_MAX = 10;
 }
