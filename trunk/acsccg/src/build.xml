@@ -18,7 +18,7 @@
  *
  * atejeda 	 2010-23-11  Created
  *
- * $Id$
+ * $Id: build.xml 185 2011-01-13 17:34:10Z alexis.tejeda $
  *
 !-->
 <project basedir="." default="build" name="cl.alma.acs.ccg">

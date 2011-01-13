@@ -82,7 +82,7 @@ public final class BaseStaticConfig
 	/**
 	 * Date release information, is this automatically updated by svn
 	 */
-	public final static String DATE_VERSION = ("$Date$").replace("$", "");
+	public final static String DATE_VERSION = ("$Date: 2011-01-13 14:18:10 -0300 (Thu, 13 Jan 2011) $").replace("$", "");
 	
 	/**
 	 * User name that has made the last change in the code, is this automatically updated by svn
@@ -94,5 +94,6 @@ public final class BaseStaticConfig
 	 */
 	public final static int WORD_WRAP_MAX = 10;
 }
+
 
 

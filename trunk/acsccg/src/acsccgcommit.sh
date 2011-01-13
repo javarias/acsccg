@@ -45,7 +45,7 @@ function addsvnps
 
 	for kword in `echo $KLIST`; do \
 		echo ""
-		echo "Adding $kword svn:keyword"\	
+		echo "Adding $kword svn:keywords"\	
 		find . \( -name "*.ext" -o \
 		-name "*.mwe" -o \
 		-name "*.java" -o \
@@ -53,7 +53,7 @@ function addsvnps
 		-name "*.xml" -o \
 		-name "Makefile" -o \
 		-name "*.sh" -o \
-		-name "*.properties" \) | xargs svn propset svn:keywords "$kword"; \
+		-name "*.properties" \) | xargs svn propset svn:keywords $$kword; \
 	done
 	echo "" >> $ENVDIR/alma/acsccg/util/BaseStaticConfig.java
 }
