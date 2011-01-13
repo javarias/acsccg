@@ -53,7 +53,7 @@ function addsvnps
 		-name "*.xml" -o \
 		-name "Makefile" -o \
 		-name "*.sh" -o \
-		-name "*.properties" \) | xargs svn propset svn:keywords $kword; \
+		-name "*.properties" \) | xargs svn propset svn:keywords "$kword"; \
 	done
 }
 
