@@ -32,10 +32,13 @@ fi
 
 # Replace by your favorite editor
 SVN_EDITOR=vim
+# Set envdir.
+ENVDIR=`pwd`
 
 # add svn:keywords Id Revision Author Date property recursively
 function addsvnps 
 {
+	echo ""
 	echo "--Adding keywords";
 	
 	KLIST="Id Revision Author Date";	
@@ -57,13 +60,22 @@ function addsvnps
 # Remove logs to commit
 function removelog 
 {
+	echo ""
 	echo "--Removing logs"
-        find ../ \( -name "*.log" \) | xargs rm 
+        find $ENVDIR/../ \( -name "*.log" \) | xargs rm 
 }
 
 # execute functions
 removelog;
 addsvnps;
 
-# Now Commit the files
+# show the svn status
+echo ""
+echo "SVN Status: "
+echo ""
+svn status $ENVDIR/../
+
+echo ""
+echo "Ready to commit the files".
+echo ""
 
