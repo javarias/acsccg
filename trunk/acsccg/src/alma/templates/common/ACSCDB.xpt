@@ -25,7 +25,7 @@
 «EXTENSION templates::util::common»
 
 «DEFINE Root FOR uml::Model»
-«FILE  getPackage(this).name+'/test/CDB/MACI/Components/Components.xml'-»
+«FILE getPackage(this).name+'/config/CDB/MACI/Components/Components.xml'-»
 <?xml version="1.0" encoding="utf-8"?>
 <Components  xmlns="urn:schemas-cosylab-com:Components:1.0"
        xmlns:cdb="urn:schemas-cosylab-com:CDB:1.0"

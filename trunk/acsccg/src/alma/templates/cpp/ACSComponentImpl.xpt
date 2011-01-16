@@ -1,0 +1,99 @@
+«REM»
+/**
+ * ACS Component Code Generator - http://code.google.com/p/acsccg/
+ * Copyright (C) 2010  Alexis Tejeda, alexis.tejeda@gmail.com
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * who     		when      		what
+ * --------		--------		----------------------------------------------
+ * atejeda 		2010-00-00  	Created
+ * 
+ * $Id$
+ */
+«ENDREM»
+
+«IMPORT uml»
+«EXTENSION templates::util::common»
+«EXTENSION templates::util::java»
+«EXTENSION templates::util::idl»
+
+«DEFINE Root FOR uml::Model»
+
+«FOREACH getEComponentsImpl(getPackage(this)) AS eElement -»
+«FILE  getPackage(this).name+'/src/'+eElement.name+'Impl.cpp'-»
+/*******************************************************************************
+*    ALMA - Atacama Large Millimiter Array
+*
+*    (c) European Southern Observatory, 2002
+*    Copyright by ESO (in the framework of the ALMA collaboration)
+*    and Cosylab 2002, All rights reserved
+*
+*    This library is free software; you can redistribute it and/or
+*    modify it under the terms of the GNU Lesser General Public
+*    License as published by the Free Software Foundation; either
+*    version 2.1 of the License, or (at your option) any later version.
+*
+*    This library is distributed in the hope that it will be useful,
+*    but WITHOUT ANY WARRANTY; without even the implied warranty of
+*    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+*    Lesser General Public License for more details.
+*
+*    You should have received a copy of the GNU Lesser General Public
+*    License along with this library; if not, write to the Free Software
+*    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307  USA
+*
+* "@(#) $Id: ACSComponent.xpt 170 2011-01-13 13:07:52Z alexis.tejeda $"
+*
+* who                  when                 what
+* ----------------    ------------------    ----------------------------------------------
+* ACSCCG              «getCommentDate()»     Creation of the file
+* 
+*/
+
+static char *rcsId="@(#) $Id$"; 
+static void *use_rcsId = ((void)&use_rcsId,(void *) &rcsId);
+
+#include "cdb.h"
+#include "cdbErrType.h"
+
+#include "«eElement.name»Impl.h"
+
+«eElement.name»Impl::«eElement.name»Impl(const ACE_CString &name, maci::ContainerServices *containerServices):
+  baci::CharacteristicComponentImpl::CharacteristicComponentImpl(name, containerServices)
+{
+	ACS_TRACE("::«eElement.name»Impl::«eElement.name»Impl()");
+}
+
+void «eElement.name»Impl::initialize()
+{
+	ACS_TRACE("::«eElement.name»Impl::initialize()");
+}
+
+«eElement.name»Impl::~ACSCalcImpl()
+{
+	ACS_TRACE("::«eElement.name»Impl::~«eElement.name»Impl(): destroyed");
+} 
+
+void «eElement.name»Impl::aboutToAbort()
+{
+	ACS_TRACE("::«eElement.name»Impl::aboutToAbort()");
+}
+
+void «eElement.name»Impl::cleanUp()
+{
+	ACS_TRACE("::«eElement.name»Impl::cleanUp()");
+}
+
+/*___oOo___*/
+«ENDFILE»
+«ENDFOREACH»
+«ENDDEFINE»

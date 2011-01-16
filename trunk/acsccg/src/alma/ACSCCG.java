@@ -88,12 +88,14 @@ public class ACSCCG
 		BasicParser parser = new BasicParser();
 		
 		// adding the options
-		opt.addOption("h", false, "Print help for this application");
-		opt.addOption("m", true, "Model file path");
-		opt.addOption("p", true, "Profile UML path");
-		opt.addOption("o", true, "The output folder path");
-		opt.addOption("e", true, "Specify the EModule to generate");
-		opt.addOption("d", false, "Debug information");
+		opt.addOption("h", "help", false, "Print help for this application");
+		opt.addOption("m", "model",true, "Model file path");
+		opt.addOption("p", "profile", true, "Profile UML path");
+		opt.addOption("o", "output",true, "The output folder path");
+		opt.addOption("e", "emodule", true, "Specify the EModule to generate");
+		opt.addOption("x", "xml", false, "XML file with options m p o e, type help-xml to see an example of the file");
+		opt.addOption("hx", "help-xml", false, "An example of the options xml file");
+		opt.addOption("d", "debug", false, "Debug information");
 		
 		// parse the options
 		try 

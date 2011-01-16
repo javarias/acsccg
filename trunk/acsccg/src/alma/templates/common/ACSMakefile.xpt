@@ -151,7 +151,7 @@ tttlll_OBJECTS  =
 #
 # Configuration Database Files
 # ----------------------------
-CDB_SCHEMAS = #!!!!!!!!!!!!!!!!!!!for each characteristic component add it element.nameBase
+CDB_SCHEMAS = #!for each characteristic component add it element.nameBase
 
 # 
 # IDL Files and flags

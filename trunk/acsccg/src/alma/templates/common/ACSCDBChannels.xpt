@@ -17,7 +17,7 @@
  * --------		--------		----------------------------------------------
  * atejeda 		2010-00-00  	Created
  * 
- * $Id: ACSCDBContainer.xpt 170 2011-01-13 13:07:52Z alexis.tejeda $
+ * $Id$
  */
 «ENDREM»
 
@@ -25,25 +25,19 @@
 «EXTENSION templates::util::common»
 
 «DEFINE Root FOR uml::Model»
-«FOREACH getEContainers(getPackage(this)) AS eElement -»
-«FILE  getPackage(this).name+'/config/CDB/MACI/Containers/'+eElement.name+'/'+eElement.name+'.xml'-»
+«FILE getPackage(this).name+'/config/CDB/MACI/Channels/Channels.xml'-»
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<Container 
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xmlns="urn:schemas-cosylab-com:Container:1.0" 
-	xmlns:log="urn:schemas-cosylab-com:LoggingConfig:1.0" 
-	ImplLang="«getContainerLanguage(eElement)»">
-	
-	<Autoload>
-    </Autoload>
-    
-    «IF getContainerLanguage(eElement)=='java'-»
-    <LoggingConfig>
-    	<log:_ Name="jacorb@frodoContainer" minLogLevel="5" minLogLevelLocal="5" />
-    </LoggingConfig>
-    «ENDIF-»
-    
-</Container>
+<Channels xmlns="urn:schemas-cosylab-com:Channels:1.0"
+       xmlns:cdb="urn:schemas-cosylab-com:CDB:1.0" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <NotificationServiceMapping DefaultNotificationService="NotifyEventChannelFactory">
+          <Domains>
+              <_ Name="ALARMSYSTEM" NotificationService="AlarmNotifyEventChannelFactory"/>
+          </Domains>
+          <Channels_>
+              <_ Name="MyExample_*" NotificationService="MyExampleNotifyService"/>
+          </Channels_>
+      </NotificationServiceMapping>
+</Channels>
 «ENDFILE»
-«ENDFOREACH-»
 «ENDDEFINE»
