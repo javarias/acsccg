@@ -84,11 +84,20 @@ string getIDLCorrectCase(Parameter this):
 /**
  * 
  */	
+string getIDLCorrectCaseString(String str, Model model):
+    if str == 'Boolean' || str == 'Long' || str == 'Double' || str == 'Float' || str == 'Char'|| str == 'String'  
+    	then str.toLowerCase()
+    else if getPackage(model).allOwnedElements().typeSelect(uml::Signal).select(e|e.name == str).isEmpty
+    	then getPackage(model).getModel().allOwnedElements().typeSelect(uml::Signal).select(e|e.name == str).first().package.name+"::"+str
+    else str;
+    
+/**
+ * 
+ */	
 string getIDLCorrectCaseString(String str):
     if str == 'Boolean' || str == 'Long' || str == 'Double' || str == 'Float' || str == 'Char'|| str == 'String'  
-    then str.toLowerCase()
-    else str; 
- 
+    	then str.toLowerCase()
+    else str;
 
 /**
  * 

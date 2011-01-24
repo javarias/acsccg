@@ -108,7 +108,7 @@ module «getPackage(this).name»
 		 «ENDFOREACH-»
 		 * @return «getIDLReturnType(eOperation)»
 		 */
-		«getIDLReturnType(eOperation)» «eOperation.name-»(«FOREACH eOperation.ownedParameter.select(e|e.direction.toString()!= 'return') AS param SEPARATOR ', '-»«param.direction.toString()-» «getIDLCorrectCaseString(param.type.name)-»«IF isETypeModifier(param)»Sequence«ENDIF» «param.name-»«ENDFOREACH-»)«IF getRaisedExceptions(eOperation).isEmpty»;«ELSE»
+		«getIDLReturnType(eOperation)» «eOperation.name-»(«FOREACH eOperation.ownedParameter.select(e|e.direction.toString()!= 'return') AS param SEPARATOR ', '-»«param.direction.toString()-» «getIDLCorrectCaseString(param.type.name,this)-»«IF isETypeModifier(param)»Sequence«ENDIF» «param.name-»«ENDFOREACH-»)«IF getRaisedExceptions(eOperation).isEmpty»;«ELSE»
 			raises(«FOREACH getRaisedExceptions(eOperation) AS eRaisedException  SEPARATOR ', '»«getPackage(this).name»Err::«eRaisedException.name»Ex«ENDFOREACH»);«ENDIF»                             
 		
 		«ENDFOREACH-»

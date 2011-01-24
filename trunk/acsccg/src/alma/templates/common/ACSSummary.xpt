@@ -82,9 +82,11 @@ EEnumerations:
 	«eElement.name»
 «ENDFOREACH»
 
-ETopics:
-«FOREACH getETopics(getPackage(this)) AS eElement -»
-	«eElement.name»
+External Signals:
+«FOREACH getPackage(this).getModel().allOwnedElements().typeSelect(uml::Signal) AS eElement -»
+	«IF getPackage(this).allOwnedElements().typeSelect(uml::Signal).select(e|e.name == eElement.name).isEmpty-»
+	«eElement.package.name»::«eElement.name»
+	«ENDIF»
 «ENDFOREACH»
 
 «ENDFILE»

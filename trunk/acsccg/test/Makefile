@@ -25,7 +25,8 @@ JCLI=java
 MAKECLI=make
 LIBF=../bin
 EXF=../test/xmi
-ACSCCG=$(LIBF)/acsComponentCodeGenerator.jar
+EXTRAFLAGS=-d
+ACSCCG=$(LIBF)/acsComponentCodeGenerator.jar $(EXTRAFLAGS)
 
 # Model list target, modelname_emodule
 MODELS_TARGETS= eltins_prototype \
