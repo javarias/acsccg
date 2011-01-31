@@ -14,7 +14,7 @@
  * GNU General Public License for more details.
  * 
  * who     		when      		what
- * --------		--------		----------------------------------------------
+ * --------		--------		-------------------------------------------
  * atejeda 		2010-00-00  	Created
  * 
  * $Id: ACSIDLComponent.xpt 170 2011-01-13 13:07:52Z alexis.tejeda $
@@ -22,7 +22,9 @@
 «ENDREM»
 
 «IMPORT uml»
+
 «EXTENSION templates::util::common»
+«EXTENSION templates::util::zzdev»
 «EXTENSION templates::util::idl»
 
 «DEFINE Root FOR uml::Model»
@@ -30,34 +32,33 @@
 
 «FILE  getPackage(this).name+'/idl/'+eElement.name+'.idl'-»
 /*******************************************************************************
-*    ALMA - Atacama Large Millimiter Array
-*
-*    (c) European Southern Observatory, 2002
-*    Copyright by ESO (in the framework of the ALMA collaboration)
-*    and Cosylab 2002, All rights reserved
-*
-*    This library is free software; you can redistribute it and/or
-*    modify it under the terms of the GNU Lesser General Public
-*    License as published by the Free Software Foundation; either
-*    version 2.1 of the License, or (at your option) any later version.
-*
-*    This library is distributed in the hope that it will be useful,
-*    but WITHOUT ANY WARRANTY; without even the implied warranty of
-*    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-*    Lesser General Public License for more details.
-*
-*    You should have received a copy of the GNU Lesser General Public
-*    License along with this library; if not, write to the Free Software
-*    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307  USA
-*
-*
-* "@(#) $Id: ACSIDLComponent.xpt 170 2011-01-13 13:07:52Z alexis.tejeda $"
-*
-* who                  when                 what
-* ----------------    ------------------    ----------------------------------------------
-* ACSCCG              «getCommentDate()»     Creation of the file
-* 
-*/
+ * ALMA - Atacama Large Millimiter Array
+ *
+ * (c) European Southern Observatory, 2002
+ * Copyright by ESO (in the framework of the ALMA collaboration)
+ * and Cosylab 2002, All rights reserved
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307  USA
+ *
+ * "@(#) «getPropSet('Id')»"
+ *
+ * who                 when                             what
+ * ----------------    -----------------------------    ------------------------
+ * ACSCCG              «getCommentDate()»    Creation of the file
+ * 
+ */
 
 #ifndef _«eElement.name-»_IDL
 #define _«eElement.name-»_IDL
@@ -66,11 +67,12 @@
 «IF isECharacteristic(eElement)-»
 #include <baci.idl>
 «ELSE-»
-«IF hasParent(eElement)-»
-#include <«getParent(eElement).name».idl>
-«ELSE-»
 #include <acscomponent.idl>
 «ENDIF-»
+«IF hasParent(eElement)-»
+«FOREACH getParents(eElement) AS eParent-»
+#include <«eParent.name».idl>
+«ENDFOREACH-»
 «ENDIF-»
 «IF !getEExceptions(getPackage(this)).isEmpty-»
 #include <«getPackage(this).name»Err.idl>
@@ -87,7 +89,7 @@ module «getPackage(this).name»
 	 *«comment»«ENDFOREACH»«ENDIF»
      * @interface «eElement.name»
      */
-	interface «eElement.name» : «IF isECharacteristic(eElement)»ACS::CharacteristicComponent«ELSE»«IF hasParent(eElement)»«FOREACH getParents(eElement) AS eParent SEPARATOR ', '-»«eParent.name»«ENDFOREACH-»«ELSE»ACS::ACSComponent«ENDIF»«ENDIF» 
+	interface «eElement.name» : «IF isECharacteristic(eElement)»ACS::CharacteristicComponent«ELSE»ACS::ACSComponent«ENDIF»«IF hasParent(eElement)» : «FOREACH getParents(eElement) AS eParent SEPARATOR ': '-»«eParent.name»«ENDFOREACH-»«ENDIF» 
 	{
 		«IF isECharacteristic(eElement)-»
 		«FOREACH getEReadOnlyProperties(eElement) AS eCharacteristicProperty»
@@ -116,9 +118,9 @@ module «getPackage(this).name»
 		«IF hasComment(roAttribute)»/* «getComment(roAttribute)» */«ELSE-»«ENDIF-»
 		readonly attribute «roAttribute.type.name.toLowerCase()» «roAttribute.name»;
 		«ENDFOREACH-»
-		«FOREACH getStaticProperties(eElement) AS roAttribute»
-		«IF hasComment(roAttribute)»/* «getComment(roAttribute)» */«ELSE-»«ENDIF-»
-		const «roAttribute.type.name.toLowerCase()» «roAttribute.name» = «roAttribute.getDefault()»;
+		«FOREACH getStaticProperties(eElement) AS sAttribute»
+		«IF hasComment(sAttribute)»/* «getComment(sAttribute)» */«ELSE-»«ENDIF-»
+		const «sAttribute.type.name.toLowerCase()» «sAttribute.name» = «sAttribute.getDefault()»;
 		«ENDFOREACH-»
 	};
 };

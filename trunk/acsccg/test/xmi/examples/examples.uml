@@ -1,0 +1,737 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:EProfile="http:///schemas/EProfile/_M5TN8Cm-EeCyNrsUTEzvnA/0" xmlns:MagicDrawProfile="http:///schemas/MagicDrawProfile/_M56R8Cm-EeCyNrsUTEzvnA/0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/2.0.0/UML" xsi:schemaLocation="http:///schemas/EProfile/_M5TN8Cm-EeCyNrsUTEzvnA/0 EProfile.profile.uml#_M6WW4im-EeCyNrsUTEzvnA http:///schemas/MagicDrawProfile/_M56R8Cm-EeCyNrsUTEzvnA/0 UML_Standard_Profile.MagicDraw_Profile.profile.uml#_M6F4JCm-EeCyNrsUTEzvnA">
+  <uml:Model xmi:id="eee_1045467100313_135436_1" name="Data" viewpoint="">
+    <ownedComment xmi:id="_16_6_1_ec40342_1279695655691_897174_343" body="Author:atejeda.&#xA;Created:1/27/10 3:11 PM.&#xA;Title:.&#xA;Comment:.&#xA;" annotatedElement="eee_1045467100313_135436_1"/>
+    <packageImport xmi:id="_0primitiveTypesData">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packageImport xmi:id="_0javaPrimitiveTypesData">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Package" xmi:id="magicdraw_uml_standard_profile_v_0001" name="UML Standard Profile">
+      <ownedComment xmi:id="_be00301_1078843546940_242228_131" body="UML Standard Profile contains UML metamodel (metaclasses without properties and associations), StandardProfileL2 and StandardProfileL3 from UML specification, Standard UML stereotypes defined in annex C of UML specification.&#xA;Profile also includes validation suites for UML model correctness and completeness checking, and stereotypes used by MagicDraw internally." annotatedElement="magicdraw_uml_standard_profile_v_0001"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_16_6_1_ef90368_1281083573433_17722_1418" name="EProfile-ACS">
+      <packagedElement xmi:type="uml:Package" xmi:id="_16_6_1_ef90368_1281083654527_18890_1425" name="Metamodel"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_16_6_1_ec40342_1279696209578_957458_477" name="Examples">
+      <packagedElement xmi:type="uml:Package" xmi:id="_16_6_1_ef90368_1281020426652_201138_546" name="Example1 - SingleComponent">
+        <packagedElement xmi:type="uml:Package" xmi:id="_16_6_1_ef90368_1284734598679_554220_734" name="singleComponent">
+          <packagedElement xmi:type="uml:Package" xmi:id="_16_6_1_ef90368_1281022296621_907716_807" name="Deployment">
+            <packagedElement xmi:type="uml:ExecutionEnvironment" xmi:id="_16_6_1_ef90368_1281022234074_909863_771" name="frodoContainer">
+              <ownedAttribute xmi:id="_16_6_1_ef90368_1281519661945_735683_1031" name="instance3-BasicAntenna" visibility="private" type="_16_6_1_ef90368_1283497055842_565545_1191"/>
+            </packagedElement>
+            <packagedElement xmi:type="uml:ExecutionEnvironment" xmi:id="_16_6_1_ef90368_1281020569293_388364_567" name="bilboContainer">
+              <ownedAttribute xmi:id="_16_6_1_ef90368_1281020753605_91579_671" name="instance1-BasicAntenna" visibility="private" type="_16_6_1_ef90368_1283497055842_565545_1191"/>
+              <ownedAttribute xmi:id="_16_6_1_ef90368_1281519639711_191730_1029" name="instance2-BasicAntenna" visibility="private" type="_16_6_1_ef90368_1283497055842_565545_1191"/>
+            </packagedElement>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Artifact" xmi:id="_16_6_1_ef90368_1283497055842_565545_1191" name="BasicAntennaJavaImpl" clientDependency="_16_6_1_ef90368_1283497139856_251913_1266" fileName="">
+            <manifestation xmi:id="_16_6_1_ef90368_1283497139856_251913_1266" name="" supplier="_16_6_1_ef90368_1283496945343_11995_1164" client="_16_6_1_ef90368_1283497055842_565545_1191" utilizedElement="_16_6_1_ef90368_1283496945343_11995_1164"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_16_6_1_ef90368_1281021093902_492255_674" name="BasicAntennaInterface">
+            <ownedOperation xmi:id="_16_6_1_ef90368_1281021437043_353088_737" name="setAntennaPosition" visibility="public">
+              <ownedParameter xmi:id="_16_6_1_ef90368_1281021470058_519244_739" name="pos" visibility="public" type="_16_6_1_ef90368_1281021196340_737523_676"/>
+              <ownedParameter xmi:id="_16_6_1_ef90368_1281021695574_346092_743" name="" visibility="public" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="UML_Standard_Profile.MagicDraw_Profile.profile.uml#eee_1045467100323_249638_60"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_16_6_1_ef90368_1281021515574_86860_740" name="getAntennaPosition" visibility="public">
+              <ownedParameter xmi:id="_16_6_1_ef90368_1281021597590_822215_742" name="" visibility="public" type="_16_6_1_ef90368_1281021196340_737523_676" direction="return"/>
+            </ownedOperation>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_16_6_1_ef90368_1283496945343_11995_1164" name="BasicAntenna" clientDependency="_16_6_1_ef90368_1283496971983_198653_1190">
+            <interfaceRealization xmi:id="_16_6_1_ef90368_1283496971983_198653_1190" name="" supplier="_16_6_1_ef90368_1281021093902_492255_674" client="_16_6_1_ef90368_1283496945343_11995_1164" contract="_16_6_1_ef90368_1281021093902_492255_674"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Signal" xmi:id="_16_6_1_ef90368_1281021196340_737523_676" name="position">
+            <ownedAttribute xmi:id="_16_6_1_ef90368_1281021196340_103740_678" name="x" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_6_1_ef90368_1281021196340_48995_679" name="y" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+            </ownedAttribute>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Signal" xmi:id="_16_6_1_ef90368_1281021219996_482498_680" name="antenna_status">
+            <ownedAttribute xmi:id="_16_6_1_ef90368_1281021219996_375279_682" name="id" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_6_1_ef90368_1281021219996_242755_683" name="pos" visibility="private" type="_16_6_1_ef90368_1281021196340_737523_676"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Enumeration" xmi:id="_16_6_1_ef90368_1281081944433_311975_426" name="antenna_model">
+            <ownedLiteral xmi:id="_16_6_1_ef90368_1281081944464_472638_427" name="vertex"/>
+            <ownedLiteral xmi:id="_16_6_1_ef90368_1281081944464_637125_428" name="alcatel"/>
+            <ownedLiteral xmi:id="_16_6_1_ef90368_1281081987995_811634_448" name="mitsubishi"/>
+          </packagedElement>
+        </packagedElement>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_16_6_1_ef90368_1281345388825_382907_949" name="Example5 - Java Inheritance">
+        <packagedElement xmi:type="uml:Package" xmi:id="_16_6_1_ef90368_1284735318802_369725_782" name="javaInheritance">
+          <packagedElement xmi:type="uml:Interface" xmi:id="_16_6_1_ef90368_1281345389153_315043_1010" name="VertexAntennaInterface">
+            <generalization xmi:id="_16_6_1_ef90368_1281345389216_210646_1184" isSubstitutable="true" general="_16_6_1_ef90368_1281345389138_703747_1002"/>
+            <ownedOperation xmi:id="_16_6_1_ef90368_1281345389247_291732_1212" name="getVertexId" visibility="public">
+              <ownedParameter xmi:id="_16_6_1_ef90368_1281345389263_143508_1263" name="" visibility="public" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_16_6_1_ef90368_1283510564376_761231_2581" name="BasicAntenna" clientDependency="_16_6_1_ef90368_1283510582970_448032_2636">
+            <interfaceRealization xmi:id="_16_6_1_ef90368_1283510582970_448032_2636" name="" supplier="_16_6_1_ef90368_1281345389138_703747_1002" client="_16_6_1_ef90368_1283510564376_761231_2581" contract="_16_6_1_ef90368_1281345389138_703747_1002"/>
+            <ownedOperation xmi:id="_16_6_1_ef90368_1281345389232_788114_1204" name="getAntennaPosition" visibility="public" redefinedOperation="_16_6_1_ef90368_1281345389232_788114_1204">
+              <ownedParameter xmi:id="_16_6_1_ef90368_1281345389247_5438_1258" name="" visibility="public" type="_16_6_1_ef90368_1281345389138_894946_1003" direction="return"/>
+            </ownedOperation>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_16_6_1_ef90368_1281345389138_703747_1002" name="BasicAntennaInterface">
+            <generalization xmi:id="_16_6_1_ef90368_1281345389216_931739_1185" isSubstitutable="true" general="_16_6_1_ef90368_1281345389153_405334_1009"/>
+            <ownedOperation xmi:id="_16_6_1_ef90368_1281345389216_398157_1187" name="setAntennaPosition" visibility="public">
+              <ownedParameter xmi:id="_16_6_1_ef90368_1281345389247_366974_1246" name="position" visibility="public" type="_16_6_1_ef90368_1281345389138_894946_1003"/>
+              <ownedParameter xmi:id="_16_6_1_ef90368_1281345389247_183539_1247" name="" visibility="public" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="UML_Standard_Profile.MagicDraw_Profile.profile.uml#eee_1045467100323_249638_60"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_16_6_1_ef90368_1281345389216_188997_1188" name="getAntennaPosition" visibility="public">
+              <ownedParameter xmi:id="_16_6_1_ef90368_1281345389247_611665_1248" name="" visibility="public" type="_16_6_1_ef90368_1281345389138_894946_1003" direction="return"/>
+            </ownedOperation>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="_16_6_1_ef90368_1281345389138_520429_1005" name="Deployment">
+            <packagedElement xmi:type="uml:ExecutionEnvironment" xmi:id="_16_6_1_ef90368_1281345389232_389995_1196" name="antennaContainer">
+              <ownedAttribute xmi:id="_16_6_1_ef90368_1281345389247_735205_1256" name="aVertexAntenna" visibility="private" type="_16_6_1_ef90368_1283510742421_134895_2660"/>
+            </packagedElement>
+            <packagedElement xmi:type="uml:ExecutionEnvironment" xmi:id="_16_6_1_ef90368_1281345389232_896533_1195" name="javaContainer">
+              <ownedAttribute xmi:id="_16_6_1_ef90368_1281345389247_407631_1250" name="testBasicAntenna" visibility="private" type="_16_6_1_ef90368_1283510674047_290682_2643"/>
+            </packagedElement>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Signal" xmi:id="_16_6_1_ef90368_1281345389138_373301_1004" name="antenna_status">
+            <ownedAttribute xmi:id="_16_6_1_ef90368_1281345389232_481600_1193" name="id" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_6_1_ef90368_1281345389232_134831_1194" name="position" visibility="private" type="_16_6_1_ef90368_1281345389138_894946_1003"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_16_6_1_ef90368_1281345389153_405334_1009" name="IAntennaBase">
+            <ownedOperation xmi:id="_16_6_1_ef90368_1281345389247_924009_1210" name="getAntennaStatus" visibility="public">
+              <ownedParameter xmi:id="_16_6_1_ef90368_1281345389263_809204_1261" name="unnamed1" visibility="public" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_16_6_1_ef90368_1281345389247_148469_1211" name="setAntennaStatus" visibility="public">
+              <ownedParameter xmi:id="_16_6_1_ef90368_1281345389263_824444_1262" name="status" visibility="public">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+              </ownedParameter>
+            </ownedOperation>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Enumeration" xmi:id="_16_6_1_ef90368_1281345389138_48910_1006" name="antenna_model">
+            <ownedLiteral xmi:id="_16_6_1_ef90368_1281345389232_613537_1197" name="vertex"/>
+            <ownedLiteral xmi:id="_16_6_1_ef90368_1281345389232_564186_1198" name="alcatel"/>
+            <ownedLiteral xmi:id="_16_6_1_ef90368_1281345389232_44808_1199" name="mitsubishi"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Artifact" xmi:id="_16_6_1_ef90368_1283510742421_134895_2660" name="VertexAntennaJavaImp" clientDependency="_16_6_1_ef90368_1283510761811_636566_2680" fileName="">
+            <manifestation xmi:id="_16_6_1_ef90368_1283510761811_636566_2680" name="" supplier="_16_6_1_ef90368_1283510576704_224232_2606" client="_16_6_1_ef90368_1283510742421_134895_2660" utilizedElement="_16_6_1_ef90368_1283510576704_224232_2606"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_16_6_1_ef90368_1283510576704_224232_2606" name="VertexAntenna" clientDependency="_16_6_1_ef90368_1283510587329_818051_2639">
+            <generalization xmi:id="_16_6_1_ef90368_1281345389232_786553_1200" isSubstitutable="true" general="_16_6_1_ef90368_1283510564376_761231_2581"/>
+            <interfaceRealization xmi:id="_16_6_1_ef90368_1283510587329_818051_2639" name="" supplier="_16_6_1_ef90368_1281345389153_315043_1010" client="_16_6_1_ef90368_1283510576704_224232_2606" contract="_16_6_1_ef90368_1281345389153_315043_1010"/>
+            <ownedOperation xmi:id="_16_6_1_ef90368_1281345389247_45302_1221" name="getAntennaPosition" visibility="public">
+              <ownedParameter xmi:id="_16_6_1_ef90368_1281345389263_340986_1269" name="" visibility="public" type="_16_6_1_ef90368_1281345389138_894946_1003" direction="return"/>
+            </ownedOperation>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Artifact" xmi:id="_16_6_1_ef90368_1283510674047_290682_2643" name="BasiAntennaJavaImp" clientDependency="_16_6_1_ef90368_1283510770311_660375_2686" fileName="">
+            <manifestation xmi:id="_16_6_1_ef90368_1283510770311_660375_2686" name="" supplier="_16_6_1_ef90368_1283510564376_761231_2581" client="_16_6_1_ef90368_1283510674047_290682_2643" utilizedElement="_16_6_1_ef90368_1283510564376_761231_2581"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Signal" xmi:id="_16_6_1_ef90368_1281345389138_894946_1003" name="position">
+            <ownedAttribute xmi:id="_16_6_1_ef90368_1281345389216_603203_1190" name="x" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_6_1_ef90368_1281345389216_500264_1191" name="y" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+            </ownedAttribute>
+          </packagedElement>
+        </packagedElement>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_16_6_1_ef90368_1281346220544_905757_1626" name="Example6 - NotificationChannel">
+        <packagedElement xmi:type="uml:Package" xmi:id="_16_6_1_ef90368_1284735345239_630476_784" name="notificationChannel">
+          <packagedElement xmi:type="uml:Signal" xmi:id="_16_6_1_ef90368_1281346221028_277350_1706" name="antenna_status">
+            <ownedAttribute xmi:id="_16_6_1_ef90368_1281346221060_660658_1809" name="id" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_6_1_ef90368_1281346221060_142316_1810" name="position" visibility="private" type="_16_6_1_ef90368_1281346221028_88619_1705"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_16_6_1_ef90368_1281346221028_727368_1704" name="BasicAntennaInterface">
+            <ownedOperation xmi:id="_16_6_1_ef90368_1281346221060_206698_1803" name="setAntennaPosition" visibility="public">
+              <ownedParameter xmi:id="_16_6_1_ef90368_1281346221060_835504_1841" name="position" visibility="public" type="_16_6_1_ef90368_1281346221028_88619_1705"/>
+              <ownedParameter xmi:id="_16_6_1_ef90368_1281346221060_866696_1842" name="" visibility="public" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="UML_Standard_Profile.MagicDraw_Profile.profile.uml#eee_1045467100323_249638_60"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_16_6_1_ef90368_1281346221060_345131_1804" name="getAntennaPosition" visibility="public">
+              <ownedParameter xmi:id="_16_6_1_ef90368_1281346221060_572091_1843" name="" visibility="public" type="_16_6_1_ef90368_1281346221028_88619_1705" direction="return"/>
+            </ownedOperation>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Artifact" xmi:id="_16_6_1_ef90368_1283511702315_952529_2865" name="BasicAntennaJavaImp" clientDependency="_16_6_1_ef90368_1283511818642_468209_2941" fileName="">
+            <manifestation xmi:id="_16_6_1_ef90368_1283511818642_468209_2941" name="" supplier="_16_6_1_ef90368_1283511056980_919226_2756" client="_16_6_1_ef90368_1283511702315_952529_2865" utilizedElement="_16_6_1_ef90368_1283511056980_919226_2756"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_16_6_1_ef90368_1283511063339_204270_2780" name="BasicDevice" clientDependency="_16_6_1_ef90368_1283511033261_741074_2752">
+            <interfaceRealization xmi:id="_16_6_1_ef90368_1283511033261_741074_2752" name="" supplier="_16_6_1_ef90368_1281346221028_594966_1709" client="_16_6_1_ef90368_1283511063339_204270_2780" contract="_16_6_1_ef90368_1281346221028_594966_1709"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_16_6_1_ef90368_1283511056980_919226_2756" name="BasicAntenna" clientDependency="_16_6_1_ef90368_1283511025042_822309_2749">
+            <interfaceRealization xmi:id="_16_6_1_ef90368_1283511025042_822309_2749" name="" supplier="_16_6_1_ef90368_1281346221028_727368_1704" client="_16_6_1_ef90368_1283511056980_919226_2756" contract="_16_6_1_ef90368_1281346221028_727368_1704"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Artifact" xmi:id="_16_6_1_ef90368_1283511747658_228981_2908" name="ProxyCommunicationComponentJavaImp" clientDependency="_16_6_1_ef90368_1283511840829_713077_2995" fileName="">
+            <manifestation xmi:id="_16_6_1_ef90368_1283511840829_713077_2995" name="" supplier="_16_6_1_ef90368_1283511071839_853253_2808" client="_16_6_1_ef90368_1283511747658_228981_2908" utilizedElement="_16_6_1_ef90368_1283511071839_853253_2808"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Enumeration" xmi:id="_16_6_1_ef90368_1281346221028_722098_1708" name="antenna_model">
+            <ownedLiteral xmi:id="_16_6_1_ef90368_1281346221060_118842_1812" name="vertex"/>
+            <ownedLiteral xmi:id="_16_6_1_ef90368_1281346221060_414314_1813" name="alcatel"/>
+            <ownedLiteral xmi:id="_16_6_1_ef90368_1281346221060_90044_1814" name="mitsubishi"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="_16_6_1_ef90368_1281346221028_756631_1707" name="Deployment">
+            <packagedElement xmi:type="uml:ExecutionEnvironment" xmi:id="_16_6_1_ef90368_1281346476622_461894_2007" name="antennaContainer">
+              <ownedAttribute xmi:id="_16_6_1_ef90368_1281356737138_992199_2320" name="aVertexAntenna" visibility="private" type="_16_6_1_ef90368_1283442852832_970650_1362"/>
+              <ownedAttribute xmi:id="_16_6_1_ef90368_1281356753966_878363_2322" name="aProxyComunicationComponent" visibility="private" type="_16_6_1_ef90368_1283511747658_228981_2908"/>
+            </packagedElement>
+            <packagedElement xmi:type="uml:ExecutionEnvironment" xmi:id="_16_6_1_ef90368_1281346221060_938530_1811" name="javaContainer">
+              <ownedAttribute xmi:id="_16_6_1_ef90368_1281346221060_297017_1845" name="testBasicDevice" visibility="private" type="_16_6_1_ef90368_1283511746986_5102_2898"/>
+              <ownedAttribute xmi:id="_16_6_1_ef90368_1281346221060_271642_1846" name="testBasicAntenna" visibility="private" type="_16_6_1_ef90368_1283511702315_952529_2865"/>
+            </packagedElement>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_16_6_1_ef90368_1281348061138_584411_2290" name="NotificationChannelConfig"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_16_6_1_ef90368_1283511071839_853253_2808" name="ProxyCommunicationComponent" clientDependency="_16_6_1_ef90368_1283511047339_358948_2755">
+            <interfaceRealization xmi:id="_16_6_1_ef90368_1283511047339_358948_2755" name="" supplier="_16_6_1_ef90368_1281346709544_1812_2043" client="_16_6_1_ef90368_1283511071839_853253_2808" contract="_16_6_1_ef90368_1281346709544_1812_2043"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_16_6_1_ef90368_1281346221028_594966_1709" name="BasicDeviceInterface ">
+            <ownedAttribute xmi:id="_16_6_1_ef90368_1283511146322_997748_2843" name="p1" visibility="public" type="_16_6_1_ef90368_1281346221028_88619_1705"/>
+            <ownedOperation xmi:id="_16_6_1_ef90368_1281346221060_642662_1816" name="getDeviceStatus" visibility="public">
+              <ownedParameter xmi:id="_16_6_1_ef90368_1281346221060_104452_1847" name="" visibility="public" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_16_6_1_ef90368_1281346221060_904185_1817" name="setDeviceStatus" visibility="public">
+              <ownedParameter xmi:id="_16_6_1_ef90368_1281346221060_443471_1848" name="status" visibility="public">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+              </ownedParameter>
+            </ownedOperation>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_16_6_1_ef90368_1283445222085_260072_1694" name="VertexAntenna" clientDependency="_16_6_1_ef90368_1283445255912_830291_1721">
+            <interfaceRealization xmi:id="_16_6_1_ef90368_1283445255912_830291_1721" name="" supplier="_16_6_1_ef90368_1281347051044_973237_2127" client="_16_6_1_ef90368_1283445222085_260072_1694" contract="_16_6_1_ef90368_1281347051044_973237_2127"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Extension" xmi:id="_16_6_1_ef90368_1283444424210_951436_1522" name="" memberEnd="_16_6_1_ef90368_1283444424210_751570_1523 _16_6_1_ef90368_1283444424210_505239_1524" navigableOwnedEnd="_16_6_1_ef90368_1283444424210_505239_1524">
+            <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_16_6_1_ef90368_1283444424210_505239_1524" name="extension_" visibility="private" type="_16_6_1_ef90368_1283444413694_372357_1521" aggregation="composite" association="_16_6_1_ef90368_1283444424210_951436_1522">
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_16_6_1_ef90368_1283444424210_611409_1526" name="" value="1"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_16_6_1_ef90368_1283444424210_64139_1525" name=""/>
+            </ownedEnd>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_16_6_1_ef90368_1281346709544_1812_2043" name="ProxyCommunicationComponentInterface">
+            <ownedAttribute xmi:id="_16_6_1_ef90368_1283511224790_265578_2846" name="p1" visibility="public" type="_16_6_1_ef90368_1281346221028_88619_1705"/>
+            <ownedAttribute xmi:id="_16_6_1_ef90368_1283511231509_907592_2848" name="p2" visibility="public" type="_16_6_1_ef90368_1281346221028_88619_1705"/>
+            <ownedOperation xmi:id="_16_6_1_ef90368_1281346709544_128249_2046" name="getPositionStatisticsCom" visibility="public">
+              <ownedParameter xmi:id="_16_6_1_ef90368_1281346865560_519981_2078" name="" visibility="public" type="_16_6_1_ef90368_1281346221028_88619_1705" direction="return"/>
+            </ownedOperation>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_16_6_1_ef90368_1281347051044_973237_2127" name="VertexAntennaInterface">
+            <generalization xmi:id="_16_6_1_ef90368_1281347083982_374322_2153" isSubstitutable="true" general="_16_6_1_ef90368_1281346221028_727368_1704"/>
+            <ownedAttribute xmi:id="_16_6_1_ef90368_1283440579786_749023_1044" name="p1" visibility="public" type="_16_6_1_ef90368_1281346221028_88619_1705"/>
+            <ownedOperation xmi:id="_16_6_1_ef90368_1281347193091_692992_2206" name="getVertexId" visibility="public">
+              <ownedParameter xmi:id="_16_6_1_ef90368_1281347204232_418499_2210" name="" visibility="public" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Artifact" xmi:id="_16_6_1_ef90368_1283442852832_970650_1362" name="VertexAntennaJavaImp" clientDependency="_16_6_1_ef90368_1283445261724_179491_1722" fileName="">
+            <manifestation xmi:id="_16_6_1_ef90368_1283445261724_179491_1722" name="" supplier="_16_6_1_ef90368_1283445222085_260072_1694" client="_16_6_1_ef90368_1283442852832_970650_1362" utilizedElement="_16_6_1_ef90368_1283445222085_260072_1694"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Artifact" xmi:id="_16_6_1_ef90368_1283511746986_5102_2898" name="BasicDeviceJavaImp" clientDependency="_16_6_1_ef90368_1283511828438_315029_2968" fileName="">
+            <manifestation xmi:id="_16_6_1_ef90368_1283511828438_315029_2968" name="" supplier="_16_6_1_ef90368_1283511063339_204270_2780" client="_16_6_1_ef90368_1283511746986_5102_2898" utilizedElement="_16_6_1_ef90368_1283511063339_204270_2780"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Signal" xmi:id="_16_6_1_ef90368_1281346221028_88619_1705" name="position">
+            <ownedAttribute xmi:id="_16_6_1_ef90368_1281346221060_872591_1806" name="x" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_6_1_ef90368_1281346221060_511667_1807" name="y" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+            </ownedAttribute>
+          </packagedElement>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Stereotype" xmi:id="_16_6_1_ef90368_1283444413694_372357_1521" name="QoS">
+          <ownedAttribute xmi:id="_16_6_1_ef90368_1283444424210_751570_1523" name="base_Property" visibility="private" association="_16_6_1_ef90368_1283444424210_951436_1522">
+            <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Property"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:id="_16_6_1_ef90368_1283444433162_734156_1543" name="reliable" visibility="private"/>
+        </packagedElement>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_16_6_1_ef90368_1281082765230_517943_868" name="Example2 - CharacteristicComponent">
+        <packagedElement xmi:type="uml:Package" xmi:id="_16_6_1_ef90368_1284735211662_520581_776" name="characteristicComponent">
+          <packagedElement xmi:type="uml:Artifact" xmi:id="_16_6_1_ef90368_1283506175620_723214_1879" name="BasicDeviceJavaImpl" clientDependency="_16_6_1_ef90368_1283506271947_41236_1905" fileName="">
+            <manifestation xmi:id="_16_6_1_ef90368_1283506271947_41236_1905" name="" supplier="_16_6_1_ef90368_1283505882311_139273_1815" client="_16_6_1_ef90368_1283506175620_723214_1879" utilizedElement="_16_6_1_ef90368_1283505882311_139273_1815"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_16_6_1_ef90368_1281082765292_337440_891" name="BasicAntennaInterface">
+            <ownedOperation xmi:id="_16_6_1_ef90368_1281082765308_389637_948" name="setAntennaPosition" visibility="public">
+              <ownedParameter xmi:id="_16_6_1_ef90368_1281082765324_632160_965" name="position" visibility="public" type="_16_6_1_ef90368_1281082765292_41918_892"/>
+              <ownedParameter xmi:id="_16_6_1_ef90368_1281082765324_987134_966" name="" visibility="public" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="UML_Standard_Profile.MagicDraw_Profile.profile.uml#eee_1045467100323_249638_60"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_16_6_1_ef90368_1281082765324_269793_949" name="getAntennaPosition" visibility="public">
+              <ownedParameter xmi:id="_16_6_1_ef90368_1281082765324_745012_967" name="" visibility="public" type="_16_6_1_ef90368_1281082765292_41918_892" direction="return"/>
+            </ownedOperation>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Signal" xmi:id="_16_6_1_ef90368_1281082765292_41918_892" name="position">
+            <ownedAttribute xmi:id="_16_6_1_ef90368_1281082765324_735810_951" name="x" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_6_1_ef90368_1281082765324_176995_952" name="y" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+            </ownedAttribute>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Signal" xmi:id="_16_6_1_ef90368_1281082765292_112495_893" name="antenna_status">
+            <ownedAttribute xmi:id="_16_6_1_ef90368_1281082765324_114311_954" name="id" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_6_1_ef90368_1281082765324_485894_955" name="position" visibility="private" type="_16_6_1_ef90368_1281082765292_41918_892"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_16_6_1_ef90368_1283505882311_139273_1815" name="BasicDevice" clientDependency="_16_6_1_ef90368_1283505894030_683440_1844">
+            <interfaceRealization xmi:id="_16_6_1_ef90368_1283505894030_683440_1844" name="" supplier="_16_6_1_ef90368_1281082984511_608750_1147" client="_16_6_1_ef90368_1283505882311_139273_1815" contract="_16_6_1_ef90368_1281082984511_608750_1147"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Artifact" xmi:id="_16_6_1_ef90368_1283506170761_483449_1861" name="BasicAntennaJavaImpl" clientDependency="_16_6_1_ef90368_1283506267775_669708_1899" fileName="">
+            <manifestation xmi:id="_16_6_1_ef90368_1283506267775_669708_1899" name="" supplier="_16_6_1_ef90368_1283505871655_3655_1791" client="_16_6_1_ef90368_1283506170761_483449_1861" utilizedElement="_16_6_1_ef90368_1283505871655_3655_1791"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Enumeration" xmi:id="_16_6_1_ef90368_1281082765292_836742_895" name="antenna_model">
+            <ownedLiteral xmi:id="_16_6_1_ef90368_1281082765324_80286_958" name="vertex"/>
+            <ownedLiteral xmi:id="_16_6_1_ef90368_1281082765324_547656_959" name="alcatel"/>
+            <ownedLiteral xmi:id="_16_6_1_ef90368_1281082765324_555610_960" name="mitsubishi"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_16_6_1_ef90368_1283505871655_3655_1791" name="BasicAntenna" clientDependency="_16_6_1_ef90368_1283505888061_595521_1841">
+            <interfaceRealization xmi:id="_16_6_1_ef90368_1283505888061_595521_1841" name="" supplier="_16_6_1_ef90368_1281082765292_337440_891" client="_16_6_1_ef90368_1283505871655_3655_1791" contract="_16_6_1_ef90368_1281082765292_337440_891"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="_16_6_1_ef90368_1281082765292_619461_894" name="Deployment">
+            <packagedElement xmi:type="uml:ExecutionEnvironment" xmi:id="_16_6_1_ef90368_1281520344851_970672_1104" name="frodoContainer">
+              <ownedAttribute xmi:id="_16_6_1_ef90368_1281520286914_486665_1092" name="testBasicDevice" visibility="private" type="_16_6_1_ef90368_1283506175620_723214_1879"/>
+            </packagedElement>
+            <packagedElement xmi:type="uml:ExecutionEnvironment" xmi:id="_16_6_1_ef90368_1281082765324_566070_957" name="javaContainer">
+              <ownedAttribute xmi:id="_16_6_1_ef90368_1281520344851_465804_1106" name="testBasicAntenna" visibility="private" type="_16_6_1_ef90368_1283506170761_483449_1861"/>
+            </packagedElement>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_16_6_1_ef90368_1281082984511_608750_1147" name="BasicDeviceInterface ">
+            <ownedAttribute xmi:id="_16_6_1_ef90368_1281519855414_729584_1048" name="serialNumber" visibility="public">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_6_1_ef90368_1281519866883_665059_1050" name="setPoint" visibility="public">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
+            </ownedAttribute>
+            <ownedOperation xmi:id="_16_6_1_ef90368_1281082984511_387118_1148" name="setDeviceId" visibility="public">
+              <ownedParameter xmi:id="_16_6_1_ef90368_1281082984511_943877_1150" name="id" visibility="public">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_16_6_1_ef90368_1281082984511_991768_1151" name="" visibility="public" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="UML_Standard_Profile.MagicDraw_Profile.profile.uml#eee_1045467100323_249638_60"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_16_6_1_ef90368_1281082984511_963700_1149" name="getDeviceId" visibility="public">
+              <ownedParameter xmi:id="_16_6_1_ef90368_1281082984511_160343_1152" name="" visibility="public" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+          </packagedElement>
+        </packagedElement>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_16_6_1_ef90368_1281084526308_551682_1520" name="Example3 - JavaInterfaces">
+        <packagedElement xmi:type="uml:Package" xmi:id="_16_6_1_ef90368_1284735248177_460260_778" name="javaInterfaces">
+          <packagedElement xmi:type="uml:Class" xmi:id="_16_6_1_ef90368_1283506547615_795360_1933" name="BasicAntenna" clientDependency="_16_6_1_ef90368_1281084882542_585435_1797 _16_6_1_ef90368_1283506569740_919801_1983">
+            <interfaceRealization xmi:id="_16_6_1_ef90368_1281084882542_585435_1797" name="" supplier="_16_6_1_ef90368_1281084749730_565776_1767" client="_16_6_1_ef90368_1283506547615_795360_1933" contract="_16_6_1_ef90368_1281084749730_565776_1767"/>
+            <interfaceRealization xmi:id="_16_6_1_ef90368_1283506569740_919801_1983" name="" supplier="_16_6_1_ef90368_1281084526324_429899_1541" client="_16_6_1_ef90368_1283506547615_795360_1933" contract="_16_6_1_ef90368_1281084526324_429899_1541"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Artifact" xmi:id="_16_6_1_ef90368_1283506909001_402748_1989" name="BasicAntennaJavaImpl" clientDependency="_16_6_1_ef90368_1283507028172_808716_2057" fileName="">
+            <manifestation xmi:id="_16_6_1_ef90368_1283507028172_808716_2057" name="" supplier="_16_6_1_ef90368_1283506547615_795360_1933" client="_16_6_1_ef90368_1283506909001_402748_1989" utilizedElement="_16_6_1_ef90368_1283506547615_795360_1933"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Signal" xmi:id="_16_6_1_ef90368_1281084526324_366767_1543" name="antenna_status">
+            <ownedAttribute xmi:id="_16_6_1_ef90368_1281084526355_699500_1556" name="id" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_6_1_ef90368_1281084526355_268094_1557" name="position" visibility="private" type="_16_6_1_ef90368_1281084526324_720991_1542"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Artifact" xmi:id="_16_6_1_ef90368_1283506911564_319694_2007" name="BasicDeviceJavaImpl" clientDependency="_16_6_1_ef90368_1283507024594_890619_2051" fileName="">
+            <manifestation xmi:id="_16_6_1_ef90368_1283507024594_890619_2051" name="" supplier="_16_6_1_ef90368_1283506557631_202558_1957" client="_16_6_1_ef90368_1283506911564_319694_2007" utilizedElement="_16_6_1_ef90368_1283506557631_202558_1957"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_16_6_1_ef90368_1281084739277_480620_1748" name="IAntennaBase">
+            <ownedOperation xmi:id="_16_6_1_ef90368_1281084943667_421458_1799" name="getAntennaId" visibility="public">
+              <ownedParameter xmi:id="_16_6_1_ef90368_1281084967589_45461_1801" name="unnamed1" visibility="public" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_16_6_1_ef90368_1281085003433_193602_1802" name="setAntennaId" visibility="public">
+              <ownedParameter xmi:id="_16_6_1_ef90368_1281085013636_760034_1804" name="id" visibility="public">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_16_6_1_ef90368_1281084749730_565776_1767" name="IAntennaCommon">
+            <generalization xmi:id="_16_6_1_ef90368_1281084759480_675544_1786" isSubstitutable="true" general="_16_6_1_ef90368_1281084739277_480620_1748"/>
+            <ownedOperation xmi:id="_16_6_1_ef90368_1281085036370_149251_1805" name="getAntennaStatus" visibility="public">
+              <ownedParameter xmi:id="_16_6_1_ef90368_1281085055042_749594_1807" name="unnamed1" visibility="public" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_16_6_1_ef90368_1281085093152_780612_1808" name="setAntennaStatus" visibility="public">
+              <ownedParameter xmi:id="_16_6_1_ef90368_1281085104324_481235_1810" name="status" visibility="public">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+              </ownedParameter>
+            </ownedOperation>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_16_6_1_ef90368_1281084723855_425352_1729" name="IBasicDevice&#xA;">
+            <ownedOperation xmi:id="_16_6_1_ef90368_1281084526355_391583_1563" name="setDeviceId" visibility="public">
+              <ownedParameter xmi:id="_16_6_1_ef90368_1281084526370_706229_1582" name="id" visibility="public">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_16_6_1_ef90368_1281084526370_193216_1583" name="" visibility="public" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="UML_Standard_Profile.MagicDraw_Profile.profile.uml#eee_1045467100323_249638_60"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_16_6_1_ef90368_1281084526355_955627_1564" name="getDeviceId" visibility="public">
+              <ownedParameter xmi:id="_16_6_1_ef90368_1281084526370_120161_1584" name="" visibility="public" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Signal" xmi:id="_16_6_1_ef90368_1281084526324_720991_1542" name="position">
+            <ownedAttribute xmi:id="_16_6_1_ef90368_1281084526355_328217_1553" name="x" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_6_1_ef90368_1281084526355_256391_1554" name="y" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+            </ownedAttribute>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Enumeration" xmi:id="_16_6_1_ef90368_1281084526324_805299_1545" name="antenna_model">
+            <ownedLiteral xmi:id="_16_6_1_ef90368_1281084526355_712176_1560" name="vertex"/>
+            <ownedLiteral xmi:id="_16_6_1_ef90368_1281084526355_564801_1561" name="alcatel"/>
+            <ownedLiteral xmi:id="_16_6_1_ef90368_1281084526355_386566_1562" name="mitsubishi"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_16_6_1_ef90368_1281084526324_170168_1546" name="BasicDeviceInterface ">
+            <ownedOperation xmi:id="_16_6_1_ef90368_1281085201714_412159_1811" name="getDeviceStatus" visibility="public">
+              <ownedParameter xmi:id="_16_6_1_ef90368_1281085214105_402315_1818" name="" visibility="public" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_16_6_1_ef90368_1281085205417_322759_1814" name="setDeviceStatus" visibility="public">
+              <ownedParameter xmi:id="_16_6_1_ef90368_1281085205417_305070_1815" name="status" visibility="public">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+              </ownedParameter>
+            </ownedOperation>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_16_6_1_ef90368_1283506557631_202558_1957" name="BasicDevice" clientDependency="_16_6_1_ef90368_1281084862292_198352_1793 _16_6_1_ef90368_1283506577928_68268_1986">
+            <interfaceRealization xmi:id="_16_6_1_ef90368_1281084862292_198352_1793" name="" supplier="_16_6_1_ef90368_1281084723855_425352_1729" client="_16_6_1_ef90368_1283506557631_202558_1957" contract="_16_6_1_ef90368_1281084723855_425352_1729"/>
+            <interfaceRealization xmi:id="_16_6_1_ef90368_1283506577928_68268_1986" name="" supplier="_16_6_1_ef90368_1281084526324_170168_1546" client="_16_6_1_ef90368_1283506557631_202558_1957" contract="_16_6_1_ef90368_1281084526324_170168_1546"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_16_6_1_ef90368_1281084526324_429899_1541" name="BasicAntennaInterface">
+            <ownedOperation xmi:id="_16_6_1_ef90368_1281084526339_180189_1550" name="setAntennaPosition" visibility="public">
+              <ownedParameter xmi:id="_16_6_1_ef90368_1281084526355_637869_1576" name="position" visibility="public" type="_16_6_1_ef90368_1281084526324_720991_1542"/>
+              <ownedParameter xmi:id="_16_6_1_ef90368_1281084526355_848_1577" name="" visibility="public" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="UML_Standard_Profile.MagicDraw_Profile.profile.uml#eee_1045467100323_249638_60"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_16_6_1_ef90368_1281084526355_615948_1551" name="getAntennaPosition" visibility="public">
+              <ownedParameter xmi:id="_16_6_1_ef90368_1281084526355_670291_1578" name="" visibility="public" type="_16_6_1_ef90368_1281084526324_720991_1542" direction="return"/>
+            </ownedOperation>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="_16_6_1_ef90368_1281084526324_25890_1544" name="Deployment">
+            <packagedElement xmi:type="uml:ExecutionEnvironment" xmi:id="_16_6_1_ef90368_1281084526355_917913_1559" name="javaContainer">
+              <ownedAttribute xmi:id="_16_6_1_ef90368_1281107958608_584342_1056" name="testBasicDevice" visibility="private" type="_16_6_1_ef90368_1283506911564_319694_2007"/>
+              <ownedAttribute xmi:id="_16_6_1_ef90368_1281107987803_899438_1058" name="testBasicAntenna" visibility="private" type="_16_6_1_ef90368_1283506909001_402748_1989"/>
+            </packagedElement>
+          </packagedElement>
+        </packagedElement>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_16_6_1_ef90368_1281087170495_187888_1846" name="Example4 - Inheritance">
+        <packagedElement xmi:type="uml:Package" xmi:id="_16_6_1_ef90368_1284735281005_57670_780" name="inheritance">
+          <packagedElement xmi:type="uml:Interface" xmi:id="_16_6_1_ef90368_1281088604527_273691_2440" name="SimulationTestInterface">
+            <generalization xmi:id="_16_6_1_ef90368_1281088638542_711501_2478" isSubstitutable="true" general="_16_6_1_ef90368_1281088472308_936503_2402"/>
+            <ownedOperation xmi:id="_16_6_1_ef90368_1281344811216_392013_914" name="getSimulationId" visibility="public">
+              <ownedParameter xmi:id="_16_6_1_ef90368_1281344811216_553406_915" name="" visibility="public" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Signal" xmi:id="_16_6_1_ef90368_1281087170511_692338_1869" name="antenna_status">
+            <ownedAttribute xmi:id="_16_6_1_ef90368_1281087170542_151802_1885" name="id" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_6_1_ef90368_1281087170542_317154_1886" name="position" visibility="private" type="_16_6_1_ef90368_1281087170511_943737_1868"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Artifact" xmi:id="_16_6_1_ef90368_1283510104023_544659_2397" name="SimulationTestJavaImp" clientDependency="_16_6_1_ef90368_1283510264740_626479_2507" fileName="">
+            <manifestation xmi:id="_16_6_1_ef90368_1283510264740_626479_2507" name="" supplier="_16_6_1_ef90368_1283507144702_467651_2178" client="_16_6_1_ef90368_1283510104023_544659_2397" utilizedElement="_16_6_1_ef90368_1283507144702_467651_2178"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="_16_6_1_ef90368_1281087170511_935486_1870" name="Deployment">
+            <packagedElement xmi:type="uml:ExecutionEnvironment" xmi:id="_16_6_1_ef90368_1281087853355_322456_2266" name="antennaContainer">
+              <ownedAttribute xmi:id="_16_6_1_ef90368_1281089066167_198226_2731" name="anAlcatelAntenna" visibility="private" type="_16_6_1_ef90368_1283510102336_963604_2393"/>
+              <ownedAttribute xmi:id="_16_6_1_ef90368_1281089081917_549687_2733" name="aPrototypeTest" visibility="private" type="_16_6_1_ef90368_1283510104820_264306_2399"/>
+              <ownedAttribute xmi:id="_16_6_1_ef90368_1281089091558_930427_2735" name="aSimulationTest" visibility="private" type="_16_6_1_ef90368_1283510104023_544659_2397"/>
+              <ownedAttribute xmi:id="_16_6_1_ef90368_1281089112886_990520_2737" name="aTestAntenna" visibility="private" type="_16_6_1_ef90368_1283510103039_808111_2395"/>
+              <ownedAttribute xmi:id="_16_6_1_ef90368_1281089119120_815904_2739" name="aVertexAntenna" visibility="private" type="_16_6_1_ef90368_1283510101648_598470_2391"/>
+            </packagedElement>
+            <packagedElement xmi:type="uml:ExecutionEnvironment" xmi:id="_16_6_1_ef90368_1281087170542_158553_1887" name="javaContainer">
+              <ownedAttribute xmi:id="_16_6_1_ef90368_1281087170558_369105_1917" name="testBasicAntenna" visibility="private" type="_16_6_1_ef90368_1283510025305_749107_2374"/>
+            </packagedElement>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_16_6_1_ef90368_1281087170527_975261_1877" name="IAntennaCommon">
+            <generalization xmi:id="_16_6_1_ef90368_1281087170542_805_1905" isSubstitutable="true" general="_16_6_1_ef90368_1281087170511_389687_1876"/>
+            <ownedOperation xmi:id="_16_6_1_ef90368_1281087170542_160346_1908" name="getAntennaStatus" visibility="public">
+              <ownedParameter xmi:id="_16_6_1_ef90368_1281087170558_988704_1927" name="unnamed1" visibility="public" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_16_6_1_ef90368_1281087170542_61421_1909" name="setAntennaStatus" visibility="public">
+              <ownedParameter xmi:id="_16_6_1_ef90368_1281087170558_816174_1928" name="status" visibility="public">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+              </ownedParameter>
+            </ownedOperation>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_16_6_1_ef90368_1281087170511_801440_1867" name="BasicAntennaInterface">
+            <generalization xmi:id="_16_6_1_ef90368_1281088073308_585756_2332" isSubstitutable="true" general="_16_6_1_ef90368_1281087170527_975261_1877"/>
+            <ownedOperation xmi:id="_16_6_1_ef90368_1281087170542_428684_1879" name="setAntennaPosition" visibility="public">
+              <ownedParameter xmi:id="_16_6_1_ef90368_1281087170558_759263_1913" name="position" visibility="public" type="_16_6_1_ef90368_1281087170511_943737_1868"/>
+              <ownedParameter xmi:id="_16_6_1_ef90368_1281087170558_563605_1914" name="" visibility="public" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="UML_Standard_Profile.MagicDraw_Profile.profile.uml#eee_1045467100323_249638_60"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_16_6_1_ef90368_1281087170542_329872_1880" name="getAntennaPosition" visibility="public">
+              <ownedParameter xmi:id="_16_6_1_ef90368_1281087170558_50789_1915" name="" visibility="public" type="_16_6_1_ef90368_1281087170511_943737_1868" direction="return"/>
+            </ownedOperation>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_16_6_1_ef90368_1281088615636_980043_2459" name="PrototypeTestInterface">
+            <generalization xmi:id="_16_6_1_ef90368_1281088647652_763693_2481" isSubstitutable="true" general="_16_6_1_ef90368_1281088472308_936503_2402"/>
+            <ownedOperation xmi:id="_16_6_1_ef90368_1281344834560_739501_917" name="getTestStatus" visibility="public">
+              <ownedParameter xmi:id="_16_6_1_ef90368_1281344834560_521773_918" name="" visibility="public" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+              </ownedParameter>
+            </ownedOperation>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_16_6_1_ef90368_1283507151108_495426_2205" name="PrototypeTest" clientDependency="_16_6_1_ef90368_1283508986428_61524_2367">
+            <interfaceRealization xmi:id="_16_6_1_ef90368_1283508986428_61524_2367" name="" supplier="_16_6_1_ef90368_1281088615636_980043_2459" client="_16_6_1_ef90368_1283507151108_495426_2205" contract="_16_6_1_ef90368_1281088615636_980043_2459"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_16_6_1_ef90368_1283508485700_427487_2318" name="BasicAntenna" clientDependency="_16_6_1_ef90368_1283508786821_756531_2345">
+            <interfaceRealization xmi:id="_16_6_1_ef90368_1283508786821_756531_2345" name="" supplier="_16_6_1_ef90368_1281087170511_801440_1867" client="_16_6_1_ef90368_1283508485700_427487_2318" contract="_16_6_1_ef90368_1281087170511_801440_1867"/>
+            <ownedOperation xmi:id="_16_6_1_ef90368_1281344955310_644687_920" name="getAntennaPosition" visibility="public" redefinedOperation="_16_6_1_ef90368_1281344955310_644687_920">
+              <ownedParameter xmi:id="_16_6_1_ef90368_1281344955310_808480_921" name="" visibility="public" type="_16_6_1_ef90368_1281087170511_943737_1868" direction="return"/>
+            </ownedOperation>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_16_6_1_ef90368_1283507109358_300639_2096" name="VertexAntenna" clientDependency="_16_6_1_ef90368_1283508964303_128814_2355">
+            <generalization xmi:id="_16_6_1_ef90368_1283508862601_25398_2348" isSubstitutable="true" general="_16_6_1_ef90368_1283508485700_427487_2318"/>
+            <interfaceRealization xmi:id="_16_6_1_ef90368_1283508964303_128814_2355" name="" supplier="_16_6_1_ef90368_1281088440370_444944_2364" client="_16_6_1_ef90368_1283507109358_300639_2096" contract="_16_6_1_ef90368_1281088440370_444944_2364"/>
+            <ownedOperation xmi:id="_16_6_1_ef90368_1281344962388_224073_923" name="getAntennaPosition" visibility="public">
+              <ownedParameter xmi:id="_16_6_1_ef90368_1281344962403_349660_924" name="" visibility="public" type="_16_6_1_ef90368_1281087170511_943737_1868" direction="return"/>
+            </ownedOperation>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_16_6_1_ef90368_1281087170511_389687_1876" name="IAntennaBase">
+            <ownedOperation xmi:id="_16_6_1_ef90368_1281087170542_390192_1906" name="getAntennaId" visibility="public">
+              <ownedParameter xmi:id="_16_6_1_ef90368_1281087170558_873570_1925" name="unnamed1" visibility="public" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_16_6_1_ef90368_1281087170542_284797_1907" name="setAntennaId" visibility="public">
+              <ownedParameter xmi:id="_16_6_1_ef90368_1281087170558_194953_1926" name="id" visibility="public">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_16_6_1_ef90368_1283507144702_467651_2178" name="SimulationTest" clientDependency="_16_6_1_ef90368_1283508981850_100629_2364">
+            <interfaceRealization xmi:id="_16_6_1_ef90368_1283508981850_100629_2364" name="" supplier="_16_6_1_ef90368_1281088604527_273691_2440" client="_16_6_1_ef90368_1283507144702_467651_2178" contract="_16_6_1_ef90368_1281088604527_273691_2440"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Signal" xmi:id="_16_6_1_ef90368_1281087170511_943737_1868" name="position">
+            <ownedAttribute xmi:id="_16_6_1_ef90368_1281087170542_656430_1882" name="x" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_6_1_ef90368_1281087170542_176294_1883" name="y" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+            </ownedAttribute>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_16_6_1_ef90368_1281088459417_180930_2383" name="AlcatelAntenna">
+            <generalization xmi:id="_16_6_1_ef90368_1281088585683_71002_2433" isSubstitutable="true" general="_16_6_1_ef90368_1281087170511_801440_1867"/>
+            <ownedOperation xmi:id="_16_6_1_ef90368_1281344757357_976083_908" name="getAlcatelId" visibility="public">
+              <ownedParameter xmi:id="_16_6_1_ef90368_1281344757357_703267_909" name="" visibility="public" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_16_6_1_ef90368_1283507117983_137727_2124" name="AlcatelAntenna" clientDependency="_16_6_1_ef90368_1283508969881_845702_2358">
+            <generalization xmi:id="_16_6_1_ef90368_1283508873992_301247_2351" isSubstitutable="true" general="_16_6_1_ef90368_1283508485700_427487_2318"/>
+            <interfaceRealization xmi:id="_16_6_1_ef90368_1283508969881_845702_2358" name="" supplier="_16_6_1_ef90368_1281088459417_180930_2383" client="_16_6_1_ef90368_1283507117983_137727_2124" contract="_16_6_1_ef90368_1281088459417_180930_2383"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Artifact" xmi:id="_16_6_1_ef90368_1283510101648_598470_2391" name="VertexAntennaJavaImp" clientDependency="_16_6_1_ef90368_1283510249396_716343_2489" fileName="">
+            <manifestation xmi:id="_16_6_1_ef90368_1283510249396_716343_2489" name="" supplier="_16_6_1_ef90368_1283507109358_300639_2096" client="_16_6_1_ef90368_1283510101648_598470_2391" utilizedElement="_16_6_1_ef90368_1283507109358_300639_2096"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Artifact" xmi:id="_16_6_1_ef90368_1283510104820_264306_2399" name="PrototypeTestJavaImp" clientDependency="_16_6_1_ef90368_1283510270552_177543_2513" fileName="">
+            <manifestation xmi:id="_16_6_1_ef90368_1283510270552_177543_2513" name="" supplier="_16_6_1_ef90368_1283507151108_495426_2205" client="_16_6_1_ef90368_1283510104820_264306_2399" utilizedElement="_16_6_1_ef90368_1283507151108_495426_2205"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Artifact" xmi:id="_16_6_1_ef90368_1283510103039_808111_2395" name="TestAntennaJavaImp" clientDependency="_16_6_1_ef90368_1283510260474_302069_2501" fileName="">
+            <manifestation xmi:id="_16_6_1_ef90368_1283510260474_302069_2501" name="" supplier="_16_6_1_ef90368_1283507138998_964213_2151" client="_16_6_1_ef90368_1283510103039_808111_2395" utilizedElement="_16_6_1_ef90368_1283507138998_964213_2151"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Enumeration" xmi:id="_16_6_1_ef90368_1281087170511_459333_1871" name="antenna_model">
+            <ownedLiteral xmi:id="_16_6_1_ef90368_1281087170542_29050_1888" name="vertex"/>
+            <ownedLiteral xmi:id="_16_6_1_ef90368_1281087170542_291248_1889" name="alcatel"/>
+            <ownedLiteral xmi:id="_16_6_1_ef90368_1281087170542_475846_1890" name="mitsubishi"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_16_6_1_ef90368_1281088472308_936503_2402" name="TestAntennaInterface">
+            <generalization xmi:id="_16_6_1_ef90368_1281088592714_984493_2437" isSubstitutable="true" general="_16_6_1_ef90368_1281087170511_801440_1867"/>
+            <ownedOperation xmi:id="_16_6_1_ef90368_1281344786716_738117_911" name="getTestlId" visibility="public">
+              <ownedParameter xmi:id="_16_6_1_ef90368_1281344786716_419706_912" name="" visibility="public" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_16_6_1_ef90368_1281088440370_444944_2364" name="VertexAntennaInterface">
+            <generalization xmi:id="_16_6_1_ef90368_1281088578480_586246_2430" isSubstitutable="true" general="_16_6_1_ef90368_1281087170511_801440_1867"/>
+            <ownedOperation xmi:id="_16_6_1_ef90368_1281344714732_961721_905" name="getVertexId" visibility="public">
+              <ownedParameter xmi:id="_16_6_1_ef90368_1281344714732_993474_906" name="" visibility="public" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_16_6_1_ef90368_1283507138998_964213_2151" name="TestAntenna" clientDependency="_16_6_1_ef90368_1283508974725_239709_2361">
+            <interfaceRealization xmi:id="_16_6_1_ef90368_1283508974725_239709_2361" name="" supplier="_16_6_1_ef90368_1281088472308_936503_2402" client="_16_6_1_ef90368_1283507138998_964213_2151" contract="_16_6_1_ef90368_1281088472308_936503_2402"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Artifact" xmi:id="_16_6_1_ef90368_1283510102336_963604_2393" name="AlcatelAntennaJavaImp" clientDependency="_16_6_1_ef90368_1283510255599_589858_2495" fileName="">
+            <manifestation xmi:id="_16_6_1_ef90368_1283510255599_589858_2495" name="" supplier="_16_6_1_ef90368_1283507117983_137727_2124" client="_16_6_1_ef90368_1283510102336_963604_2393" utilizedElement="_16_6_1_ef90368_1283507117983_137727_2124"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Artifact" xmi:id="_16_6_1_ef90368_1283510025305_749107_2374" name="BasicAntennaJavaImp" clientDependency="_16_6_1_ef90368_1283510240818_469436_2483" fileName="">
+            <manifestation xmi:id="_16_6_1_ef90368_1283510240818_469436_2483" name="" supplier="_16_6_1_ef90368_1283508485700_427487_2318" client="_16_6_1_ef90368_1283510025305_749107_2374" utilizedElement="_16_6_1_ef90368_1283508485700_427487_2318"/>
+          </packagedElement>
+        </packagedElement>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:id="_11_5_be00301_1153310565718_226811_161profileApplicationData">
+      <eAnnotations xmi:id="_M6fgwCm-EeCyNrsUTEzvnA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="UML_Standard_Profile.MagicDraw_Profile.DSL_Customization.profile.uml#_M6T6kym-EeCyNrsUTEzvnA"/>
+      </eAnnotations>
+      <appliedProfile href="UML_Standard_Profile.MagicDraw_Profile.DSL_Customization.profile.uml#_11_5_be00301_1153310565718_226811_161"/>
+    </profileApplication>
+    <profileApplication xmi:id="_16_6_1_ec40342_1279695659847_608236_478profileApplicationData">
+      <eAnnotations xmi:id="_M6oqsSm-EeCyNrsUTEzvnA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="EProfile.profile.uml#_M6WW4im-EeCyNrsUTEzvnA"/>
+      </eAnnotations>
+      <appliedProfile href="EProfile.profile.uml#_16_6_1_ec40342_1279695659847_608236_478"/>
+    </profileApplication>
+    <profileApplication xmi:id="_9_0_be00301_1108050582343_527400_10847profileApplicationData">
+      <eAnnotations xmi:id="_M6uxUSm-EeCyNrsUTEzvnA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="UML_Standard_Profile.StandardProfileL2.profile.uml#_M6YzVCm-EeCyNrsUTEzvnA"/>
+      </eAnnotations>
+      <appliedProfile href="UML_Standard_Profile.StandardProfileL2.profile.uml#_9_0_be00301_1108050582343_527400_10847"/>
+    </profileApplication>
+    <profileApplication xmi:id="_16_8beta_62a020a_1256807755193_508228_378profileApplicationData">
+      <eAnnotations xmi:id="_M62tISm-EeCyNrsUTEzvnA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="UML_Standard_Profile.StandardProfileL3.profile.uml#_M6TTjSm-EeCyNrsUTEzvnA"/>
+      </eAnnotations>
+      <appliedProfile href="UML_Standard_Profile.StandardProfileL3.profile.uml#_16_8beta_62a020a_1256807755193_508228_378"/>
+    </profileApplication>
+    <profileApplication xmi:id="_be00301_1073394351331_445580_2profileApplicationData">
+      <eAnnotations xmi:id="_M6-o8Sm-EeCyNrsUTEzvnA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="UML_Standard_Profile.MagicDraw_Profile.profile.uml#_M6F4JCm-EeCyNrsUTEzvnA"/>
+      </eAnnotations>
+      <appliedProfile href="UML_Standard_Profile.MagicDraw_Profile.profile.uml#_be00301_1073394351331_445580_2"/>
+    </profileApplication>
+    <profileApplication xmi:id="_16_6_8f90291_1254846042821_86742_517profileApplicationData">
+      <eAnnotations xmi:id="_M7IZ8Sm-EeCyNrsUTEzvnA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="UML_Standard_Profile.MagicDraw_Profile.Traceability_customization.profile.uml#_M6EC8im-EeCyNrsUTEzvnA"/>
+      </eAnnotations>
+      <appliedProfile href="UML_Standard_Profile.MagicDraw_Profile.Traceability_customization.profile.uml#_16_6_8f90291_1254846042821_86742_517"/>
+    </profileApplication>
+    <profileApplication xmi:id="_11_5_f720368_1159529670215_231387_1profileApplicationData">
+      <eAnnotations xmi:id="_M7SK8Sm-EeCyNrsUTEzvnA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="UML_Standard_Profile.Validation_Profile.profile.uml#_M6L-zSm-EeCyNrsUTEzvnA"/>
+      </eAnnotations>
+      <appliedProfile href="UML_Standard_Profile.Validation_Profile.profile.uml#_11_5_f720368_1159529670215_231387_1"/>
+    </profileApplication>
+  </uml:Model>
+  <EProfile:EPublish xmi:id="_M9LBUCm-EeCyNrsUTEzvnA" base_Property="_16_6_1_ef90368_1283511224790_265578_2846"/>
+  <EProfile:EPublish xmi:id="_M9LBUSm-EeCyNrsUTEzvnA" base_Property="_16_6_1_ef90368_1283440579786_749023_1044"/>
+  <EProfile:EComponent xmi:id="_M9LoYCm-EeCyNrsUTEzvnA" base_Class="_16_6_1_ef90368_1283507117983_137727_2124"/>
+  <EProfile:EComponent xmi:id="_M9LoYSm-EeCyNrsUTEzvnA" base_Class="_16_6_1_ef90368_1283496945343_11995_1164"/>
+  <EProfile:EComponent xmi:id="_M9MPcCm-EeCyNrsUTEzvnA" base_Class="_16_6_1_ef90368_1283506547615_795360_1933"/>
+  <EProfile:EComponent xmi:id="_M9MPcSm-EeCyNrsUTEzvnA" base_Class="_16_6_1_ef90368_1283506557631_202558_1957"/>
+  <EProfile:EComponent xmi:id="_M9MPcim-EeCyNrsUTEzvnA" base_Class="_16_6_1_ef90368_1283507138998_964213_2151"/>
+  <EProfile:EComponent xmi:id="_M9M2gCm-EeCyNrsUTEzvnA" base_Class="_16_6_1_ef90368_1283505871655_3655_1791"/>
+  <EProfile:EComponent xmi:id="_M9M2gSm-EeCyNrsUTEzvnA" base_Class="_16_6_1_ef90368_1283508485700_427487_2318"/>
+  <EProfile:EComponent xmi:id="_M9M2gim-EeCyNrsUTEzvnA" base_Class="_16_6_1_ef90368_1283507144702_467651_2178"/>
+  <EProfile:EComponent xmi:id="_M9NdkCm-EeCyNrsUTEzvnA" base_Class="_16_6_1_ef90368_1283507109358_300639_2096"/>
+  <EProfile:EComponent xmi:id="_M9NdkSm-EeCyNrsUTEzvnA" base_Class="_16_6_1_ef90368_1283511056980_919226_2756"/>
+  <EProfile:EComponent xmi:id="_M9OEoCm-EeCyNrsUTEzvnA" base_Class="_16_6_1_ef90368_1283507151108_495426_2205"/>
+  <EProfile:EComponent xmi:id="_M9OrsCm-EeCyNrsUTEzvnA" base_Class="_16_6_1_ef90368_1283511071839_853253_2808"/>
+  <EProfile:EComponent xmi:id="_M9OrsSm-EeCyNrsUTEzvnA" base_Class="_16_6_1_ef90368_1283445222085_260072_1694"/>
+  <EProfile:EComponent xmi:id="_M9PSwCm-EeCyNrsUTEzvnA" base_Class="_16_6_1_ef90368_1283505882311_139273_1815"/>
+  <EProfile:EComponent xmi:id="_M9P50Cm-EeCyNrsUTEzvnA" base_Class="_16_6_1_ef90368_1283510576704_224232_2606"/>
+  <EProfile:EComponent xmi:id="_M9P50Sm-EeCyNrsUTEzvnA" base_Class="_16_6_1_ef90368_1283510564376_761231_2581"/>
+  <EProfile:EComponent xmi:id="_M9Qg4Cm-EeCyNrsUTEzvnA" base_Class="_16_6_1_ef90368_1283511063339_204270_2780"/>
+  <EProfile:EModule xmi:id="_M9Qg4Sm-EeCyNrsUTEzvnA" base_Package="_16_6_1_ef90368_1284735345239_630476_784"/>
+  <EProfile:EModule xmi:id="_M9RH8Cm-EeCyNrsUTEzvnA" base_Package="_16_6_1_ef90368_1284735211662_520581_776"/>
+  <EProfile:EModule xmi:id="_M9RH8Sm-EeCyNrsUTEzvnA" base_Package="_16_6_1_ef90368_1284735318802_369725_782"/>
+  <EProfile:EModule xmi:id="_M9RvACm-EeCyNrsUTEzvnA" base_Package="_16_6_1_ef90368_1284735248177_460260_778"/>
+  <EProfile:EModule xmi:id="_M9RvASm-EeCyNrsUTEzvnA" base_Package="_16_6_1_ef90368_1284735281005_57670_780"/>
+  <EProfile:EModule xmi:id="_M9SWECm-EeCyNrsUTEzvnA" base_Package="_16_6_1_ef90368_1284734598679_554220_734"/>
+  <EProfile:EComponentImpl xmi:id="_M9UyUCm-EeCyNrsUTEzvnA" base_Artifact="_16_6_1_ef90368_1283510104023_544659_2397"/>
+  <EProfile:EComponentImpl xmi:id="_M9WAcCm-EeCyNrsUTEzvnA" base_Artifact="_16_6_1_ef90368_1283506175620_723214_1879" language="Java" pubSub="DDS"/>
+  <EProfile:EComponentImpl xmi:id="_M9WngCm-EeCyNrsUTEzvnA" base_Artifact="_16_6_1_ef90368_1283506170761_483449_1861" language="Java" pubSub="DDS"/>
+  <EProfile:EComponentImpl xmi:id="_M9XOkCm-EeCyNrsUTEzvnA" base_Artifact="_16_6_1_ef90368_1283511746986_5102_2898" language="Java" pubSub="DDS"/>
+  <EProfile:EComponentImpl xmi:id="_M9YcsCm-EeCyNrsUTEzvnA" base_Artifact="_16_6_1_ef90368_1283510104820_264306_2399"/>
+  <EProfile:EComponentImpl xmi:id="_M9ZDwCm-EeCyNrsUTEzvnA" base_Artifact="_16_6_1_ef90368_1283510025305_749107_2374"/>
+  <EProfile:EComponentImpl xmi:id="_M9Zq0Cm-EeCyNrsUTEzvnA" base_Artifact="_16_6_1_ef90368_1283510674047_290682_2643" language="Java" pubSub="DDS"/>
+  <EProfile:EComponentImpl xmi:id="_M9aR4Cm-EeCyNrsUTEzvnA" base_Artifact="_16_6_1_ef90368_1283511702315_952529_2865" language="Java" pubSub="DDS"/>
+  <EProfile:EComponentImpl xmi:id="_M9a48Cm-EeCyNrsUTEzvnA" base_Artifact="_16_6_1_ef90368_1283506909001_402748_1989" language="Java" pubSub="DDS"/>
+  <EProfile:EComponentImpl xmi:id="_M9bgACm-EeCyNrsUTEzvnA" base_Artifact="_16_6_1_ef90368_1283510102336_963604_2393"/>
+  <EProfile:EComponentImpl xmi:id="_M9cHECm-EeCyNrsUTEzvnA" base_Artifact="_16_6_1_ef90368_1283511747658_228981_2908" language="Java" pubSub="DDS"/>
+  <EProfile:EComponentImpl xmi:id="_M9cuICm-EeCyNrsUTEzvnA" base_Artifact="_16_6_1_ef90368_1283510742421_134895_2660" language="Java" pubSub="DDS"/>
+  <EProfile:EComponentImpl xmi:id="_M9dVMCm-EeCyNrsUTEzvnA" base_Artifact="_16_6_1_ef90368_1283510101648_598470_2391"/>
+  <EProfile:EComponentImpl xmi:id="_M9d8QCm-EeCyNrsUTEzvnA" base_Artifact="_16_6_1_ef90368_1283506911564_319694_2007" language="Java" pubSub="DDS"/>
+  <EProfile:EComponentImpl xmi:id="_M9ejUCm-EeCyNrsUTEzvnA" base_Artifact="_16_6_1_ef90368_1283497055842_565545_1191" language="Java" pubSub="DDS"/>
+  <EProfile:EComponentImpl xmi:id="_M9ejUSm-EeCyNrsUTEzvnA" base_Artifact="_16_6_1_ef90368_1283442852832_970650_1362" language="Java" pubSub="DDS"/>
+  <EProfile:EComponentImpl xmi:id="_M9fKYCm-EeCyNrsUTEzvnA" base_Artifact="_16_6_1_ef90368_1283510103039_808111_2395"/>
+  <EProfile:EEnumeration xmi:id="_M9fxcCm-EeCyNrsUTEzvnA" base_Enumeration="_16_6_1_ef90368_1281087170511_459333_1871"/>
+  <EProfile:EEnumeration xmi:id="_M9fxcSm-EeCyNrsUTEzvnA" base_Enumeration="_16_6_1_ef90368_1281084526324_805299_1545"/>
+  <EProfile:EEnumeration xmi:id="_M9gYgCm-EeCyNrsUTEzvnA" base_Enumeration="_16_6_1_ef90368_1281345389138_48910_1006"/>
+  <EProfile:EEnumeration xmi:id="_M9gYgSm-EeCyNrsUTEzvnA" base_Enumeration="_16_6_1_ef90368_1281081944433_311975_426"/>
+  <EProfile:EEnumeration xmi:id="_M9g_kCm-EeCyNrsUTEzvnA" base_Enumeration="_16_6_1_ef90368_1281346221028_722098_1708"/>
+  <EProfile:EEnumeration xmi:id="_M9hmoCm-EeCyNrsUTEzvnA" base_Enumeration="_16_6_1_ef90368_1281082765292_836742_895"/>
+  <EProfile:EInterface xmi:id="_M9hmoSm-EeCyNrsUTEzvnA" base_Interface="_16_6_1_ef90368_1281084526324_170168_1546" configurable="true"/>
+  <EProfile:EInterface xmi:id="_M9iNsCm-EeCyNrsUTEzvnA" base_Interface="_16_6_1_ef90368_1281087170511_801440_1867"/>
+  <EProfile:EInterface xmi:id="_M9iNsSm-EeCyNrsUTEzvnA" base_Interface="_16_6_1_ef90368_1281084526324_429899_1541"/>
+  <EProfile:EInterface xmi:id="_M9iNsim-EeCyNrsUTEzvnA" base_Interface="_16_6_1_ef90368_1281345389138_703747_1002"/>
+  <EProfile:EInterface xmi:id="_M9i0wCm-EeCyNrsUTEzvnA" base_Interface="_16_6_1_ef90368_1281345389153_315043_1010"/>
+  <EProfile:EInterface xmi:id="_M9i0wSm-EeCyNrsUTEzvnA" base_Interface="_16_6_1_ef90368_1281347051044_973237_2127"/>
+  <EProfile:EInterface xmi:id="_M9jb0Cm-EeCyNrsUTEzvnA" base_Interface="_16_6_1_ef90368_1281087170511_389687_1876"/>
+  <EProfile:EInterface xmi:id="_M9jb0Sm-EeCyNrsUTEzvnA" base_Interface="_16_6_1_ef90368_1281087170527_975261_1877"/>
+  <EProfile:EInterface xmi:id="_M9kC4Cm-EeCyNrsUTEzvnA" base_Interface="_16_6_1_ef90368_1281346221028_727368_1704"/>
+  <EProfile:EInterface xmi:id="_M9kC4Sm-EeCyNrsUTEzvnA" base_Interface="_16_6_1_ef90368_1281082765292_337440_891"/>
+  <EProfile:EInterface xmi:id="_M9kp8Cm-EeCyNrsUTEzvnA" base_Interface="_16_6_1_ef90368_1281088615636_980043_2459"/>
+  <EProfile:EInterface xmi:id="_M9kp8Sm-EeCyNrsUTEzvnA" base_Interface="_16_6_1_ef90368_1281088459417_180930_2383"/>
+  <EProfile:EInterface xmi:id="_M9lRACm-EeCyNrsUTEzvnA" base_Interface="_16_6_1_ef90368_1281088440370_444944_2364"/>
+  <EProfile:EInterface xmi:id="_M9lRASm-EeCyNrsUTEzvnA" base_Interface="_16_6_1_ef90368_1281345389153_405334_1009"/>
+  <EProfile:EInterface xmi:id="_M9l4ECm-EeCyNrsUTEzvnA" base_Interface="_16_6_1_ef90368_1281346221028_594966_1709" configurable="true"/>
+  <EProfile:EInterface xmi:id="_M9l4ESm-EeCyNrsUTEzvnA" base_Interface="_16_6_1_ef90368_1281088604527_273691_2440"/>
+  <EProfile:EInterface xmi:id="_M9mfICm-EeCyNrsUTEzvnA" base_Interface="_16_6_1_ef90368_1281088472308_936503_2402"/>
+  <EProfile:EInterface xmi:id="_M9nGMCm-EeCyNrsUTEzvnA" base_Interface="_16_6_1_ef90368_1281021093902_492255_674"/>
+  <EProfile:EInterface xmi:id="_M9nGMSm-EeCyNrsUTEzvnA" base_Interface="_16_6_1_ef90368_1281082984511_608750_1147" configurable="true"/>
+  <EProfile:EInterface xmi:id="_M9ntQCm-EeCyNrsUTEzvnA" base_Interface="_16_6_1_ef90368_1281346709544_1812_2043"/>
+  <EProfile:EReadOnlyProperty xmi:id="_M9oUUCm-EeCyNrsUTEzvnA" base_Property="_16_6_1_ef90368_1281519855414_729584_1048"/>
+  <EProfile:ETopic xmi:id="_M9oUUSm-EeCyNrsUTEzvnA" base_Signal="_16_6_1_ef90368_1281345389138_894946_1003"/>
+  <EProfile:ETopic xmi:id="_M9o7YCm-EeCyNrsUTEzvnA" base_Signal="_16_6_1_ef90368_1281346221028_277350_1706"/>
+  <EProfile:ETopic xmi:id="_M9o7YSm-EeCyNrsUTEzvnA" base_Signal="_16_6_1_ef90368_1281021219996_482498_680"/>
+  <EProfile:ETopic xmi:id="_M9picCm-EeCyNrsUTEzvnA" base_Signal="_16_6_1_ef90368_1281084526324_366767_1543"/>
+  <EProfile:ETopic xmi:id="_M9picSm-EeCyNrsUTEzvnA" base_Signal="_16_6_1_ef90368_1281021196340_737523_676"/>
+  <EProfile:ETopic xmi:id="_M9qJgCm-EeCyNrsUTEzvnA" base_Signal="_16_6_1_ef90368_1281082765292_41918_892"/>
+  <EProfile:ETopic xmi:id="_M9qJgSm-EeCyNrsUTEzvnA" base_Signal="_16_6_1_ef90368_1281084526324_720991_1542"/>
+  <EProfile:ETopic xmi:id="_M9qwkCm-EeCyNrsUTEzvnA" base_Signal="_16_6_1_ef90368_1281082765292_112495_893"/>
+  <EProfile:ETopic xmi:id="_M9qwkSm-EeCyNrsUTEzvnA" base_Signal="_16_6_1_ef90368_1281087170511_943737_1868"/>
+  <EProfile:ETopic xmi:id="_M9rXoCm-EeCyNrsUTEzvnA" base_Signal="_16_6_1_ef90368_1281346221028_88619_1705"/>
+  <EProfile:ETopic xmi:id="_M9rXoSm-EeCyNrsUTEzvnA" base_Signal="_16_6_1_ef90368_1281087170511_692338_1869"/>
+  <EProfile:ETopic xmi:id="_M9rXoim-EeCyNrsUTEzvnA" base_Signal="_16_6_1_ef90368_1281345389138_373301_1004"/>
+  <EProfile:ESubscribe xmi:id="_M9r-sCm-EeCyNrsUTEzvnA" base_Property="_16_6_1_ef90368_1283511231509_907592_2848"/>
+  <EProfile:ESubscribe xmi:id="_M9slwCm-EeCyNrsUTEzvnA" base_Property="_16_6_1_ef90368_1283511146322_997748_2843"/>
+  <EProfile:EReadWriteProperty xmi:id="_M9slwSm-EeCyNrsUTEzvnA" base_Property="_16_6_1_ef90368_1281519866883_665059_1050"/>
+  <EProfile:EContainer xmi:id="_M9tM0Cm-EeCyNrsUTEzvnA" language="Java" pubSub="DDS" base_ExecutionEnvironment="_16_6_1_ef90368_1281020569293_388364_567"/>
+  <EProfile:EContainer xmi:id="_M9tz4Cm-EeCyNrsUTEzvnA" language="Java" pubSub="DDS" base_ExecutionEnvironment="_16_6_1_ef90368_1281082765324_566070_957"/>
+  <EProfile:EContainer xmi:id="_M9ua8Cm-EeCyNrsUTEzvnA" language="Java" pubSub="DDS" base_ExecutionEnvironment="_16_6_1_ef90368_1281087170542_158553_1887"/>
+  <EProfile:EContainer xmi:id="_M9ua8Sm-EeCyNrsUTEzvnA" language="Java" pubSub="DDS" base_ExecutionEnvironment="_16_6_1_ef90368_1281345389232_389995_1196"/>
+  <EProfile:EContainer xmi:id="_M9vCACm-EeCyNrsUTEzvnA" language="Java" pubSub="DDS" base_ExecutionEnvironment="_16_6_1_ef90368_1281520344851_970672_1104"/>
+  <EProfile:EContainer xmi:id="_M9vpECm-EeCyNrsUTEzvnA" language="Java" pubSub="DDS" base_ExecutionEnvironment="_16_6_1_ef90368_1281345389232_896533_1195"/>
+  <EProfile:EContainer xmi:id="_M9vpESm-EeCyNrsUTEzvnA" language="Java" pubSub="DDS" base_ExecutionEnvironment="_16_6_1_ef90368_1281087853355_322456_2266"/>
+  <EProfile:EContainer xmi:id="_M9wQICm-EeCyNrsUTEzvnA" language="Java" pubSub="DDS" base_ExecutionEnvironment="_16_6_1_ef90368_1281022234074_909863_771"/>
+  <EProfile:EContainer xmi:id="_M9wQISm-EeCyNrsUTEzvnA" language="Java" pubSub="DDS" base_ExecutionEnvironment="_16_6_1_ef90368_1281346221060_938530_1811"/>
+  <EProfile:EContainer xmi:id="_M9w3MCm-EeCyNrsUTEzvnA" language="Java" pubSub="DDS" base_ExecutionEnvironment="_16_6_1_ef90368_1281346476622_461894_2007"/>
+  <EProfile:EContainer xmi:id="_M9xeQCm-EeCyNrsUTEzvnA" language="Java" pubSub="DDS" base_ExecutionEnvironment="_16_6_1_ef90368_1281084526355_917913_1559"/>
+  <MagicDrawProfile:typeModifier xmi:id="_NGLzYCm-EeCyNrsUTEzvnA" base_Element="_16_6_1_ef90368_1281346865560_519981_2078" typeModifier="[]"/>
+  <MagicDrawProfile:auxiliaryResource xmi:id="_NGMacCm-EeCyNrsUTEzvnA" base_Element="magicdraw_uml_standard_profile_v_0001" base_Package="magicdraw_uml_standard_profile_v_0001"/>
+</xmi:XMI>

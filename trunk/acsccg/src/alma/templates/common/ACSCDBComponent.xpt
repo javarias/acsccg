@@ -31,24 +31,18 @@
        xmlns:cdb="urn:schemas-cosylab-com:CDB:1.0"
        xmlns:baci="urn:schemas-cosylab-com:BACI:1.0"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-       
        «FOREACH getEContainers(getPackage(this)) AS eElement -»
-	   «FOREACH eElement.getAllAttributes() AS eAttribute -»
-	   «IF getEComponentLanguage(eAttribute.type) == getContainerLanguage(eElement)»
+	   «FOREACH eElement.getAllAttributes() AS eAttribute »
+	   «IF getEComponentLanguage(eAttribute.type) == getContainerLanguage(eElement)-»
 	   <_ Name="«eAttribute.name»" 
 			Code="alma.«getPackage(this).name».«eAttribute.type.name»Helper"
-			«FOREACH getEManifestations(eAttribute.type) AS eManifestationContainer-»
-			«FOREACH getESuppliers(eManifestationContainer) AS eManifestationClass-»
-			«FOREACH ((uml::Class) eManifestationClass).getAllImplementedInterfaces() AS eInterface-»
-            Type="IDL:alma/«getPackage(this).name-»/«eInterface.name»:1.0"
-            «ENDFOREACH-»
-			«ENDFOREACH-»
-			«ENDFOREACH-»
+            Type="IDL:alma/«getPackage(this).name-»/«getERealization(eAttribute.type).name»:1.0"
             Container="«eElement.name»" 
             ImplLang="«getEComponentLanguage(eAttribute.type)»" />
-        «ENDIF»
+        «ENDIF-»
 	   «ENDFOREACH-»
 	   «ENDFOREACH-»
+	   
 </Components>
 «ENDFILE»
 «ENDDEFINE»

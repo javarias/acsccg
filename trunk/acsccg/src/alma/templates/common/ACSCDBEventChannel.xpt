@@ -1,3 +1,4 @@
+«REM»
 /**
  * ACS Component Code Generator - http://code.google.com/p/acsccg/
  * Copyright (C) 2010  Alexis Tejeda, alexis.tejeda@gmail.com
@@ -16,25 +17,19 @@
  * --------		--------		----------------------------------------------
  * atejeda 		2010-00-00  	Created
  * 
- * $Id: tsort.ext 170 2011-01-13 13:07:52Z alexis.tejeda $
+ * $Id$
  */
- 
-import uml;
-import AlmaGenerator;
-import ecore;
+«ENDREM»
 
-/**
- * Sort the etopics using topological sort
- * @param List
- * @return List
- */
-List getETopicSorted(List list):
-	JAVA alma.acsccg.util.xtend.TopologicalSort.getETopicSorted(java.util.List);
-	
-/**
- * Sort the channels name, unique names in the list
- * @param List
- * @return List
- */
-List getNREChannelNames(List list):
-	JAVA alma.acsccg.util.xtend.ElementSort.getNREList(java.util.List);
+«EXTENSION templates::util::common»
+«EXTENSION templates::util::zzdev»
+«EXTENSION templates::util::tsort»
+«EXTENSION templates::util::java»
+«EXTENSION templates::util::idl»
+
+«DEFINE Root FOR uml::Model»
+«FILE getPackage(this).name+'/config/CDB/MACI/schemas/EventChannel.xsd'-»
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+«ENDFILE»
+«ENDDEFINE»

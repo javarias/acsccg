@@ -16,25 +16,42 @@
  * --------		--------		----------------------------------------------
  * atejeda 		2010-00-00  	Created
  * 
- * $Id: tsort.ext 170 2011-01-13 13:07:52Z alexis.tejeda $
+ * $Id$
  */
- 
-import uml;
-import AlmaGenerator;
-import ecore;
+
+
+package alma.acsccg.util.xtend;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.eclipse.uml2.uml.Property;
 
 /**
- * Sort the etopics using topological sort
- * @param List
- * @return List
+ * Lots of sorting functions
+ * @author atejeda
  */
-List getETopicSorted(List list):
-	JAVA alma.acsccg.util.xtend.TopologicalSort.getETopicSorted(java.util.List);
+public class ElementSort 
+{
+	/**
+	 * Get a list of non repeated elements
+	 * @param elementList
+	 * @return
+	 */
+	public static List<Property> getNREList(List<Property> elementList)
+	{
+		List<Property>  nreList = new ArrayList<Property> (elementList);
+		nreList.removeAll(nreList);
 	
-/**
- * Sort the channels name, unique names in the list
- * @param List
- * @return List
- */
-List getNREChannelNames(List list):
-	JAVA alma.acsccg.util.xtend.ElementSort.getNREList(java.util.List);
+		//add the first element into the list
+		if(!elementList.isEmpty())
+			nreList.add(elementList.get(0));
+
+		for(Property eProperty : elementList)
+			for(Property eNREProperty : elementList)
+				if(!eNREProperty.getType().getName().equals(eProperty.getType().getName()))
+					nreList.add(eProperty);
+		
+		return nreList;
+	}
+}

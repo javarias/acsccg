@@ -25,22 +25,39 @@
 «EXTENSION templates::util::common»
 
 «DEFINE Root FOR uml::Model»
-«FILE getPackage(this).name+'/config/CDB/Schemas/getPackage(this).name.xml'-»
+«FOREACH getEComponentsImpl(getPackage(this)) AS eElement -»
+«IF hasECharacteristicInterfaces(eElement)-»
+«FILE getPackage(this).name+'/config/CDB/schemas/'+eElement.name+'.xsd'-»
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema targetNamespace="urn:schemas-cosylab-com:Meteo:1.0"
+<xs:schema targetNamespace="urn:schemas-cosylab-com:«eElement.name»:1.0"
 	xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	xmlns="urn:schemas-cosylab-com:Meteo:1.0"
+	xmlns="urn:schemas-cosylab-com:«eElement.name»:1.0"
 	xmlns:cdb="urn:schemas-cosylab-com:CDB:1.0"
 	xmlns:baci="urn:schemas-cosylab-com:BACI:1.0" 
 	elementFormDefault="qualified" attributeFormDefault="unqualified">
+	
 	<xs:import namespace="urn:schemas-cosylab-com:CDB:1.0" schemaLocation="CDB.xsd"/>
-	<xs:import namespace="urn:schemas-cosylab-com:BACI:1.0" schemaLocation="BACI.xsd"/>   
-	<xs:complexType name="Meteo">
-	        <xs:sequence>
-	        	<xs:element name="temperature" type="baci:ROdouble"/>
-	        </xs:sequence>
+	<xs:import namespace="urn:schemas-cosylab-com:BACI:1.0" schemaLocation="BACI.xsd"/>
+	 
+	<xs:complexType name="«eElement.name»">
+	«FOREACH getERealizations(eElement) AS eInterface-»
+	«IF hasRORWProperties(getERealization(eElement))-»
+	    <xs:sequence>
+	    «FOREACH getEReadOnlyProperties(eInterface) AS eCharacteristicProperty-»
+	    	<xs:element name="«eCharacteristicProperty.name»" type="baci:RO«eCharacteristicProperty.getBaciType()»"/>
+	    «ENDFOREACH-»
+	    «FOREACH getEReadWriteProperties(eInterface) AS eCharacteristicProperty-»
+	    	<xs:element name="«eCharacteristicProperty.name»" type="baci:RW«eCharacteristicProperty.getBaciType()»"/>
+	    «ENDFOREACH-»	
+	    </xs:sequence>
 	</xs:complexType>
-	<xs:element name="Meteo" type="Meteo"/>
+	
+	<xs:element name=«eElement.name» type="«eElement.name»Type"/>
+	
+	«ENDIF-»
+	«ENDFOREACH-»
 </xs:schema>
 «ENDFILE»
+«ENDIF-»
+«ENDFOREACH»
 «ENDDEFINE»

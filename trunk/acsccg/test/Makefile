@@ -30,7 +30,7 @@ ACSCCG=$(LIBF)/acsComponentCodeGenerator.jar $(EXTRAFLAGS)
 
 # Model list target, modelname_emodule
 MODELS_TARGETS= eltins_prototype \
-				eltins_ACS
+		example_notificationChannel
 
 # Code Generation Testing variables
 PROFILE_XMI=EProfile.profile.uml
@@ -110,6 +110,61 @@ eltins_ACS:
 		@$(JCLI) -jar $(ACSCCG) -m $(XMI_PATH)/ELT/ELT-InsPrototype.uml -p $(PROFILE_PATH)/$(PROFILE_XMI) -o $(OUTPUT_PATH) -e ACS
 		@echo ""
 		@echo "--eltins ACS generated"
+		@echo ""
+
+example_singleComponent:
+		@echo ""
+		@echo "# Running Example example_singleComponent"
+		@echo "###########################################"
+		@echo ""
+		@echo "$(JCLI) -jar $(ACSCCG) -m $(XMI_PATH)/examples/examples.uml -p $(PROFILE_PATH)/$(PROFILE_XMI) -o $(OUTPUT_PATH) -e singleComponent" 
+		@$(JCLI) -jar $(ACSCCG) -m $(XMI_PATH)/examples/examples.uml -p $(PROFILE_PATH)/$(PROFILE_XMI) -o $(OUTPUT_PATH) -e singleComponent
+		@echo ""
+		@echo "--example_singleComponentgenerated"
+		@echo ""
+
+example_characteristicComponent:
+		@echo ""
+		@echo "# Running Example example_characteristicComponent"
+		@echo "###########################################"
+		@echo ""
+		@echo "$(JCLI) -jar $(ACSCCG) -m $(XMI_PATH)/examples/examples.uml -p $(PROFILE_PATH)/$(PROFILE_XMI) -o $(OUTPUT_PATH) -e characteristicComponent" 
+		@$(JCLI) -jar $(ACSCCG) -m $(XMI_PATH)/examples/examples.uml -p $(PROFILE_PATH)/$(PROFILE_XMI) -o $(OUTPUT_PATH) -e characteristicComponent
+		@echo ""
+		@echo "--example_characteristicComponent generated"
+		@echo ""
+
+example_javaInterfaces:
+		@echo ""
+		@echo "# Running Example example_javaInterfaces"
+		@echo "###########################################"
+		@echo ""
+		@echo "$(JCLI) -jar $(ACSCCG) -m $(XMI_PATH)/examples/examples.uml -p $(PROFILE_PATH)/$(PROFILE_XMI) -o $(OUTPUT_PATH) -e javaInterfaces" 
+		@$(JCLI) -jar $(ACSCCG) -m $(XMI_PATH)/examples/examples.uml -p $(PROFILE_PATH)/$(PROFILE_XMI) -o $(OUTPUT_PATH) -e javaInterfaces
+		@echo ""
+		@echo "--example_javaInterfaces generated"
+		@echo ""
+
+example_inheritance:
+		@echo ""
+		@echo "# Running Example example_inheritance"
+		@echo "###########################################"
+		@echo ""
+		@echo "$(JCLI) -jar $(ACSCCG) -m $(XMI_PATH)/examples/examples.uml -p $(PROFILE_PATH)/$(PROFILE_XMI) -o $(OUTPUT_PATH) -e inheritance" 
+		@$(JCLI) -jar $(ACSCCG) -m $(XMI_PATH)/examples/examples.uml -p $(PROFILE_PATH)/$(PROFILE_XMI) -o $(OUTPUT_PATH) -e inheritance
+		@echo ""
+		@echo "--example_inheritance generated"
+		@echo ""
+
+example_notificationChannel:
+		@echo ""
+		@echo "# Running Example example_notificationChannel"
+		@echo "###########################################"
+		@echo ""
+		@echo "$(JCLI) -jar $(ACSCCG) -m $(XMI_PATH)/examples/examples.uml -p $(PROFILE_PATH)/$(PROFILE_XMI) -o $(OUTPUT_PATH) -e notificationChannel" 
+		@$(JCLI) -jar $(ACSCCG) -m $(XMI_PATH)/examples/examples.uml -p $(PROFILE_PATH)/$(PROFILE_XMI) -o $(OUTPUT_PATH) -e notificationChannel
+		@echo ""
+		@echo "--example_notificationChannel generated"
 		@echo ""
 		
 

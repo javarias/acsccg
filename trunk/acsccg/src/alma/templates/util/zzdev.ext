@@ -12,11 +12,11 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  * 
- * who     		when      		what
- * --------		--------		----------------------------------------------
- * atejeda 		2010-00-00  	Created
+ * who     		when      		  what
+ * --------		--------		      ----------------------------------------------
+ * atejeda    2010-00-00    Created
  * 
- * $Id: tsort.ext 170 2011-01-13 13:07:52Z alexis.tejeda $
+ * $Id$
  */
  
 import uml;
@@ -24,17 +24,9 @@ import AlmaGenerator;
 import ecore;
 
 /**
- * Sort the etopics using topological sort
- * @param List
- * @return List
+ * Get a propset
+ * @param String
+ * @return String
  */
-List getETopicSorted(List list):
-	JAVA alma.acsccg.util.xtend.TopologicalSort.getETopicSorted(java.util.List);
-	
-/**
- * Sort the channels name, unique names in the list
- * @param List
- * @return List
- */
-List getNREChannelNames(List list):
-	JAVA alma.acsccg.util.xtend.ElementSort.getNREList(java.util.List);
+String getPropSet(String propset): 
+	JAVA alma.acsccg.util.xtend.JavaExtension.getPropSet(java.lang.String);

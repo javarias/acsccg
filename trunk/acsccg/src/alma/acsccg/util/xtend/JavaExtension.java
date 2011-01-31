@@ -21,8 +21,12 @@
 
 package alma.acsccg.util.xtend;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Vector;
+
+import org.eclipse.uml2.uml.Classifier;
 
 import alma.acsccg.util.BaseStaticConfig;
 
@@ -93,4 +97,15 @@ public class JavaExtension
 		return commentsWrapped;
 	}
 	
+	/**
+	 * Get the ID string for cvs, svn, etc.. general 
+	 * control versions id propset
+	 * @return  String
+	 */
+	public static String getPropSet(String prop)
+	{
+		//separate in order to not be replaced
+		String ppSufix = "$";
+		return ppSufix+prop+ppSufix;
+	}
 }

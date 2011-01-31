@@ -22,7 +22,9 @@
 «ENDREM»
 
 «IMPORT uml»
+
 «EXTENSION templates::util::common»
+«EXTENSION templates::util::zzdev»
 
 «DEFINE Root FOR uml::Model»
 
@@ -30,45 +32,58 @@
 
 «FILE  getPackage(this).name+'/src/alma/'+getPackage(this).name+'/'+eElement.name+'Helper.java'-»
 /*******************************************************************************
-*    ALMA - Atacama Large Millimiter Array
-*
-*    (c) European Southern Observatory, 2002
-*    Copyright by ESO (in the framework of the ALMA collaboration)
-*    and Cosylab 2002, All rights reserved
-*
-*    This library is free software; you can redistribute it and/or
-*    modify it under the terms of the GNU Lesser General Public
-*    License as published by the Free Software Foundation; either
-*    version 2.1 of the License, or (at your option) any later version.
-*
-*    This library is distributed in the hope that it will be useful,
-*    but WITHOUT ANY WARRANTY; without even the implied warranty of
-*    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-*    Lesser General Public License for more details.
-*
-*    You should have received a copy of the GNU Lesser General Public
-*    License along with this library; if not, write to the Free Software
-*    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307  USA
-*
-* "@(#) $Id: ACSComponentHelper.xpt 170 2011-01-13 13:07:52Z alexis.tejeda $"
-*
-* who                  when                 what
-* ----------------    ------------------    ----------------------------------------------
-* ACSCCG              «getCommentDate()»     Creation of the file
-* 
-*/
+ * ALMA - Atacama Large Millimiter Array
+ *
+ * (c) European Southern Observatory, 2002
+ * Copyright by ESO (in the framework of the ALMA collaboration)
+ * and Cosylab 2002, All rights reserved
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307  USA
+ *
+ * "@(#) «getPropSet('Id')»"
+ *
+ * who                 when                             what
+ * ----------------    -----------------------------    ------------------------
+ * ACSCCG              «getCommentDate()»    Creation of the file
+ * 
+ */
 
 package alma.«getPackage(this).name»;
 
 import java.util.logging.Logger;
-import alma.acs.component.ComponentLifecycle;
+
 import alma.acs.container.ComponentHelper;
+
+import alma.acs.component.ComponentLifecycle;
 
 «FOREACH getERealizations(eElement) AS eInterface-»
 import alma.«getPackage(this).name».«eInterface.name»POATie;
 import alma.«getPackage(this).name».«eInterface.name»Operations;
 «ENDFOREACH-»
 
+/**«IF hasComment(eElement)»«FOREACH getCommentsWrapped(getComment(eOperation)) AS comment»
+ *«comment»«ENDFOREACH»«ENDIF»
+ «FOREACH getERealizations(eElement) AS eInterface-»
+ * @see alma.«getPackage(this).name»Common
+ * @see alma.«getPackage(this).name».«eInterface.name»;
+ * @see alma.«getPackage(this).name».«eInterface.name»Operations;
+«ENDFOREACH-»
+ * @see alma.acs.component.ComponentLifecycle
+ * @author ACS Component Code Generator
+ * @version «getPropSet('Id')»
+ */	
 public class «eElement.name»Helper extends ComponentHelper
 {
 

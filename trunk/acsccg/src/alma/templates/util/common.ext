@@ -193,7 +193,7 @@ List getEContainers(Package package):
  * @return List
  */
 List getEEnumerations(Package package):
-	package.allOwnedElements().select(e|isEEnumeration(e)) ;
+	package.allOwnedElements().select(e|isEEnumeration(e));
  	
 /**
  * Get ETopics list from a certain package
@@ -217,7 +217,7 @@ List getEModules(Model model):
  * @return List
  */
 List getEReadOnlyProperties(Element eElement):
-	eElement.allOwnedElements().select(e|isEReadOnlyProperty(e));
+	getRealizationReference(eElement).allOwnedElements().select(e|isEReadOnlyProperty(e));
 	
 /**
  * Get EReadWriteProperties list from a certain element
@@ -225,7 +225,15 @@ List getEReadOnlyProperties(Element eElement):
  * @return List
  */
 List getEReadWriteProperties(Element eElement):
-	eElement.allOwnedElements().select(e|isEReadWriteProperty(e));
+	getRealizationReference(eElement).allOwnedElements().select(e|isEReadWriteProperty(e));
+
+/**
+ * See if element has RW or RO properties
+ * @param eElement
+ * @return List
+ */	
+boolean hasRORWProperties(Element element):
+	!getEReadWriteProperties(element).isEmpty || !getEReadOnlyProperties(element).isEmpty;
 	
 /**
  * Get ETopicSequence list from a certain element
@@ -233,7 +241,7 @@ List getEReadWriteProperties(Element eElement):
  * @return List
  */
 List getETopicSequences(Element eElement):
-	eElement.allOwnedElements().select(e|isETopicSequence(e));	
+	getRealizationReference(eElement).allOwnedElements().select(e|isETopicSequence(e));	
 	
 
 /**
@@ -255,6 +263,28 @@ Stereotype getEStereotypeReference(Element eElement, String eStereotype):
  */
 String getETagValue(Element eElement, String eStereotype, String tag):
 	eElement.getValue(getEStereotypeReference(eElement, eStereotype) ,tag);
+
+/**
+ * Get a realization reference by his name
+ * this method will get the package and it
+ * will search in using the method getEInterfaces
+ * @param eElement
+ * @return Boolean
+ */
+Element getRealizationReference(Element eElement):
+	getPackage(eElement.getModel()).allOwnedElements().select(e|isEInteface(e)).select(e| e.name==eElement.name).first();
+
+
+/////////////////////////////////////////////////////////////
+// Start of characteristic recognition
+/////////////////////////////////////////////////////////////
+/**
+ * Check if the eElement is a ECharacteristicComponent
+ * @param eElement
+ * @return Boolean
+ */
+boolean isECharacteristicInterface(Element eElement):
+	getETagValue(getRealizationReference(eElement),'EInterface','configurable');
 	
 /**
  * Check if the eElement is a ECharacteristicComponent
@@ -262,7 +292,7 @@ String getETagValue(Element eElement, String eStereotype, String tag):
  * @return Boolean
  */
 boolean isECharacteristic(Element eElement):
-	getETagValue(eElement,'EInterface','configurable');
+	getETagValue(getRealizationReference(eElement),'EInterface','configurable');
 	
 /**
  * Check if the eElement is a ECharacteristicComponentImpl
@@ -275,12 +305,16 @@ boolean isECharacteristicImpl(Element eElement):
 
 /**
  * Check if the eElement is has any ECharacteristic EInterface
- * this method is only for artifacts
+ * this method is only for artifacts or EComponentImpl's
  * @param eElement
  * @return Boolean
  */
 boolean hasECharacteristicInterfaces(Element eElement):
 	 !getERealizations(eElement).isEmpty && !getERealizations(eElement).select(e|isECharacteristic(e)).isEmpty;
+
+/////////////////////////////////////////////////////////////
+// End of characteristic recognition
+/////////////////////////////////////////////////////////////
  		
 /**
  * Get the manifest List from a certain Artifact
@@ -384,7 +418,7 @@ String getFullActualDate():
  * @return String
  */
 String getCommentDate(): 
-	JAVA alma.acsccg.util.xtend.JavaExtension.getCommentDate();	
+	JAVA alma.acsccg.util.xtend.JavaExtension.getFullActualDate();	
 	
 /**
  * Return the comments wrapped as a List<String>
@@ -407,5 +441,21 @@ List getRaisedExceptions(Operation eElement):
  * @return Element
  */
 Element getERealization(Element eElement):
-	getERealizations(eElement).first();
+	getRealizationReference(getERealizations(eElement).first());
 
+/**
+ * Return the first realization
+ * @param eElement
+ * @return Element
+ */
+Element getFirstRealization(Class eElement):
+	getRealizationReference(eElement.getImplementedInterfaces().first());
+
+/**
+ * Return the first realization
+ * @param licenseType
+ * @return String
+ */
+String getACSLicence(String licenseType):
+	JAVA alma.acsccg.util.BaseStaticConfig.getACSLicense(java.lang.String);
+ 

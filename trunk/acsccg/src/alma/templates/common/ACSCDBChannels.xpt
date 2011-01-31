@@ -22,22 +22,25 @@
 «ENDREM»
 
 «IMPORT uml»
+
 «EXTENSION templates::util::common»
+«EXTENSION templates::util::zzdev»
+«EXTENSION templates::util::tsort»
+«EXTENSION templates::util::java»
+«EXTENSION templates::util::idl»
 
 «DEFINE Root FOR uml::Model»
-«FILE getPackage(this).name+'/config/CDB/MACI/Channels/Channels.xml'-»
+
+«IF hasNCDefinitions(getPackage(this))-»
+«FOREACH getNREChannelNames( getNCDefinitions(getPackage(this)) ) AS eElement -»
+«FILE getPackage(this).name+'/config/CDB/MACI/Channels/CHANNEL_'+eElement.type.name.toUpperCase() +'/CHANNEL_'+eElement.type.name.toUpperCase()+'.xsd'-»
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <Channels xmlns="urn:schemas-cosylab-com:Channels:1.0"
        xmlns:cdb="urn:schemas-cosylab-com:CDB:1.0" 
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-      <NotificationServiceMapping DefaultNotificationService="NotifyEventChannelFactory">
-          <Domains>
-              <_ Name="ALARMSYSTEM" NotificationService="AlarmNotifyEventChannelFactory"/>
-          </Domains>
-          <Channels_>
-              <_ Name="MyExample_*" NotificationService="MyExampleNotifyService"/>
-          </Channels_>
-      </NotificationServiceMapping>
+
 </Channels>
 «ENDFILE»
+«ENDFOREACH-»
+«ENDIF-»
 «ENDDEFINE»

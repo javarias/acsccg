@@ -40,7 +40,6 @@ import org.apache.commons.cli.Options;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
-import org.eclipse.jdt.internal.core.builder.BuildNotifier;
 
 import alma.acsccg.emodule.EModules;
 import alma.acsccg.strategy.CodeJavaGeneration;
