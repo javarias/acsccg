@@ -81,9 +81,9 @@
 #pragma prefix "alma"
 
 /** 
- * @file «eElement.name».idl
+ * @file «eElement.name»Common.idl
  */
-module «getPackage(this).name»
+module «getPackage(this).name»Common
 {
 	/**«IF hasComment(eElement)»«FOREACH getCommentsWrapped(getComment(eElement)) AS comment»
 	 *«comment»«ENDFOREACH»«ENDIF»
