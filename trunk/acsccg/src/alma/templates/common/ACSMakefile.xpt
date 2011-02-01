@@ -168,7 +168,7 @@ CDB_SCHEMAS += CHANNEL_«eElement.type.name.toUpperCase()»
 # IDL Files and flags
 # ----------------------------
 IDL_FILES = «getPackage(this).name»Common
-«IF !getEExceptions(getPackage(this)).isEmpty-»IDL_FILES += «getPackage(this).name»Err«ENDIF»
+«IF !getEExceptions(getPackage(this)).isEmpty-»IDL_FILES += «getPackage(this).name»Err«ENDIF-»
 «FOREACH getEInterfaces(getPackage(this)) AS eElement -»
 IDL_FILES += «eElement.name»
 «ENDFOREACH-»
