@@ -203,20 +203,23 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
         try
 		{
 			«FOREACH getERealizations(eElement) AS eInterface-»
+			«IF !getEReadOnlyProperties(eInterface).isEmpty-»
 			«FOREACH getEReadOnlyProperties(eInterface) AS eCharacteristicProperty-»
 			«eCharacteristicProperty.name»DataAcess = new MemoryDataAccess();
 			«eCharacteristicProperty.name»Impl = new RO«eCharacteristicProperty.getBaciType()»Impl("«eCharacteristicProperty.name»", this, «eCharacteristicProperty.name»DataAccess); 
 			«eCharacteristicProperty.name»Tie = new RO«eCharacteristicProperty.getBaciType()»POATie(«eCharacteristicProperty.name»Impl);
 			«eCharacteristicProperty.name» = RO«eCharacteristicProperty.getBaciType()»Helper.narrow(this.registerProperty(«eCharacteristicProperty.name»Impl,«eCharacteristicProperty.name»Tie)); 
 			 
-			«ENDFOREACH-»
+			«ENDFOREACH-»«ENDIF-»
+			
+			«IF !getEReadWriteProperties(eInterface).isEmpty-»
 			«FOREACH getEReadWriteProperties(eInterface) AS eCharacteristicProperty-»
 			«eCharacteristicProperty.name»DataAcess = new MemoryDataAccess();
 			«eCharacteristicProperty.name»Impl = new RW«eCharacteristicProperty.getBaciType()»Impl("«eCharacteristicProperty.name»", this, «eCharacteristicProperty.name»DataAccess); 
 			«eCharacteristicProperty.name»Tie = new RW«eCharacteristicProperty.getBaciType()»POATie(«eCharacteristicProperty.name»Impl);
 			«eCharacteristicProperty.name» = RO«eCharacteristicProperty.getBaciType()»Helper.narrow(this.registerProperty(«eCharacteristicProperty.name»Impl,«eCharacteristicProperty.name»Tie)); 
 			
-			«ENDFOREACH-»«ENDFOREACH-»
+			«ENDFOREACH-»«ENDIF-»«ENDFOREACH-»
 		}
 		catch(Throwable throwable)
 		{
@@ -232,7 +235,6 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
         // try to initialize BACI properties from «eParent.name»
         try
 		{			
-			
 			«FOREACH getEReadOnlyProperties(eParent) AS eCharacteristicProperty-»
 			«eCharacteristicProperty.name»DataAcess = new MemoryDataAccess();
 			«eCharacteristicProperty.name»Impl = new RO«eCharacteristicProperty.getBaciType()»Impl("«eCharacteristicProperty.name»", this, «eCharacteristicProperty.name»DataAccess); 
