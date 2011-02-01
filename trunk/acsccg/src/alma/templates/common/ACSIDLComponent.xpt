@@ -83,7 +83,7 @@
 /** 
  * @file «eElement.name»Common.idl
  */
-module «getPackage(this).name»Common
+module «getPackage(this).name»
 {
 	/**«IF hasComment(eElement)»«FOREACH getCommentsWrapped(getComment(eElement)) AS comment»
 	 *«comment»«ENDFOREACH»«ENDIF»
