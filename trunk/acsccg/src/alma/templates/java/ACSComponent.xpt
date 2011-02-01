@@ -77,7 +77,7 @@ import alma.ACS.ComponentStates;
 import alma.ACSErrTypeCommon.CouldntPerformActionEx;
 import alma.ACSErrTypeCommon.wrappers.AcsJCouldntPerformActionEx;
 
-import alma.«getPackage(this).name»Common.*;
+import alma.«getPackage(this).name».*;
 import alma.«getPackage(this).name».«getERealization(eElement).name»;
 import alma.«getPackage(this).name».«getERealization(eElement).name»Operations;
 «IF hasParent(getERealization(eElement))-»
