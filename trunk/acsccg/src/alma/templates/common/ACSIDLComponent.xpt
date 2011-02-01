@@ -89,7 +89,7 @@ module «getPackage(this).name»
 	 *«comment»«ENDFOREACH»«ENDIF»
      * @interface «eElement.name»
      */
-	interface «eElement.name» : «IF isECharacteristic(eElement)»ACS::CharacteristicComponent«ELSE»ACS::ACSComponent«ENDIF»«IF hasParent(eElement)» : «FOREACH getParents(eElement) AS eParent SEPARATOR ', '-»«eParent.name»«ENDFOREACH-»«ENDIF» 
+	interface «eElement.name» : «IF isECharacteristic(eElement)»ACS::CharacteristicComponent«ELSE»ACS::ACSComponent«ENDIF»«IF hasParent(eElement)», «FOREACH getParents(eElement) AS eParent SEPARATOR ', '-»«eParent.name»«ENDFOREACH-»«ENDIF» 
 	{
 		«IF isECharacteristic(eElement)-»
 		«FOREACH getEReadOnlyProperties(eElement) AS eCharacteristicProperty»
