@@ -81,7 +81,7 @@ import alma.«getPackage(this).name»Common.*;
 import alma.«getPackage(this).name».«getERealization(eElement).name»;
 import alma.«getPackage(this).name».«getERealization(eElement).name»Operations;
 «IF hasParent(getERealization(eElement))-»
-«FOREACH getAllParents(getERealization(eElement)) AS eParent-»
+«FOREACH getParents(getERealization(eElement)) AS eParent-»
 import alma.«getPackage(this).name».«eParent.name»;
 import alma.«getPackage(this).name».«eParent.name»Operations;
 «ENDFOREACH-»
@@ -114,7 +114,7 @@ import alma.ACS.impl.*;
  * @author ACS Component Code Generator
  * @version «getPropSet('Id')»
  */	
-public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»extends CharacteristicComponentImpl«ENDIF-» implements ComponentLifecycle«FOREACH getERealizations(eElement) AS eInterface-», «eInterface.name»Operations«ENDFOREACH»«IF hasParent(getERealization(eElement))-», «FOREACH getAllParents(getERealization(eElement)) AS eParent SEPARATOR ', '-»«eParent.name»Operations«ENDFOREACH»«ENDIF»
+public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»extends CharacteristicComponentImpl«ENDIF-» implements ComponentLifecycle«FOREACH getERealizations(eElement) AS eInterface-», «eInterface.name»Operations«ENDFOREACH»«IF hasParent(getERealization(eElement))-», «FOREACH getParents(getERealization(eElement)) AS eParent SEPARATOR ', '-»«eParent.name»Operations«ENDFOREACH»«ENDIF»
 {
 
 	private ContainerServices m_containerServices;
@@ -176,7 +176,7 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 	// Implementation of ComponentLifecycle
 	/////////////////////////////////////////////////////////////
 	 
-	public void initialize(ContainerServices containerServices) throws «IF eElement.hasECharacteristicInterfaces()-»ComponentLifecycleException«ENDIF»
+	public void initialize(ContainerServices containerServices)«IF eElement.hasECharacteristicInterfaces()-» throws ComponentLifecycleException«ENDIF»
 	{
 		m_containerServices = containerServices;
 		m_logger = m_containerServices.getLogger();
