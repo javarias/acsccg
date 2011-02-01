@@ -81,24 +81,18 @@ import alma.«getPackage(this).name».*;
 import alma.«getPackage(this).name».«getERealization(eElement).name»;
 import alma.«getPackage(this).name».«getERealization(eElement).name»Operations;
 «IF hasParent(getERealization(eElement))-»
-«FOREACH getParents(getERealization(eElement)) AS eParent-»
-import alma.«getPackage(this).name».«eParent.name»;
-import alma.«getPackage(this).name».«eParent.name»Operations;
-«ENDFOREACH-»
+import alma.«getPackage(this).name».«getParent(getERealization(eElement)).name»;
+import alma.«getPackage(this).name».«getParent(getERealization(eElement)).name»Operations;
 «ENDIF-»
 
-«IF hasNCDefinitions(getERealization(eElement))-»
-«IF hasEPublishers(getERealization(eElement))-»
-import alma.acs.nc.SimpleSupplier
-«ENDIF-»
+«IF hasNCDefinitions(getERealization(eElement))-»«IF hasEPublishers(getERealization(eElement))-»
+import alma.acs.nc.SimpleSupplier;«ENDIF-»
 «IF hasESubscribers(getERealization(eElement))-»
-import alma.acs.nc.Consumer;
-«ENDIF-»
+import alma.acs.nc.Consumer;«ENDIF-»
 
 «FOREACH getNREChannelNames(getNCDefinitions(getERealization(eElement))) AS eElement -»
 import alma.«getPackage(this).name»Common.CHANNEL_«eElement.type.name.toUpperCase()»;
-«ENDFOREACH-»
-«ENDIF-»
+«ENDFOREACH-»«ENDIF-»
 
 «IF hasECharacteristicInterfaces(eElement)-»
 import alma.ACS.jbaci.*;
@@ -114,14 +108,12 @@ import alma.ACS.impl.*;
  * @author ACS Component Code Generator
  * @version «getPropSet('Id')»
  */	
-public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»extends CharacteristicComponentImpl«ENDIF-» implements ComponentLifecycle«FOREACH getERealizations(eElement) AS eInterface-», «eInterface.name»Operations«ENDFOREACH»«IF hasParent(getERealization(eElement))-», «FOREACH getParents(getERealization(eElement)) AS eParent SEPARATOR ', '-»«eParent.name»Operations«ENDFOREACH»«ENDIF»
+public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»extends CharacteristicComponentImpl«ENDIF-» implements ComponentLifecycle«FOREACH getERealizations(eElement) AS eInterface-», «eInterface.name»Operations«ENDFOREACH»«IF hasParent(getERealization(eElement))-», «getParent(getERealization(eElement)).name»Operations«ENDIF»
 {
-
 	private ContainerServices m_containerServices;
     private Logger m_logger;
     
-    «IF hasNCDefinitions(getERealization(eElement))-»
-	«IF hasEPublishers(getERealization(eElement))-»
+    «IF hasNCDefinitions(getERealization(eElement))-»«IF hasEPublishers(getERealization(eElement))-»
 	private SimpleSupplier m_supplier = null;
 	«ENDIF-»
 	«IF hasESubscribers(getERealization(eElement))-»
@@ -132,45 +124,40 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 	«FOREACH getERealizations(eElement) AS eInterface-»
 	«FOREACH getEReadOnlyProperties(eInterface) AS eCharacteristicProperty-»
 	«IF hasComment(eCharacteristicProperty)»/* «getComment(eCharacteristicProperty)» */«ELSE-»«ENDIF»
-	protected DataAcess «eCharacteristicProperty.name»DataAcess;
-	protected RO«eCharacteristicProperty.getBaciType()» «eCharacteristicProperty.name»;
-	protected RO«eCharacteristicProperty.getBaciType()»Impl «eCharacteristicProperty.name»Impl;
-	protected RO«eCharacteristicProperty.getBaciType()»POATie «eCharacteristicProperty.name»Tie;
+	//protected DataAcess «eCharacteristicProperty.name»DataAcess;
+	//protected RO«eCharacteristicProperty.getBaciType()» «eCharacteristicProperty.name»;
+	//protected RO«eCharacteristicProperty.getBaciType()»Impl «eCharacteristicProperty.name»Impl;
+	//protected RO«eCharacteristicProperty.getBaciType()»POATie «eCharacteristicProperty.name»Tie;
 	
 	«ENDFOREACH-»
 	«FOREACH getEReadWriteProperties(eInterface) AS eCharacteristicProperty-»
 	«IF hasComment(eCharacteristicProperty)»/* «getComment(eCharacteristicProperty)» */«ELSE-»«ENDIF»
-	protected DataAcess «eCharacteristicProperty.name»DataAcess;
-	protected RW«eCharacteristicProperty.getBaciType()» «eCharacteristicProperty.name»;
-	protected RW«eCharacteristicProperty.getBaciType()»Impl «eCharacteristicProperty.name»Impl;
-	protected RW«eCharacteristicProperty.getBaciType()»POATie «eCharacteristicProperty.name»Tie;
+	//protected DataAcess «eCharacteristicProperty.name»DataAcess;
+	//protected RW«eCharacteristicProperty.getBaciType()» «eCharacteristicProperty.name»;
+	//protected RW«eCharacteristicProperty.getBaciType()»Impl «eCharacteristicProperty.name»Impl;
+	//protected RW«eCharacteristicProperty.getBaciType()»POATie «eCharacteristicProperty.name»Tie;
 	
-	«ENDFOREACH-»
-	«ENDFOREACH-»
-	«ENDIF-»
+	«ENDFOREACH-»«ENDFOREACH-»«ENDIF-»
 	
 	«IF hasParent(getERealization(eElement))-»
 	«FOREACH getAllParents(getERealization(eElement)) AS eParent-»
 	«IF isECharacteristic(eParent)-»
 	«FOREACH getEReadOnlyProperties(eParent) AS eCharacteristicProperty-»
 	«IF hasComment(eCharacteristicProperty)»/* «getComment(eCharacteristicProperty)» */«ELSE-»«ENDIF»
-	protected DataAcess «eCharacteristicProperty.name»DataAcess;
+	//protected DataAcess «eCharacteristicProperty.name»DataAcess;
 	protected RO«eCharacteristicProperty.getBaciType()» «eCharacteristicProperty.name»;
-	protected RO«eCharacteristicProperty.getBaciType()»Impl «eCharacteristicProperty.name»Impl;
-	protected RO«eCharacteristicProperty.getBaciType()»POATie «eCharacteristicProperty.name»Tie;
+	//protected RO«eCharacteristicProperty.getBaciType()»Impl «eCharacteristicProperty.name»Impl;
+	//protected RO«eCharacteristicProperty.getBaciType()»POATie «eCharacteristicProperty.name»Tie;
 	
 	«ENDFOREACH-»
 	«FOREACH getEReadWriteProperties(eParent) AS eCharacteristicProperty-»
 	«IF hasComment(eCharacteristicProperty)»/* «getComment(eCharacteristicProperty)» */«ELSE-»«ENDIF»
-	protected DataAcess «eCharacteristicProperty.name»DataAcess;
+	//protected DataAcess «eCharacteristicProperty.name»DataAcess;
 	protected RW«eCharacteristicProperty.getBaciType()» «eCharacteristicProperty.name»;
-	protected RW«eCharacteristicProperty.getBaciType()»Impl «eCharacteristicProperty.name»Impl;
-	protected RW«eCharacteristicProperty.getBaciType()»POATie «eCharacteristicProperty.name»Tie;
+	//protected RW«eCharacteristicProperty.getBaciType()»Impl «eCharacteristicProperty.name»Impl;
+	//protected RW«eCharacteristicProperty.getBaciType()»POATie «eCharacteristicProperty.name»Tie;
 	
-	«ENDFOREACH-»
-	«ENDIF-»
-	«ENDFOREACH-»
-	«ENDIF-»
+	«ENDFOREACH-»«ENDIF-»«ENDFOREACH-»«ENDIF-»
 			
     /////////////////////////////////////////////////////////////
 	// Implementation of ComponentLifecycle
@@ -202,6 +189,7 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
         // try to initialize BACI properties from «getERealization(eElement).name»
         try
 		{
+			/*
 			«FOREACH getERealizations(eElement) AS eInterface-»
 			«IF !getEReadOnlyProperties(eInterface).isEmpty-»
 			«FOREACH getEReadOnlyProperties(eInterface) AS eCharacteristicProperty-»
@@ -220,6 +208,7 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 			«eCharacteristicProperty.name» = RO«eCharacteristicProperty.getBaciType()»Helper.narrow(this.registerProperty(«eCharacteristicProperty.name»Impl,«eCharacteristicProperty.name»Tie)); 
 			
 			«ENDFOREACH-»«ENDIF-»«ENDFOREACH-»
+			*/
 		}
 		catch(Throwable throwable)
 		{
@@ -234,7 +223,8 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
         «IF hasRORWProperties(eParent)-»
         // try to initialize BACI properties from «eParent.name»
         try
-		{			
+		{	
+			/*		
 			«FOREACH getEReadOnlyProperties(eParent) AS eCharacteristicProperty-»
 			«eCharacteristicProperty.name»DataAcess = new MemoryDataAccess();
 			«eCharacteristicProperty.name»Impl = new RO«eCharacteristicProperty.getBaciType()»Impl("«eCharacteristicProperty.name»", this, «eCharacteristicProperty.name»DataAccess); 
@@ -249,15 +239,13 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 			«eCharacteristicProperty.name» = RO«eCharacteristicProperty.getBaciType()»Helper.narrow(this.registerProperty(«eCharacteristicProperty.name»Impl,«eCharacteristicProperty.name»Tie)); 
 			
 			«ENDFOREACH-»
+			*/
 		}
 		catch(Throwable throwable)
 		{
 			throw new ComponentLifecycleException("Failed to create properties of «eParent.name»", throwable); 
 		}
-		«ENDIF-»
-		«ENDIF-»
-		«ENDFOREACH-»
-        «ENDIF-»
+		«ENDIF-»«ENDIF-»«ENDFOREACH-»«ENDIF-»
      }
 	
 	public void execute() 
@@ -355,7 +343,7 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 	«IF isECharacteristic(eParent)-»
 	«IF hasRORWProperties(eParent)-»
 	/////////////////////////////////////////////////////////////
-	// Implementation of BACI getters inherited «eParent.name»
+	// Implementation of BACI  inherited «eParent.name»
 	/////////////////////////////////////////////////////////////
 	«FOREACH getEReadOnlyProperties(eParent) AS eCharacteristicProperty-»
 	/**
@@ -374,12 +362,13 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 	 * Get the «eCharacteristicProperty.name»
 	 * @return RO«eCharacteristicProperty.getBaciType()»
 	 */
-	public RW«eCharacteristicProperty.getBaciType()» get«eCharacteristicProperty.name»()
+	public RW«eCharacteristicProperty.getBaciType()» «eCharacteristicProperty.name»()
 	{
 		return «eCharacteristicProperty.name»;
 	}
 	«ENDFOREACH-»«ENDIF-»«ENDIF-»«ENDFOREACH-»«ENDIF-»
    
+   «IF !getERealization(eElement).getOperations().isEmpty-»
 	/////////////////////////////////////////////////////////////
 	// Implementation of «getERealization(eElement).name»Operations
 	/////////////////////////////////////////////////////////////
@@ -396,15 +385,15 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
     {
     	«IF !isVoid(eOperation)»return «getReturnValue(eOperation)»;«ENDIF»  
 	}
+	«ENDFOREACH-»«ENDIF-»
 	
-	«ENDFOREACH-»
 	«IF hasParent(getERealization(eElement))-»
 	«FOREACH getAllParents(getERealization(eElement)) AS eParent-»
 	/////////////////////////////////////////////////////////////
 	// Implementation of Inherited «eParent.name»Operations
 	/////////////////////////////////////////////////////////////
-
 	«FOREACH eParent.getOperations() AS eOperation-»
+	
 	/**«IF hasComment(eOperation)»«FOREACH getCommentsWrapped(getComment(eOperation)) AS comment»
 	 *«comment»«ENDFOREACH»«ENDIF»
 	«FOREACH eOperation.ownedParameter.select(e|e.direction.toString()!= 'return') AS cParam-»
@@ -416,7 +405,6 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
     {
     	«IF !isVoid(eOperation)»return «getReturnValue(eOperation)»;«ENDIF»  
 	}
-	
 	«ENDFOREACH-»«ENDFOREACH-»«ENDIF-»
 } 
 «ENDFILE»
