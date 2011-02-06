@@ -158,7 +158,6 @@ tttlll_OBJECTS  =
 # ----------------------------
 CDB_SCHEMAS = «FOREACH getEComponentsImpl(getPackage(this)) AS eElement -»«IF hasECharacteristicInterfaces(eElement)-» «eElement.name»«ENDIF-»«ENDFOREACH»
 «IF hasNCDefinitions(getPackage(this))-»
-CDB_SCHEMAS += EventChannel
 «FOREACH getNREChannelNames( getNCDefinitions(getPackage(this)) ) AS eElement -»
 CDB_SCHEMAS += CHANNEL_«eElement.type.name.toUpperCase()»
 «ENDFOREACH»

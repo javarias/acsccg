@@ -33,7 +33,7 @@
 
 «IF hasNCDefinitions(getPackage(this))-»
 «FOREACH getNREChannelNames( getNCDefinitions(getPackage(this)) ) AS eElement -»
-«FILE getPackage(this).name+'/config/CDB/MACI/Channels/CHANNEL_'+eElement.type.name.toUpperCase() +'/CHANNEL_'+eElement.type.name.toUpperCase()+'.xsd'-»
+«FILE getPackage(this).name+'/test/CDB/MACI/Channels/CHANNEL_'+eElement.type.name.toUpperCase() +'/CHANNEL_'+eElement.type.name.toUpperCase()+'.xsd'-»
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <Channels xmlns="urn:schemas-cosylab-com:Channels:1.0"
        xmlns:cdb="urn:schemas-cosylab-com:CDB:1.0" 

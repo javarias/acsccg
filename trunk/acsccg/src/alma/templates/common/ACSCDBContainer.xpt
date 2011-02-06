@@ -26,7 +26,7 @@
 
 «DEFINE Root FOR uml::Model»
 «FOREACH getEContainers(getPackage(this)) AS eElement -»
-«FILE  getPackage(this).name+'/config/CDB/MACI/Containers/'+eElement.name+'/'+eElement.name+'.xml'-»
+«FILE  getPackage(this).name+'/test/CDB/MACI/Containers/'+eElement.name+'/'+eElement.name+'.xml'-»
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <Container 
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 

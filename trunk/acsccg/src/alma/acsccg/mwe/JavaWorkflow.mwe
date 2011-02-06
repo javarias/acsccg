@@ -87,7 +87,8 @@
 		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
 	</component>
 	
-	<!-- CDBEventChannel -->
+	<!-- CDBEventChannel 
+	# See Notification Channel Document of ACS...
 	<component id="ACS_CDB_EVENTCHANNEL" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
 		<fileEncoding value="UTF-8" />
 		<metaModel idRef="default_profile"/>
@@ -95,6 +96,7 @@
 		<expand value="templates::common::ACSCDBEventChannel::Root FOR model"/>
 		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
 	</component>
+	-->
 	
 	<!-- IDL Component -->
 	<component id="ACS_IDLCOMPONENT" class="org.eclipse.xpand2.Generator" skipOnErrors="true">

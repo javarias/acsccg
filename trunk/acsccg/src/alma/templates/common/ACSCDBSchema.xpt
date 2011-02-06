@@ -52,7 +52,7 @@
 	    </xs:sequence>
 	</xs:complexType>
 	
-	<xs:element name=«eElement.name» type="«eElement.name»Type"/>
+	<xs:element name=«eElement.name» type="«eElement.name»"/>
 	
 	«ENDIF-»
 	«ENDFOREACH-»

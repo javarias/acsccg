@@ -74,6 +74,11 @@ import alma.acs.component.ComponentLifecycleException;
 import alma.ACS.*;
 import alma.ACS.ComponentStates;
 
+«IF hasECharacteristicInterfaces(eElement)-»
+import alma.ACS.jbaci.*;
+import alma.ACS.impl.*;
+«ENDIF-»
+
 import alma.ACSErrTypeCommon.CouldntPerformActionEx;
 import alma.ACSErrTypeCommon.wrappers.AcsJCouldntPerformActionEx;
 
@@ -93,11 +98,6 @@ import alma.acs.nc.Consumer;«ENDIF-»
 «FOREACH getNREChannelNames(getNCDefinitions(getERealization(eElement))) AS eElement -»
 import alma.«getPackage(this).name»Common.CHANNEL_«eElement.type.name.toUpperCase()»;
 «ENDFOREACH-»«ENDIF-»
-
-«IF hasECharacteristicInterfaces(eElement)-»
-import alma.ACS.jbaci.*;
-import alma.ACS.impl.*;
-«ENDIF-»
 
 /**«IF hasComment(eElement)»«FOREACH getCommentsWrapped(getComment(eOperation)) AS comment»
  *«comment»«ENDFOREACH»«ENDIF»
@@ -326,7 +326,6 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 	}
 	
 	«ENDFOREACH-»
-	
 	«FOREACH getEReadWriteProperties(eInterface) AS eCharacteristicProperty-»
 	/**
 	 * Get the «eCharacteristicProperty.name»
