@@ -34,31 +34,31 @@
 «FOREACH getEComponentsImpl(getPackage(this)) AS eElement -»
 «FILE  getPackage(this).name+'/src/alma/'+getPackage(this).name+'/'+eElement.name+'.java'-»
 /*******************************************************************************
- * ALMA - Atacama Large Millimiter Array
+ *	ALMA - Atacama Large Millimiter Array
  *
- * (c) European Southern Observatory, 2002
- * Copyright by ESO (in the framework of the ALMA collaboration)
- * and Cosylab 2002, All rights reserved
+ *	(c) European Southern Observatory, 2002
+ *	Copyright by ESO (in the framework of the ALMA collaboration)
+ *	and Cosylab 2002, All rights reserved
  *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
+ *	This library is free software; you can redistribute it and/or
+ *	modify it under the terms of the GNU Lesser General Public
+ *	License as published by the Free Software Foundation; either
+ *	version 2.1 of the License, or (at your option) any later version.
  *
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
+ *	This library is distributed in the hope that it will be useful,
+ *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ *	Lesser General Public License for more details.
  *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307  USA
+ *	You should have received a copy of the GNU Lesser General Public
+ *	License along with this library; if not, write to the Free Software
+ *	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307  USA
  *
  * "@(#) «getPropSet('Id')»"
  *
- * who                 when                             what
- * ----------------    -----------------------------    ------------------------
- * ACSCCG              «getCommentDate()»    Creation of the file
+ *	who                 when                             what
+ *	----------------    -----------------------------    ------------------------
+ *	ACSCCG              «getCommentDate()»    Creation of the file
  * 
  */
 
@@ -111,16 +111,16 @@ import alma.«getPackage(this).name»Common.CHANNEL_«eElement.type.name.toUpper
 public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»extends CharacteristicComponentImpl«ENDIF-» implements ComponentLifecycle«FOREACH getERealizations(eElement) AS eInterface-», «eInterface.name»Operations«ENDFOREACH»«IF hasParent(getERealization(eElement))-», «getParent(getERealization(eElement)).name»Operations«ENDIF»
 {
 	private ContainerServices m_containerServices;
-    private Logger m_logger;
+	private Logger m_logger;
     
-    «IF hasNCDefinitions(getERealization(eElement))-»«IF hasEPublishers(getERealization(eElement))-»
+	«IF hasNCDefinitions(getERealization(eElement))-»«IF hasEPublishers(getERealization(eElement))-»
 	private SimpleSupplier m_supplier = null;
 	«ENDIF-»
 	«IF hasESubscribers(getERealization(eElement))-»
 	private Consumer m_consumer = null;
 	«ENDIF-»«ENDIF-»
-    
-    «IF hasECharacteristicInterfaces(eElement)-»
+	
+	«IF hasECharacteristicInterfaces(eElement)-»
 	«FOREACH getERealizations(eElement) AS eInterface-»
 	«FOREACH getEReadOnlyProperties(eInterface) AS eCharacteristicProperty-»
 	«IF hasComment(eCharacteristicProperty)»/* «getComment(eCharacteristicProperty)» */«ELSE-»«ENDIF»
@@ -157,7 +157,10 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 	//protected RW«eCharacteristicProperty.getBaciType()»Impl «eCharacteristicProperty.name»Impl;
 	//protected RW«eCharacteristicProperty.getBaciType()»POATie «eCharacteristicProperty.name»Tie;
 	
-	«ENDFOREACH-»«ENDIF-»«ENDFOREACH-»«ENDIF-»
+	«ENDFOREACH-»
+	«ENDIF-»
+	«ENDFOREACH-»
+	«ENDIF-»
 			
     /////////////////////////////////////////////////////////////
 	// Implementation of ComponentLifecycle
@@ -168,9 +171,9 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 		m_containerServices = containerServices;
 		m_logger = m_containerServices.getLogger();
 		
-        m_logger.info("initialize() called...");
-        
-        «IF hasNCDefinitions(getERealization(eElement))-»
+		m_logger.info("initialize() called...");
+		
+		«IF hasNCDefinitions(getERealization(eElement))-»
 		«IF hasEPublishers(getERealization(eElement))-»
 		m_supplier = new SimpleSupplier(CHANNEL_«getEPublishers(getERealization(eElement)).first().type.name.toUpperCase()».value,m_containerServices);
 		
@@ -182,12 +185,12 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 		m_consumer.disconnect()
 		«ENDIF-»
 		«ENDIF-»
-        
-        «IF eElement.hasECharacteristicInterfaces()-»
-        super.initialize(containerServices);
-        «IF hasRORWProperties(getERealization(eElement))-»
-        // try to initialize BACI properties from «getERealization(eElement).name»
-        try
+		
+		«IF eElement.hasECharacteristicInterfaces()-»
+		super.initialize(containerServices);
+		«IF hasRORWProperties(getERealization(eElement))-»
+		// try to initialize BACI properties from «getERealization(eElement).name»
+		try
 		{
 			/*
 			«FOREACH getERealizations(eElement) AS eInterface-»
@@ -198,7 +201,8 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 			«eCharacteristicProperty.name»Tie = new RO«eCharacteristicProperty.getBaciType()»POATie(«eCharacteristicProperty.name»Impl);
 			«eCharacteristicProperty.name» = RO«eCharacteristicProperty.getBaciType()»Helper.narrow(this.registerProperty(«eCharacteristicProperty.name»Impl,«eCharacteristicProperty.name»Tie)); 
 			 
-			«ENDFOREACH-»«ENDIF-»
+			«ENDFOREACH-»
+			«ENDIF-»
 			
 			«IF !getEReadWriteProperties(eInterface).isEmpty-»
 			«FOREACH getEReadWriteProperties(eInterface) AS eCharacteristicProperty-»
@@ -207,22 +211,24 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 			«eCharacteristicProperty.name»Tie = new RW«eCharacteristicProperty.getBaciType()»POATie(«eCharacteristicProperty.name»Impl);
 			«eCharacteristicProperty.name» = RO«eCharacteristicProperty.getBaciType()»Helper.narrow(this.registerProperty(«eCharacteristicProperty.name»Impl,«eCharacteristicProperty.name»Tie)); 
 			
-			«ENDFOREACH-»«ENDIF-»«ENDFOREACH-»
+			«ENDFOREACH-»
+			«ENDIF-»
+			«ENDFOREACH-»
 			*/
 		}
 		catch(Throwable throwable)
 		{
 			throw new ComponentLifecycleException("Failed to create properties of «getERealization(eElement).name»", throwable); 
 		}
-        «ENDIF-»
-        «ENDIF-»
+		«ENDIF-»
+		«ENDIF-»
 		
 		«IF hasParent(getERealization(eElement))-»
 		«FOREACH getAllParents(getERealization(eElement)) AS eParent-»
 		«IF isECharacteristic(eParent)-»
         «IF hasRORWProperties(eParent)-»
         // try to initialize BACI properties from «eParent.name»
-        try
+		try
 		{	
 			/*		
 			«FOREACH getEReadOnlyProperties(eParent) AS eCharacteristicProperty-»
@@ -245,61 +251,64 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 		{
 			throw new ComponentLifecycleException("Failed to create properties of «eParent.name»", throwable); 
 		}
-		«ENDIF-»«ENDIF-»«ENDFOREACH-»«ENDIF-»
+		«ENDIF-»
+		«ENDIF-»
+		«ENDFOREACH-»
+		«ENDIF-»
      }
 	
 	public void execute() 
 	{
-        m_logger.info("execute() called...");
-    }
-    
-    public void cleanUp() 
-    {
-        m_logger.info("cleanUp() called...");
-    }
-    
-    public void aboutToAbort() 
-    {
-        cleanUp();
-        m_logger.info("aboutToAbort() called...");
-    }
+	    m_logger.info("execute() called...");
+	}
+	
+	public void cleanUp() 
+	{
+	    m_logger.info("cleanUp() called...");
+	}
+	
+	public void aboutToAbort() 
+	{
+	    cleanUp();
+	    m_logger.info("aboutToAbort() called...");
+	}
     
 	/////////////////////////////////////////////////////////////
 	// Implementation of ACSComponent
 	/////////////////////////////////////////////////////////////
 
-    public ComponentStates componentState() 
-    {
-        return m_containerServices.getComponentStateManager().getCurrentState();
-    }
+	public ComponentStates componentState() 
+	{
+	    return m_containerServices.getComponentStateManager().getCurrentState();
+	}
+	
+	public String name() 
+	{
+	    return m_containerServices.getName();
+	}
     
-    public String name() 
-    {
-        return m_containerServices.getName();
-    }
-    
-    «IF hasNCDefinitions(getERealization(eElement))-»
-    /////////////////////////////////////////////////////////////
+	«IF hasNCDefinitions(getERealization(eElement))-»
+	/////////////////////////////////////////////////////////////
 	// Implementation of Notification Channel Operations
 	/////////////////////////////////////////////////////////////
 	
 	«IF hasEPublishers(getERealization(eElement))-»
 	public void sendEvent() throws CouldntPerformActionEx
-    {
-        try 
-        {
-        	// TODO
-        	// e.g.:
-            // myEventIDLStruct  event = new MyEventIDLStruct(Math.random(), "Event");
-            // m_supplier.publishEvent(myEventIDLStruct);
-            // m_logger.info("Now sending myEventIDLStruct event...");
-        }
-        catch(Throwable thr) 
-        {
-            m_logger.log(Level.WARNING, "failed to send event.");
-            throw (new AcsJCouldntPerformActionEx(thr)).toCouldntPerformActionEx();
-        }
-    }
+	{
+		try 
+		{
+			// TODO
+			// e.g.:
+			// myEventIDLStruct  event = new MyEventIDLStruct(Math.random(), "Event");
+			// m_supplier.publishEvent(myEventIDLStruct);
+			// m_logger.info("Now sending myEventIDLStruct event...");
+		}
+		catch(Throwable thr) 
+		{
+			m_logger.log(Level.WARNING, "failed to send event.");
+			throw (new AcsJCouldntPerformActionEx(thr)).toCouldntPerformActionEx();
+		}
+	}
 	«ENDIF-»
 	
 	«IF hasESubscribers(getERealization(eElement))-»
@@ -307,7 +316,8 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 	{
 		// TODO
 	}
-	«ENDIF-»«ENDIF-»
+	«ENDIF-»
+	«ENDIF-»
     
     «IF hasECharacteristicInterfaces(eElement)-»
 	«FOREACH getERealizations(eElement) AS eInterface-»
@@ -365,7 +375,11 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 	{
 		return «eCharacteristicProperty.name»;
 	}
-	«ENDFOREACH-»«ENDIF-»«ENDIF-»«ENDFOREACH-»«ENDIF-»
+	«ENDFOREACH-»
+	«ENDIF-»
+	«ENDIF-»
+	«ENDFOREACH-»
+	«ENDIF-»
    
    «IF !getERealization(eElement).getOperations().isEmpty-»
 	/////////////////////////////////////////////////////////////
@@ -382,9 +396,10 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 	 */	
 	public «getJavaReturnType(eOperation)» «eOperation.name-»(«FOREACH eOperation.ownedParameter.select(e|e.direction.toString()!= 'return') AS param SEPARATOR ', '-»«getJavaParam(param)» «param.name»«ENDFOREACH-») 
     {
-    	«IF !isVoid(eOperation)»return «getReturnValue(eOperation)»;«ENDIF»  
+		«IF !isVoid(eOperation)»return «getReturnValue(eOperation)»;«ENDIF»  
 	}
-	«ENDFOREACH-»«ENDIF-»
+	«ENDFOREACH-»
+	«ENDIF-»
 	
 	«IF hasParent(getERealization(eElement))-»
 	«FOREACH getAllParents(getERealization(eElement)) AS eParent-»
@@ -401,10 +416,12 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 	 * @return «getIDLReturnType(eOperation)»
 	 */	
 	public «getJavaReturnType(eOperation)» «eOperation.name-»(«FOREACH eOperation.ownedParameter.select(e|e.direction.toString()!= 'return') AS param SEPARATOR ', '-»«getJavaParam(param)» «param.name»«ENDFOREACH-») 
-    {
-    	«IF !isVoid(eOperation)»return «getReturnValue(eOperation)»;«ENDIF»  
+	{
+		«IF !isVoid(eOperation)»return «getReturnValue(eOperation)»;«ENDIF»  
 	}
-	«ENDFOREACH-»«ENDFOREACH-»«ENDIF-»
+	«ENDFOREACH-»
+	«ENDFOREACH-»
+	«ENDIF-»
 } 
 «ENDFILE»
 «ENDFOREACH»
