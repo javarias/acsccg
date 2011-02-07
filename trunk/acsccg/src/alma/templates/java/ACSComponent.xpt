@@ -93,10 +93,10 @@ import alma.«getPackage(this).name».«getParent(getERealization(eElement)).nam
 «IF hasNCDefinitions(getERealization(eElement))-»«IF hasEPublishers(getERealization(eElement))-»
 import alma.acs.nc.SimpleSupplier;«ENDIF-»
 «IF hasESubscribers(getERealization(eElement))-»
-import alma.acs.nc.Consumer;«ENDIF-»
+import alma.acs.nc.Consumer;«ENDIF-»
 
 «FOREACH getNREChannelNames(getNCDefinitions(getERealization(eElement))) AS eElement -»
-import alma.«getPackage(this).name»Common.CHANNEL_«eElement.type.name.toUpperCase()»;
+import alma.«getPackage(this).name».CHANNELNAME_«eElement.name.toUpperCase()»;
 «ENDFOREACH-»«ENDIF-»
 
 /**«IF hasComment(eElement)»«FOREACH getCommentsWrapped(getComment(eOperation)) AS comment»
@@ -114,10 +114,10 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 	private Logger m_logger;
     
 	«IF hasNCDefinitions(getERealization(eElement))-»«IF hasEPublishers(getERealization(eElement))-»
-	private SimpleSupplier m_supplier = null;
+	private SimpleSupplier m_supplier = null;
 	«ENDIF-»
 	«IF hasESubscribers(getERealization(eElement))-»
-	private Consumer m_consumer = null;
+	private Consumer m_consumer = null;
 	«ENDIF-»«ENDIF-»
 	
 	«IF hasECharacteristicInterfaces(eElement)-»
@@ -175,14 +175,20 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 		
 		«IF hasNCDefinitions(getERealization(eElement))-»
 		«IF hasEPublishers(getERealization(eElement))-»
-		m_supplier = new SimpleSupplier(CHANNEL_«getEPublishers(getERealization(eElement)).first().type.name.toUpperCase()».value,m_containerServices);
-		
+		m_supplier = new SimpleSupplier(CHANNELNAME_«getEPublishers(getERealization(eElement)).first().name.toUpperCase()».value, m_containerServices);
 		«ENDIF-»
 		«IF hasESubscribers(getERealization(eElement))-»
-		m_consumer = new Consumer(CHANNEL_«getEPublishers(getERealization(eElement)).first().type.name.toUpperCase()».value,m_containerServices);
-		m_consumer.addSubscription(alma.FRIDGE.temperatureDataBlockEvent.class, this);
-		m_consumer.consumerReady();
-		m_consumer.disconnect()
+		try
+		{
+			m_consumer = new Consumer(CHANNELNAME_«getEPublishers(getERealization(eElement)).first().name.toUpperCase()».value, m_containerServices);
+			m_consumer.addSubscription(alma.FRIDGE.temperatureDataBlockEvent.class, this);
+			m_consumer.consumerReady();
+			m_consumer.disconnect();
+		}
+		catch (AcsJException e)
+		{
+			m_logger.info("Consumer init failed..");
+		}
 		«ENDIF-»
 		«ENDIF-»
 		
@@ -227,8 +233,7 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
         «IF hasRORWProperties(eParent)-»
         // try to initialize BACI properties from «eParent.name»
 		try
-		{	
-			/*		
+		{		
 			«FOREACH getEReadOnlyProperties(eParent) AS eCharacteristicProperty-»
 			«eCharacteristicProperty.name»DataAcess = new MemoryDataAccess();
 			«eCharacteristicProperty.name»Impl = new RO«eCharacteristicProperty.getBaciType()»Impl("«eCharacteristicProperty.name»", this, «eCharacteristicProperty.name»DataAccess); 
@@ -240,10 +245,9 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 			«eCharacteristicProperty.name»DataAcess = new MemoryDataAccess();
 			«eCharacteristicProperty.name»Impl = new RW«eCharacteristicProperty.getBaciType()»Impl("«eCharacteristicProperty.name»", this, «eCharacteristicProperty.name»DataAccess); 
 			«eCharacteristicProperty.name»Tie = new RW«eCharacteristicProperty.getBaciType()»POATie(«eCharacteristicProperty.name»Impl);
-			«eCharacteristicProperty.name» = RO«eCharacteristicProperty.getBaciType()»Helper.narrow(this.registerProperty(«eCharacteristicProperty.name»Impl,«eCharacteristicProperty.name»Tie)); 
+			«eCharacteristicProperty.name» = RW«eCharacteristicProperty.getBaciType()»Helper.narrow(this.registerProperty(«eCharacteristicProperty.name»Impl,«eCharacteristicProperty.name»Tie)); 
 			
 			«ENDFOREACH-»
-			*/
 		}
 		catch(Throwable throwable)
 		{
@@ -310,7 +314,7 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 	«ENDIF-»
 	
 	«IF hasESubscribers(getERealization(eElement))-»
-	public void receive(CHANNEL_«getEPublishers(getERealization(eElement)).first().type.name.toUpperCase()» «getEPublishers(getERealization(eElement)).first().type.name.toLowerCase()»)
+	public void receive(«getEPublishers(getERealization(eElement)).first().type.name.toUpperCase()» «getEPublishers(getERealization(eElement)).first().type.name.toLowerCase()»)
 	{
 		// TODO
 	}

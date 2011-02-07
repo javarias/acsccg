@@ -91,7 +91,7 @@ module «getPackage(this).name»
 	«IF hasNCDefinitions(getPackage(this))-»
 	/* Notification Channels Denfitions */
 	«FOREACH getNREChannelNames(getNCDefinitions(getPackage(this))) AS eElement -»
-	const string CHANNEL_«eElement.type.name.toUpperCase()» = "«eElement.type.name»";
+	const string CHANNEL_«eElement.name.toUpperCase()» = "«eElement.name»";
 	«ENDFOREACH-»
 	«ENDIF-»
 		
