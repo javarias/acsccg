@@ -3,7 +3,7 @@
 
 «DEFINE Root FOR uml::Model»
 
-«FILE  getPackage(this).name+'/.classpath'-»
+«FILE getPackage(this).name+'/.classpath'-»
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>	
@@ -841,10 +841,10 @@
 </classpath>
 «ENDFILE»
 
-«FILE  getPackage(this).name+'/.project'-»
+«FILE getPackage(this).name+'/.project'-»
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>projectName</name>
+	<name>«getPackage(this).name»</name>
 	<comment></comment>
 	<projects>
 	</projects>

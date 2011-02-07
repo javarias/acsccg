@@ -32,7 +32,7 @@
 «DEFINE Root FOR uml::Model»
 
 «FOREACH getEComponentsImpl(getPackage(this)) AS eElement -»
-«FILE  getPackage(this).name+'/src/alma/'+getPackage(this).name+'/'+eElement.name+'.java'-»
+«FILE getPackage(this).name+'/src/alma/'+getPackage(this).name+'/'+eElement.name+'.java'-»
 /*******************************************************************************
  *	ALMA - Atacama Large Millimiter Array
  *
