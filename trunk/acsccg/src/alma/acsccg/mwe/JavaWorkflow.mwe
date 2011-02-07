@@ -137,12 +137,21 @@
 		</outlet>
 	</component>
 	
-	<!-- Component Helper-->
+	<!-- Component Helper -->
 	<component id="ACS_COMPONENT_HELPER" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
 		<fileEncoding value="UTF-8" />
 		<metaModel idRef="default_profile"/>
 		<genPath value="${ouputFolderURI}"/>
 		<expand value="templates::java::ACSComponentHelper::Root FOR model"/>
+		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
+	</component>
+	
+	<!-- Eclipse Project Setup -->
+	<component id="ECLIPSE_PROJECT_SETUP" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
+		<fileEncoding value="UTF-8" />
+		<metaModel idRef="default_profile"/>
+		<genPath value="${ouputFolderURI}"/>
+		<expand value="templates::java::ACSEclipseProject::Root FOR model"/>
 		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
 	</component>
 		
