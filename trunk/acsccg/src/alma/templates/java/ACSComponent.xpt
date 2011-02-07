@@ -349,7 +349,7 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 	 * Get the «eCharacteristicProperty.name»
 	 * @return RO«eCharacteristicProperty.getBaciType()»
 	 */
-	public RO«eCharacteristicProperty.getBaciType()» get«eCharacteristicProperty.name»()
+	public RO«eCharacteristicProperty.getBaciType()» «eCharacteristicProperty.name»()
 	{
 		return «eCharacteristicProperty.name»;
 	}
