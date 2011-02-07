@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:EProfile="http:///schemas/EProfile/_5yB8cDJgEeCEF7q1aaZOxw/0" xmlns:MagicDrawProfile="http:///schemas/MagicDrawProfile/_5xyE0DJgEeCEF7q1aaZOxw/0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/2.0.0/UML" xsi:schemaLocation="http:///schemas/EProfile/_5yB8cDJgEeCEF7q1aaZOxw/0 EProfile.profile.uml#_6JA6JTJgEeCEF7q1aaZOxw http:///schemas/MagicDrawProfile/_5xyE0DJgEeCEF7q1aaZOxw/0 UML_Standard_Profile.MagicDraw_Profile.profile.uml#_6I_D9TJgEeCEF7q1aaZOxw">
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:EProfile="http:///schemas/EProfile/_Y13OoDJmEeCEF7q1aaZOxw/0" xmlns:MagicDrawProfile="http:///schemas/MagicDrawProfile/_Y1bw0DJmEeCEF7q1aaZOxw/0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/2.0.0/UML" xsi:schemaLocation="http:///schemas/EProfile/_Y13OoDJmEeCEF7q1aaZOxw/0 EProfile.profile.uml#_ZLm1_TJmEeCEF7q1aaZOxw http:///schemas/MagicDrawProfile/_Y1bw0DJmEeCEF7q1aaZOxw/0 UML_Standard_Profile.MagicDraw_Profile.profile.uml#_ZLlADDJmEeCEF7q1aaZOxw">
   <uml:Model xmi:id="eee_1045467100313_135436_1" name="Data" viewpoint="">
     <ownedComment xmi:id="_16_6_1_ec40342_1279695655691_897174_343" body="Author:atejeda.&#xA;Created:1/27/10 3:11 PM.&#xA;Title:.&#xA;Comment:.&#xA;" annotatedElement="eee_1045467100313_135436_1"/>
     <packageImport xmi:id="_0primitiveTypesData">
@@ -359,6 +359,9 @@
               <ownedParameter xmi:id="_16_6_1_ef90368_1281346221060_443471_1848" name="status" visibility="public">
                 <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
               </ownedParameter>
+              <ownedParameter xmi:id="_16_8_b5f02cf_1297051185068_484382_1815" name="" visibility="public" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="UML_Standard_Profile.MagicDraw_Profile.profile.uml#eee_1045467100323_249638_60"/>
+              </ownedParameter>
             </ownedOperation>
           </packagedElement>
           <packagedElement xmi:type="uml:Artifact" xmi:id="_16_6_1_ef90368_1283511702315_952529_2865" name="BasicAntennaJavaImp" clientDependency="_16_6_1_ef90368_1283511818642_468209_2941" fileName="">
@@ -595,143 +598,143 @@
       </packagedElement>
     </packagedElement>
     <profileApplication xmi:id="_11_5_be00301_1153310565718_226811_161profileApplicationData">
-      <eAnnotations xmi:id="_6JCupTJgEeCEF7q1aaZOxw" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="UML_Standard_Profile.MagicDraw_Profile.DSL_Customization.profile.uml#_6JA5EjJgEeCEF7q1aaZOxw"/>
+      <eAnnotations xmi:id="_ZLoDxzJmEeCEF7q1aaZOxw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="UML_Standard_Profile.MagicDraw_Profile.DSL_Customization.profile.uml#_ZLndCjJmEeCEF7q1aaZOxw"/>
       </eAnnotations>
       <appliedProfile href="UML_Standard_Profile.MagicDraw_Profile.DSL_Customization.profile.uml#_11_5_be00301_1153310565718_226811_161"/>
     </profileApplication>
     <profileApplication xmi:id="_16_6_8f90291_1254846042821_86742_517profileApplicationData">
-      <eAnnotations xmi:id="_6JEjcDJgEeCEF7q1aaZOxw" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="UML_Standard_Profile.MagicDraw_Profile.Traceability_customization.profile.uml#_6JASzzJgEeCEF7q1aaZOxw"/>
+      <eAnnotations xmi:id="_ZLpRYTJmEeCEF7q1aaZOxw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="UML_Standard_Profile.MagicDraw_Profile.Traceability_customization.profile.uml#_ZLlohTJmEeCEF7q1aaZOxw"/>
       </eAnnotations>
       <appliedProfile href="UML_Standard_Profile.MagicDraw_Profile.Traceability_customization.profile.uml#_16_6_8f90291_1254846042821_86742_517"/>
     </profileApplication>
     <profileApplication xmi:id="_9_0_be00301_1108050582343_527400_10847profileApplicationData">
-      <eAnnotations xmi:id="_6JFxkTJgEeCEF7q1aaZOxw" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="UML_Standard_Profile.StandardProfileL2.profile.uml#_6I91wjJgEeCEF7q1aaZOxw"/>
+      <eAnnotations xmi:id="_ZLqfgDJmEeCEF7q1aaZOxw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="UML_Standard_Profile.StandardProfileL2.profile.uml#_ZLh8ojJmEeCEF7q1aaZOxw"/>
       </eAnnotations>
       <appliedProfile href="UML_Standard_Profile.StandardProfileL2.profile.uml#_9_0_be00301_1108050582343_527400_10847"/>
     </profileApplication>
     <profileApplication xmi:id="_be00301_1073394351331_445580_2profileApplicationData">
-      <eAnnotations xmi:id="_6JHmwTJgEeCEF7q1aaZOxw" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="UML_Standard_Profile.MagicDraw_Profile.profile.uml#_6I_D9TJgEeCEF7q1aaZOxw"/>
+      <eAnnotations xmi:id="_ZLrtoDJmEeCEF7q1aaZOxw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="UML_Standard_Profile.MagicDraw_Profile.profile.uml#_ZLlADDJmEeCEF7q1aaZOxw"/>
       </eAnnotations>
       <appliedProfile href="UML_Standard_Profile.MagicDraw_Profile.profile.uml#_be00301_1073394351331_445580_2"/>
     </profileApplication>
     <profileApplication xmi:id="_16_8beta_62a020a_1256807755193_508228_378profileApplicationData">
-      <eAnnotations xmi:id="_6JI04TJgEeCEF7q1aaZOxw" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="UML_Standard_Profile.StandardProfileL3.profile.uml#_6JCufzJgEeCEF7q1aaZOxw"/>
+      <eAnnotations xmi:id="_ZLsUsTJmEeCEF7q1aaZOxw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="UML_Standard_Profile.StandardProfileL3.profile.uml#_ZLmOVTJmEeCEF7q1aaZOxw"/>
       </eAnnotations>
       <appliedProfile href="UML_Standard_Profile.StandardProfileL3.profile.uml#_16_8beta_62a020a_1256807755193_508228_378"/>
     </profileApplication>
     <profileApplication xmi:id="_16_6_1_ec40342_1279695659847_608236_478profileApplicationData">
-      <eAnnotations xmi:id="_6JKDATJgEeCEF7q1aaZOxw" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="EProfile.profile.uml#_6JA6JTJgEeCEF7q1aaZOxw"/>
+      <eAnnotations xmi:id="_ZLti0TJmEeCEF7q1aaZOxw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="EProfile.profile.uml#_ZLm1_TJmEeCEF7q1aaZOxw"/>
       </eAnnotations>
       <appliedProfile href="EProfile.profile.uml#_16_6_1_ec40342_1279695659847_608236_478"/>
     </profileApplication>
     <profileApplication xmi:id="_11_5_f720368_1159529670215_231387_1profileApplicationData">
-      <eAnnotations xmi:id="_6JLRITJgEeCEF7q1aaZOxw" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="UML_Standard_Profile.Validation_Profile.profile.uml#_6JBgczJgEeCEF7q1aaZOxw"/>
+      <eAnnotations xmi:id="_ZLvYATJmEeCEF7q1aaZOxw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="UML_Standard_Profile.Validation_Profile.profile.uml#_ZLmOfDJmEeCEF7q1aaZOxw"/>
       </eAnnotations>
       <appliedProfile href="UML_Standard_Profile.Validation_Profile.profile.uml#_11_5_f720368_1159529670215_231387_1"/>
     </profileApplication>
   </uml:Model>
-  <MagicDrawProfile:auxiliaryResource xmi:id="_6Jv44DJgEeCEF7q1aaZOxw" base_Element="magicdraw_uml_standard_profile_v_0001" base_Package="magicdraw_uml_standard_profile_v_0001"/>
-  <MagicDrawProfile:typeModifier xmi:id="_6Jv44TJgEeCEF7q1aaZOxw" base_Element="_16_6_1_ef90368_1281346865560_519981_2078" typeModifier="[]"/>
-  <EProfile:EComponentImpl xmi:id="_6KCz0TJgEeCEF7q1aaZOxw" base_Artifact="_16_6_1_ef90368_1283511702315_952529_2865" language="Java" pubSub="DDS"/>
-  <EProfile:EComponentImpl xmi:id="_6KDa4DJgEeCEF7q1aaZOxw" base_Artifact="_16_6_1_ef90368_1283506911564_319694_2007" language="Java" pubSub="DDS"/>
-  <EProfile:EComponentImpl xmi:id="_6KDa4TJgEeCEF7q1aaZOxw" base_Artifact="_16_6_1_ef90368_1283506170761_483449_1861" language="Java" pubSub="DDS"/>
-  <EProfile:EComponentImpl xmi:id="_6KDa4jJgEeCEF7q1aaZOxw" base_Artifact="_16_6_1_ef90368_1283510025305_749107_2374"/>
-  <EProfile:EComponentImpl xmi:id="_6KDa4zJgEeCEF7q1aaZOxw" base_Artifact="_16_6_1_ef90368_1283511747658_228981_2908" language="Java" pubSub="DDS"/>
-  <EProfile:EComponentImpl xmi:id="_6KDa5DJgEeCEF7q1aaZOxw" base_Artifact="_16_6_1_ef90368_1283510104023_544659_2397"/>
-  <EProfile:EComponentImpl xmi:id="_6KEB8DJgEeCEF7q1aaZOxw" base_Artifact="_16_6_1_ef90368_1283510103039_808111_2395"/>
-  <EProfile:EComponentImpl xmi:id="_6KEB8TJgEeCEF7q1aaZOxw" base_Artifact="_16_6_1_ef90368_1283510674047_290682_2643" language="Java" pubSub="DDS"/>
-  <EProfile:EComponentImpl xmi:id="_6KEB8jJgEeCEF7q1aaZOxw" base_Artifact="_16_6_1_ef90368_1283506175620_723214_1879" language="Java" pubSub="DDS"/>
-  <EProfile:EComponentImpl xmi:id="_6KEB8zJgEeCEF7q1aaZOxw" base_Artifact="_16_6_1_ef90368_1283511746986_5102_2898" language="Java" pubSub="DDS"/>
-  <EProfile:EComponentImpl xmi:id="_6KEB9DJgEeCEF7q1aaZOxw" base_Artifact="_16_6_1_ef90368_1283510102336_963604_2393"/>
-  <EProfile:EComponentImpl xmi:id="_6KEpADJgEeCEF7q1aaZOxw" base_Artifact="_16_6_1_ef90368_1283510104820_264306_2399"/>
-  <EProfile:EComponentImpl xmi:id="_6KEpATJgEeCEF7q1aaZOxw" base_Artifact="_16_6_1_ef90368_1283510101648_598470_2391"/>
-  <EProfile:EComponentImpl xmi:id="_6KEpAjJgEeCEF7q1aaZOxw" base_Artifact="_16_6_1_ef90368_1283442852832_970650_1362" language="Java" pubSub="DDS"/>
-  <EProfile:EComponentImpl xmi:id="_6KEpAzJgEeCEF7q1aaZOxw" base_Artifact="_16_6_1_ef90368_1283510742421_134895_2660" language="Java" pubSub="DDS"/>
-  <EProfile:EComponentImpl xmi:id="_6KEpBDJgEeCEF7q1aaZOxw" base_Artifact="_16_6_1_ef90368_1283497055842_565545_1191" language="Java" pubSub="DDS"/>
-  <EProfile:EComponentImpl xmi:id="_6KFQEDJgEeCEF7q1aaZOxw" base_Artifact="_16_6_1_ef90368_1283506909001_402748_1989" language="Java" pubSub="DDS"/>
-  <EProfile:EContainer xmi:id="_6KFQETJgEeCEF7q1aaZOxw" language="Java" pubSub="DDS" base_ExecutionEnvironment="_16_6_1_ef90368_1281520344851_970672_1104"/>
-  <EProfile:EContainer xmi:id="_6KFQEjJgEeCEF7q1aaZOxw" language="Java" pubSub="DDS" base_ExecutionEnvironment="_16_6_1_ef90368_1281084526355_917913_1559"/>
-  <EProfile:EContainer xmi:id="_6KFQEzJgEeCEF7q1aaZOxw" language="Java" pubSub="DDS" base_ExecutionEnvironment="_16_6_1_ef90368_1281087853355_322456_2266"/>
-  <EProfile:EContainer xmi:id="_6KFQFDJgEeCEF7q1aaZOxw" language="Java" pubSub="DDS" base_ExecutionEnvironment="_16_6_1_ef90368_1281346476622_461894_2007"/>
-  <EProfile:EContainer xmi:id="_6KFQFTJgEeCEF7q1aaZOxw" language="Java" pubSub="DDS" base_ExecutionEnvironment="_16_6_1_ef90368_1281345389232_896533_1195"/>
-  <EProfile:EContainer xmi:id="_6KF3IDJgEeCEF7q1aaZOxw" language="Java" pubSub="DDS" base_ExecutionEnvironment="_16_6_1_ef90368_1281020569293_388364_567"/>
-  <EProfile:EContainer xmi:id="_6KF3ITJgEeCEF7q1aaZOxw" language="Java" pubSub="DDS" base_ExecutionEnvironment="_16_6_1_ef90368_1281022234074_909863_771"/>
-  <EProfile:EContainer xmi:id="_6KF3IjJgEeCEF7q1aaZOxw" language="Java" pubSub="DDS" base_ExecutionEnvironment="_16_6_1_ef90368_1281087170542_158553_1887"/>
-  <EProfile:EContainer xmi:id="_6KF3IzJgEeCEF7q1aaZOxw" language="Java" pubSub="DDS" base_ExecutionEnvironment="_16_6_1_ef90368_1281345389232_389995_1196"/>
-  <EProfile:EContainer xmi:id="_6KF3JDJgEeCEF7q1aaZOxw" language="Java" pubSub="DDS" base_ExecutionEnvironment="_16_6_1_ef90368_1281346221060_938530_1811"/>
-  <EProfile:EContainer xmi:id="_6KF3JTJgEeCEF7q1aaZOxw" language="Java" pubSub="DDS" base_ExecutionEnvironment="_16_6_1_ef90368_1281082765324_566070_957"/>
-  <EProfile:EModule xmi:id="_6KF3JjJgEeCEF7q1aaZOxw" base_Package="_16_6_1_ef90368_1284735248177_460260_778"/>
-  <EProfile:EModule xmi:id="_6KF3JzJgEeCEF7q1aaZOxw" base_Package="_16_6_1_ef90368_1284735281005_57670_780"/>
-  <EProfile:EModule xmi:id="_6KGeMDJgEeCEF7q1aaZOxw" base_Package="_16_6_1_ef90368_1284734598679_554220_734"/>
-  <EProfile:EModule xmi:id="_6KGeMTJgEeCEF7q1aaZOxw" base_Package="_16_6_1_ef90368_1284735211662_520581_776"/>
-  <EProfile:EModule xmi:id="_6KGeMjJgEeCEF7q1aaZOxw" base_Package="_16_6_1_ef90368_1284735345239_630476_784"/>
-  <EProfile:EModule xmi:id="_6KGeMzJgEeCEF7q1aaZOxw" base_Package="_16_6_1_ef90368_1284735318802_369725_782"/>
-  <EProfile:EInterface xmi:id="_6KGeNDJgEeCEF7q1aaZOxw" base_Interface="_16_6_1_ef90368_1281088459417_180930_2383"/>
-  <EProfile:EInterface xmi:id="_6KGeNTJgEeCEF7q1aaZOxw" base_Interface="_16_6_1_ef90368_1281345389153_405334_1009"/>
-  <EProfile:EInterface xmi:id="_6KGeNjJgEeCEF7q1aaZOxw" base_Interface="_16_6_1_ef90368_1281087170527_975261_1877"/>
-  <EProfile:EInterface xmi:id="_6KHFQDJgEeCEF7q1aaZOxw" base_Interface="_16_6_1_ef90368_1281084526324_170168_1546" configurable="true"/>
-  <EProfile:EInterface xmi:id="_6KHFQTJgEeCEF7q1aaZOxw" base_Interface="_16_6_1_ef90368_1281088615636_980043_2459"/>
-  <EProfile:EInterface xmi:id="_6KHFQjJgEeCEF7q1aaZOxw" base_Interface="_16_6_1_ef90368_1281088604527_273691_2440"/>
-  <EProfile:EInterface xmi:id="_6KHFQzJgEeCEF7q1aaZOxw" base_Interface="_16_6_1_ef90368_1281345389138_703747_1002"/>
-  <EProfile:EInterface xmi:id="_6KHFRDJgEeCEF7q1aaZOxw" base_Interface="_16_6_1_ef90368_1281347051044_973237_2127"/>
-  <EProfile:EInterface xmi:id="_6KHFRTJgEeCEF7q1aaZOxw" base_Interface="_16_6_1_ef90368_1281088472308_936503_2402"/>
-  <EProfile:EInterface xmi:id="_6KHFRjJgEeCEF7q1aaZOxw" base_Interface="_16_6_1_ef90368_1281082765292_337440_891"/>
-  <EProfile:EInterface xmi:id="_6KHFRzJgEeCEF7q1aaZOxw" base_Interface="_16_6_1_ef90368_1281087170511_389687_1876"/>
-  <EProfile:EInterface xmi:id="_6KHsUDJgEeCEF7q1aaZOxw" base_Interface="_16_6_1_ef90368_1281346221028_594966_1709" configurable="true"/>
-  <EProfile:EInterface xmi:id="_6KHsUTJgEeCEF7q1aaZOxw" base_Interface="_16_6_1_ef90368_1281346221028_727368_1704"/>
-  <EProfile:EInterface xmi:id="_6KHsUjJgEeCEF7q1aaZOxw" base_Interface="_16_6_1_ef90368_1281088440370_444944_2364"/>
-  <EProfile:EInterface xmi:id="_6KHsUzJgEeCEF7q1aaZOxw" base_Interface="_16_6_1_ef90368_1281021093902_492255_674"/>
-  <EProfile:EInterface xmi:id="_6KHsVDJgEeCEF7q1aaZOxw" base_Interface="_16_6_1_ef90368_1281084526324_429899_1541"/>
-  <EProfile:EInterface xmi:id="_6KHsVTJgEeCEF7q1aaZOxw" base_Interface="_16_6_1_ef90368_1281087170511_801440_1867"/>
-  <EProfile:EInterface xmi:id="_6KHsVjJgEeCEF7q1aaZOxw" base_Interface="_16_6_1_ef90368_1281345389153_315043_1010"/>
-  <EProfile:EInterface xmi:id="_6KHsVzJgEeCEF7q1aaZOxw" base_Interface="_16_6_1_ef90368_1281346709544_1812_2043"/>
-  <EProfile:EInterface xmi:id="_6KITYDJgEeCEF7q1aaZOxw" base_Interface="_16_6_1_ef90368_1281082984511_608750_1147" configurable="true"/>
-  <EProfile:EEnumeration xmi:id="_6KITYTJgEeCEF7q1aaZOxw" base_Enumeration="_16_6_1_ef90368_1281087170511_459333_1871"/>
-  <EProfile:EEnumeration xmi:id="_6KITYjJgEeCEF7q1aaZOxw" base_Enumeration="_16_6_1_ef90368_1281082765292_836742_895"/>
-  <EProfile:EEnumeration xmi:id="_6KITYzJgEeCEF7q1aaZOxw" base_Enumeration="_16_6_1_ef90368_1281346221028_722098_1708"/>
-  <EProfile:EEnumeration xmi:id="_6KITZDJgEeCEF7q1aaZOxw" base_Enumeration="_16_6_1_ef90368_1281081944433_311975_426"/>
-  <EProfile:EEnumeration xmi:id="_6KITZTJgEeCEF7q1aaZOxw" base_Enumeration="_16_6_1_ef90368_1281345389138_48910_1006"/>
-  <EProfile:EEnumeration xmi:id="_6KITZjJgEeCEF7q1aaZOxw" base_Enumeration="_16_6_1_ef90368_1281084526324_805299_1545"/>
-  <EProfile:EComponent xmi:id="_6KITZzJgEeCEF7q1aaZOxw" base_Class="_16_6_1_ef90368_1283507151108_495426_2205"/>
-  <EProfile:EComponent xmi:id="_6KI6cDJgEeCEF7q1aaZOxw" base_Class="_16_6_1_ef90368_1283507109358_300639_2096"/>
-  <EProfile:EComponent xmi:id="_6KI6cTJgEeCEF7q1aaZOxw" base_Class="_16_6_1_ef90368_1283511063339_204270_2780"/>
-  <EProfile:EComponent xmi:id="_6KI6cjJgEeCEF7q1aaZOxw" base_Class="_16_6_1_ef90368_1283508485700_427487_2318"/>
-  <EProfile:EComponent xmi:id="_6KI6czJgEeCEF7q1aaZOxw" base_Class="_16_6_1_ef90368_1283510564376_761231_2581"/>
-  <EProfile:EComponent xmi:id="_6KI6dDJgEeCEF7q1aaZOxw" base_Class="_16_6_1_ef90368_1283511056980_919226_2756"/>
-  <EProfile:EComponent xmi:id="_6KI6dTJgEeCEF7q1aaZOxw" base_Class="_16_6_1_ef90368_1283507117983_137727_2124"/>
-  <EProfile:EComponent xmi:id="_6KI6djJgEeCEF7q1aaZOxw" base_Class="_16_6_1_ef90368_1283505882311_139273_1815"/>
-  <EProfile:EComponent xmi:id="_6KI6dzJgEeCEF7q1aaZOxw" base_Class="_16_6_1_ef90368_1283510576704_224232_2606"/>
-  <EProfile:EComponent xmi:id="_6KJhgDJgEeCEF7q1aaZOxw" base_Class="_16_6_1_ef90368_1283507144702_467651_2178"/>
-  <EProfile:EComponent xmi:id="_6KJhgTJgEeCEF7q1aaZOxw" base_Class="_16_6_1_ef90368_1283496945343_11995_1164"/>
-  <EProfile:EComponent xmi:id="_6KJhgjJgEeCEF7q1aaZOxw" base_Class="_16_6_1_ef90368_1283506547615_795360_1933"/>
-  <EProfile:EComponent xmi:id="_6KJhgzJgEeCEF7q1aaZOxw" base_Class="_16_6_1_ef90368_1283445222085_260072_1694"/>
-  <EProfile:EComponent xmi:id="_6KJhhDJgEeCEF7q1aaZOxw" base_Class="_16_6_1_ef90368_1283511071839_853253_2808"/>
-  <EProfile:EComponent xmi:id="_6KJhhTJgEeCEF7q1aaZOxw" base_Class="_16_6_1_ef90368_1283507138998_964213_2151"/>
-  <EProfile:EComponent xmi:id="_6KJhhjJgEeCEF7q1aaZOxw" base_Class="_16_6_1_ef90368_1283506557631_202558_1957"/>
-  <EProfile:EComponent xmi:id="_6KKIkDJgEeCEF7q1aaZOxw" base_Class="_16_6_1_ef90368_1283505871655_3655_1791"/>
-  <EProfile:ETopic xmi:id="_6KKIkTJgEeCEF7q1aaZOxw" base_Signal="_16_6_1_ef90368_1281345389138_894946_1003"/>
-  <EProfile:ETopic xmi:id="_6KKIkjJgEeCEF7q1aaZOxw" base_Signal="_16_6_1_ef90368_1281084526324_720991_1542"/>
-  <EProfile:ETopic xmi:id="_6KKIkzJgEeCEF7q1aaZOxw" base_Signal="_16_6_1_ef90368_1281345389138_373301_1004"/>
-  <EProfile:ETopic xmi:id="_6KKIlDJgEeCEF7q1aaZOxw" base_Signal="_16_6_1_ef90368_1281082765292_112495_893"/>
-  <EProfile:ETopic xmi:id="_6KKIlTJgEeCEF7q1aaZOxw" base_Signal="_16_6_1_ef90368_1281084526324_366767_1543"/>
-  <EProfile:ETopic xmi:id="_6KKIljJgEeCEF7q1aaZOxw" base_Signal="_16_6_1_ef90368_1281087170511_943737_1868"/>
-  <EProfile:ETopic xmi:id="_6KKIlzJgEeCEF7q1aaZOxw" base_Signal="_16_6_1_ef90368_1281087170511_692338_1869"/>
-  <EProfile:ETopic xmi:id="_6KKvoDJgEeCEF7q1aaZOxw" base_Signal="_16_6_1_ef90368_1281346221028_88619_1705"/>
-  <EProfile:ETopic xmi:id="_6KKvoTJgEeCEF7q1aaZOxw" base_Signal="_16_6_1_ef90368_1281082765292_41918_892"/>
-  <EProfile:ETopic xmi:id="_6KKvojJgEeCEF7q1aaZOxw" base_Signal="_16_6_1_ef90368_1281346221028_277350_1706"/>
-  <EProfile:ETopic xmi:id="_6KKvozJgEeCEF7q1aaZOxw" base_Signal="_16_6_1_ef90368_1281021219996_482498_680"/>
-  <EProfile:ETopic xmi:id="_6KKvpDJgEeCEF7q1aaZOxw" base_Signal="_16_6_1_ef90368_1281021196340_737523_676"/>
-  <EProfile:EReadWriteProperty xmi:id="_6KKvpTJgEeCEF7q1aaZOxw" base_Property="_16_6_1_ef90368_1281519866883_665059_1050"/>
-  <EProfile:EPublish xmi:id="_6KKvpjJgEeCEF7q1aaZOxw" base_Property="_16_6_1_ef90368_1283511224790_265578_2846"/>
-  <EProfile:EPublish xmi:id="_6KKvpzJgEeCEF7q1aaZOxw" base_Property="_16_6_1_ef90368_1283440579786_749023_1044"/>
-  <EProfile:EReadOnlyProperty xmi:id="_6KLWsDJgEeCEF7q1aaZOxw" base_Property="_16_6_1_ef90368_1281519855414_729584_1048"/>
-  <EProfile:ESubscribe xmi:id="_6KLWsTJgEeCEF7q1aaZOxw" base_Property="_16_6_1_ef90368_1283511146322_997748_2843"/>
-  <EProfile:ESubscribe xmi:id="_6KLWsjJgEeCEF7q1aaZOxw" base_Property="_16_6_1_ef90368_1283511231509_907592_2848"/>
+  <MagicDrawProfile:auxiliaryResource xmi:id="_ZMQVYDJmEeCEF7q1aaZOxw" base_Element="magicdraw_uml_standard_profile_v_0001" base_Package="magicdraw_uml_standard_profile_v_0001"/>
+  <MagicDrawProfile:typeModifier xmi:id="_ZMQVYTJmEeCEF7q1aaZOxw" base_Element="_16_6_1_ef90368_1281346865560_519981_2078" typeModifier="[]"/>
+  <EProfile:EComponentImpl xmi:id="_ZMiCMTJmEeCEF7q1aaZOxw" base_Artifact="_16_6_1_ef90368_1283511702315_952529_2865" language="Java" pubSub="DDS"/>
+  <EProfile:EComponentImpl xmi:id="_ZMipQDJmEeCEF7q1aaZOxw" base_Artifact="_16_6_1_ef90368_1283506911564_319694_2007" language="Java" pubSub="DDS"/>
+  <EProfile:EComponentImpl xmi:id="_ZMipQTJmEeCEF7q1aaZOxw" base_Artifact="_16_6_1_ef90368_1283506170761_483449_1861" language="Java" pubSub="DDS"/>
+  <EProfile:EComponentImpl xmi:id="_ZMipQjJmEeCEF7q1aaZOxw" base_Artifact="_16_6_1_ef90368_1283510025305_749107_2374"/>
+  <EProfile:EComponentImpl xmi:id="_ZMipQzJmEeCEF7q1aaZOxw" base_Artifact="_16_6_1_ef90368_1283511747658_228981_2908" language="Java" pubSub="DDS"/>
+  <EProfile:EComponentImpl xmi:id="_ZMipRDJmEeCEF7q1aaZOxw" base_Artifact="_16_6_1_ef90368_1283510104023_544659_2397"/>
+  <EProfile:EComponentImpl xmi:id="_ZMjQUDJmEeCEF7q1aaZOxw" base_Artifact="_16_6_1_ef90368_1283510103039_808111_2395"/>
+  <EProfile:EComponentImpl xmi:id="_ZMjQUTJmEeCEF7q1aaZOxw" base_Artifact="_16_6_1_ef90368_1283510674047_290682_2643" language="Java" pubSub="DDS"/>
+  <EProfile:EComponentImpl xmi:id="_ZMjQUjJmEeCEF7q1aaZOxw" base_Artifact="_16_6_1_ef90368_1283506175620_723214_1879" language="Java" pubSub="DDS"/>
+  <EProfile:EComponentImpl xmi:id="_ZMjQUzJmEeCEF7q1aaZOxw" base_Artifact="_16_6_1_ef90368_1283511746986_5102_2898" language="Java" pubSub="DDS"/>
+  <EProfile:EComponentImpl xmi:id="_ZMjQVDJmEeCEF7q1aaZOxw" base_Artifact="_16_6_1_ef90368_1283510102336_963604_2393"/>
+  <EProfile:EComponentImpl xmi:id="_ZMj3YDJmEeCEF7q1aaZOxw" base_Artifact="_16_6_1_ef90368_1283510104820_264306_2399"/>
+  <EProfile:EComponentImpl xmi:id="_ZMj3YTJmEeCEF7q1aaZOxw" base_Artifact="_16_6_1_ef90368_1283510101648_598470_2391"/>
+  <EProfile:EComponentImpl xmi:id="_ZMj3YjJmEeCEF7q1aaZOxw" base_Artifact="_16_6_1_ef90368_1283442852832_970650_1362" language="Java" pubSub="DDS"/>
+  <EProfile:EComponentImpl xmi:id="_ZMj3YzJmEeCEF7q1aaZOxw" base_Artifact="_16_6_1_ef90368_1283510742421_134895_2660" language="Java" pubSub="DDS"/>
+  <EProfile:EComponentImpl xmi:id="_ZMj3ZDJmEeCEF7q1aaZOxw" base_Artifact="_16_6_1_ef90368_1283497055842_565545_1191" language="Java" pubSub="DDS"/>
+  <EProfile:EComponentImpl xmi:id="_ZMkecDJmEeCEF7q1aaZOxw" base_Artifact="_16_6_1_ef90368_1283506909001_402748_1989" language="Java" pubSub="DDS"/>
+  <EProfile:EContainer xmi:id="_ZMkecTJmEeCEF7q1aaZOxw" language="Java" pubSub="DDS" base_ExecutionEnvironment="_16_6_1_ef90368_1281520344851_970672_1104"/>
+  <EProfile:EContainer xmi:id="_ZMkecjJmEeCEF7q1aaZOxw" language="Java" pubSub="DDS" base_ExecutionEnvironment="_16_6_1_ef90368_1281084526355_917913_1559"/>
+  <EProfile:EContainer xmi:id="_ZMkeczJmEeCEF7q1aaZOxw" language="Java" pubSub="DDS" base_ExecutionEnvironment="_16_6_1_ef90368_1281087853355_322456_2266"/>
+  <EProfile:EContainer xmi:id="_ZMkedDJmEeCEF7q1aaZOxw" language="Java" pubSub="DDS" base_ExecutionEnvironment="_16_6_1_ef90368_1281346476622_461894_2007"/>
+  <EProfile:EContainer xmi:id="_ZMkedTJmEeCEF7q1aaZOxw" language="Java" pubSub="DDS" base_ExecutionEnvironment="_16_6_1_ef90368_1281345389232_896533_1195"/>
+  <EProfile:EContainer xmi:id="_ZMlFgDJmEeCEF7q1aaZOxw" language="Java" pubSub="DDS" base_ExecutionEnvironment="_16_6_1_ef90368_1281020569293_388364_567"/>
+  <EProfile:EContainer xmi:id="_ZMlFgTJmEeCEF7q1aaZOxw" language="Java" pubSub="DDS" base_ExecutionEnvironment="_16_6_1_ef90368_1281022234074_909863_771"/>
+  <EProfile:EContainer xmi:id="_ZMlFgjJmEeCEF7q1aaZOxw" language="Java" pubSub="DDS" base_ExecutionEnvironment="_16_6_1_ef90368_1281087170542_158553_1887"/>
+  <EProfile:EContainer xmi:id="_ZMlFgzJmEeCEF7q1aaZOxw" language="Java" pubSub="DDS" base_ExecutionEnvironment="_16_6_1_ef90368_1281345389232_389995_1196"/>
+  <EProfile:EContainer xmi:id="_ZMlFhDJmEeCEF7q1aaZOxw" language="Java" pubSub="DDS" base_ExecutionEnvironment="_16_6_1_ef90368_1281346221060_938530_1811"/>
+  <EProfile:EContainer xmi:id="_ZMlFhTJmEeCEF7q1aaZOxw" language="Java" pubSub="DDS" base_ExecutionEnvironment="_16_6_1_ef90368_1281082765324_566070_957"/>
+  <EProfile:EModule xmi:id="_ZMlFhjJmEeCEF7q1aaZOxw" base_Package="_16_6_1_ef90368_1284735248177_460260_778"/>
+  <EProfile:EModule xmi:id="_ZMlFhzJmEeCEF7q1aaZOxw" base_Package="_16_6_1_ef90368_1284735281005_57670_780"/>
+  <EProfile:EModule xmi:id="_ZMlskDJmEeCEF7q1aaZOxw" base_Package="_16_6_1_ef90368_1284734598679_554220_734"/>
+  <EProfile:EModule xmi:id="_ZMlskTJmEeCEF7q1aaZOxw" base_Package="_16_6_1_ef90368_1284735211662_520581_776"/>
+  <EProfile:EModule xmi:id="_ZMlskjJmEeCEF7q1aaZOxw" base_Package="_16_6_1_ef90368_1284735345239_630476_784"/>
+  <EProfile:EModule xmi:id="_ZMlskzJmEeCEF7q1aaZOxw" base_Package="_16_6_1_ef90368_1284735318802_369725_782"/>
+  <EProfile:EInterface xmi:id="_ZMlslDJmEeCEF7q1aaZOxw" base_Interface="_16_6_1_ef90368_1281088459417_180930_2383"/>
+  <EProfile:EInterface xmi:id="_ZMlslTJmEeCEF7q1aaZOxw" base_Interface="_16_6_1_ef90368_1281345389153_405334_1009"/>
+  <EProfile:EInterface xmi:id="_ZMlsljJmEeCEF7q1aaZOxw" base_Interface="_16_6_1_ef90368_1281087170527_975261_1877"/>
+  <EProfile:EInterface xmi:id="_ZMmToDJmEeCEF7q1aaZOxw" base_Interface="_16_6_1_ef90368_1281084526324_170168_1546" configurable="true"/>
+  <EProfile:EInterface xmi:id="_ZMmToTJmEeCEF7q1aaZOxw" base_Interface="_16_6_1_ef90368_1281088615636_980043_2459"/>
+  <EProfile:EInterface xmi:id="_ZMmTojJmEeCEF7q1aaZOxw" base_Interface="_16_6_1_ef90368_1281088604527_273691_2440"/>
+  <EProfile:EInterface xmi:id="_ZMmTozJmEeCEF7q1aaZOxw" base_Interface="_16_6_1_ef90368_1281345389138_703747_1002"/>
+  <EProfile:EInterface xmi:id="_ZMmTpDJmEeCEF7q1aaZOxw" base_Interface="_16_6_1_ef90368_1281347051044_973237_2127"/>
+  <EProfile:EInterface xmi:id="_ZMmTpTJmEeCEF7q1aaZOxw" base_Interface="_16_6_1_ef90368_1281088472308_936503_2402"/>
+  <EProfile:EInterface xmi:id="_ZMmTpjJmEeCEF7q1aaZOxw" base_Interface="_16_6_1_ef90368_1281082765292_337440_891"/>
+  <EProfile:EInterface xmi:id="_ZMm6sDJmEeCEF7q1aaZOxw" base_Interface="_16_6_1_ef90368_1281087170511_389687_1876"/>
+  <EProfile:EInterface xmi:id="_ZMm6sTJmEeCEF7q1aaZOxw" base_Interface="_16_6_1_ef90368_1281346221028_594966_1709" configurable="true"/>
+  <EProfile:EInterface xmi:id="_ZMm6sjJmEeCEF7q1aaZOxw" base_Interface="_16_6_1_ef90368_1281346221028_727368_1704"/>
+  <EProfile:EInterface xmi:id="_ZMm6szJmEeCEF7q1aaZOxw" base_Interface="_16_6_1_ef90368_1281088440370_444944_2364"/>
+  <EProfile:EInterface xmi:id="_ZMm6tDJmEeCEF7q1aaZOxw" base_Interface="_16_6_1_ef90368_1281021093902_492255_674"/>
+  <EProfile:EInterface xmi:id="_ZMm6tTJmEeCEF7q1aaZOxw" base_Interface="_16_6_1_ef90368_1281084526324_429899_1541"/>
+  <EProfile:EInterface xmi:id="_ZMm6tjJmEeCEF7q1aaZOxw" base_Interface="_16_6_1_ef90368_1281087170511_801440_1867"/>
+  <EProfile:EInterface xmi:id="_ZMm6tzJmEeCEF7q1aaZOxw" base_Interface="_16_6_1_ef90368_1281345389153_315043_1010"/>
+  <EProfile:EInterface xmi:id="_ZMnhwDJmEeCEF7q1aaZOxw" base_Interface="_16_6_1_ef90368_1281346709544_1812_2043"/>
+  <EProfile:EInterface xmi:id="_ZMnhwTJmEeCEF7q1aaZOxw" base_Interface="_16_6_1_ef90368_1281082984511_608750_1147" configurable="true"/>
+  <EProfile:EEnumeration xmi:id="_ZMnhwjJmEeCEF7q1aaZOxw" base_Enumeration="_16_6_1_ef90368_1281087170511_459333_1871"/>
+  <EProfile:EEnumeration xmi:id="_ZMnhwzJmEeCEF7q1aaZOxw" base_Enumeration="_16_6_1_ef90368_1281082765292_836742_895"/>
+  <EProfile:EEnumeration xmi:id="_ZMnhxDJmEeCEF7q1aaZOxw" base_Enumeration="_16_6_1_ef90368_1281346221028_722098_1708"/>
+  <EProfile:EEnumeration xmi:id="_ZMnhxTJmEeCEF7q1aaZOxw" base_Enumeration="_16_6_1_ef90368_1281081944433_311975_426"/>
+  <EProfile:EEnumeration xmi:id="_ZMnhxjJmEeCEF7q1aaZOxw" base_Enumeration="_16_6_1_ef90368_1281345389138_48910_1006"/>
+  <EProfile:EEnumeration xmi:id="_ZMnhxzJmEeCEF7q1aaZOxw" base_Enumeration="_16_6_1_ef90368_1281084526324_805299_1545"/>
+  <EProfile:EComponent xmi:id="_ZMoI0DJmEeCEF7q1aaZOxw" base_Class="_16_6_1_ef90368_1283507151108_495426_2205"/>
+  <EProfile:EComponent xmi:id="_ZMoI0TJmEeCEF7q1aaZOxw" base_Class="_16_6_1_ef90368_1283507109358_300639_2096"/>
+  <EProfile:EComponent xmi:id="_ZMoI0jJmEeCEF7q1aaZOxw" base_Class="_16_6_1_ef90368_1283511063339_204270_2780"/>
+  <EProfile:EComponent xmi:id="_ZMoI0zJmEeCEF7q1aaZOxw" base_Class="_16_6_1_ef90368_1283508485700_427487_2318"/>
+  <EProfile:EComponent xmi:id="_ZMoI1DJmEeCEF7q1aaZOxw" base_Class="_16_6_1_ef90368_1283510564376_761231_2581"/>
+  <EProfile:EComponent xmi:id="_ZMoI1TJmEeCEF7q1aaZOxw" base_Class="_16_6_1_ef90368_1283511056980_919226_2756"/>
+  <EProfile:EComponent xmi:id="_ZMoI1jJmEeCEF7q1aaZOxw" base_Class="_16_6_1_ef90368_1283507117983_137727_2124"/>
+  <EProfile:EComponent xmi:id="_ZMoI1zJmEeCEF7q1aaZOxw" base_Class="_16_6_1_ef90368_1283505882311_139273_1815"/>
+  <EProfile:EComponent xmi:id="_ZMov4DJmEeCEF7q1aaZOxw" base_Class="_16_6_1_ef90368_1283510576704_224232_2606"/>
+  <EProfile:EComponent xmi:id="_ZMov4TJmEeCEF7q1aaZOxw" base_Class="_16_6_1_ef90368_1283507144702_467651_2178"/>
+  <EProfile:EComponent xmi:id="_ZMov4jJmEeCEF7q1aaZOxw" base_Class="_16_6_1_ef90368_1283496945343_11995_1164"/>
+  <EProfile:EComponent xmi:id="_ZMov4zJmEeCEF7q1aaZOxw" base_Class="_16_6_1_ef90368_1283506547615_795360_1933"/>
+  <EProfile:EComponent xmi:id="_ZMov5DJmEeCEF7q1aaZOxw" base_Class="_16_6_1_ef90368_1283445222085_260072_1694"/>
+  <EProfile:EComponent xmi:id="_ZMov5TJmEeCEF7q1aaZOxw" base_Class="_16_6_1_ef90368_1283511071839_853253_2808"/>
+  <EProfile:EComponent xmi:id="_ZMov5jJmEeCEF7q1aaZOxw" base_Class="_16_6_1_ef90368_1283507138998_964213_2151"/>
+  <EProfile:EComponent xmi:id="_ZMov5zJmEeCEF7q1aaZOxw" base_Class="_16_6_1_ef90368_1283506557631_202558_1957"/>
+  <EProfile:EComponent xmi:id="_ZMpW8DJmEeCEF7q1aaZOxw" base_Class="_16_6_1_ef90368_1283505871655_3655_1791"/>
+  <EProfile:ETopic xmi:id="_ZMpW8TJmEeCEF7q1aaZOxw" base_Signal="_16_6_1_ef90368_1281345389138_894946_1003"/>
+  <EProfile:ETopic xmi:id="_ZMpW8jJmEeCEF7q1aaZOxw" base_Signal="_16_6_1_ef90368_1281084526324_720991_1542"/>
+  <EProfile:ETopic xmi:id="_ZMpW8zJmEeCEF7q1aaZOxw" base_Signal="_16_6_1_ef90368_1281345389138_373301_1004"/>
+  <EProfile:ETopic xmi:id="_ZMpW9DJmEeCEF7q1aaZOxw" base_Signal="_16_6_1_ef90368_1281082765292_112495_893"/>
+  <EProfile:ETopic xmi:id="_ZMpW9TJmEeCEF7q1aaZOxw" base_Signal="_16_6_1_ef90368_1281084526324_366767_1543"/>
+  <EProfile:ETopic xmi:id="_ZMpW9jJmEeCEF7q1aaZOxw" base_Signal="_16_6_1_ef90368_1281087170511_943737_1868"/>
+  <EProfile:ETopic xmi:id="_ZMpW9zJmEeCEF7q1aaZOxw" base_Signal="_16_6_1_ef90368_1281087170511_692338_1869"/>
+  <EProfile:ETopic xmi:id="_ZMp-ADJmEeCEF7q1aaZOxw" base_Signal="_16_6_1_ef90368_1281346221028_88619_1705"/>
+  <EProfile:ETopic xmi:id="_ZMp-ATJmEeCEF7q1aaZOxw" base_Signal="_16_6_1_ef90368_1281082765292_41918_892"/>
+  <EProfile:ETopic xmi:id="_ZMp-AjJmEeCEF7q1aaZOxw" base_Signal="_16_6_1_ef90368_1281346221028_277350_1706"/>
+  <EProfile:ETopic xmi:id="_ZMp-AzJmEeCEF7q1aaZOxw" base_Signal="_16_6_1_ef90368_1281021219996_482498_680"/>
+  <EProfile:ETopic xmi:id="_ZMp-BDJmEeCEF7q1aaZOxw" base_Signal="_16_6_1_ef90368_1281021196340_737523_676"/>
+  <EProfile:EReadWriteProperty xmi:id="_ZMp-BTJmEeCEF7q1aaZOxw" base_Property="_16_6_1_ef90368_1281519866883_665059_1050"/>
+  <EProfile:EPublish xmi:id="_ZMp-BjJmEeCEF7q1aaZOxw" base_Property="_16_6_1_ef90368_1283511224790_265578_2846"/>
+  <EProfile:EPublish xmi:id="_ZMp-BzJmEeCEF7q1aaZOxw" base_Property="_16_6_1_ef90368_1283440579786_749023_1044"/>
+  <EProfile:EReadOnlyProperty xmi:id="_ZMqlEDJmEeCEF7q1aaZOxw" base_Property="_16_6_1_ef90368_1281519855414_729584_1048"/>
+  <EProfile:ESubscribe xmi:id="_ZMqlETJmEeCEF7q1aaZOxw" base_Property="_16_6_1_ef90368_1283511146322_997748_2843"/>
+  <EProfile:ESubscribe xmi:id="_ZMqlEjJmEeCEF7q1aaZOxw" base_Property="_16_6_1_ef90368_1283511231509_907592_2848"/>
 </xmi:XMI>
