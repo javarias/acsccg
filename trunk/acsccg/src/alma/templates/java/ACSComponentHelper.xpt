@@ -77,8 +77,8 @@ import alma.«getPackage(this).name».«eInterface.name»Operations;
  *«comment»«ENDFOREACH»«ENDIF»
  «FOREACH getERealizations(eElement) AS eInterface-»
  * @see alma.«getPackage(this).name»Common
- * @see alma.«getPackage(this).name».«eInterface.name»;
- * @see alma.«getPackage(this).name».«eInterface.name»Operations;
+ * @see alma.«getPackage(this).name».«eInterface.name»
+ * @see alma.«getPackage(this).name».«eInterface.name»Operations
 «ENDFOREACH-»
  * @see alma.acs.component.ComponentLifecycle
  * @author ACS Component Code Generator

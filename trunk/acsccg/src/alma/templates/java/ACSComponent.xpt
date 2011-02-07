@@ -67,6 +67,7 @@ package alma.«getPackage(this).name»;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import alma.acs.exceptions.AcsJException;
 import alma.acs.container.ContainerServices;
 import alma.acs.component.ComponentLifecycle;
 import alma.acs.component.ComponentLifecycleException;
@@ -91,19 +92,19 @@ import alma.«getPackage(this).name».«getParent(getERealization(eElement)).nam
 «ENDIF-»
 
 «IF hasNCDefinitions(getERealization(eElement))-»«IF hasEPublishers(getERealization(eElement))-»
-import alma.acs.nc.SimpleSupplier;«ENDIF-»
+import alma.acs.nc.SimpleSupplier;«ENDIF»
 «IF hasESubscribers(getERealization(eElement))-»
-import alma.acs.nc.Consumer;«ENDIF-»
+import alma.acs.nc.Consumer;«ENDIF»
 
 «FOREACH getNREChannelNames(getNCDefinitions(getERealization(eElement))) AS eElement -»
-import alma.«getPackage(this).name».CHANNELNAME_«eElement.name.toUpperCase()»;
+import alma.«getPackage(this).name».CHANNEL_«eElement.eContainer.name.toUpperCase()»_«eElement.type.name.toUpperCase()»_«eElement.name.toUpperCase()»;
 «ENDFOREACH-»«ENDIF-»
 
 /**«IF hasComment(eElement)»«FOREACH getCommentsWrapped(getComment(eOperation)) AS comment»
  *«comment»«ENDFOREACH»«ENDIF»
  * @see alma.«getPackage(this).name»Common
- * @see alma.«getPackage(this).name».«getERealization(eElement).name»;
- * @see alma.«getPackage(this).name».«getERealization(eElement).name»Operations;
+ * @see alma.«getPackage(this).name».«getERealization(eElement).name»
+ * @see alma.«getPackage(this).name».«getERealization(eElement).name»Operations
  * @see alma.acs.component.ComponentLifecycle
  * @author ACS Component Code Generator
  * @version «getPropSet('Id')»
@@ -114,10 +115,14 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 	private Logger m_logger;
     
 	«IF hasNCDefinitions(getERealization(eElement))-»«IF hasEPublishers(getERealization(eElement))-»
-	private SimpleSupplier m_supplier = null;
+	«FOREACH getEPublishers(getERealization(eElement)) AS eSubscriber -»
+	private SimpleSupplier m_supplier_«eSubscriber.name» = null;
+	«ENDFOREACH-»
 	«ENDIF-»
 	«IF hasESubscribers(getERealization(eElement))-»
-	private Consumer m_consumer = null;
+	«FOREACH getESubscribers(getERealization(eElement)) AS eSubscriber -»
+	private Consumer m_consumer_«eSubscriber.name» = null;
+	«ENDFOREACH-»
 	«ENDIF-»«ENDIF-»
 	
 	«IF hasECharacteristicInterfaces(eElement)-»
@@ -138,7 +143,6 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 	protected RW«eCharacteristicProperty.getBaciType()»POATie «eCharacteristicProperty.name»Tie;
 	
 	«ENDFOREACH-»«ENDFOREACH-»«ENDIF-»
-	
 	«IF hasParent(getERealization(eElement))-»
 	«FOREACH getAllParents(getERealization(eElement)) AS eParent-»
 	«IF isECharacteristic(eParent)-»
@@ -157,11 +161,7 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 	protected RW«eCharacteristicProperty.getBaciType()»Impl «eCharacteristicProperty.name»Impl;
 	protected RW«eCharacteristicProperty.getBaciType()»POATie «eCharacteristicProperty.name»Tie;
 	
-	«ENDFOREACH-»
-	«ENDIF-»
-	«ENDFOREACH-»
-	«ENDIF-»
-			
+	«ENDFOREACH-»«ENDIF-»«ENDFOREACH-»«ENDIF-»
     /////////////////////////////////////////////////////////////
 	// Implementation of ComponentLifecycle
 	/////////////////////////////////////////////////////////////
@@ -173,27 +173,40 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 		
 		m_logger.info("initialize() called...");
 		
+		«IF eElement.hasECharacteristicInterfaces()-»
+		super.initialize(containerServices);
+		«ENDIF-»
+		
 		«IF hasNCDefinitions(getERealization(eElement))-»
 		«IF hasEPublishers(getERealization(eElement))-»
-		m_supplier = new SimpleSupplier(CHANNELNAME_«getEPublishers(getERealization(eElement)).first().name.toUpperCase()».value, m_containerServices);
+		«FOREACH getEPublishers(getERealization(eElement)) AS eSubscriber -»
+		try 
+		{
+			m_supplier_«eSubscriber.name» = new SimpleSupplier(CHANNEL_«eSubscriber.eContainer.name.toUpperCase()»_«eSubscriber.type.name.toUpperCase()»_«eSubscriber.name.toUpperCase()».value, m_containerServices);
+		} 
+		catch (AcsJException e) 
+		{
+			m_logger.info("m_supplier_«eSubscriber.name» init failed..");
+		}
+		«ENDFOREACH-»
 		«ENDIF-»
+		
 		«IF hasESubscribers(getERealization(eElement))-»
+		«FOREACH getESubscribers(getERealization(eElement)) AS eSubscriber -»
 		try
 		{
-			m_consumer = new Consumer(CHANNELNAME_«getEPublishers(getERealization(eElement)).first().name.toUpperCase()».value, m_containerServices);
-			m_consumer.addSubscription(alma.FRIDGE.temperatureDataBlockEvent.class, this);
-			m_consumer.consumerReady();
-			m_consumer.disconnect();
+			m_consumer_«eSubscriber.name» = new Consumer(CHANNEL_«eSubscriber.eContainer.name.toUpperCase()»_«eSubscriber.type.name.toUpperCase()»_«eSubscriber.name.toUpperCase()».value, m_containerServices);
+			m_consumer_«eSubscriber.name».addSubscription(«eSubscriber.type.name».class, this);
+			m_consumer_«eSubscriber.name».consumerReady();
+			m_consumer_«eSubscriber.name».disconnect();
 		}
 		catch (AcsJException e)
 		{
-			m_logger.info("Consumer init failed..");
+			m_logger.info("m_consumer_«eSubscriber.name» init failed..");
 		}
-		«ENDIF-»
-		«ENDIF-»
-		
+		«ENDFOREACH-»
+		«ENDIF-»«ENDIF-»
 		«IF eElement.hasECharacteristicInterfaces()-»
-		super.initialize(containerServices);
 		«IF hasRORWProperties(getERealization(eElement))-»
 		// try to initialize BACI properties from «getERealization(eElement).name»
 		try
@@ -224,9 +237,7 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 		{
 			throw new ComponentLifecycleException("Failed to create properties of «getERealization(eElement).name»", throwable); 
 		}
-		«ENDIF-»
-		«ENDIF-»
-		
+		«ENDIF-»«ENDIF-»
 		«IF hasParent(getERealization(eElement))-»
 		«FOREACH getAllParents(getERealization(eElement)) AS eParent-»
 		«IF isECharacteristic(eParent)-»
@@ -246,18 +257,14 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 			«eCharacteristicProperty.name»Impl = new RW«eCharacteristicProperty.getBaciType()»Impl("«eCharacteristicProperty.name»", this, «eCharacteristicProperty.name»DataAccess); 
 			«eCharacteristicProperty.name»Tie = new RW«eCharacteristicProperty.getBaciType()»POATie(«eCharacteristicProperty.name»Impl);
 			«eCharacteristicProperty.name» = RW«eCharacteristicProperty.getBaciType()»Helper.narrow(this.registerProperty(«eCharacteristicProperty.name»Impl,«eCharacteristicProperty.name»Tie)); 
-			
 			«ENDFOREACH-»
 		}
 		catch(Throwable throwable)
 		{
 			throw new ComponentLifecycleException("Failed to create properties of «eParent.name»", throwable); 
 		}
-		«ENDIF-»
-		«ENDIF-»
-		«ENDFOREACH-»
-		«ENDIF-»
-     }
+		«ENDIF-»«ENDIF-»«ENDFOREACH-»«ENDIF-»
+	}
 	
 	public void execute() 
 	{
@@ -314,13 +321,12 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 	«ENDIF-»
 	
 	«IF hasESubscribers(getERealization(eElement))-»
-	public void receive(«getEPublishers(getERealization(eElement)).first().type.name.toUpperCase()» «getEPublishers(getERealization(eElement)).first().type.name.toLowerCase()»)
+	«FOREACH getESubscribers(getERealization(eElement)) AS eSubscriber -»
+	public void receive(«eSubscriber.type.name» «eSubscriber.type.name.toLowerCase()»Event)
 	{
 		// TODO
 	}
-	«ENDIF-»
-	«ENDIF-»
-    
+	«ENDFOREACH-»«ENDIF-»«ENDIF-»
     «IF hasECharacteristicInterfaces(eElement)-»
 	«FOREACH getERealizations(eElement) AS eInterface-»
 	«IF hasRORWProperties(eInterface)-»
@@ -365,7 +371,6 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 	{
 		return «eCharacteristicProperty.name»;
 	}
-	
 	«ENDFOREACH-»
 	
 	«FOREACH getEReadWriteProperties(eParent) AS eCharacteristicProperty-»
@@ -398,9 +403,8 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 	 */	
 	public «getJavaReturnType(eOperation)» «eOperation.name-»(«FOREACH eOperation.ownedParameter.select(e|e.direction.toString()!= 'return') AS param SEPARATOR ', '-»«getJavaParam(param)» «param.name»«ENDFOREACH-») 
     {
-		«IF !isVoid(eOperation)»return «getReturnValue(eOperation)»;«ENDIF»  
+		«IF !isVoid(eOperation)»return «getReturnValue(eOperation)»;«ELSE»// TODO«ENDIF»  
 	}
-	
 	«ENDFOREACH-»
 	«ENDIF-»
 	
@@ -420,11 +424,10 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 	 */	
 	public «getJavaReturnType(eOperation)» «eOperation.name-»(«FOREACH eOperation.ownedParameter.select(e|e.direction.toString()!= 'return') AS param SEPARATOR ', '-»«getJavaParam(param)» «param.name»«ENDFOREACH-») 
 	{
-		«IF !isVoid(eOperation)»return «getReturnValue(eOperation)»;«ELSE»//TODO«ENDIF»  
+		«IF !isVoid(eOperation)»return «getReturnValue(eOperation)»;«ELSE»// TODO«ENDIF»  
 	}
 	«ENDFOREACH-»
-	«ENDFOREACH-»
-	«ENDIF-»
+	«ENDFOREACH-»«ENDIF-»
 } 
 «ENDFILE»
 «ENDFOREACH»

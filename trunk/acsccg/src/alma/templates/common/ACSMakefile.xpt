@@ -157,11 +157,6 @@ tttlll_OBJECTS  =
 # Configuration Database Files
 # ----------------------------
 CDB_SCHEMAS = «FOREACH getEComponentsImpl(getPackage(this)) AS eElement -»«IF hasECharacteristicInterfaces(eElement)-» «eElement.name»«ENDIF-»«ENDFOREACH»
-«IF hasNCDefinitions(getPackage(this))-»
-«FOREACH getNREChannelNames( getNCDefinitions(getPackage(this)) ) AS eElement -»
-CDB_SCHEMAS += CHANNEL_«eElement.type.name.toUpperCase()»
-«ENDFOREACH»
-«ENDIF-»
 
 # 
 # IDL Files and flags

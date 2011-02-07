@@ -47,11 +47,16 @@ public class ElementSort
 		if(!elementList.isEmpty())
 			nreList.add(elementList.get(0));
 
-		for(Property eProperty : elementList)
-			for(Property eNREProperty : elementList)
-				if(!eNREProperty.getType().getName().equals(eProperty.getType().getName()))
-					nreList.add(eProperty);
-		
+		for(int i=0; i<elementList.size();i++)
+		{
+			for(int j=0; j<nreList.size(); j++)
+			{
+				boolean exists = false;
+				exists = nreList.get(j).getName().equals(elementList.get(i).getName());
+				if(!exists) nreList.add(elementList.get(i));
+			}
+		}	
+
 		return nreList;
 	}
 }

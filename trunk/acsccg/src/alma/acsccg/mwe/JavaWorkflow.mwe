@@ -78,7 +78,7 @@
 		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
 	</component>
 	
-	<!-- CDBChannels -->
+	<!-- CDBChannels
 	<component id="ACS_CDB_CHANNELS" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
 		<fileEncoding value="UTF-8" />
 		<metaModel idRef="default_profile"/>
@@ -86,6 +86,7 @@
 		<expand value="templates::common::ACSCDBChannels::Root FOR model"/>
 		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
 	</component>
+	 -->
 	
 	<!-- CDBEventChannel 
 	# See Notification Channel Document of ACS...
@@ -105,6 +106,9 @@
 		<genPath value="${ouputFolderURI}"/>
 		<expand value="templates::common::ACSIDLComponent::Root FOR model"/>
 		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
+		<outlet path="${ouputFolderURI}">
+		<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" configFile="ACS_B_JAVA.xml" />
+		</outlet>
 	</component>
 	
 	<!-- IDL Common -->
@@ -114,6 +118,9 @@
 		<genPath value="${ouputFolderURI}"/>
 		<expand value="templates::common::ACSIDLCommon::Root FOR model"/>
 		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
+		<outlet path="${ouputFolderURI}">
+		<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" configFile="ACS_B_JAVA.xml" />
+		</outlet>
 	</component>
 	
 	<!-- IDL Module Error -->
@@ -133,7 +140,7 @@
 		<expand value="templates::java::ACSComponent::Root FOR model"/>
 		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
 		<outlet path="${ouputFolderURI}">
-			<!--<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier"/>-->
+		<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" configFile="ACS_B_JAVA.xml" />
 		</outlet>
 	</component>
 	
@@ -144,6 +151,9 @@
 		<genPath value="${ouputFolderURI}"/>
 		<expand value="templates::java::ACSComponentHelper::Root FOR model"/>
 		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
+		<outlet path="${ouputFolderURI}">
+		<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" configFile="ACS_B_JAVA.xml" />
+		</outlet>
 	</component>
 	
 	<!-- Eclipse Project Setup -->
