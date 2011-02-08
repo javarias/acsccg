@@ -97,7 +97,7 @@ import alma.acs.nc.SimpleSupplier;«ENDIF»
 import alma.acs.nc.Consumer;«ENDIF»
 
 «FOREACH getNREChannelNames(getNCDefinitions(getERealization(eElement))) AS eElement -»
-import alma.«getPackage(this).name».CHANNEL_«eElement.eContainer.name.toUpperCase()»_«eElement.type.name.toUpperCase()»_«eElement.name.toUpperCase()»;
+import alma.«getPackage(this).name».CHANNEL_«eElement.eContainer.name.toUpperCase()»_«eElement.name.toUpperCase()»;
 «ENDFOREACH-»«ENDIF-»
 
 /**«IF hasComment(eElement)»«FOREACH getCommentsWrapped(getComment(eOperation)) AS comment»
@@ -182,7 +182,7 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 		«FOREACH getEPublishers(getERealization(eElement)) AS eSubscriber -»
 		try 
 		{
-			m_supplier_«eSubscriber.name» = new SimpleSupplier(CHANNEL_«eSubscriber.eContainer.name.toUpperCase()»_«eSubscriber.type.name.toUpperCase()»_«eSubscriber.name.toUpperCase()».value, m_containerServices);
+			m_supplier_«eSubscriber.name» = new SimpleSupplier(CHANNEL_«eSubscriber.eContainer.name.toUpperCase()»_«eSubscriber.name.toUpperCase()».value, m_containerServices);
 		} 
 		catch (AcsJException e) 
 		{
@@ -195,7 +195,7 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 		«FOREACH getESubscribers(getERealization(eElement)) AS eSubscriber -»
 		try
 		{
-			m_consumer_«eSubscriber.name» = new Consumer(CHANNEL_«eSubscriber.eContainer.name.toUpperCase()»_«eSubscriber.type.name.toUpperCase()»_«eSubscriber.name.toUpperCase()».value, m_containerServices);
+			m_consumer_«eSubscriber.name» = new Consumer(CHANNEL_«eSubscriber.eContainer.name.toUpperCase()»_«eSubscriber.name.toUpperCase()».value, m_containerServices);
 			m_consumer_«eSubscriber.name».addSubscription(«eSubscriber.type.name».class, this);
 			m_consumer_«eSubscriber.name».consumerReady();
 			m_consumer_«eSubscriber.name».disconnect();
