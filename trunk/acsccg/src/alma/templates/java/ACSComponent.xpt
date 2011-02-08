@@ -174,7 +174,7 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 		m_logger.info("initialize() called...");
 		
 		«IF eElement.hasECharacteristicInterfaces()-»
-		super.initialize(containerServices);
+		super.initialize(m_containerServices);
 		«ENDIF-»
 		
 		«IF hasNCDefinitions(getERealization(eElement))-»
@@ -246,14 +246,14 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 		try
 		{		
 			«FOREACH getEReadOnlyProperties(eParent) AS eCharacteristicProperty-»
-			«eCharacteristicProperty.name»DataAcess = new MemoryDataAccess();
+			«eCharacteristicProperty.name»DataAccess = new MemoryDataAccess();
 			«eCharacteristicProperty.name»Impl = new RO«eCharacteristicProperty.getBaciType()»Impl("«eCharacteristicProperty.name»", this, «eCharacteristicProperty.name»DataAccess); 
 			«eCharacteristicProperty.name»Tie = new RO«eCharacteristicProperty.getBaciType()»POATie(«eCharacteristicProperty.name»Impl);
 			«eCharacteristicProperty.name» = RO«eCharacteristicProperty.getBaciType()»Helper.narrow(this.registerProperty(«eCharacteristicProperty.name»Impl,«eCharacteristicProperty.name»Tie)); 
 			 
 			«ENDFOREACH-»
 			«FOREACH getEReadWriteProperties(eParent) AS eCharacteristicProperty-»
-			«eCharacteristicProperty.name»DataAcess = new MemoryDataAccess();
+			«eCharacteristicProperty.name»DataAccess = new MemoryDataAccess();
 			«eCharacteristicProperty.name»Impl = new RW«eCharacteristicProperty.getBaciType()»Impl("«eCharacteristicProperty.name»", this, «eCharacteristicProperty.name»DataAccess); 
 			«eCharacteristicProperty.name»Tie = new RW«eCharacteristicProperty.getBaciType()»POATie(«eCharacteristicProperty.name»Impl);
 			«eCharacteristicProperty.name» = RW«eCharacteristicProperty.getBaciType()»Helper.narrow(this.registerProperty(«eCharacteristicProperty.name»Impl,«eCharacteristicProperty.name»Tie)); 

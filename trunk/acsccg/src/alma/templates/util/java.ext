@@ -86,6 +86,8 @@ string getJavaParam(Parameter this):
     else
     if type.name == 'Boolean'
         then type.name.toLowerCase()
+    if type.name == 'TimeInterval'
+        then 'long'
     else
     	type.name;
 
