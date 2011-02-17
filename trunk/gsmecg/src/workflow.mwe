@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <workflow>
 	<!-- Browse models and write some code -->
-	<!-- Default model is stored in ../test/model/model.uml -->
-	<!-- Default output is ../src-gen -->
-	<property name="modelFileURI" value="../test/model/model.uml"/>
-	<property name="ouputFolderURI" value="../src-gen" />
-	
-	<!-- Using UML2 based models -->
-	<!-- Setup path to platform. Usually this is the workspace location, which is one folder up. -->
+	<!-- Setup URIs -->
+	<property name="modelFileURI" value="./examples/MasterComponent/MasterComponent.uml"/>
+	<property name="ouputFolderURI" value="./src-gen/MasterComponent" />
+		
+	<!-- Setup path to platform. Usually this is the workspace location. -->
 	<bean class="org.eclipse.emf.mwe.utils.StandaloneSetup">
-		 <platformUri value="./.." /> 
+		 <platformUri value="." /> 
 	</bean> 
 
     <!-- Setup UML2 support -->
@@ -21,37 +19,37 @@
          <profile value="asdmprofile.profile.uml"/>
     </bean>		-->
     
-    <!-- Reads the UML model and stores it into slot named 'model' -->
+    <!-- Reads the UML model and stores it into slot named 'mymodel' -->
 	<component class="org.eclipse.emf.mwe.utils.Reader">
 		<uri value="${modelFileURI}" />
 		<modelSlot value="mymodel" />
 	</component>
 	
-	<!-- Checking model -->
+	<!-- Checking model requirements-->
 	<component class="org.eclipse.xtend.check.CheckComponent">
-		<metaModel id="mm" class="org.eclipse.xtend.typesystem.uml2.UML2MetaModel">
-		</metaModel>
+		<metaModel id="mm" class="org.eclipse.xtend.typesystem.uml2.UML2MetaModel"/>
 		<checkFile value="constraints"/>
 		<emfAllChildrenSlot value="mymodel"/>
 	</component> 
 	
 	
-	<!--  Cleaning the room. Delete all the files on the output dir  -->
+	<!--  Cleaning the room. Delete all the files on the output dir --> 
 	<component id="dirCleaner" 
 		class="org.eclipse.emf.mwe.utils.DirectoryCleaner"
-		directory="${ouputFolderURI}"/>
+		directory="${ouputFolderURI}"/> 
 
 	<!--  generate code -->
 	<component class="org.eclipse.xpand2.Generator" skipOnErrors="true">
 		<metaModel class="org.eclipse.xtend.typesystem.uml2.UML2MetaModel"/>
 		<metaModel class="org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel"/>
 		<expand value="templates::Root::Root FOR mymodel" />
-		<outlet path="${ouputFolderURI}" />
 		
-		<!--   Beautify the code. -->
-		<beautifier class="org.eclipse.xtend.typesystem.xsd.XMLBeautifier">
-			<fileExtensions value=".xml" /> 
-		</beautifier> 
+		<outlet path="${ouputFolderURI}">
+			<!-- Beautify the code. SLOOOOOOOW!!!! 
+			<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" /> 
+			<postprocessor class="org.eclipse.xtend.typesystem.xsd.XMLBeautifier"/> -->
+		</outlet>
+
 	</component>
 	
 </workflow>

@@ -9,7 +9,7 @@ context StateMachine ERROR "StateMachine must have an initial state." :
 	
 context StateMachine WARNING "StateMachine must have inner states" :
 	allOwnedElements().typeSelect(State).size > 0;
-
+ 
 context State ERROR "State must have a name" :
 	name.length != 0;
 
