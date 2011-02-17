@@ -66,6 +66,13 @@
 #    None
 #------------------------------------------------------------------------
 MODULE = «getPackage(this).name»
+
+«PROTECT CSTART '## ' CEND '' ID getPackage(this).name+".Makefile.0"»
+
+## End Makefile region 0 protection
+«ENDPROTECT»
+
+«PROTECT CSTART '## ' CEND '' ID getPackage(this).name+".Makefile.1"»
 #
 # user definable C-compilation flags
 #USER_CFLAGS = 
@@ -153,10 +160,15 @@ TCL_LIBRARIES_L =
 # <brief description of tttlll library>
 tttlll_OBJECTS  = 
 
+## End Makefile region 1 protection
+«ENDPROTECT»
+
 #
 # Configuration Database Files
 # ----------------------------
-CDB_SCHEMAS = «FOREACH getEComponentsImpl(getPackage(this)) AS eElement -»«IF hasECharacteristicInterfaces(eElement)-» «eElement.name»«ENDIF-»«ENDFOREACH»
+CDB_SCHEMAS = «FOREACH getEComponentsImpl(getPackage(this)) AS eElement -»«IF hasECharacteristicInterfaces(eElement)-»\
+CDB_SCHEMAS += «eElement.name»
+«ENDIF-»«ENDFOREACH»
 
 # 
 # IDL Files and flags
@@ -176,6 +188,7 @@ JARFILES = $(MODULE)
 $(MODULE)_DIRS = alma/«getPackage(this).name»
 jjj_EXTRAS = 
 
+«PROTECT CSTART '## ' CEND '' ID getPackage(this).name+".Makefile.2"»
 #
 # java sources in Jarfile on/off
 DEBUG=on
@@ -263,6 +276,13 @@ man   : do_man
 install : install_all
 	@echo " . . . installation done"
 
+## End Makefile region 2 protection
+«ENDPROTECT»
+
+«PROTECT CSTART '## ' CEND '' ID getPackage(this).name+".Makefile.3"»
+
+## End Makefile region 3 protection
+«ENDPROTECT»
 
 #___oOo___
 «ENDFILE»

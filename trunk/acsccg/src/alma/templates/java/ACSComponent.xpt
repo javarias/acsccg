@@ -99,6 +99,9 @@ import alma.acs.nc.Consumer;«ENDIF»
 «FOREACH getNREChannelNames(getNCDefinitions(getERealization(eElement))) AS eElement -»
 import alma.«getPackage(this).name».CHANNEL_«eElement.eContainer.name.toUpperCase()»_«eElement.name.toUpperCase()»;
 «ENDFOREACH-»«ENDIF-»
+ 
+«PROTECT CSTART '/////' CEND '' ID getPackage(this).name+"."+eElement.name+".Imports"»
+«ENDPROTECT»
 
 /**«IF hasComment(eElement)»«FOREACH getCommentsWrapped(getComment(eOperation)) AS comment»
  *«comment»«ENDFOREACH»«ENDIF»
@@ -113,6 +116,9 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 {
 	private ContainerServices m_containerServices;
 	private Logger m_logger;
+	
+	«PROTECT CSTART '///// ' CEND '' ID getPackage(this).name+"."+eElement.name+".VariableDefinition"»
+	«ENDPROTECT»
     
 	«IF hasNCDefinitions(getERealization(eElement))-»«IF hasEPublishers(getERealization(eElement))-»
 	«FOREACH getEPublishers(getERealization(eElement)) AS eSubscriber -»
@@ -172,6 +178,9 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 		m_logger = m_containerServices.getLogger();
 		
 		m_logger.info("initialize() called...");
+		
+		«PROTECT CSTART '///// ' CEND '' ID getPackage(this).name+"."+eElement.name+".VariableInitialization"»
+		«ENDPROTECT»
 		
 		«IF eElement.hasECharacteristicInterfaces()-»
 		super.initialize(m_containerServices);
@@ -295,6 +304,9 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 	{
 	    return m_containerServices.getName();
 	}
+	
+	«PROTECT CSTART '///// ' CEND '' ID getPackage(this).name+"."+eElement.name+".Methods"»
+	«ENDPROTECT»
     
 	«IF hasNCDefinitions(getERealization(eElement))-»
 	/////////////////////////////////////////////////////////////
@@ -304,6 +316,7 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 	«IF hasEPublishers(getERealization(eElement))-»
 	public void sendEvent() throws CouldntPerformActionEx
 	{
+		«PROTECT CSTART '///// ' CEND '' ID getPackage(this).name+"."+eElement.name+".SendEvent"»
 		try 
 		{
 			// TODO
@@ -317,6 +330,7 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 			m_logger.log(Level.WARNING, "failed to send event.");
 			throw (new AcsJCouldntPerformActionEx(thr)).toCouldntPerformActionEx();
 		}
+		«ENDPROTECT»
 	}
 	«ENDIF-»
 	
@@ -324,7 +338,9 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 	«FOREACH getESubscribers(getERealization(eElement)) AS eSubscriber -»
 	public void receive(«eSubscriber.type.name» «eSubscriber.type.name.toLowerCase()»Event)
 	{
-		// TODO
+		«PROTECT CSTART '///// ' CEND '' ID getPackage(this).name+"."+eElement.name+"."+eSubscriber.type.name.toLowerCase()+"EventReceive"»
+		//TODO
+		«ENDPROTECT»
 	}
 	«ENDFOREACH-»«ENDIF-»«ENDIF-»
     «IF hasECharacteristicInterfaces(eElement)-»
@@ -340,18 +356,22 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 	 */
 	public RO«eCharacteristicProperty.getBaciType()» «eCharacteristicProperty.name»()
 	{
+		«PROTECT CSTART '///// ' CEND '' ID getPackage(this).name+"."+eElement.name+".RO"+eCharacteristicProperty.getBaciType()»
 		return «eCharacteristicProperty.name»;
+		«ENDPROTECT»
 	}
 	
 	«ENDFOREACH-»
 	«FOREACH getEReadWriteProperties(eInterface) AS eCharacteristicProperty-»
 	/**
 	 * Get the «eCharacteristicProperty.name»
-	 * @return RO«eCharacteristicProperty.getBaciType()»
+	 * @return RW«eCharacteristicProperty.getBaciType()»
 	 */
 	public RW«eCharacteristicProperty.getBaciType()» «eCharacteristicProperty.name»()
 	{
+		«PROTECT CSTART '///// ' CEND '' ID getPackage(this).name+"."+eElement.name+".RW"+eCharacteristicProperty.getBaciType()»
 		return «eCharacteristicProperty.name»;
+		«ENDPROTECT»
 	}
 	«ENDFOREACH-»«ENDIF-»«ENDFOREACH-»«ENDIF-»
 
@@ -369,7 +389,9 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 	 */
 	public RO«eCharacteristicProperty.getBaciType()» «eCharacteristicProperty.name»()
 	{
+		«PROTECT CSTART '///// ' CEND '' ID getPackage(this).name+"."+eElement.name+".RO"+eCharacteristicProperty.getBaciType()»
 		return «eCharacteristicProperty.name»;
+		«ENDPROTECT»
 	}
 	«ENDFOREACH-»
 	
@@ -380,7 +402,9 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 	 */
 	public RW«eCharacteristicProperty.getBaciType()» «eCharacteristicProperty.name»()
 	{
+		«PROTECT CSTART '///// ' CEND '' ID getPackage(this).name+"."+eElement.name+".RW"+eCharacteristicProperty.getBaciType()»
 		return «eCharacteristicProperty.name»;
+		«ENDPROTECT»
 	}
 	«ENDFOREACH-»
 	«ENDIF-»
@@ -403,7 +427,9 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 	 */	
 	public «getJavaReturnType(eOperation)» «eOperation.name-»(«FOREACH eOperation.ownedParameter.select(e|e.direction.toString()!= 'return') AS param SEPARATOR ', '-»«getJavaParam(param)» «param.name»«ENDFOREACH-») 
     {
-		«IF !isVoid(eOperation)»return «getReturnValue(eOperation)»;«ELSE»// TODO«ENDIF»  
+    	«PROTECT CSTART '///// ' CEND '' ID getPackage(this).name+"."+eElement.name+"."+eOperation.name»
+		«IF !isVoid(eOperation)»return «getReturnValue(eOperation)»;«ELSE»//TODO«ENDIF»
+		«ENDPROTECT»  
 	}
 	«ENDFOREACH-»
 	«ENDIF-»
@@ -424,7 +450,9 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 	 */	
 	public «getJavaReturnType(eOperation)» «eOperation.name-»(«FOREACH eOperation.ownedParameter.select(e|e.direction.toString()!= 'return') AS param SEPARATOR ', '-»«getJavaParam(param)» «param.name»«ENDFOREACH-») 
 	{
-		«IF !isVoid(eOperation)»return «getReturnValue(eOperation)»;«ELSE»// TODO«ENDIF»  
+		«PROTECT CSTART '///// ' CEND '' ID getPackage(this).name+"."+eElement.name+"."+eOperation.name»
+		«IF !isVoid(eOperation)»return «getReturnValue(eOperation)»;«ELSE»//TODO«ENDIF»
+		«ENDPROTECT»    
 	}
 	«ENDFOREACH-»
 	«ENDFOREACH-»«ENDIF-»
