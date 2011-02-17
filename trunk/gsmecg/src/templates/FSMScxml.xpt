@@ -2,26 +2,39 @@
 «EXTENSION templates::scxmlutil»
 
 «DEFINE Root FOR StateMachine»
+
+«REM» Generate SCXML Model «ENDREM»
 «FILE this.name+".xml"»
-«REM» Write the headers «ENDREM»
-«EXPAND Headers»
-«REM» Select TopStates and explore «ENDREM»
+	«REM» Write the headers «ENDREM»
+	«EXPAND SCXMLcodeSnippet::Headers»
+
+	«REM» Select TopStates and explore «ENDREM»
 	«FOREACH listStates().select(e|e.isTopState()).sortBy(e|e.name) AS st» 
 		«EXPAND ExploreState FOR st»
 	«ENDFOREACH»	
-«REM» Outer FinalStates «ENDREM»
-	«FOREACH this.allOwnedElements().typeSelect(FinalState).select(e|e.parentState().name.toString() == "null") AS st»
-		<final id="«st.getFullName()»"/>
-	«ENDFOREACH»
-</scxml>
+	
+	«REM» Outer FinalStates «ENDREM»
+	«EXPAND SCXMLcodeSnippet::FinalState»
+	
+«EXPAND SCXMLcodeSnippet::CloseScxml»
 «ENDFILE»
-«ENDDEFINE»
+
+«REM» JAVA Custom Actions List«ENDREM»
+«IF !(this.allOwnedElements().typeSelect(State).entry.isEmpty) ||
+	!(this.allOwnedElements().typeSelect(State).exit.isEmpty) || 
+	!(this.allOwnedElements().typeSelect(Transition).hasAction().isEmpty)»
+	«EXPAND CustomActionCode::CActionList»
+«ENDIF»
 
 
-«REM» Write headers «ENDREM» 
-«DEFINE Headers FOR StateMachine»
-<scxml xmlns="http://www.w3.org/2005/07/scxml" 
-		version="1.0" initial="«getInitialState().getFullName()»">
+«IF !(this.allOwnedElements().typeSelect(State).doActivity.isEmpty)»
+	«EXPAND JavaInvokerCode::JavaInvoker»
+	
+	«EXPAND ActivityThreadCode::ActivityThread»
+
+	«EXPAND ApplicationCode::Application»
+«ENDIF»
+
 «ENDDEFINE»
 
 «REM» Explore Generic States «ENDREM»
@@ -38,12 +51,12 @@
 «REM» Explore Simple States «ENDREM»
 «DEFINE ExploreSimpleState FOR State»
 	«IF this.isFinalState()»
-		<final id="«this.getFullName()»"/>
+		«EXPAND SCXMLcodeSnippet::SimFinalState»
 	«ELSE»	
-		<state id="«this.getFullName()»">
+		«EXPAND SCXMLcodeSnippet::StateName»
 		«EXPAND ExploreActions»
 		«EXPAND ExploreTransitions»
-		</state>
+		«EXPAND SCXMLcodeSnippet::CloseState»
 	«ENDIF»
 «ENDDEFINE»
 
@@ -52,7 +65,7 @@
 	«IF this.isOrthogonal()»
 		«EXPAND ExploreOrthState»
 	«ELSEIF !this.listStates().isEmpty»
-		<state id="«this.getFullName()»">
+		«EXPAND SCXMLcodeSnippet::StateName»
 		<initial><transition target="«this.getInitialState().getFullName()»"/></initial>
 		«FOREACH this.listCompChilds() AS cc»
 			«EXPAND ExploreCompState FOR cc»
@@ -65,11 +78,12 @@
 		«ENDIF»
 		«EXPAND ExploreActions»
 		«EXPAND ExploreTransitions»
-		</state>
+		«EXPAND SCXMLcodeSnippet::CloseState»
 	«ELSE»
 		«EXPAND ExploreSimpleState»
 	«ENDIF»
 «ENDDEFINE»
+
 
 «REM» Explore Orthogonal States «ENDREM»
 «REM» Parallel Regions MUST have a nome in the ecore model  «ENDREM»
@@ -82,7 +96,7 @@
 		«FOREACH oreg.allOwnedElements().typeSelect(State).select(e|(e.owner == oreg)) AS ost»
 			«EXPAND ExploreState FOR ost»
 		«ENDFOREACH»
-		</state>
+		«EXPAND SCXMLcodeSnippet::CloseState»
 	«ENDFOREACH»
 	«IF this.hasHistory()»
 		«EXPAND ExploreHistory»
@@ -92,14 +106,23 @@
 	</parallel>
 «ENDDEFINE»			
 
+
 «REM» Explore Actions and Activities «ENDREM»
 «DEFINE ExploreActions FOR State»
-	«IF this.hasOnEntry()»<onentry><log expr="'«this.entry.name»'"/></onentry>«ENDIF»
+	«IF this.hasOnEntry()»
+		«EXPAND SCXMLcodeSnippet::CAEntry»
+		«EXPAND CustomActionCode::JCAEntry»
+	«ENDIF»
 	«IF this.hasDoActions()»
-		«EXPAND Invoke» 
+		«EXPAND SCXMLcodeSnippet::Invoke»
+		«EXPAND ActivityThreadCode::InvActivity» 
 	«ENDIF» 
-	«IF this.hasOnExit()»<onexit><log expr="'«this.exit.name»'"/></onexit>«ENDIF»
+	«IF this.hasOnExit()»
+		«EXPAND SCXMLcodeSnippet::CAExit»
+		«EXPAND CustomActionCode::JCAExit»
+	«ENDIF»
 «ENDDEFINE»
+
 
 «REM» Explore Transitions «ENDREM»
 «DEFINE ExploreTransitions FOR State»
@@ -109,32 +132,22 @@
 		«ELSE»
 			«tr.getTransition()»
 		«ENDIF»
+		«IF tr.hasAction()»
+			«EXPAND CustomActionCode::JCATran FOR tr»
+		«ENDIF»
 	«ENDFOREACH»
 «ENDDEFINE»
+
 
 «REM» Explore History «ENDREM»
 «DEFINE ExploreHistory FOR State»
 	«FOREACH this.getHistory() AS hs»   
-		<history id="«hs.container.getFullName()»:«hs.name»" «hs.historyType()»><transition target="«hs.outgoing.get(0).target.container.getFullName()»:«hs.outgoing.get(0).target.name»"/></history>
+		<history id="«hs.container.getFullName()»:«hs.name»" «hs.historyType()»>
+			<transition target="«hs.outgoing.get(0).target.container.getFullName()»:«hs.outgoing.get(0).target.name»"/>
+		</history>
 	«ENDFOREACH»
 «ENDDEFINE»
 
-«REM» At the moment <invoke> element calls an external state machine with the name of the Activity «ENDREM»
-«REM» TODO: what we want to do with do-activities? «ENDREM»
-«DEFINE Invoke FOR State»
-<invoke targettype="scxml" id="«this.doActivity.name»" src="«this.doActivity.name».xml"/>
-	«FILE this.doActivity.name+".xml"»
-		<scxml xmlns="http://www.w3.org/2005/07/scxml" 
-			version="1.0" initial="A">
-			<final id="A">
-				<onentry>
-        			<log expr="'«this.doActivity.name»'"/>
-      			</onentry>
-			</final>
-		</scxml>
-	«ENDFILE»
-«ENDDEFINE»
 
- 
 «REM» «ENDREM» 
 «REM» «ENDREM» 

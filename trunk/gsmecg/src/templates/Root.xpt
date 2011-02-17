@@ -1,6 +1,5 @@
-«REM»«IMPORT FSMScxml»«ENDREM»
 
-«DEFINE Root FOR uml::Model»
-	«EXPAND FSMScxml::Root FOREACH allOwnedElements().typeSelect(uml::StateMachine)»
-	«REM» Foreach element of type StateMachine expand Root from FSMScxml «ENDREM»
-«ENDDEFINE»
+Â«DEFINE Root FOR uml::ModelÂ»
+	Â«REMÂ» Foreach element of type StateMachine expand Root from FSMScxml Â«ENDREMÂ»
+	Â«EXPAND FSMScxml::Root FOREACH allOwnedElements().typeSelect(uml::StateMachine)Â»
+Â«ENDDEFINEÂ»
