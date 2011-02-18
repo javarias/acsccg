@@ -3,7 +3,7 @@
 	<!-- Browse models and write some code -->
 	<!-- Setup URIs -->
 	<property name="modelFileURI" value="./examples/MasterComponent/MasterComponent.uml"/>
-	<property name="ouputFolderURI" value="./src-gen/MasterComponent" />
+	<property name="ouputFolderURI" value="./src-gen" />
 		
 	<!-- Setup path to platform. Usually this is the workspace location. -->
 	<bean class="org.eclipse.emf.mwe.utils.StandaloneSetup">

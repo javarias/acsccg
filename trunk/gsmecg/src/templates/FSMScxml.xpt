@@ -141,7 +141,7 @@
 
 «REM» Explore History «ENDREM»
 «DEFINE ExploreHistory FOR State»
-	«FOREACH this.getHistory() AS hs»   
+	«FOREACH this.getHistory() AS hs»
 		<history id="«hs.container.getFullName()»:«hs.name»" «hs.historyType()»>
 			<transition target="«hs.outgoing.get(0).target.container.getFullName()»:«hs.outgoing.get(0).target.name»"/>
 		</history>

@@ -1,4 +1,5 @@
 
+
 «DEFINE Root FOR uml::Model»
 	«REM» Foreach element of type StateMachine expand Root from FSMScxml «ENDREM»
 	«EXPAND FSMScxml::Root FOREACH allOwnedElements().typeSelect(uml::StateMachine)»

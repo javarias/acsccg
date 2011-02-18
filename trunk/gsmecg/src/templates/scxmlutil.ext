@@ -228,6 +228,7 @@ case (this.kind.toString() == "shallowHistory") : "type=\"shallow\""
 case (this.kind.toString() == "deepHistory") : "type=\"deep\""
 default : null
 }
+;
 	
 
 		
