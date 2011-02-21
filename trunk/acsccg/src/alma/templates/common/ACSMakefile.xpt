@@ -80,7 +80,33 @@ MODULE = «getPackage(this).name»
 #
 # additional include and library search paths
 #USER_INC = 
-#USER_LIB = 
+USER_LIB =  -lACE \
+            -lTAO \
+            -lTAO_DsLogAdmin \
+            -lTAO_CosNaming \
+            -lTAO_IORTable \
+            -lTAO_PortableServer \
+            -lTAO_Svc_Utils \
+            -lTAO_CosTrading \
+            -lTAO_CosNotification \
+            -lTAO_DynamicAny \
+            -lTAO_IFR_Client \
+            -lTAO_CosProperty \
+            -lacsutil \
+            -lcdb \
+            -llogging \
+            -lacscomponent \
+            -lbaci \
+            -lmaci \
+            -lmaciClient \
+            -lacserr \
+            -lm \
+            -lloki \
+            -lACSErrTypeCommon \
+            #-l«getPackage(this).name»CommonStubs \
+			«FOREACH getEInterfaces(getPackage(this)) AS eElement -»
+            -l«eElement.name»Stubs \
+			«ENDFOREACH-»
 
 #
 # MODULE CODE DESCRIPTION:
@@ -166,9 +192,9 @@ tttlll_OBJECTS  =
 #
 # Configuration Database Files
 # ----------------------------
-CDB_SCHEMAS = «FOREACH getEComponentsImpl(getPackage(this)) AS eElement -»«IF hasECharacteristicInterfaces(eElement)-»\
+CDB_SCHEMAS = «FOREACH getEComponentsImpl(getPackage(this)) AS eElement -»«IF hasECharacteristicInterfaces(eElement)-»
 CDB_SCHEMAS += «eElement.name»
-«ENDIF-»«ENDFOREACH»
+«ENDIF-»«ENDFOREACH-»
 
 # 
 # IDL Files and flags
