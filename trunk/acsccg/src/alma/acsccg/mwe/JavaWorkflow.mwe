@@ -24,6 +24,15 @@
 	
 	<!-- Generators -->
 	
+	<!-- Protected Regions -->
+	<component id="ACS_PROTECTED_REGIONS" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
+		<fileEncoding value="UTF-8" />
+		<metaModel idRef="default_profile"/>
+		<genPath value="${ouputFolderURI}"/>
+		<expand value="templates::common::ACSCCGProtectedRegions::Root FOR model"/>
+		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
+	</component>
+	
 	<!-- Summary -->
 	<component id="ACS_SUMMARY" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
 		<fileEncoding value="UTF-8" />
@@ -103,6 +112,42 @@
 	</component>
 	-->
 	
+	<!-- Python Sim Clients -->
+	<component id="ACS_SIM_PY_CLIENT" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
+		<fileEncoding value="UTF-8" />
+		<metaModel idRef="default_profile"/>
+		<genPath value="${ouputFolderURI}"/>
+		<expand value="templates::common::ACSSimPyClient::Root FOR model"/>
+		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
+	</component>
+	
+	<!-- CDB Simulator Simulator -->
+	<component id="ACS_CDB_SIM_COMPONENT" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
+		<fileEncoding value="UTF-8" />
+		<metaModel idRef="default_profile"/>
+		<genPath value="${ouputFolderURI}"/>
+		<expand value="templates::common::ACSCDBSimComponent::Root FOR model"/>
+		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
+	</component>
+	
+	<!-- CDB Characteristic Simulator -->
+	<component id="ACS_CDB_SIM_CHARACTERISTIC" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
+		<fileEncoding value="UTF-8" />
+		<metaModel idRef="default_profile"/>
+		<genPath value="${ouputFolderURI}"/>
+		<expand value="templates::common::ACSCDBSimCharacteristic::Root FOR model"/>
+		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
+	</component>
+	
+	<!-- Module CDB Sim Py Container -->
+	<component id="ACS_CDB_SIM_PY_CONTAINER" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
+		<fileEncoding value="UTF-8" />
+		<metaModel idRef="default_profile"/>
+		<genPath value="${ouputFolderURI}"/>
+		<expand value="templates::common::ACSCDBSimPyContainer::Root FOR model"/>
+		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
+	</component>
+	
 	<!-- IDL Component -->
 	<component id="ACS_IDLCOMPONENT" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
 		<fileEncoding value="UTF-8" />
@@ -168,6 +213,15 @@
 		<metaModel idRef="default_profile"/>
 		<genPath value="${ouputFolderURI}"/>
 		<expand value="templates::common::ACSEclipseProject::Root FOR model"/>
+		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
+	</component>
+	
+	<!-- Changelog -->
+	<component id="PROJECT_CHANGELOG" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
+		<fileEncoding value="UTF-8" />
+		<metaModel idRef="default_profile"/>
+		<genPath value="${ouputFolderURI}"/>
+		<expand value="templates::common::ACSChangelog::Root FOR model"/>
 		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
 	</component>
 		

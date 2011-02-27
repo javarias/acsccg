@@ -102,12 +102,8 @@ USER_LIB =  -lACE \
             -lacserr \
             -lm \
             -lloki \
-            -lACSErrTypeCommon \
-            #-l«getPackage(this).name»CommonStubs \
-			«FOREACH getEInterfaces(getPackage(this)) AS eElement -»
-            -l«eElement.name»Stubs \
-			«ENDFOREACH-»
-
+            -lACSErrTypeCommon
+            
 #
 # MODULE CODE DESCRIPTION:
 # ------------------------

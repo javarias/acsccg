@@ -43,6 +43,17 @@
 	   «ENDFOREACH-»
 	   «ENDFOREACH-»
 	   
+	   <!-- Component Simulators -->
+	   «FOREACH getEContainers(getPackage(this)) AS eElement -»
+	   «FOREACH eElement.getAllAttributes() AS eAttribute »
+	   <_ Name="«eAttribute.name»Simulator" 
+			Code="Acssim.Servants.GUISimulator"
+            Type="IDL:alma/«getPackage(this).name-»/«getERealization(eAttribute.type).name»:1.0"
+            Container="«getPackage(this).name»PySimulator" 
+            ImplLang="py" />
+	   «ENDFOREACH-»
+	   «ENDFOREACH-»
+	   
 </Components>
 «ENDFILE»
 «ENDDEFINE»

@@ -356,7 +356,7 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 	 */
 	public RO«eCharacteristicProperty.getBaciType()» «eCharacteristicProperty.name»()
 	{
-		«PROTECT CSTART '///// ' CEND '' ID getPackage(this).name+"."+eElement.name+".RO"+eCharacteristicProperty.getBaciType()»
+		«PROTECT CSTART '///// ' CEND '' ID getPackage(this).name+"."+eElement.name+".RO"+eCharacteristicProperty.getBaciType()+"."+eCharacteristicProperty.name»
 		return «eCharacteristicProperty.name»;
 		«ENDPROTECT»
 	}
@@ -369,7 +369,7 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 	 */
 	public RW«eCharacteristicProperty.getBaciType()» «eCharacteristicProperty.name»()
 	{
-		«PROTECT CSTART '///// ' CEND '' ID getPackage(this).name+"."+eElement.name+".RW"+eCharacteristicProperty.getBaciType()»
+		«PROTECT CSTART '///// ' CEND '' ID getPackage(this).name+"."+eElement.name+".RW"+eCharacteristicProperty.getBaciType()+"."+eCharacteristicProperty.name»
 		return «eCharacteristicProperty.name»;
 		«ENDPROTECT»
 	}
@@ -389,7 +389,7 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 	 */
 	public RO«eCharacteristicProperty.getBaciType()» «eCharacteristicProperty.name»()
 	{
-		«PROTECT CSTART '///// ' CEND '' ID getPackage(this).name+"."+eElement.name+".RO"+eCharacteristicProperty.getBaciType()»
+		«PROTECT CSTART '///// ' CEND '' ID getPackage(this).name+"."+eElement.name+".RO"+eCharacteristicProperty.getBaciType()+"."+eCharacteristicProperty.name»
 		return «eCharacteristicProperty.name»;
 		«ENDPROTECT»
 	}
@@ -402,7 +402,7 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 	 */
 	public RW«eCharacteristicProperty.getBaciType()» «eCharacteristicProperty.name»()
 	{
-		«PROTECT CSTART '///// ' CEND '' ID getPackage(this).name+"."+eElement.name+".RW"+eCharacteristicProperty.getBaciType()»
+		«PROTECT CSTART '///// ' CEND '' ID getPackage(this).name+"."+eElement.name+".RW"+eCharacteristicProperty.getBaciType()+"."+eCharacteristicProperty.name»
 		return «eCharacteristicProperty.name»;
 		«ENDPROTECT»
 	}

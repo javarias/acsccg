@@ -458,4 +458,12 @@ Element getFirstRealization(Class eElement):
  */
 String getACSLicence(String licenseType):
 	JAVA alma.acsccg.util.BaseStaticConfig.getACSLicense(java.lang.String);
- 
+	
+/**
+ * Helper method to see if a eOperations
+ * has params
+ * @param method
+ * @return Boolean
+ */
+String isEmptyParams(Element eOperation):
+	eOperation.ownedParameter.select(e|e.direction.toString()!= 'return').isEmpty;

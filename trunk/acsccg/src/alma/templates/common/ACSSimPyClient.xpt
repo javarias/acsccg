@@ -1,0 +1,51 @@
+«REM»
+/**
+ * ACS Component Code Generator - http://code.google.com/p/acsccg/
+ * Copyright (C) 2010  Alexis Tejeda, alexis.tejeda@gmail.com
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * who     		when      		what
+ * --------		--------		----------------------------------------------
+ * atejeda 		2011-26-02  	Created
+ * 
+ * $Id$
+ */
+«ENDREM»
+
+«IMPORT uml»
+
+«EXTENSION templates::util::common»
+«EXTENSION templates::util::zzdev»
+«EXTENSION templates::util::tsort»
+«EXTENSION templates::util::java»
+«EXTENSION templates::util::idl»
+
+«EXTENSION templates::util::common»
+«DEFINE Root FOR uml::Model»
+«FOREACH getEComponentsImpl(getPackage(this)) AS eElement -»
+«FILE getPackage(this).name+'/src/'+eElement.name+'Sim/__init__.py'-»
+import TYPES
+import Acspy.Clients.SimpleClient
+from Acspy.Common.Log import getLogger
+
+«IF !getERealization(eElement).getOperations().isEmpty-»
+«FOREACH getERealization(eElement).getOperations() AS eOperation-»
+def «eOperation.name»(«IF !isEmptyParams(eOperation)»params«ENDIF»):
+	logger = getLogger("«eElement.name» Logs")
+	logger.logTrace( "«eOperation.name-» executed...")
+	
+«ENDFOREACH-»
+«ENDIF-»
+# ___oOo___
+«ENDFILE»
+«ENDFOREACH-»
+«ENDDEFINE»
