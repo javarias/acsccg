@@ -29,10 +29,8 @@
 «EXTENSION templates::util::java»
 «EXTENSION templates::util::idl»
 
-«EXTENSION templates::util::common»
 «DEFINE Root FOR uml::Model»
-«FOREACH getEComponentsImpl(getPackage(this)) AS eElement -»
-«FILE getPackage(this).name+'/src/'+eElement.name+'Sim/__init__.py'-»
+«FILE getPackage(this).name+'/test/TATEnvironment'-»
 #*******************************************************************************
 # ALMA - Atacama Large Millimiter Array
 # (c) UNSPECIFIED - FILL IN, 2009 
@@ -53,24 +51,23 @@
 #
 #  "@(#) «getPropSet('Id')»"
 #
+# Makefile of «getPackage(this).name».
+#
 # who                 when                              what
 # ----------------    -----------------------------    --------------------------
 # ACSCCG              «getCommentDate()»     Creation of the file
 # 
 
-import TYPES
-import Acspy.Clients.SimpleClient
-from Acspy.Common.Log import getLogger
+global env
 
-«IF !getERealization(eElement).getOperations().isEmpty-»
-«FOREACH getERealization(eElement).getOperations() AS eOperation-»
-def «eOperation.name»(«IF !isEmptyParams(eOperation)»params«ENDIF»):
-	logger = getLogger("«eElement.name» Log")
-	logger.logTrace( "«eOperation.name-» executed...")
-	
-«ENDFOREACH-»
-«ENDIF-»
+set ACS_TMP $env(PWD)/tmp
+set env(ACS_TMP) $ACS_TMP
+set env(ACS_LOG_STDOUT) 4
+set env(MACI_RECOVERY_FILE_NAME) $ACS_TMP/maciRecovery
+set env(ACS_BACI_RECOVERY_FILE) $ACS_TMP/baciRecovery
+set env(ACS_LOG_FILE) $ACS_TMP/log_cache.dat
+
+#
 # ___oOo___
 «ENDFILE»
-«ENDFOREACH-»
 «ENDDEFINE»

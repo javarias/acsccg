@@ -32,7 +32,7 @@
 «EXTENSION templates::util::common»
 «DEFINE Root FOR uml::Model»
 «FOREACH getEComponentsImpl(getPackage(this)) AS eElement -»
-«FILE getPackage(this).name+'/src/'+eElement.name+'Sim/__init__.py'-»
+«FILE getPackage(this).name+'/test/pyUnitTest'+eElement.name+'.py'-»
 #*******************************************************************************
 # ALMA - Atacama Large Millimiter Array
 # (c) UNSPECIFIED - FILL IN, 2009 
@@ -58,19 +58,27 @@
 # ACSCCG              «getCommentDate()»     Creation of the file
 # 
 
-import TYPES
-import Acspy.Clients.SimpleClient
-from Acspy.Common.Log import getLogger
+import unittest
+from Acspy.Clients.SimpleClient import PySimpleClient
 
-«IF !getERealization(eElement).getOperations().isEmpty-»
-«FOREACH getERealization(eElement).getOperations() AS eOperation-»
-def «eOperation.name»(«IF !isEmptyParams(eOperation)»params«ENDIF»):
-	logger = getLogger("«eElement.name» Log")
-	logger.logTrace( "«eOperation.name-» executed...")
-	
-«ENDFOREACH-»
-«ENDIF-»
-# ___oOo___
+class «eElement.name»Test(unittest.TestCase):
+
+    def setUp(self):
+        self.client = PySimpleClient()
+        self.comp = client.getComponent("COMPONENT_NAME")
+
+    def tearDown(self):
+        self.client.releaseComponent("COMPONENT_NAME")
+        
+	«IF !getERealization(eElement).getOperations().isEmpty-»
+	«FOREACH getERealization(eElement).getOperations() AS eOperation-»
+	def test«eOperation.name»(self):
+		self.comp.«eOperation.name» 
+	«ENDFOREACH-»
+	«ENDIF-»
+
+if __name__ == "__main__":
+    unittest.main()
 «ENDFILE»
 «ENDFOREACH-»
 «ENDDEFINE»

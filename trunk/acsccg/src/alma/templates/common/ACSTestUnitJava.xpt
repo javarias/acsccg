@@ -1,0 +1,117 @@
+«REM»
+/**
+ * ACS Component Code Generator - http://code.google.com/p/acsccg/
+ * Copyright (C) 2010  Alexis Tejeda, alexis.tejeda@gmail.com
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * who     		when      		what
+ * --------		--------		----------------------------------------------
+ * atejeda 		2011-26-02  	Created
+ * 
+ * $Id$
+ */
+«ENDREM»
+
+«IMPORT uml»
+
+«EXTENSION templates::util::common»
+«EXTENSION templates::util::zzdev»
+«EXTENSION templates::util::tsort»
+«EXTENSION templates::util::java»
+«EXTENSION templates::util::idl»
+
+«EXTENSION templates::util::common»
+«DEFINE Root FOR uml::Model»
+«FOREACH getEComponentsImpl(getPackage(this)) AS eElement -»
+«FILE getPackage(this).name+'/test/demo/'+eElement.name+'Test.java'-»
+/*******************************************************************************
+ *	ALMA - Atacama Large Millimiter Array
+ *
+ *	(c) European Southern Observatory, 2002
+ *	Copyright by ESO (in the framework of the ALMA collaboration)
+ *	and Cosylab 2002, All rights reserved
+ *
+ *	This library is free software; you can redistribute it and/or
+ *	modify it under the terms of the GNU Lesser General Public
+ *	License as published by the Free Software Foundation; either
+ *	version 2.1 of the License, or (at your option) any later version.
+ *
+ *	This library is distributed in the hope that it will be useful,
+ *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ *	Lesser General Public License for more details.
+ *
+ *	You should have received a copy of the GNU Lesser General Public
+ *	License along with this library; if not, write to the Free Software
+ *	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307  USA
+ *
+ * "@(#) «getPropSet('Id')»"
+ *
+ *	who                 when                             what
+ *	----------------    -----------------------------    ------------------------
+ *	ACSCCG              «getCommentDate()»     Creation of the file
+ * 
+ */
+ 
+package demo;
+
+import alma.acs.component.client.ComponentClientTestCase;
+import alma.«getPackage(this).name».«eElement.name»Helper;
+import alma.«getPackage(this).name».*;
+import alma.«getPackage(this).name».«getERealization(eElement).name»;
+«IF hasParent(getERealization(eElement))-»
+import alma.«getPackage(this).name».«getParent(getERealization(eElement)).name»;
+«ENDIF-»
+
+public class «eElement.name»Test extends ComponentClientTestCase 
+{
+
+	private alma.«getPackage(this).name».«eElement.name» comp;
+	
+	public «eElement.name»Test(String name) throws Exception 
+	{
+		super("«eElement.name» Test");
+	}
+
+	@Override
+	protected void setUp() throws Exception 
+	{
+		super.setUp();
+		this.comp = «eElement.name»Helper.narrow(this.getContainerServices().getComponent("COMPONENT_NAME"));
+	}
+
+	@Override
+	protected void tearDown() throws Exception 
+	{
+		super.tearDown();
+		this.getContainerServices().releaseComponent("COMPONENT_NAME");
+	}
+	
+	«IF !getERealization(eElement).getOperations().isEmpty-»
+	«FOREACH getERealization(eElement).getOperations() AS eOperation-»
+	public «getJavaReturnType(eOperation)» test«eOperation.name-»(«FOREACH eOperation.ownedParameter.select(e|e.direction.toString()!= 'return') AS param SEPARATOR ', '-»«getJavaParam(param)» «param.name»«ENDFOREACH-») 
+    {
+    
+    }
+    
+	«ENDFOREACH-»
+	«ENDIF-»
+	
+	public void testSayHello() 
+	{
+		String hello = comp.sayHello();
+		assertNotNull(hello);
+	}
+}
+«ENDFILE»
+«ENDFOREACH-»
+«ENDDEFINE»

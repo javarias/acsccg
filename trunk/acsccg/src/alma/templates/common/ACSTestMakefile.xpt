@@ -15,9 +15,9 @@
  * 
  * who     		when      		what
  * --------		--------		-------------------------------------------
- * atejeda 		2010-00-00  	Created
+ * atejeda 		2010-26-02  	Created
  *
- * $Id: ACSMakefile.xpt 170 2011-01-13 13:07:52Z alexis.tejeda $
+ * $Id$
  */
 «ENDREM»
 
@@ -30,7 +30,7 @@
 «EXTENSION templates::util::idl»
 
 «DEFINE Root FOR uml::Model»
-«FILE  getPackage(this).name+'/src/Makefile'-»
+«FILE  getPackage(this).name+'/test/Makefile'-»
 #*******************************************************************************
 # ALMA - Atacama Large Millimiter Array
 # (c) UNSPECIFIED - FILL IN, 2009 
@@ -64,14 +64,7 @@
 # REMARKS
 #    None
 #------------------------------------------------------------------------
-MODULE = «getPackage(this).name»
 
-«PROTECT CSTART '## ' CEND '' ID getPackage(this).name+".Makefile.0"»
-
-## End Makefile region 0 protection
-«ENDPROTECT»
-
-«PROTECT CSTART '## ' CEND '' ID getPackage(this).name+".Makefile.1"»
 #
 # user definable C-compilation flags
 #USER_CFLAGS = 
@@ -113,13 +106,20 @@ USER_LIB =  -lACE \
 # C programs (public and local)
 # -----------------------------
 EXECUTABLES     =
+«FOREACH getEComponentsImpl(getPackage(this)) AS eElement -»
+EXECUTABLES     += cppUnitTest«eElement.name»
+«ENDFOREACH-»
 EXECUTABLES_L   = 
 
+
+«FOREACH getEComponentsImpl(getPackage(this)) AS eElement -»
 #
-# <brief description of xxxxx program>
-xxxxx_OBJECTS   =	
-xxxxx_LDFLAGS   =
-xxxxx_LIBS      =
+# «eElement.name» cpp unit test
+cppUnitTest«eElement.name»_OBJECTS   = cppUnitTest«eElement.name»
+cppUnitTest«eElement.name»_LDFLAGS   =
+cppUnitTest«eElement.name»_LIBS      = maciClient «eElement.name»Stubs cppunit
+
+«ENDFOREACH-»
 
 #
 # special compilation flags for single c sources
@@ -181,35 +181,25 @@ TCL_LIBRARIES_L =
 # <brief description of tttlll library>
 tttlll_OBJECTS  = 
 
-## End Makefile region 1 protection
-«ENDPROTECT»
-
 #
 # Configuration Database Files
 # ----------------------------
-CDB_SCHEMAS = «FOREACH getEComponentsImpl(getPackage(this)) AS eElement -»«IF hasECharacteristicInterfaces(eElement)-»
-CDB_SCHEMAS += «eElement.name»
-«ENDIF-»«ENDFOREACH-»
+CDB_SCHEMAS = 
 
 # 
 # IDL Files and flags
 # ----------------------------
-IDL_FILES = «getPackage(this).name»Common
-«IF !getEExceptions(getPackage(this)).isEmpty-»IDL_FILES += «getPackage(this).name»Err«ENDIF-»
-«FOREACH getEInterfaces(getPackage(this)) AS eElement -»
-IDL_FILES += «eElement.name»
-«ENDFOREACH-»
+IDL_FILES = 
 TAO_IDLFLAGS =
 USER_IDL =
 
 #
 # Jarfiles and their directories
 #
-JARFILES = $(MODULE)
-$(MODULE)_DIRS = alma/«getPackage(this).name»
-jjj_EXTRAS = 
+JARFILES= «getPackage(this).name»Test
+«getPackage(this).name»Test_DIRS= demo
+jjj_EXTRAS= 
 
-«PROTECT CSTART '## ' CEND '' ID getPackage(this).name+".Makefile.2"»
 #
 # java sources in Jarfile on/off
 DEBUG=on
@@ -296,14 +286,6 @@ man   : do_man
 
 install : install_all
 	@echo " . . . installation done"
-
-## End Makefile region 2 protection
-«ENDPROTECT»
-
-«PROTECT CSTART '## ' CEND '' ID getPackage(this).name+".Makefile.3"»
-
-## End Makefile region 3 protection
-«ENDPROTECT»
 
 #___oOo___
 «ENDFILE»

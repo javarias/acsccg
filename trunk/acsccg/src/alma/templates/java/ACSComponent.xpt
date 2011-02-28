@@ -101,6 +101,7 @@ import alma.«getPackage(this).name».CHANNEL_«eElement.eContainer.name.toUpper
 «ENDFOREACH-»«ENDIF-»
  
 «PROTECT CSTART '/////' CEND '' ID getPackage(this).name+"."+eElement.name+".Imports"»
+//add your imports here
 «ENDPROTECT»
 
 /**«IF hasComment(eElement)»«FOREACH getCommentsWrapped(getComment(eOperation)) AS comment»
@@ -118,6 +119,7 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 	private Logger m_logger;
 	
 	«PROTECT CSTART '///// ' CEND '' ID getPackage(this).name+"."+eElement.name+".VariableDefinition"»
+	//add your variables here
 	«ENDPROTECT»
     
 	«IF hasNCDefinitions(getERealization(eElement))-»«IF hasEPublishers(getERealization(eElement))-»
@@ -306,6 +308,7 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 	}
 	
 	«PROTECT CSTART '///// ' CEND '' ID getPackage(this).name+"."+eElement.name+".Methods"»
+	//add your methods here
 	«ENDPROTECT»
     
 	«IF hasNCDefinitions(getERealization(eElement))-»

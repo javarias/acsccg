@@ -29,10 +29,8 @@
 «EXTENSION templates::util::java»
 «EXTENSION templates::util::idl»
 
-«EXTENSION templates::util::common»
 «DEFINE Root FOR uml::Model»
-«FOREACH getEComponentsImpl(getPackage(this)) AS eElement -»
-«FILE getPackage(this).name+'/src/'+eElement.name+'Sim/__init__.py'-»
+«FILE getPackage(this).name+'/test/TestList.lite'-»
 #*******************************************************************************
 # ALMA - Atacama Large Millimiter Array
 # (c) UNSPECIFIED - FILL IN, 2009 
@@ -53,24 +51,26 @@
 #
 #  "@(#) «getPropSet('Id')»"
 #
+# Makefile of «getPackage(this).name».
+#
 # who                 when                              what
 # ----------------    -----------------------------    --------------------------
-# ACSCCG              «getCommentDate()»     Creation of the file
+# ACSCCG              «getCommentDate()»      Creation of the file
 # 
 
-import TYPES
-import Acspy.Clients.SimpleClient
-from Acspy.Common.Log import getLogger
+SOURCE TATEnvironment
 
-«IF !getERealization(eElement).getOperations().isEmpty-»
-«FOREACH getERealization(eElement).getOperations() AS eOperation-»
-def «eOperation.name»(«IF !isEmptyParams(eOperation)»params«ENDIF»):
-	logger = getLogger("«eElement.name» Log")
-	logger.logTrace( "«eOperation.name-» executed...")
-	
-«ENDFOREACH-»
-«ENDIF-»
-# ___oOo___
+PROLOGUE ./test«getPackage(this).name»TATPrologue
+
+#cpp test
+1 cppUnitTest "../bin/cppUnitTest"
+
+#python test
+2 pyUnitTest "python pyUnitTest.py HelloDemoTest"
+
+#java test
+3 javaUnitTest "acsStartJava -endorsed  alma.acs.testsupport.tat.TATJUnitRunner demo.HelloDemoTest"
+
+EPILOGUE ./test«getPackage(this).name»TATEpilogue
 «ENDFILE»
-«ENDFOREACH-»
 «ENDDEFINE»
