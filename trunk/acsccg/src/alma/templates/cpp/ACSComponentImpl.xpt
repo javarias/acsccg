@@ -59,7 +59,7 @@
 * 
 */
 
-static char *rcsId="@(#) $Id$"; 
+static char *rcsId="@(#) «getPropSet('Id')»"; 
 static void *use_rcsId = ((void)&use_rcsId,(void *) &rcsId);
 
 #include "cdb.h"
