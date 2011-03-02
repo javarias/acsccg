@@ -34,6 +34,15 @@
 «FOREACH getEComponentsImpl(getPackage(this)) AS eElement -»
 «IF hasECharacteristicInterfaces(eElement)-»
 «FILE  getPackage(this).name+'/test/CDB/alma/'+eElement.name+'/'+eElement.name+'.xml'-»
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   - Configuration Database Schema for a «eElement.name»
+   -
+   - «getPropSet('Id')»
+   -
+   - History:
+   - 	ACSCCG «getCommentDate()» created	
+-->
 <«eElement.name»
 	xmlns="urn:schemas-cosylab-com:DevCCD:1.0"
 	xmlns:cdb="urn:schemas-cosylab-com:CDB:1.0"
@@ -41,10 +50,10 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
    «REM»
 	«FOREACH getEReadOnlyProperties(eInterface) AS eCharacteristicProperty-»
-	<«eCharacteristicProperty.name»/>
+	<«eCharacteristicProperty.name» description="«eCharacteristicProperty.name»"/>
 	«ENDFOREACH-»
 	«FOREACH getEReadWriteProperties(eInterface) AS eCharacteristicProperty-»
-	<«eCharacteristicProperty.name»/>
+	<«eCharacteristicProperty.name» description="«eCharacteristicProperty.name»"/>
 	«ENDFOREACH-»	
    «ENDREM»
  </«eElement.name»>  

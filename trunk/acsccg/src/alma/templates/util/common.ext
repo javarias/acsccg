@@ -467,3 +467,27 @@ String getACSLicence(String licenseType):
  */
 String isEmptyParams(Element eOperation):
 	eOperation.ownedParameter.select(e|e.direction.toString()!= 'return').isEmpty;
+	
+/**
+ * Return a string with his first char uppercased
+ * @param operationName
+ * @return String
+ */
+String upperFirstChar(String operationName):
+	JAVA alma.acsccg.util.xtend.JavaExtension.upperFirstChar(java.lang.String);
+	
+/**
+ * check if string is equal to void
+ * @param method
+ * @return Boolean
+ */
+String isVoid(String typeString):
+	typeString.toLowerCase() == 'void';
+	
+/**
+ * check if string is equal to void
+ * @param method
+ * @return Boolean
+ */
+List getOperationParams(Operation eOperation):
+	eOperation.ownedParameter.select(e|e.direction.toString()!= 'return');

@@ -22,39 +22,58 @@
 «ENDREM»
 
 «IMPORT uml»
+
 «EXTENSION templates::util::common»
+«EXTENSION templates::util::zzdev»
+«EXTENSION templates::util::tsort»
+«EXTENSION templates::util::idl»
 
 «DEFINE Root FOR uml::Model»
 «FOREACH getEComponentsImpl(getPackage(this)) AS eElement -»
 «IF hasECharacteristicInterfaces(eElement)-»
 «FILE getPackage(this).name+'/config/CDB/schemas/'+eElement.name+'.xsd'-»
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema targetNamespace="urn:schemas-cosylab-com:«eElement.name»:1.0"
+<!--
+   - Configuration Database Schema for a «eElement.name»
+   -
+   - «getPropSet('Id')»
+   -
+   - History:
+   - 	ACSCCG «getCommentDate()» created	
+-->
+<xs:schema 
+	targetNamespace="urn:schemas-cosylab-com:«eElement.name»:1.0"
 	xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns="urn:schemas-cosylab-com:«eElement.name»:1.0"
 	xmlns:cdb="urn:schemas-cosylab-com:CDB:1.0"
 	xmlns:baci="urn:schemas-cosylab-com:BACI:1.0" 
-	elementFormDefault="qualified" attributeFormDefault="unqualified">
+	elementFormDefault="qualified" 
+	attributeFormDefault="unqualified">
 	
 	<xs:import namespace="urn:schemas-cosylab-com:CDB:1.0" schemaLocation="CDB.xsd"/>
 	<xs:import namespace="urn:schemas-cosylab-com:BACI:1.0" schemaLocation="BACI.xsd"/>
 	 
 	<xs:complexType name="«eElement.name»">
-	«FOREACH getERealizations(eElement) AS eInterface-»
-	«IF hasRORWProperties(getERealization(eElement))-»
-	    <xs:sequence>
-	    «FOREACH getEReadOnlyProperties(eInterface) AS eCharacteristicProperty-»
-	    	<xs:element name="«eCharacteristicProperty.name»" type="baci:RO«eCharacteristicProperty.getBaciType()»"/>
-	    «ENDFOREACH-»
-	    «FOREACH getEReadWriteProperties(eInterface) AS eCharacteristicProperty-»
-	    	<xs:element name="«eCharacteristicProperty.name»" type="baci:RW«eCharacteristicProperty.getBaciType()»"/>
-	    «ENDFOREACH-»	
-	    </xs:sequence>
-	</xs:complexType>
+		<xs:complexContent>
+			<xs:extension base="baci:CharacteristicComponent">
+			«FOREACH getERealizations(eElement) AS eInterface-»
+			«IF hasRORWProperties(getERealization(eElement))-»
+			    <xs:sequence>
+			    «FOREACH getEReadOnlyProperties(eInterface) AS eCharacteristicProperty-»
+			    	<xs:element name="«eCharacteristicProperty.name»" type="baci:RO«eCharacteristicProperty.getBaciType()»"/>
+			    «ENDFOREACH-»
+			    «FOREACH getEReadWriteProperties(eInterface) AS eCharacteristicProperty-»
+			    	<xs:element name="«eCharacteristicProperty.name»" type="baci:RW«eCharacteristicProperty.getBaciType()»"/>
+			    «ENDFOREACH-»	
+			    </xs:sequence>
+			</xs:extension>
+			«ENDIF-»
+			«ENDFOREACH-»
+		</xs:complexContent>
+	</xs:complexType>	
 	
-	<xs:element name=«eElement.name» type="«eElement.name»Type"/>
-	«ENDIF-»
-	«ENDFOREACH-»
+	<xs:element name="«eElement.name»" type="«eElement.name»"/>
+	
 </xs:schema>
 «ENDFILE»
 «ENDIF-»

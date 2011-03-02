@@ -32,7 +32,7 @@
 «EXTENSION templates::util::common»
 «DEFINE Root FOR uml::Model»
 «FOREACH getEComponentsImpl(getPackage(this)) AS eElement -»
-«FILE getPackage(this).name+'/test/demo/'+eElement.name+'Test.java'-»
+«FILE getPackage(this).name+'/test/alma/'+getPackage(this).name+'/'+eElement.name+'Test.java'-»
 /*******************************************************************************
  *	ALMA - Atacama Large Millimiter Array
  *
@@ -62,7 +62,18 @@
  * 
  */
  
-package demo;
+package alma.«getPackage(this).name»;
+
+import static org.junit.Assert.*;
+
+import java.util.List;
+import java.util.logging.Logger;
+
+import org.junit.Before;
+
+import alma.acs.logging.ClientLogManager;
+
+import alma.ACS.*;
 
 import alma.acs.component.client.ComponentClientTestCase;
 import alma.«getPackage(this).name».«eElement.name»Helper;
@@ -74,43 +85,84 @@ import alma.«getPackage(this).name».«getParent(getERealization(eElement)).nam
 
 public class «eElement.name»Test extends ComponentClientTestCase 
 {
-
-	private alma.«getPackage(this).name».«eElement.name» comp;
+	private Logger logger;
+	private String componentName = "«eElement.name»";
+	private alma.«getPackage(this).name».«eElement.name» component;
+	
+	/////////////////////////////////////////////////////////////
+	// Lifecycle
+	/////////////////////////////////////////////////////////////
 	
 	public «eElement.name»Test(String name) throws Exception 
 	{
 		super("«eElement.name» Test");
-	}
+	}//
 
-	@Override
+	@before
 	protected void setUp() throws Exception 
 	{
 		super.setUp();
-		this.comp = «eElement.name»Helper.narrow(this.getContainerServices().getComponent("COMPONENT_NAME"));
-	}
+		logger = ClientLogManager.getAcsLogManager().getLoggerForApplication(getClass().getSimpleName(), false);
+		this.component = this.getContainerServices().getComponent(this.componentName);
+	}//
 
 	@Override
 	protected void tearDown() throws Exception 
 	{
 		super.tearDown();
-		this.getContainerServices().releaseComponent("COMPONENT_NAME");
-	}
+		this.getContainerServices().releaseComponent(this.componentName);
+	}//
 	
 	«IF !getERealization(eElement).getOperations().isEmpty-»
+	/////////////////////////////////////////////////////////////
+	// Test Methods
+	/////////////////////////////////////////////////////////////
+	
 	«FOREACH getERealization(eElement).getOperations() AS eOperation-»
-	public «getJavaReturnType(eOperation)» test«eOperation.name-»(«FOREACH eOperation.ownedParameter.select(e|e.direction.toString()!= 'return') AS param SEPARATOR ', '-»«getJavaParam(param)» «param.name»«ENDFOREACH-») 
+	@org.junit.Test
+	public void test«upperFirstChar(eOperation.name)-»() 
     {
-    
-    }
+    	«IF !getOperationParams(eOperation).isEmpty-»
+		«FOREACH getOperationParams(eOperation) AS param -»
+		«getJavaParam(param)» «param.name» = «getJavaParamNew(param)»;
+		«ENDFOREACH-»
+		«ENDIF-»
+    	«IF isVoid(getJavaReturnType(eOperation))-»
+		this.component.«eOperation.name»(«FOREACH getOperationParams(eOperation) AS param SEPARATOR ', '-»«param.name»«ENDFOREACH-»);
+		«ELSE-»
+		«getJavaReturnType(eOperation)» response = this.component.«eOperation.name»(«FOREACH getOperationParams(eOperation) AS param SEPARATOR ', '-»«param.name»«ENDFOREACH-»);
+		assertNotNull(response);
+		«ENDIF-»
+    }//
     
 	«ENDFOREACH-»
 	«ENDIF-»
+	«IF hasParent(getERealization(eElement))-»
+	/////////////////////////////////////////////////////////////
+	// Test Inherited Methods
+	/////////////////////////////////////////////////////////////
 	
-	public void testSayHello() 
-	{
-		String hello = comp.sayHello();
-		assertNotNull(hello);
-	}
+	«FOREACH getAllParents(getERealization(eElement)) AS eParent-»
+	«FOREACH eParent.getOperations() AS eOperation-»
+	@org.junit.Test
+	public void test«upperFirstChar(eOperation.name)-»() 
+    {
+    	«IF !getOperationParams(eOperation).isEmpty-»
+		«FOREACH getOperationParams(eOperation) AS param -»
+		«getJavaParam(param)» «param.name» = «getJavaParamNew(param)»;
+		«ENDFOREACH-»
+		«ENDIF-»
+    	«IF isVoid(getJavaReturnType(eOperation))-»
+		this.component.«eOperation.name»(«FOREACH getOperationParams(eOperation) AS param SEPARATOR ', '-»«param.name»«ENDFOREACH-»);
+		«ELSE-»
+		«getJavaReturnType(eOperation)» response = this.component.«eOperation.name»(«FOREACH getOperationParams(eOperation) AS param SEPARATOR ', '-»«param.name»«ENDFOREACH-»);
+		assertNotNull(response);
+		«ENDIF-»
+    }//
+    
+	«ENDFOREACH-»
+	«ENDFOREACH-»
+	«ENDIF-»
 }
 «ENDFILE»
 «ENDFOREACH-»

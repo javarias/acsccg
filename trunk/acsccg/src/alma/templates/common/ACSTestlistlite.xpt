@@ -63,13 +63,13 @@ SOURCE TATEnvironment
 PROLOGUE ./test«getPackage(this).name»TATPrologue
 
 #cpp test
-1 cppUnitTest "../bin/cppUnitTest"
+1000 cppUnitTest "../bin/cppUnitTest"
 
 #python test
-2 pyUnitTest "python pyUnitTest.py HelloDemoTest"
+2000 pyUnitTest "python pyUnitTest.py HelloDemoTest"
 
 #java test
-3 javaUnitTest "acsStartJava -endorsed  alma.acs.testsupport.tat.TATJUnitRunner demo.HelloDemoTest"
+3000 javaUnitTest "acsStartJava -endorsed  alma.acs.testsupport.tat.TATJUnitRunner demo.HelloDemoTest"
 
 EPILOGUE ./test«getPackage(this).name»TATEpilogue
 «ENDFILE»

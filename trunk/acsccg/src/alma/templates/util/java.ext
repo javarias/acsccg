@@ -91,6 +91,21 @@ string getJavaParam(Parameter this):
         then 'long'
     else
     	type.name;
+    	
+/**
+ * 
+ */        
+string getJavaParamNew(Parameter this):
+    if  type.name == 'Long' || type.name == 'long'
+       then '0'
+    else
+    if type.name == 'Boolean'
+        then type.name.toLowerCase()
+    else
+    if type.name == 'TimeInterval'
+        then '0L'
+    else
+    'new ' + type.name+'()';    	
 
 /**
  * 
@@ -100,7 +115,7 @@ string getReturnValue(Operation this):
        then 'false'
     else
     if getJavaReturnType(this) == 'TimeInterval'
-       then 'false'
+       then '0'
     else
     if getJavaReturnType(this) == 'int' || getJavaReturnType(this) == 'float' || getJavaReturnType(this) == 'double' || getJavaReturnType(this) == 'char'
        then '0'

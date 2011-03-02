@@ -22,3 +22,19 @@
 import uml;
 import AlmaGenerator;
 import ecore;
+
+
+string getPythonParam(Parameter this):
+    if type.name.toLowerCase() == 'long'
+       then '0'
+    else
+    if type.name.toLowerCase() == 'boolean'
+        then 'False'
+    else
+    if type.name.toLowerCase() == 'timeinterval'
+        then '0'
+    else
+    if type.name.toLowerCase() == 'string'
+        then "'emptyString'"    
+    else
+    	type.name+'()';

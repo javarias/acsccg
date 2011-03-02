@@ -209,6 +209,11 @@
 		<genPath value="${ouputFolderURI}"/>
 		<expand value="templates::common::ACSTestUnitJava::Root FOR model"/>
 		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
+		<outlet path="${ouputFolderURI}">
+			<vetoStrategy class="alma.acsccg.vetostrategy.ACSCCGVetoStrategy" />
+			<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" configFile="ACS_B_JAVA.xml" />
+		</outlet>
+		<prSrcPaths value="${ouputFolderURI}"/>
 	</component>
 	
 	<!-- ACS Test Unit Python -->

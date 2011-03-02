@@ -22,11 +22,23 @@
 «ENDREM»
 
 «IMPORT uml»
+
 «EXTENSION templates::util::common»
+«EXTENSION templates::util::zzdev»
+«EXTENSION templates::util::tsort»
+«EXTENSION templates::util::java»
+«EXTENSION templates::util::idl»
 
 «DEFINE Root FOR uml::Model»
 «FILE  getPackage(this).name+'/test/CDB/MACI/Components/Components.xml'-»
 <?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   - «getPropSet('Id')»
+   -
+   - History:
+   - 	ACSCCG «getCommentDate()» created	
+-->
 <Components  xmlns="urn:schemas-cosylab-com:Components:1.0"
        xmlns:cdb="urn:schemas-cosylab-com:CDB:1.0"
        xmlns:baci="urn:schemas-cosylab-com:BACI:1.0"

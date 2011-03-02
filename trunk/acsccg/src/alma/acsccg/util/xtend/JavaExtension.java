@@ -108,4 +108,14 @@ public class JavaExtension
 		String ppSufix = "$";
 		return ppSufix+prop+ppSufix;
 	}
+	
+	/**
+	 * Return a string with his first chart uppercased
+	 * @param word
+	 * @return
+	 */
+	public static String upperFirstChar(String word)
+	{
+		return word.substring(0,1).toUpperCase()+word.substring(1);
+	}
 }
