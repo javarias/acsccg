@@ -19,6 +19,7 @@
 # $Id$
 #
 
+
 ################################################################################
 # Get the differences of the code generated between two versions
 # param version1 		: the version to compare		e.g.: 107
@@ -29,8 +30,9 @@
 
 # to use
 DIFF=diff
+MAKE=make
 SVN=svn
-WORKINGDIR=´pwd´
+WORKINGDIR=`pwd`
 SVNSERVER=http://acsccg.googlecode.com/svn/trunk/acsccg
 TEMPDIR=.ccgdifftemp
 TEMPSUFIX=
@@ -46,52 +48,129 @@ TODIFF=
 if [ "$1" = "" ]
 then
 	echo ""
-	echo "Get the differences of the code generated between two versions"
+	echo " == Get the differences of the code generated between two versions"
 	echo " param1 version1 : the version to compare e.g.: 107"
 	echo " param2 version2=HEAD : the version to compare e.g.: 283"
 	echo " param3 todiff : folder to compare recursively e.g.: src"
-	echo "e.g.: $0 223 238"
+	echo " e.g.: $0 223 238"
 	echo ""
 fi
 
 ################################################################################
-# CHECK PARAM 2
+# CHECK ARG 1
 ################################################################################
 if [ "$2" = "" ]
 then
-	VERSION2=
+	VERSION1=HEAD
+else
+	VERSION1="$1"
+fi
+
+################################################################################
+# CHECK ARG 2
+################################################################################
+if [ "$2" = "" ]
+then
+	VERSION2=HEAD
 else
 	VERSION2="$2"
 fi
 
 ################################################################################
-# CHECK PARAM 3
-################################################################################
-if [ "$3" = "" ]
-then
-	echo "Must specify the folder to compared"
-	echo
-else
-	TODIFF="$3"
-fi
-
-################################################################################
 # Lifecycle
 ################################################################################
-
-################################################################################
-# Cleanup before diffs (if they are...)
-# This must be removed - see if exists before
-################################################################################
-rm -rf $TEMPDIR
+# Setup
 mkdir $TEMPDIR
 
 ################################################################################
 # Get version 1
 ################################################################################
-# $SVN checkout -r r$VERSION1 $SVNSERVER $TEMPDIR/
+echo ""
+if [ ! -d "$TEMPDIR/$VERSION1" ]; then
+	echo " == Checking out the revision $VERSION1 "
+	echo "" >>  "$TEMPDIR/$VERSION1.log"
+	echo " == Checking out the revision " >>  "$TEMPDIR/$VERSION1.log"
+	$SVN checkout -r $VERSION1 $SVNSERVER $TEMPDIR/$VERSION1 > "$TEMPDIR/$VERSION1.log"
+else
+	echo " == The revision $VERSION2 is already checked out: $WORKINGDIR/$TEMPDIR/$VERSION1 "
+fi	
 
 ################################################################################
 # Get version 2
 ################################################################################
-# $SVN checkout -r r$VERSION2 $SVNSERVER $TEMPDIR/
+echo ""
+if [ ! -d "$TEMPDIR/$VERSION2" ]; then
+	echo " == Checking out the revision $VERSION2 "
+	echo "" >>  "$TEMPDIR/$VERSION2.log"
+	echo " == Checking out the revision " >>  "$TEMPDIR/$VERSION2.log"
+	$SVN checkout -r $VERSION2 $SVNSERVER $TEMPDIR/$VERSION2 > "$TEMPDIR/$VERSION2.log"
+else
+	echo " == The revision $VERSION2 is already checked out: $WORKINGDIR/$TEMPDIR/$VERSION2 "	
+fi
+
+################################################################################
+# Compile both versions
+################################################################################
+# Version 1
+echo ""
+echo "" >>  "$TEMPDIR/$VERSION1.log"
+echo " == Build " >>  "$TEMPDIR/$VERSION1.log"
+echo " == Build the version $VERSION1"
+$MAKE -C $TEMPDIR/$VERSION1/src >> "$TEMPDIR/$VERSION1.log"
+
+# Version 2
+echo ""
+echo " == Build the version $VERSION2"
+echo "" >>  "$TEMPDIR/$VERSION2.log"
+echo " == Build " >>  "$TEMPDIR/$VERSION2.log"
+$MAKE -C $TEMPDIR/$VERSION2/src >> "$TEMPDIR/$VERSION2.log"
+
+################################################################################
+# Cleaning SVN files
+################################################################################
+echo ""
+echo " == Cleaning non important files..."
+find $TEMPDIR -name '.svn' | xargs rm -r
+
+################################################################################
+# Generating the code 
+################################################################################
+# for revision 1
+echo ""
+echo " == Generating the code for revision $VERSION1" # only eltins prototype is generated for now...
+echo "" >>  "$TEMPDIR/$VERSION1.log"
+echo " == Generating the code" >> "$TEMPDIR/$VERSION1.log"
+# cleaning the generated code before
+rm -rf $TEMPDIR/$VERSION1/test/output
+# generating the code
+$MAKE eltins_prototype -C $TEMPDIR/$VERSION1/test >> "$TEMPDIR/$VERSION1.log"
+
+# for revision 2
+echo ""
+echo " == Generating the code for revision $VERSION1" # only eltins prototype is generated for now...
+echo "" >>  "$TEMPDIR/$VERSION1.log"
+echo " == Generating the code" >>  "$TEMPDIR/$VERSION2.log"
+# cleaning the generated code before
+rm -rf $TEMPDIR/$VERSION2/test/output
+# generating the code
+$MAKE eltins_prototype -C $TEMPDIR/$VERSION2/test  >> "$TEMPDIR/$VERSION2.log"
+
+################################################################################
+# Get the summarydiffs
+################################################################################
+echo ""
+echo " == Generating the summary of diffs"
+diff $TEMPDIR/$VERSION1/test/output $TEMPDIR/$VERSION2/test/output -r -q > diff_summary.txt
+
+################################################################################
+# Get the diff in 2 columns
+################################################################################
+echo ""
+echo " == Generating the diffs in two columns"
+diff $TEMPDIR/$VERSION1/test/output $TEMPDIR/$VERSION2/test/output -r -y > diffs.txt
+
+# end lifecycle
+echo ""
+echo " == Done"
+echo ""
+#___o0o___

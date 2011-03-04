@@ -12,9 +12,9 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 # 
-#  who       	when      		what
-# 
-# atejeda 		2010-00-00  	Created
+#  who         when      		hat
+# ---------    -----------      ----------------------------------
+# atejeda 	   2010-00-00  	    Created
 # 
 # $Id$
 # 
@@ -34,18 +34,20 @@ all: clean build install message_done
 
 build:
 	@echo ""
-	@echo "# Compiling the project (build)"
-	@echo "###########################################"
+	@echo " == Compiling the project (build)"
+	@echo ""
 	@# Calling the ant build script
 	@$(ANT) -f $(ENVDIR)/build.xml clean build
 	@echo ""
 
 install:
 	@echo ""
-	@echo "# Building the JAR file"
-	@echo "###########################################"
+	@echo " == Building the JAR file"
+	@echo ""
 	@# Calling the ant build script
 	@$(ANT) -f $(ENVDIR)/build.xml install
+	@cp acsccgdiff ../bin/acsccgdiff
+	@chmod +x ../bin/acsccgdiff
 	@echo ""
 	@echo "# Project binary (Jar) build into:"
 	@echo "          bin/acsComponentCodeGenerator.jar"
@@ -54,21 +56,21 @@ install:
 	
 clean:
 	@echo ""
-	@echo "# Cleaning out the project"
-	@echo "###########################################"
+	@echo " == Cleaning out the project"
+	@echo ""
 	@echo ""
 	@# Calling the ant clean script
 	@$(ANT) -f $(ENVDIR)/build.xml clean
 	
 man:
 	@echo ""
-	@echo "# Generating the code documentation"
-	@echo "###########################################"
+	@echo " == Generating the code documentation"
+	@echo ""
 	@echo ""
 	@# Calling the ant doc script
 	@$(ANT) -f $(ENVDIR)/build.xml man
 	
 message_done:
-	@echo "###########################################"
-	@echo "# Done"
-	@echo "###########################################"
+	@echo ""
+	@echo " == Done"
+	@echo ""
