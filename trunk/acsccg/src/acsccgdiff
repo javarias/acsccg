@@ -1,0 +1,97 @@
+#*******************************************************************************
+# ACS Component Code Generator - http://code.google.com/p/acsccg/
+# Copyright (C) 2010  Alexis Tejeda, alexis.tejeda@gmail.com
+# 
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+#  who       	when      		what
+# ----------    ----------      ----------------------
+# atejeda 		2011-01-02  	Created
+# 
+# $Id$
+#
+
+################################################################################
+# Get the differences of the code generated between two versions
+# param version1 		: the version to compare		e.g.: 107
+# param version2=HEAD	: the version to compare		e.g.: 283
+# param todiff=output	: folder to compare, default	e.g.: src
+################################################################################
+#!/bin/bash
+
+# to use
+DIFF=diff
+SVN=svn
+WORKINGDIR=´pwd´
+SVNSERVER=http://acsccg.googlecode.com/svn/trunk/acsccg
+TEMPDIR=.ccgdifftemp
+TEMPSUFIX=
+
+# var definitions
+VERSION1=
+VERSION2=
+TODIFF=
+
+################################################################################
+# CHECK ARGUMENTS
+################################################################################
+if [ "$1" = "" ]
+then
+	echo ""
+	echo "Get the differences of the code generated between two versions"
+	echo " param1 version1 : the version to compare e.g.: 107"
+	echo " param2 version2=HEAD : the version to compare e.g.: 283"
+	echo " param3 todiff : folder to compare recursively e.g.: src"
+	echo "e.g.: $0 223 238"
+	echo ""
+fi
+
+################################################################################
+# CHECK PARAM 2
+################################################################################
+if [ "$2" = "" ]
+then
+	VERSION2=
+else
+	VERSION2="$2"
+fi
+
+################################################################################
+# CHECK PARAM 3
+################################################################################
+if [ "$3" = "" ]
+then
+	echo "Must specify the folder to compared"
+	echo
+else
+	TODIFF="$3"
+fi
+
+################################################################################
+# Lifecycle
+################################################################################
+
+################################################################################
+# Cleanup before diffs (if they are...)
+# This must be removed - see if exists before
+################################################################################
+rm -rf $TEMPDIR
+mkdir $TEMPDIR
+
+################################################################################
+# Get version 1
+################################################################################
+# $SVN checkout -r r$VERSION1 $SVNSERVER $TEMPDIR/
+
+################################################################################
+# Get version 2
+################################################################################
+# $SVN checkout -r r$VERSION2 $SVNSERVER $TEMPDIR/
