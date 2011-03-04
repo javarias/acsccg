@@ -14,7 +14,7 @@
 # 
 #  who       	when      		what
 # ----------    ----------      ----------------------
-# atejeda 		2011-01-02  	Created
+# atejeda 		2011-01-03  	Created
 # 
 # $Id$
 #
@@ -22,13 +22,15 @@
 
 ################################################################################
 # Get the differences of the code generated between two versions
-# param version1 		: the version to compare		e.g.: 107
-# param version2=HEAD	: the version to compare		e.g.: 283
-# param todiff=output	: folder to compare, default	e.g.: src
+# param example			: the example to generate		e.g.: singleComponent
+# param version1 		: the version to compare		e.g.: 223
+# param version2=HEAD	: the version to compare		e.g.: 238
 ################################################################################
 #!/bin/bash
 
-# to use
+################################################################################
+# static var to use
+################################################################################
 DIFF=diff
 MAKE=make
 SVN=svn
@@ -37,43 +39,45 @@ SVNSERVER=http://acsccg.googlecode.com/svn/trunk/acsccg
 TEMPDIR=.ccgdifftemp
 TEMPSUFIX=
 
+################################################################################
 # var definitions
-VERSION1=
-VERSION2=
-TODIFF=
+################################################################################
+VERSION1= # version 1
+VERSION2= # version 2
 
 ################################################################################
-# CHECK ARGUMENTS
+# Functions
+################################################################################
+function printhelp
+{
+	echo ""
+	echo " == Get the differences of the code generated between two versions"
+	echo " Usage: $0 {version1} [version2]"
+	echo " - param1 version1 : the version to compare e.g.: 223"
+	echo " - param2 version2=HEAD : the version to compare e.g.: 238"
+	echo " e.g.: $0  223 238"
+	echo ""
+}
+
+################################################################################
+# Check argument 1
 ################################################################################
 if [ "$1" = "" ]
 then
-	echo ""
-	echo " == Get the differences of the code generated between two versions"
-	echo " param1 version1 : the version to compare e.g.: 107"
-	echo " param2 version2=HEAD : the version to compare e.g.: 283"
-	echo " param3 todiff : folder to compare recursively e.g.: src"
-	echo " e.g.: $0 223 238"
-	echo ""
-fi
-
-################################################################################
-# CHECK ARG 1
-################################################################################
-if [ "$2" = "" ]
-then
-	VERSION1=HEAD
+	echo " == Put the version to compare.. end execution.."
+	exit 1
 else
-	VERSION1="$1"
+	VERSION1="$2"
 fi
 
 ################################################################################
-# CHECK ARG 2
+# Check argument 3
 ################################################################################
 if [ "$2" = "" ]
 then
 	VERSION2=HEAD
 else
-	VERSION2="$2"
+	VERSION2="$3"
 fi
 
 ################################################################################
@@ -109,18 +113,31 @@ else
 fi
 
 ################################################################################
-# Compile both versions
+# Check if the models (XMI) are the same
+################################################################################
+# get last change revision
+DATER1= $SVN info $TEMPDIR/$VERSION1/test/xmi | grep 'Last Changed Rev'
+DATER2= $SVN info $TEMPDIR/$VERSION2/test/xmi | grep 'Last Changed Rev'
+# test and
+if [ "$DATER1" != "$DATER2" ]
+then
+	echo " == Differents versions of XMI files"
+	exit 1
+fi
+
+################################################################################
+# Build both versions
 ################################################################################
 # Version 1
 echo ""
 echo "" >>  "$TEMPDIR/$VERSION1.log"
 echo " == Build " >>  "$TEMPDIR/$VERSION1.log"
-echo " == Build the version $VERSION1"
+echo " == Build version $VERSION1"
 $MAKE -C $TEMPDIR/$VERSION1/src >> "$TEMPDIR/$VERSION1.log"
 
 # Version 2
 echo ""
-echo " == Build the version $VERSION2"
+echo " == Build version $VERSION2"
 echo "" >>  "$TEMPDIR/$VERSION2.log"
 echo " == Build " >>  "$TEMPDIR/$VERSION2.log"
 $MAKE -C $TEMPDIR/$VERSION2/src >> "$TEMPDIR/$VERSION2.log"
@@ -136,6 +153,7 @@ find $TEMPDIR -name '.svn' | xargs rm -r
 # Generating the code 
 ################################################################################
 # for revision 1
+# check if the code is already generated
 echo ""
 echo " == Generating the code for revision $VERSION1" # only eltins prototype is generated for now...
 echo "" >>  "$TEMPDIR/$VERSION1.log"
@@ -146,6 +164,8 @@ rm -rf $TEMPDIR/$VERSION1/test/output
 $MAKE eltins_prototype -C $TEMPDIR/$VERSION1/test >> "$TEMPDIR/$VERSION1.log"
 
 # for revision 2
+# check if the code is already generated
+
 echo ""
 echo " == Generating the code for revision $VERSION1" # only eltins prototype is generated for now...
 echo "" >>  "$TEMPDIR/$VERSION1.log"
