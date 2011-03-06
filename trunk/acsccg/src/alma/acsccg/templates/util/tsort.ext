@@ -1,0 +1,40 @@
+/**
+ * ACS Component Code Generator - http://code.google.com/p/acsccg/
+ * Copyright (C) 2010  Alexis Tejeda, alexis.tejeda@gmail.com
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * who     		when      		what
+ * --------		--------		----------------------------------------------
+ * atejeda 		2010-00-00  	Created
+ * 
+ * $Id: tsort.ext 170 2011-01-13 13:07:52Z alexis.tejeda $
+ */
+ 
+import uml;
+import AlmaGenerator;
+import ecore;
+
+/**
+ * Sort the etopics using topological sort
+ * @param List
+ * @return List
+ */
+List getETopicSorted(List list):
+	JAVA alma.acsccg.util.xtend.TopologicalSort.getETopicSorted(java.util.List);
+	
+/**
+ * Sort the channels name, unique names in the list
+ * @param List
+ * @return List
+ */
+List getNREChannelNames(List list):
+	JAVA alma.acsccg.util.xtend.ElementSort.getNREList(java.util.List);

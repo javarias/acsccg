@@ -1,0 +1,465 @@
+«REM»
+/**
+ * ACS Component Code Generator - http://code.google.com/p/acsccg/
+ * Copyright (C) 2010  Alexis Tejeda, alexis.tejeda@gmail.com
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * who     		when      		what
+ * --------		--------		 -------------------------------------------
+ * atejeda 		2010-00-00  	 Created
+ * 
+ * $Id: ACSComponent.xpt 170 2011-01-13 13:07:52Z alexis.tejeda $
+ */
+«ENDREM»
+
+«IMPORT uml»
+
+«EXTENSION acsccg::templates::util::common»
+«EXTENSION acsccg::templates::util::zzdev»
+«EXTENSION acsccg::templates::util::tsort»
+«EXTENSION acsccg::templates::util::java»
+«EXTENSION acsccg::templates::util::idl»
+
+«DEFINE Root FOR uml::Model»
+
+«FOREACH getEComponentsImpl(getPackage(this)) AS eElement -»
+«FILE getPackage(this).name+'/src/alma/'+getPackage(this).name+'/'+eElement.name+'.java'-»
+/*******************************************************************************
+ * ALMA - Atacama Large Millimiter Array
+ *
+ * (c) European Southern Observatory, 2002
+ * Copyright by ESO (in the framework of the ALMA collaboration)
+ * and Cosylab 2002, All rights reserved
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307  USA
+ *
+ * "@(#) «getPropSet('Id')»"
+ *
+ * who                 when                             what
+ * ----------------    -----------------------------    ------------------------
+ * ACSCCG              «getCommentDate()»    Creation of the file
+ * 
+ */
+
+package alma.«getPackage(this).name»;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import alma.acs.exceptions.AcsJException;
+import alma.acs.container.ContainerServices;
+import alma.acs.component.ComponentLifecycle;
+import alma.acs.component.ComponentLifecycleException;
+
+import alma.ACS.*;
+import alma.ACS.ComponentStates;
+
+«IF hasECharacteristicInterfaces(eElement)-»
+import alma.ACS.jbaci.*;
+import alma.ACS.impl.*;
+«ENDIF-»
+
+import alma.ACSErrTypeCommon.CouldntPerformActionEx;
+import alma.ACSErrTypeCommon.wrappers.AcsJCouldntPerformActionEx;
+
+import alma.«getPackage(this).name».*;
+import alma.«getPackage(this).name».«getERealization(eElement).name»;
+import alma.«getPackage(this).name».«getERealization(eElement).name»Operations;
+«IF hasParent(getERealization(eElement))-»
+import alma.«getPackage(this).name».«getParent(getERealization(eElement)).name»;
+import alma.«getPackage(this).name».«getParent(getERealization(eElement)).name»Operations;
+«ENDIF-»
+
+«IF hasNCDefinitions(getERealization(eElement))-»«IF hasEPublishers(getERealization(eElement))-»
+import alma.acs.nc.SimpleSupplier;«ENDIF»
+«IF hasESubscribers(getERealization(eElement))-»
+import alma.acs.nc.Consumer;«ENDIF»
+
+«FOREACH getNREChannelNames(getNCDefinitions(getERealization(eElement))) AS eElement -»
+import alma.«getPackage(this).name».CHANNEL_«eElement.eContainer.name.toUpperCase()»_«eElement.name.toUpperCase()»;
+«ENDFOREACH-»«ENDIF-»
+ 
+«PROTECT CSTART '/////' CEND '' ID getPackage(this).name+"."+eElement.name+".Imports"»
+//add your imports here
+«ENDPROTECT»
+
+/**«IF hasComment(eElement)»«FOREACH getCommentsWrapped(getComment(eOperation)) AS comment»
+ *«comment»«ENDFOREACH»«ENDIF»
+ * @see alma.«getPackage(this).name»Common
+ * @see alma.«getPackage(this).name».«getERealization(eElement).name»
+ * @see alma.«getPackage(this).name».«getERealization(eElement).name»Operations
+ * @see alma.acs.component.ComponentLifecycle
+ * @author ACS Component Code Generator
+ * @version «getPropSet('Id')»
+ */	
+public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»extends CharacteristicComponentImpl«ENDIF-» implements ComponentLifecycle«FOREACH getERealizations(eElement) AS eInterface-», «eInterface.name»Operations«ENDFOREACH»«IF hasParent(getERealization(eElement))-», «getParent(getERealization(eElement)).name»Operations«ENDIF»
+{
+	private ContainerServices m_containerServices;
+	private Logger m_logger;
+	
+	«PROTECT CSTART '///// ' CEND '' ID getPackage(this).name+"."+eElement.name+".VariableDefinition"»
+	//add your variables here
+	«ENDPROTECT»
+    
+	«IF hasNCDefinitions(getERealization(eElement))-»«IF hasEPublishers(getERealization(eElement))-»
+	«FOREACH getEPublishers(getERealization(eElement)) AS eSubscriber -»
+	private SimpleSupplier m_supplier_«eSubscriber.name» = null;
+	«ENDFOREACH-»
+	«ENDIF-»
+	«IF hasESubscribers(getERealization(eElement))-»
+	«FOREACH getESubscribers(getERealization(eElement)) AS eSubscriber -»
+	private Consumer m_consumer_«eSubscriber.name» = null;
+	«ENDFOREACH-»
+	«ENDIF-»«ENDIF-»
+	
+	«IF hasECharacteristicInterfaces(eElement)-»
+	«FOREACH getERealizations(eElement) AS eInterface-»
+	«FOREACH getEReadOnlyProperties(eInterface) AS eCharacteristicProperty-»
+	«IF hasComment(eCharacteristicProperty)»/* «getComment(eCharacteristicProperty)» */«ELSE-»«ENDIF»
+	protected DataAccess «eCharacteristicProperty.name»DataAccess;
+	protected RO«eCharacteristicProperty.getBaciType()» «eCharacteristicProperty.name»;
+	protected RO«eCharacteristicProperty.getBaciType()»Impl «eCharacteristicProperty.name»Impl;
+	protected RO«eCharacteristicProperty.getBaciType()»POATie «eCharacteristicProperty.name»Tie;
+	
+	«ENDFOREACH-»
+	«FOREACH getEReadWriteProperties(eInterface) AS eCharacteristicProperty-»
+	«IF hasComment(eCharacteristicProperty)»/* «getComment(eCharacteristicProperty)» */«ELSE-»«ENDIF»
+	protected DataAccess «eCharacteristicProperty.name»DataAccess;
+	protected RW«eCharacteristicProperty.getBaciType()» «eCharacteristicProperty.name»;
+	protected RW«eCharacteristicProperty.getBaciType()»Impl «eCharacteristicProperty.name»Impl;
+	protected RW«eCharacteristicProperty.getBaciType()»POATie «eCharacteristicProperty.name»Tie;
+	
+	«ENDFOREACH-»«ENDFOREACH-»«ENDIF-»
+	«IF hasParent(getERealization(eElement))-»
+	«FOREACH getAllParents(getERealization(eElement)) AS eParent-»
+	«IF isECharacteristic(eParent)-»
+	«FOREACH getEReadOnlyProperties(eParent) AS eCharacteristicProperty-»
+	«IF hasComment(eCharacteristicProperty)»/* «getComment(eCharacteristicProperty)» */«ELSE-»«ENDIF»
+	protected DataAccess «eCharacteristicProperty.name»DataAccess;
+	protected RO«eCharacteristicProperty.getBaciType()» «eCharacteristicProperty.name»;
+	protected RO«eCharacteristicProperty.getBaciType()»Impl «eCharacteristicProperty.name»Impl;
+	protected RO«eCharacteristicProperty.getBaciType()»POATie «eCharacteristicProperty.name»Tie;
+	
+	«ENDFOREACH-»
+	«FOREACH getEReadWriteProperties(eParent) AS eCharacteristicProperty-»
+	«IF hasComment(eCharacteristicProperty)»/* «getComment(eCharacteristicProperty)» */«ELSE-»«ENDIF»
+	protected DataAccess «eCharacteristicProperty.name»DataAccess;
+	protected RW«eCharacteristicProperty.getBaciType()» «eCharacteristicProperty.name»;
+	protected RW«eCharacteristicProperty.getBaciType()»Impl «eCharacteristicProperty.name»Impl;
+	protected RW«eCharacteristicProperty.getBaciType()»POATie «eCharacteristicProperty.name»Tie;
+	
+	«ENDFOREACH-»«ENDIF-»«ENDFOREACH-»«ENDIF-»
+    /////////////////////////////////////////////////////////////
+	// Implementation of ComponentLifecycle
+	/////////////////////////////////////////////////////////////
+	 
+	public void initialize(ContainerServices containerServices)«IF eElement.hasECharacteristicInterfaces()-» throws ComponentLifecycleException«ENDIF»
+	{
+		m_containerServices = containerServices;
+		m_logger = m_containerServices.getLogger();
+		
+		m_logger.info("initialize() called...");
+		
+		«PROTECT CSTART '///// ' CEND '' ID getPackage(this).name+"."+eElement.name+".VariableInitialization"»
+		«ENDPROTECT»
+		
+		«IF eElement.hasECharacteristicInterfaces()-»
+		super.initialize(m_containerServices);
+		«ENDIF-»
+		
+		«IF hasNCDefinitions(getERealization(eElement))-»
+		«IF hasEPublishers(getERealization(eElement))-»
+		«FOREACH getEPublishers(getERealization(eElement)) AS eSubscriber -»
+		try 
+		{
+			m_supplier_«eSubscriber.name» = new SimpleSupplier(CHANNEL_«eSubscriber.eContainer.name.toUpperCase()»_«eSubscriber.name.toUpperCase()».value, m_containerServices);
+		} 
+		catch (AcsJException e) 
+		{
+			m_logger.info("m_supplier_«eSubscriber.name» init failed..");
+		}
+		«ENDFOREACH-»
+		«ENDIF-»
+		
+		«IF hasESubscribers(getERealization(eElement))-»
+		«FOREACH getESubscribers(getERealization(eElement)) AS eSubscriber -»
+		try
+		{
+			m_consumer_«eSubscriber.name» = new Consumer(CHANNEL_«eSubscriber.eContainer.name.toUpperCase()»_«eSubscriber.name.toUpperCase()».value, m_containerServices);
+			m_consumer_«eSubscriber.name».addSubscription(«eSubscriber.type.name».class, this);
+			m_consumer_«eSubscriber.name».consumerReady();
+			m_consumer_«eSubscriber.name».disconnect();
+		}
+		catch (AcsJException e)
+		{
+			m_logger.info("m_consumer_«eSubscriber.name» init failed..");
+		}
+		«ENDFOREACH-»
+		«ENDIF-»«ENDIF-»
+		«IF eElement.hasECharacteristicInterfaces()-»
+		«IF hasRORWProperties(getERealization(eElement))-»
+		// try to initialize BACI properties from «getERealization(eElement).name»
+		try
+		{
+			«FOREACH getERealizations(eElement) AS eInterface-»
+			«IF !getEReadOnlyProperties(eInterface).isEmpty-»
+			«FOREACH getEReadOnlyProperties(eInterface) AS eCharacteristicProperty-»
+			«eCharacteristicProperty.name»DataAccess = new MemoryDataAccess();
+			«eCharacteristicProperty.name»Impl = new RO«eCharacteristicProperty.getBaciType()»Impl("«eCharacteristicProperty.name»", this, «eCharacteristicProperty.name»DataAccess); 
+			«eCharacteristicProperty.name»Tie = new RO«eCharacteristicProperty.getBaciType()»POATie(«eCharacteristicProperty.name»Impl);
+			«eCharacteristicProperty.name» = RO«eCharacteristicProperty.getBaciType()»Helper.narrow(this.registerProperty(«eCharacteristicProperty.name»Impl,«eCharacteristicProperty.name»Tie)); 
+			 
+			«ENDFOREACH-»
+			«ENDIF-»
+			
+			«IF !getEReadWriteProperties(eInterface).isEmpty-»
+			«FOREACH getEReadWriteProperties(eInterface) AS eCharacteristicProperty-»
+			«eCharacteristicProperty.name»DataAccess = new MemoryDataAccess();
+			«eCharacteristicProperty.name»Impl = new RW«eCharacteristicProperty.getBaciType()»Impl("«eCharacteristicProperty.name»", this, «eCharacteristicProperty.name»DataAccess); 
+			«eCharacteristicProperty.name»Tie = new RW«eCharacteristicProperty.getBaciType()»POATie(«eCharacteristicProperty.name»Impl);
+			«eCharacteristicProperty.name» = RW«eCharacteristicProperty.getBaciType()»Helper.narrow(this.registerProperty(«eCharacteristicProperty.name»Impl,«eCharacteristicProperty.name»Tie)); 
+			
+			«ENDFOREACH-»
+			«ENDIF-»
+			«ENDFOREACH-»
+		}
+		catch(Throwable throwable)
+		{
+			throw new ComponentLifecycleException("Failed to create properties of «getERealization(eElement).name»", throwable); 
+		}
+		«ENDIF-»«ENDIF-»
+		«IF hasParent(getERealization(eElement))-»
+		«FOREACH getAllParents(getERealization(eElement)) AS eParent-»
+		«IF isECharacteristic(eParent)-»
+        «IF hasRORWProperties(eParent)-»
+        // try to initialize BACI properties from «eParent.name»
+		try
+		{		
+			«FOREACH getEReadOnlyProperties(eParent) AS eCharacteristicProperty-»
+			«eCharacteristicProperty.name»DataAccess = new MemoryDataAccess();
+			«eCharacteristicProperty.name»Impl = new RO«eCharacteristicProperty.getBaciType()»Impl("«eCharacteristicProperty.name»", this, «eCharacteristicProperty.name»DataAccess); 
+			«eCharacteristicProperty.name»Tie = new RO«eCharacteristicProperty.getBaciType()»POATie(«eCharacteristicProperty.name»Impl);
+			«eCharacteristicProperty.name» = RO«eCharacteristicProperty.getBaciType()»Helper.narrow(this.registerProperty(«eCharacteristicProperty.name»Impl,«eCharacteristicProperty.name»Tie)); 
+			 
+			«ENDFOREACH-»
+			«FOREACH getEReadWriteProperties(eParent) AS eCharacteristicProperty-»
+			«eCharacteristicProperty.name»DataAccess = new MemoryDataAccess();
+			«eCharacteristicProperty.name»Impl = new RW«eCharacteristicProperty.getBaciType()»Impl("«eCharacteristicProperty.name»", this, «eCharacteristicProperty.name»DataAccess); 
+			«eCharacteristicProperty.name»Tie = new RW«eCharacteristicProperty.getBaciType()»POATie(«eCharacteristicProperty.name»Impl);
+			«eCharacteristicProperty.name» = RW«eCharacteristicProperty.getBaciType()»Helper.narrow(this.registerProperty(«eCharacteristicProperty.name»Impl,«eCharacteristicProperty.name»Tie)); 
+			«ENDFOREACH-»
+		}
+		catch(Throwable throwable)
+		{
+			throw new ComponentLifecycleException("Failed to create properties of «eParent.name»", throwable); 
+		}
+		«ENDIF-»«ENDIF-»«ENDFOREACH-»«ENDIF-»
+	}
+	
+	public void execute() 
+	{
+	    m_logger.info("execute() called...");
+	}
+	
+	public void cleanUp() 
+	{
+	    m_logger.info("cleanUp() called...");
+	}
+	
+	public void aboutToAbort() 
+	{
+	    cleanUp();
+	    m_logger.info("aboutToAbort() called...");
+	}
+    
+	/////////////////////////////////////////////////////////////
+	// Implementation of ACSComponent
+	/////////////////////////////////////////////////////////////
+
+	public ComponentStates componentState() 
+	{
+	    return m_containerServices.getComponentStateManager().getCurrentState();
+	}
+	
+	public String name() 
+	{
+	    return m_containerServices.getName();
+	}
+	
+	«PROTECT CSTART '///// ' CEND '' ID getPackage(this).name+"."+eElement.name+".Methods"»
+	//add your methods here
+	«ENDPROTECT»
+    
+	«IF hasNCDefinitions(getERealization(eElement))-»
+	/////////////////////////////////////////////////////////////
+	// Implementation of Notification Channel Operations
+	/////////////////////////////////////////////////////////////
+	
+	«IF hasEPublishers(getERealization(eElement))-»
+	public void sendEvent() throws CouldntPerformActionEx
+	{
+		«PROTECT CSTART '///// ' CEND '' ID getPackage(this).name+"."+eElement.name+".SendEvent"»
+		try 
+		{
+			// TODO
+			// e.g.:
+			// myEventIDLStruct  event = new MyEventIDLStruct(Math.random(), "Event");
+			// m_supplier.publishEvent(myEventIDLStruct);
+			// m_logger.info("Now sending myEventIDLStruct event...");
+		}
+		catch(Throwable thr) 
+		{
+			m_logger.log(Level.WARNING, "failed to send event.");
+			throw (new AcsJCouldntPerformActionEx(thr)).toCouldntPerformActionEx();
+		}
+		«ENDPROTECT»
+	}
+	«ENDIF-»
+	
+	«IF hasESubscribers(getERealization(eElement))-»
+	«FOREACH getESubscribers(getERealization(eElement)) AS eSubscriber -»
+	public void receive(«eSubscriber.type.name» «eSubscriber.type.name.toLowerCase()»Event)
+	{
+		«PROTECT CSTART '///// ' CEND '' ID getPackage(this).name+"."+eElement.name+"."+eSubscriber.type.name.toLowerCase()+"EventReceive"»
+		//TODO
+		«ENDPROTECT»
+	}
+	«ENDFOREACH-»«ENDIF-»«ENDIF-»
+    «IF hasECharacteristicInterfaces(eElement)-»
+	«FOREACH getERealizations(eElement) AS eInterface-»
+	«IF hasRORWProperties(eInterface)-»
+	/////////////////////////////////////////////////////////////
+	// Implementation of BACI getters
+	/////////////////////////////////////////////////////////////
+	«FOREACH getEReadOnlyProperties(eInterface) AS eCharacteristicProperty-»
+	/**
+	 * Get the «eCharacteristicProperty.name»
+	 * @return RO«eCharacteristicProperty.getBaciType()»
+	 */
+	public RO«eCharacteristicProperty.getBaciType()» «eCharacteristicProperty.name»()
+	{
+		«PROTECT CSTART '///// ' CEND '' ID getPackage(this).name+"."+eElement.name+".RO"+eCharacteristicProperty.getBaciType()+"."+eCharacteristicProperty.name»
+		return «eCharacteristicProperty.name»;
+		«ENDPROTECT»
+	}
+	
+	«ENDFOREACH-»
+	«FOREACH getEReadWriteProperties(eInterface) AS eCharacteristicProperty-»
+	/**
+	 * Get the «eCharacteristicProperty.name»
+	 * @return RW«eCharacteristicProperty.getBaciType()»
+	 */
+	public RW«eCharacteristicProperty.getBaciType()» «eCharacteristicProperty.name»()
+	{
+		«PROTECT CSTART '///// ' CEND '' ID getPackage(this).name+"."+eElement.name+".RW"+eCharacteristicProperty.getBaciType()+"."+eCharacteristicProperty.name»
+		return «eCharacteristicProperty.name»;
+		«ENDPROTECT»
+	}
+	«ENDFOREACH-»«ENDIF-»«ENDFOREACH-»«ENDIF-»
+
+	«IF hasParent(getERealization(eElement))-»
+	«FOREACH getAllParents(getERealization(eElement)) AS eParent-»
+	«IF isECharacteristic(eParent)-»
+	«IF hasRORWProperties(eParent)-»
+	/////////////////////////////////////////////////////////////
+	// Implementation of BACI  inherited «eParent.name»
+	/////////////////////////////////////////////////////////////
+	«FOREACH getEReadOnlyProperties(eParent) AS eCharacteristicProperty-»
+	/**
+	 * Get the «eCharacteristicProperty.name»
+	 * @return RO«eCharacteristicProperty.getBaciType()»
+	 */
+	public RO«eCharacteristicProperty.getBaciType()» «eCharacteristicProperty.name»()
+	{
+		«PROTECT CSTART '///// ' CEND '' ID getPackage(this).name+"."+eElement.name+".RO"+eCharacteristicProperty.getBaciType()+"."+eCharacteristicProperty.name»
+		return «eCharacteristicProperty.name»;
+		«ENDPROTECT»
+	}
+	«ENDFOREACH-»
+	
+	«FOREACH getEReadWriteProperties(eParent) AS eCharacteristicProperty-»
+	/**
+	 * Get the «eCharacteristicProperty.name»
+	 * @return RO«eCharacteristicProperty.getBaciType()»
+	 */
+	public RW«eCharacteristicProperty.getBaciType()» «eCharacteristicProperty.name»()
+	{
+		«PROTECT CSTART '///// ' CEND '' ID getPackage(this).name+"."+eElement.name+".RW"+eCharacteristicProperty.getBaciType()+"."+eCharacteristicProperty.name»
+		return «eCharacteristicProperty.name»;
+		«ENDPROTECT»
+	}
+	«ENDFOREACH-»
+	«ENDIF-»
+	«ENDIF-»
+	«ENDFOREACH-»
+	«ENDIF-»
+   
+   «IF !getERealization(eElement).getOperations().isEmpty-»
+	/////////////////////////////////////////////////////////////
+	// Implementation of «getERealization(eElement).name»Operations
+	/////////////////////////////////////////////////////////////
+
+	«FOREACH getERealization(eElement).getOperations() AS eOperation-»
+	/**«IF hasComment(eOperation)»«FOREACH getCommentsWrapped(getComment(eOperation)) AS comment»
+	 *«comment»«ENDFOREACH»«ENDIF»
+	«FOREACH eOperation.ownedParameter.select(e|e.direction.toString()!= 'return') AS cParam-»
+	 * @param «cParam.name» «IF hasComment(cParam)»«getComment(cParam)»«ELSE-»«ENDIF»
+	 «ENDFOREACH-»
+	 * @return «getIDLReturnType(eOperation)»
+	 */	
+	public «getJavaReturnType(eOperation)» «eOperation.name-»(«FOREACH eOperation.ownedParameter.select(e|e.direction.toString()!= 'return') AS param SEPARATOR ', '-»«getJavaParam(param)» «param.name»«ENDFOREACH-») 
+    {
+    	«PROTECT CSTART '///// ' CEND '' ID getPackage(this).name+"."+eElement.name+"."+eOperation.name»
+		«IF !isVoid(eOperation)»return «getReturnValue(eOperation)»;«ELSE»//TODO«ENDIF»
+		«ENDPROTECT»  
+	}
+	«ENDFOREACH-»
+	«ENDIF-»
+	
+	«IF hasParent(getERealization(eElement))-»
+	«FOREACH getAllParents(getERealization(eElement)) AS eParent-»
+	/////////////////////////////////////////////////////////////
+	// Implementation of Inherited «eParent.name»Operations
+	/////////////////////////////////////////////////////////////
+	«FOREACH eParent.getOperations() AS eOperation-»
+	
+	/**«IF hasComment(eOperation)»«FOREACH getCommentsWrapped(getComment(eOperation)) AS comment»
+	 *«comment»«ENDFOREACH»«ENDIF»
+	«FOREACH eOperation.ownedParameter.select(e|e.direction.toString()!= 'return') AS cParam-»
+	 * @param «cParam.name» «IF hasComment(cParam)»«getComment(cParam)»«ELSE-»«ENDIF»
+	 «ENDFOREACH-»
+	 * @return «getIDLReturnType(eOperation)»
+	 */	
+	public «getJavaReturnType(eOperation)» «eOperation.name-»(«FOREACH eOperation.ownedParameter.select(e|e.direction.toString()!= 'return') AS param SEPARATOR ', '-»«getJavaParam(param)» «param.name»«ENDFOREACH-») 
+	{
+		«PROTECT CSTART '///// ' CEND '' ID getPackage(this).name+"."+eElement.name+"."+eOperation.name»
+		«IF !isVoid(eOperation)»return «getReturnValue(eOperation)»;«ELSE»//TODO«ENDIF»
+		«ENDPROTECT»    
+	}
+	«ENDFOREACH-»
+	«ENDFOREACH-»«ENDIF-»
+} 
+«ENDFILE»
+«ENDFOREACH»
+«ENDDEFINE»

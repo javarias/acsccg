@@ -1,0 +1,56 @@
+«REM»
+/**
+ * ACS Component Code Generator - http://code.google.com/p/acsccg/
+ * Copyright (C) 2010  Alexis Tejeda, alexis.tejeda@gmail.com
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * who     		when      		what
+ * --------		--------		----------------------------------------------
+ * atejeda 		2011-26-02  	Created
+ * 
+ * $Id$
+ */
+«ENDREM»
+
+«IMPORT uml»
+
+«EXTENSION acsccg::templates::util::common»
+«EXTENSION acsccg::templates::util::zzdev»
+«EXTENSION acsccg::templates::util::tsort»
+«EXTENSION acsccg::templates::util::java»
+«EXTENSION acsccg::templates::util::idl»
+
+«DEFINE Root FOR uml::Model»
+«FOREACH getEComponentsImpl(getPackage(this)) AS eElement -»
+«FILE  getPackage(this).name+'/test/CDB/alma/simulated/'+eElement.name+'/'+eElement.name+'.xml'-»
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<SimulatedComponent 
+	xmlns="urn:schemas-cosylab-com:SimulatedComponent:1.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	
+	<pythonImports>
+import TYPES
+import «eElement.name»Sim
+	</pythonImports>
+        
+«IF !getERealization(eElement).getOperations().isEmpty-»
+«FOREACH getERealization(eElement).getOperations() AS eOperation-»
+	<_corbaMethod Name="«eOperation.name»" Timeout="0">
+«eElement.name»Sim.«eOperation.name»(«IF !isEmptyParams(eOperation)»parameters[0]«ENDIF»)
+	</_corbaMethod>
+	
+«ENDFOREACH-»
+«ENDIF-»
+</SimulatedComponent>
+«ENDFILE»
+«ENDFOREACH-»
+«ENDDEFINE»

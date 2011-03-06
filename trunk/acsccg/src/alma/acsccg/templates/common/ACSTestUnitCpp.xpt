@@ -1,0 +1,107 @@
+«REM»
+/**
+ * ACS Component Code Generator - http://code.google.com/p/acsccg/
+ * Copyright (C) 2010  Alexis Tejeda, alexis.tejeda@gmail.com
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * who     		when      		what
+ * --------		--------		----------------------------------------------
+ * atejeda 		2011-26-02  	Created
+ * 
+ * $Id$
+ */
+«ENDREM»
+
+«IMPORT uml»
+
+«EXTENSION acsccg::templates::util::common»
+«EXTENSION acsccg::templates::util::zzdev»
+«EXTENSION acsccg::templates::util::tsort»
+«EXTENSION acsccg::templates::util::java»
+«EXTENSION acsccg::templates::util::idl»
+
+«DEFINE Root FOR uml::Model»
+«FOREACH getEComponentsImpl(getPackage(this)) AS eElement -»
+«FILE getPackage(this).name+'/test/cppUnitTest'+eElement.name+'.cpp'-»
+/*******************************************************************************
+ *	ALMA - Atacama Large Millimiter Array
+ *
+ *	(c) European Southern Observatory, 2002
+ *	Copyright by ESO (in the framework of the ALMA collaboration)
+ *	and Cosylab 2002, All rights reserved
+ *
+ *	This library is free software; you can redistribute it and/or
+ *	modify it under the terms of the GNU Lesser General Public
+ *	License as published by the Free Software Foundation; either
+ *	version 2.1 of the License, or (at your option) any later version.
+ *
+ *	This library is distributed in the hope that it will be useful,
+ *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ *	Lesser General Public License for more details.
+ *
+ *	You should have received a copy of the GNU Lesser General Public
+ *	License along with this library; if not, write to the Free Software
+ *	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307  USA
+ *
+ * "@(#) «getPropSet('Id')»"
+ *
+ *	who                 when                             what
+ *	----------------    -----------------------------    ------------------------
+ *	ACSCCG              «getCommentDate()»     Creation of the file
+ * 
+ */
+ 
+#include <cppunit/TestFixture.h>
+#include <cppunit/TestCaller.h>
+#include <maciSimpleClient.h>
+
+#include "«eElement.name»C.h"
+
+maci::SimpleClient client;
+
+class «eElement.name»Test: public CppUnit::TestFixture 
+{
+	private:
+		demo::«eElement.name» *comp;
+	public:
+	
+		void setUp() 
+		{
+			comp = client.getComponent<demo::HelloDemo>("COMPONENT_NAME", 0, true);
+		}
+
+		void runTest() 
+		{
+			char * res = comp->sayHello();
+			CPPUNIT_ASSERT(res != NULL);
+		}
+
+		void tearDown()
+		{
+			client.releaseComponent("COMPONENT_NAME");
+		}
+};
+
+int main(int argc, char *argv[]) 
+{
+	client.init(argc, argv);
+	
+	client.login();
+
+	CppUnit::TestCaller<«eElement.name»Test> test ("testComponent", &«eElement.name»Test::runTest);
+
+	client.logout();
+}
+«ENDFILE»
+«ENDFOREACH-»
+«ENDDEFINE»
