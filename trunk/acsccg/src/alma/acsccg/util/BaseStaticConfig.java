@@ -44,7 +44,9 @@ import alma.acsccg.util.xtend.JavaExtension;
 public final class BaseStaticConfig 
 {
 	
-	// Start variables definitions
+	//////////////////////////////////////////////////////////////////////
+	// Static vars
+	//////////////////////////////////////////////////////////////////////
 	
 	/**
 	 * Base directory of MWE files generation
@@ -94,7 +96,7 @@ public final class BaseStaticConfig
 	/**
 	 * Get the ACS license template
 	 */
-	public final static String ACS_LICENSE_TEMPLATE = "ACSLicense.acs";
+	public final static String ACS_LICENSE_TEMPLATE = "alma/acsccg/license/DefaultLicense.tmpl";
 	
 	/**
 	 * Get the svn propset file information
@@ -121,19 +123,24 @@ public final class BaseStaticConfig
 	 * Wrap limit of words to generate the comments in the code generated
 	 */
 	public final static int WORD_WRAP_MAX = 10;
+
 	
-	// Start methods definitions
+	//////////////////////////////////////////////////////////////////////
+	// Static functions
+	//////////////////////////////////////////////////////////////////////
 	
 	/**
-	 * Get the acs license
+	 * Get the default license (acs)
 	 * @return the license string
 	 */
-	public final static String getACSLicense(String licenseType)
+	private final static String getLicense(String licenseType)
 	{
-		String acsLicense = "-";
+		String acsLicense = "";
 		try 
 		{
 			ClassLoader classLoader = ACSCCG.class.getClassLoader();
+			
+			Logger.getLogger(BaseStaticConfig.ACSCCG_LOGGER).log(Level.INFO, "Using the default license (ACS license)");
 			InputStream buildIs = classLoader.getResourceAsStream(ACS_LICENSE_TEMPLATE);
 			
 			Writer writer = new StringWriter();
@@ -142,12 +149,12 @@ public final class BaseStaticConfig
 			Reader reader = new BufferedReader(new InputStreamReader(buildIs, "UTF-8"));
 			
 			int n;
-            while ((n = reader.read(buffer)) != -1) 
-            {
-                writer.write(buffer, 0, n);
-            }
-            //get the build number
-            acsLicense = writer.toString();
+	        while ((n = reader.read(buffer)) != -1) 
+	        {
+	            writer.write(buffer, 0, n);
+	        }
+	        //get the build number
+	        acsLicense = writer.toString();
 		}
 		catch (Exception e) 
 		{
@@ -156,8 +163,8 @@ public final class BaseStaticConfig
 		}
 		
 		// replace the template params
-		acsLicense.replaceAll("PROPSET", JavaExtension.getPropSet("Id"));
-		acsLicense.replaceAll("COMMENTDATE", JavaExtension.getFullActualDate());
+		acsLicense = acsLicense.replace("PROPSETID", JavaExtension.getPropSet("Id"));
+		acsLicense = acsLicense.replace("PROPSETDATE", JavaExtension.getFullActualDate());
 		
 		// return types
 		if (licenseType.isEmpty() || licenseType.equalsIgnoreCase("txt"))
@@ -166,11 +173,21 @@ public final class BaseStaticConfig
 		}
 		else if(licenseType.equalsIgnoreCase("xml"))
 		{
-			// TODO
+			//remove dash
+			acsLicense = acsLicense.replaceAll("_","");
+			//remove *
+			acsLicense = acsLicense.replaceAll("\\*","");
+			//remove /
+			acsLicense = acsLicense.replaceAll("\\/"," ");
+			//add xml header and bottom comment
+			acsLicense = "<!-- " + acsLicense + "-->";
 		}
 		else if(licenseType.equalsIgnoreCase("Makefile"))
 		{
-			// TODO
+			//remove *
+			acsLicense = acsLicense.replaceAll("\\/"," ");
+			//remove *
+			acsLicense = acsLicense.replaceAll("\\*","#");
 		}
 		
 		return acsLicense;
@@ -217,7 +234,6 @@ public final class BaseStaticConfig
 		propset.add(propsetString.split(",")[1]);
 		propset.add(propsetString.split(",")[2]);
 
-		
 		return propset;
 	}
 }

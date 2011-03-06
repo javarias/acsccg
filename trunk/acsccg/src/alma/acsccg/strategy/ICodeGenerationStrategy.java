@@ -28,7 +28,7 @@ package alma.acsccg.strategy;
 public interface ICodeGenerationStrategy 
 {
 	/**
-	 * Generate the code in the strategys
+	 * Generate the ACS code.
 	 */
 	public void generateCode();
 }

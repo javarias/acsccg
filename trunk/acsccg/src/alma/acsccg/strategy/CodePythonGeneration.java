@@ -28,7 +28,8 @@ import org.eclipse.emf.mwe.core.WorkflowRunner;
 import alma.acsccg.strategy.ICodeGenerationStrategy;
 import alma.acsccg.vo.VOGenerator;
 
-public class CodePythonGeneration  implements ICodeGenerationStrategy {
+public class CodePythonGeneration  implements ICodeGenerationStrategy 
+{
 
 	private VOGenerator __voGenerator;
 	

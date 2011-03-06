@@ -30,6 +30,7 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 /**
+ * The intention of this class is to validate the arg CLI
  * @author atejeda
  */
 public class Validation 

@@ -1,4 +1,25 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- 
+ * ACS Component Code Generator - http://code.google.com/p/acsccg/
+ * Copyright (C) 2010  Alexis Tejeda, alexis.tejeda@gmail.com
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * who      when      	 what
+ *
+ * atejeda 	 2010-04-04  Created
+ *
+ * $Id$
+ *
+!-->
 <workflow>
 	
 	<bean class="org.eclipse.emf.mwe.utils.StandaloneSetup" platformUri=".." />
@@ -29,7 +50,7 @@
 		<fileEncoding value="UTF-8" />
 		<metaModel idRef="default_profile"/>
 		<genPath value="${ouputFolderURI}"/>
-		<expand value="templates::common::ACSCCGProtectedRegions::Root FOR model"/>
+		<expand value="acsccg::templates::common::ACSCCGProtectedRegions::Root FOR model"/>
 		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
 	</component>
 	
@@ -38,7 +59,7 @@
 		<fileEncoding value="UTF-8" />
 		<metaModel idRef="default_profile"/>
 		<genPath value="${ouputFolderURI}"/>
-		<expand value="templates::common::ACSSummary::Root FOR model"/>
+		<expand value="acsccg::templates::common::ACSSummary::Root FOR model"/>
 		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
 	</component>
 	
@@ -47,7 +68,7 @@
 		<fileEncoding value="UTF-8" />
 		<metaModel idRef="default_profile"/>
 		<genPath value="${ouputFolderURI}"/>
-		<expand value="templates::common::ACSMakefile::Root FOR model"/>
+		<expand value="acsccg::templates::common::ACSMakefile::Root FOR model"/>
 		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
 		<outlet path="${ouputFolderURI}">
 			<vetoStrategy class="alma.acsccg.vetostrategy.ACSCCGVetoStrategy" />
@@ -60,7 +81,7 @@
 		<fileEncoding value="UTF-8" />
 		<metaModel idRef="default_profile"/>
 		<genPath value="${ouputFolderURI}"/>
-		<expand value="templates::common::ACSCDBComponent::Root FOR model"/>
+		<expand value="acsccg::templates::common::ACSCDBComponent::Root FOR model"/>
 		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
 	</component>
 	
@@ -69,7 +90,7 @@
 		<fileEncoding value="UTF-8" />
 		<metaModel idRef="default_profile"/>
 		<genPath value="${ouputFolderURI}"/>
-		<expand value="templates::common::ACSCDBContainer::Root FOR model"/>
+		<expand value="acsccg::templates::common::ACSCDBContainer::Root FOR model"/>
 		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
 	</component>
 	
@@ -78,7 +99,7 @@
 		<fileEncoding value="UTF-8" />
 		<metaModel idRef="default_profile"/>
 		<genPath value="${ouputFolderURI}"/>
-		<expand value="templates::common::ACSCDBManager::Root FOR model"/>
+		<expand value="acsccg::templates::common::ACSCDBManager::Root FOR model"/>
 		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
 	</component>
 	
@@ -87,7 +108,7 @@
 		<fileEncoding value="UTF-8" />
 		<metaModel idRef="default_profile"/>
 		<genPath value="${ouputFolderURI}"/>
-		<expand value="templates::common::ACSCDBSchema::Root FOR model"/>
+		<expand value="acsccg::templates::common::ACSCDBSchema::Root FOR model"/>
 		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
 	</component>
 	
@@ -96,7 +117,7 @@
 		<fileEncoding value="UTF-8" />
 		<metaModel idRef="default_profile"/>
 		<genPath value="${ouputFolderURI}"/>
-		<expand value="templates::common::ACSCDBChannels::Root FOR model"/>
+		<expand value="acsccg::templates::common::ACSCDBChannels::Root FOR model"/>
 		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
 	</component>
 	 -->
@@ -117,7 +138,7 @@
 		<fileEncoding value="UTF-8" />
 		<metaModel idRef="default_profile"/>
 		<genPath value="${ouputFolderURI}"/>
-		<expand value="templates::common::ACSSimPyClient::Root FOR model"/>
+		<expand value="acsccg::templates::common::ACSSimPyClient::Root FOR model"/>
 		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
 	</component>
 	
@@ -126,7 +147,7 @@
 		<fileEncoding value="UTF-8" />
 		<metaModel idRef="default_profile"/>
 		<genPath value="${ouputFolderURI}"/>
-		<expand value="templates::common::ACSCDBSimComponent::Root FOR model"/>
+		<expand value="acsccg::templates::common::ACSCDBSimComponent::Root FOR model"/>
 		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
 	</component>
 	
@@ -135,7 +156,7 @@
 		<fileEncoding value="UTF-8" />
 		<metaModel idRef="default_profile"/>
 		<genPath value="${ouputFolderURI}"/>
-		<expand value="templates::common::ACSCDBSimCharacteristic::Root FOR model"/>
+		<expand value="acsccg::templates::common::ACSCDBSimCharacteristic::Root FOR model"/>
 		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
 	</component>
 	
@@ -144,7 +165,7 @@
 		<fileEncoding value="UTF-8" />
 		<metaModel idRef="default_profile"/>
 		<genPath value="${ouputFolderURI}"/>
-		<expand value="templates::common::ACSCDBSimPyContainer::Root FOR model"/>
+		<expand value="acsccg::templates::common::ACSCDBSimPyContainer::Root FOR model"/>
 		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
 	</component>
 	
@@ -153,7 +174,7 @@
 		<fileEncoding value="UTF-8" />
 		<metaModel idRef="default_profile"/>
 		<genPath value="${ouputFolderURI}"/>
-		<expand value="templates::common::ACSTestlistlite::Root FOR model"/>
+		<expand value="acsccg::templates::common::ACSTestlistlite::Root FOR model"/>
 		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
 	</component>
 	
@@ -162,7 +183,7 @@
 		<fileEncoding value="UTF-8" />
 		<metaModel idRef="default_profile"/>
 		<genPath value="${ouputFolderURI}"/>
-		<expand value="templates::common::ACSTestMakefile::Root FOR model"/>
+		<expand value="acsccg::templates::common::ACSTestMakefile::Root FOR model"/>
 		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
 	</component>
 	
@@ -171,7 +192,7 @@
 		<fileEncoding value="UTF-8" />
 		<metaModel idRef="default_profile"/>
 		<genPath value="${ouputFolderURI}"/>
-		<expand value="templates::common::ACSTestTATEnvironment::Root FOR model"/>
+		<expand value="acsccg::templates::common::ACSTestTATEnvironment::Root FOR model"/>
 		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
 	</component>
 	
@@ -180,7 +201,7 @@
 		<fileEncoding value="UTF-8" />
 		<metaModel idRef="default_profile"/>
 		<genPath value="${ouputFolderURI}"/>
-		<expand value="templates::common::ACSTestTATEpilogue::Root FOR model"/>
+		<expand value="acsccg::templates::common::ACSTestTATEpilogue::Root FOR model"/>
 		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
 	</component>
 	
@@ -189,7 +210,7 @@
 		<fileEncoding value="UTF-8" />
 		<metaModel idRef="default_profile"/>
 		<genPath value="${ouputFolderURI}"/>
-		<expand value="templates::common::ACSTestTATPrologue::Root FOR model"/>
+		<expand value="acsccg::templates::common::ACSTestTATPrologue::Root FOR model"/>
 		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
 	</component>
 	
@@ -198,7 +219,7 @@
 		<fileEncoding value="UTF-8" />
 		<metaModel idRef="default_profile"/>
 		<genPath value="${ouputFolderURI}"/>
-		<expand value="templates::common::ACSTestUnitCpp::Root FOR model"/>
+		<expand value="acsccg::templates::common::ACSTestUnitCpp::Root FOR model"/>
 		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
 	</component>
 	
@@ -207,11 +228,11 @@
 		<fileEncoding value="UTF-8" />
 		<metaModel idRef="default_profile"/>
 		<genPath value="${ouputFolderURI}"/>
-		<expand value="templates::common::ACSTestUnitJava::Root FOR model"/>
+		<expand value="acsccg::templates::common::ACSTestUnitJava::Root FOR model"/>
 		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
 		<outlet path="${ouputFolderURI}">
 			<vetoStrategy class="alma.acsccg.vetostrategy.ACSCCGVetoStrategy" />
-			<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" configFile="ACS_B_JAVA.xml" />
+			<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" configFile="acsccg/beautifier/ACS_B_JAVA.xml" />
 		</outlet>
 		<prSrcPaths value="${ouputFolderURI}"/>
 	</component>
@@ -221,7 +242,7 @@
 		<fileEncoding value="UTF-8" />
 		<metaModel idRef="default_profile"/>
 		<genPath value="${ouputFolderURI}"/>
-		<expand value="templates::common::ACSTestUnitPython::Root FOR model"/>
+		<expand value="acsccg::templates::common::ACSTestUnitPython::Root FOR model"/>
 		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
 	</component>
 	
@@ -230,10 +251,10 @@
 		<fileEncoding value="UTF-8" />
 		<metaModel idRef="default_profile"/>
 		<genPath value="${ouputFolderURI}"/>
-		<expand value="templates::common::ACSIDLComponent::Root FOR model"/>
+		<expand value="acsccg::templates::common::ACSIDLComponent::Root FOR model"/>
 		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
 		<outlet path="${ouputFolderURI}">
-		<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" configFile="ACS_B_JAVA.xml" />
+		<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" configFile="acsccg/beautifier/ACS_B_JAVA.xml" />
 		</outlet>
 	</component>
 	
@@ -242,10 +263,10 @@
 		<fileEncoding value="UTF-8" />
 		<metaModel idRef="default_profile"/>
 		<genPath value="${ouputFolderURI}"/>
-		<expand value="templates::common::ACSIDLCommon::Root FOR model"/>
+		<expand value="acsccg::templates::common::ACSIDLCommon::Root FOR model"/>
 		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
 		<outlet path="${ouputFolderURI}">
-		<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" configFile="ACS_B_JAVA.xml" />
+		<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" configFile="acsccg/beautifier/ACS_B_JAVA.xml" />
 		</outlet>
 	</component>
 	
@@ -254,7 +275,7 @@
 		<fileEncoding value="UTF-8" />
 		<metaModel idRef="default_profile"/>
 		<genPath value="${ouputFolderURI}"/>
-		<expand value="templates::common::ACSModuleErr::Root FOR model"/>
+		<expand value="acsccg::templates::common::ACSModuleErr::Root FOR model"/>
 		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
 	</component>
 	
@@ -263,11 +284,11 @@
 		<fileEncoding value="UTF-8" />
 		<metaModel idRef="default_profile"/>
 		<genPath value="${ouputFolderURI}"/>
-		<expand value="templates::java::ACSComponent::Root FOR model"/>
+		<expand value="acsccg::templates::java::ACSComponent::Root FOR model"/>
 		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
 		<outlet path="${ouputFolderURI}">
 			<vetoStrategy class="alma.acsccg.vetostrategy.ACSCCGVetoStrategy" />
-			<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" configFile="ACS_B_JAVA.xml" />
+			<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" configFile="acsccg/beautifier/ACS_B_JAVA.xml" />
 		</outlet>
 		<prSrcPaths value="${ouputFolderURI}"/>
 	</component>
@@ -277,10 +298,10 @@
 		<fileEncoding value="UTF-8" />
 		<metaModel idRef="default_profile"/>
 		<genPath value="${ouputFolderURI}"/>
-		<expand value="templates::java::ACSComponentHelper::Root FOR model"/>
+		<expand value="acsccg::templates::java::ACSComponentHelper::Root FOR model"/>
 		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
 		<outlet path="${ouputFolderURI}">
-		<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" configFile="ACS_B_JAVA.xml" />
+		<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" configFile="acsccg/beautifier/ACS_B_JAVA.xml" />
 		</outlet>
 	</component>
 	
@@ -289,7 +310,7 @@
 		<fileEncoding value="UTF-8" />
 		<metaModel idRef="default_profile"/>
 		<genPath value="${ouputFolderURI}"/>
-		<expand value="templates::common::ACSEclipseProject::Root FOR model"/>
+		<expand value="acsccg::templates::common::ACSEclipseProject::Root FOR model"/>
 		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
 	</component>
 	
@@ -298,7 +319,7 @@
 		<fileEncoding value="UTF-8" />
 		<metaModel idRef="default_profile"/>
 		<genPath value="${ouputFolderURI}"/>
-		<expand value="templates::common::ACSChangelog::Root FOR model"/>
+		<expand value="acsccg::templates::common::ACSChangelog::Root FOR model"/>
 		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
 	</component>
 		

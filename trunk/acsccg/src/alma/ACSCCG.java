@@ -92,8 +92,8 @@ public class ACSCCG
 		opt.addOption("p", "profile", true, "Profile UML path");
 		opt.addOption("o", "output",true, "The output folder path");
 		opt.addOption("e", "emodule", true, "Specify the EModule to generate");
-		opt.addOption("x", "xml", false, "XML file with options m p o e, type help-xml to see an example of the file");
-		opt.addOption("hx", "help-xml", false, "An example of the options xml file");
+		//opt.addOption("x", "xml", false, "XML file with options m p o e, type help-xml to see an example of the file");
+		//opt.addOption("hx", "help-xml", false, "An example of the options xml file");
 		opt.addOption("d", "debug", false, "Debug information");
 		
 		// parse the options
@@ -180,17 +180,15 @@ public class ACSCCG
 		// Code Generation
 		//////////////////////////////////////////////////////////////////////////////////////////////
 		
+		VOGenerator voGenerator = new VOGenerator(
+				Validation.getModelPathArg(cl),
+				Validation.getProfilePathArg(cl),
+				Validation.getOutputPathArg(cl),
+				Validation.getEModuleArg(cl));
+		
 		//Calling to the Java strategy...
-        new ContextCodeGeneration(
-        		new CodeJavaGeneration(
-        				new VOGenerator(
-        						Validation.getModelPathArg(cl), 
-        						Validation.getProfilePathArg(cl), 
-        						Validation.getOutputPathArg(cl),
-        						Validation.getEModuleArg(cl)
-        						)
-        				)
-        		).generateACSCode();
+        new ContextCodeGeneration(new CodeJavaGeneration(voGenerator)).generateACSCode();
+        
         Logger.getLogger(BaseStaticConfig.ACSCCG_LOGGER).log(Level.INFO, "Done");
 	}
 	

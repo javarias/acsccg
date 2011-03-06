@@ -14,48 +14,72 @@
  * 
  * who     		when      		what
  * --------		--------		----------------------------------------------
- * atejeda 		2010-00-00  	Created
+ * atejeda 		2011-05-03  	Created
  * 
- * $Id: CodeCppGeneration.java 170 2011-01-13 13:07:52Z alexis.tejeda $
+ * $Id$
  */
 
 package alma.acsccg.strategy;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.eclipse.emf.mwe.core.WorkflowRunner;
 
+import alma.acsccg.util.BaseStaticConfig;
 import alma.acsccg.vo.VOGenerator;
 
-public class CodeCppGeneration implements ICodeGenerationStrategy 
-{ 
-	private VOGenerator __voGenerator;
+public class CodeIDLGeneration implements ICodeGenerationStrategy 
+{
 	
-	public CodeCppGeneration(VOGenerator voGenerator) 
+private VOGenerator __voGenerator;
+	
+	/**
+	 * Constructor
+	 * @param voGenerator
+	 */
+	public CodeIDLGeneration(VOGenerator voGenerator) 
 	{
 		__voGenerator = voGenerator;
+		
 	}
-	
+
+	/**
+	 * Generate code function, see strategy pattern design
+	 * this is the function where the workflow are called
+	 */
 	@SuppressWarnings("unchecked")
 	public void generateCode() 
 	{
-		String mweFile = "cl/alma/codegeneration/mwe/JavaWorkflow.mwe";
 		
+		//Calling the workflow file
+		String mweFile = BaseStaticConfig.MWE_JAVA;
+		
+		//Map the properties to the workflow
 		Map properties = new HashMap();
 		properties.put("modelFileURI", __voGenerator.getWellFormedModel());
 		properties.put("profileFileURI",__voGenerator.getWellFormedProfile());
+		properties.put("acsPackage",__voGenerator.getAcspackage());
+		properties.put("ouputFolderURI",__voGenerator.getOutput());
 		
 		Map slotContents = new HashMap();
 		
 		WorkflowRunner wrunner = new WorkflowRunner();
+		
+		//calling the workflow runner
 		try 
 		{
+			Logger.getLogger(BaseStaticConfig.ACSCCG_LOGGER).log(Level.INFO, "Generating the code... wait");
 			wrunner.run(mweFile ,null, properties, slotContents);
 		} 
 		catch(Exception e) 
 		{
-			System.out.println(e.getMessage());
+			//System.out.println(e.getMessage());
+			Logger.getLogger(BaseStaticConfig.ACSCCG_LOGGER).log(Level.ERROR, e.getMessage());
 			return;
 		}
 	}
+
 }

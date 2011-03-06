@@ -19,18 +19,16 @@
 # $Id$
 #
 
-
-################################################################################
+#*******************************************************************************
 # Get the differences of the code generated between two versions
-# param example			: the example to generate		e.g.: singleComponent
 # param version1 		: the version to compare		e.g.: 223
 # param version2=HEAD	: the version to compare		e.g.: 238
-################################################################################
+#*******************************************************************************
 #!/bin/bash
 
-################################################################################
-# static var to use
-################################################################################
+#
+# STATIC VARS TO USE
+#--------------------
 DIFF=diff
 MAKE=make
 SVN=svn
@@ -39,15 +37,19 @@ SVNSERVER=http://acsccg.googlecode.com/svn/trunk/acsccg
 TEMPDIR=.ccgdifftemp
 TEMPSUFIX=
 
-################################################################################
-# var definitions
-################################################################################
+#
+# VAR DEFINITIONS
+#--------------------
 VERSION1= # version 1
 VERSION2= # version 2
 
-################################################################################
-# Functions
-################################################################################
+#
+# FUNCTIONS
+#--------------------
+
+#
+# PRINT A HELP
+#--------------------
 function printhelp
 {
 	echo ""
@@ -59,9 +61,16 @@ function printhelp
 	echo ""
 }
 
-################################################################################
-# Check argument 1
-################################################################################
+#
+# PARSE DIFF FILES TO HTML
+#------------------------------
+function diff2html
+{
+}
+
+#
+# CHECK ARG 1
+#--------------------
 if [ "$1" = "" ]
 then
 	echo " == Put the version to compare.. end execution.."
@@ -70,9 +79,9 @@ else
 	VERSION1="$2"
 fi
 
-################################################################################
-# Check argument 3
-################################################################################
+#
+# CHECK ARG 2
+#--------------------
 if [ "$2" = "" ]
 then
 	VERSION2=HEAD
@@ -80,15 +89,21 @@ else
 	VERSION2="$3"
 fi
 
-################################################################################
-# Lifecycle
-################################################################################
+#
+# LIFECYCLE
+#--------------------
 # Setup
 mkdir $TEMPDIR
 
-################################################################################
-# Get version 1
-################################################################################
+#
+# PRINT A SUMMARY
+#--------------------
+echo " == Using $VERSION1 vs  $VERSION1"
+echo ""
+
+#
+# GET VERSION 1
+#--------------------
 echo ""
 if [ ! -d "$TEMPDIR/$VERSION1" ]; then
 	echo " == Checking out the revision $VERSION1 "
@@ -99,9 +114,9 @@ else
 	echo " == The revision $VERSION2 is already checked out: $WORKINGDIR/$TEMPDIR/$VERSION1 "
 fi	
 
-################################################################################
-# Get version 2
-################################################################################
+#
+# GET VERSION 2
+#--------------------
 echo ""
 if [ ! -d "$TEMPDIR/$VERSION2" ]; then
 	echo " == Checking out the revision $VERSION2 "
@@ -112,9 +127,9 @@ else
 	echo " == The revision $VERSION2 is already checked out: $WORKINGDIR/$TEMPDIR/$VERSION2 "	
 fi
 
-################################################################################
-# Check if the models (XMI) are the same
-################################################################################
+#
+# CHECK IF XMI FILE ARE THE SAME VERSION
+#---------------------------------------
 # get last change revision
 DATER1= $SVN info $TEMPDIR/$VERSION1/test/xmi | grep 'Last Changed Rev'
 DATER2= $SVN info $TEMPDIR/$VERSION2/test/xmi | grep 'Last Changed Rev'
@@ -125,9 +140,9 @@ then
 	exit 1
 fi
 
-################################################################################
-# Build both versions
-################################################################################
+#
+# BUILD THE VERSIONS
+#--------------------
 # Version 1
 echo ""
 echo "" >>  "$TEMPDIR/$VERSION1.log"
@@ -142,16 +157,16 @@ echo "" >>  "$TEMPDIR/$VERSION2.log"
 echo " == Build " >>  "$TEMPDIR/$VERSION2.log"
 $MAKE -C $TEMPDIR/$VERSION2/src >> "$TEMPDIR/$VERSION2.log"
 
-################################################################################
-# Cleaning SVN files
-################################################################################
+#
+# CLEAN SVN FILES
+#--------------------
 echo ""
 echo " == Cleaning non important files..."
 find $TEMPDIR -name '.svn' | xargs rm -r
 
-################################################################################
-# Generating the code 
-################################################################################
+#
+# GENERATE THE CODE
+#--------------------
 # for revision 1
 # check if the code is already generated
 echo ""
@@ -175,16 +190,16 @@ rm -rf $TEMPDIR/$VERSION2/test/output
 # generating the code
 $MAKE eltins_prototype -C $TEMPDIR/$VERSION2/test  >> "$TEMPDIR/$VERSION2.log"
 
-################################################################################
-# Get the summarydiffs
-################################################################################
+#
+# GENERATE THE SUMMARY OF DIFFS
+#------------------------------
 echo ""
 echo " == Generating the summary of diffs"
 diff $TEMPDIR/$VERSION1/test/output $TEMPDIR/$VERSION2/test/output -r -q > diff_summary.txt
 
-################################################################################
-# Get the diff in 2 columns
-################################################################################
+#
+# GENERATE THE DIFFS IN TWO COLUMS
+#---------------------------------
 echo ""
 echo " == Generating the diffs in two columns"
 diff $TEMPDIR/$VERSION1/test/output $TEMPDIR/$VERSION2/test/output -r -y > diffs.txt
@@ -193,4 +208,5 @@ diff $TEMPDIR/$VERSION1/test/output $TEMPDIR/$VERSION2/test/output -r -y > diffs
 echo ""
 echo " == Done"
 echo ""
+
 #___o0o___

@@ -1,24 +1,3 @@
-/**
- * ACS Component Code Generator - http://code.google.com/p/acsccg/
- * Copyright (C) 2010  Alexis Tejeda, alexis.tejeda@gmail.com
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * who     		when      		what
- * --------		--------		----------------------------------------------
- * atejeda 		2010-00-00  	Created
- * 
- * $Id: CodeJavaGeneration.java 170 2011-01-13 13:07:52Z alexis.tejeda $
- */
-
 package alma.acsccg.strategy;
 
 import java.util.HashMap;
@@ -31,20 +10,16 @@ import org.eclipse.emf.mwe.core.WorkflowRunner;
 import alma.acsccg.util.BaseStaticConfig;
 import alma.acsccg.vo.VOGenerator;
 
-/**
- * This class implement the Strategy design pattern of the generator
- * and execute the workflow for the generation.
- * @author atejeda
- */
-public class CodeJavaGeneration implements ICodeGenerationStrategy{
-	
-	private VOGenerator __voGenerator;
+public class CodeCDBGeneration implements ICodeGenerationStrategy 
+{
+
+private VOGenerator __voGenerator;
 	
 	/**
 	 * Constructor
 	 * @param voGenerator
 	 */
-	public CodeJavaGeneration(VOGenerator voGenerator) 
+	public CodeCDBGeneration(VOGenerator voGenerator) 
 	{
 		__voGenerator = voGenerator;
 		
@@ -85,4 +60,5 @@ public class CodeJavaGeneration implements ICodeGenerationStrategy{
 			return;
 		}
 	}
+
 }
