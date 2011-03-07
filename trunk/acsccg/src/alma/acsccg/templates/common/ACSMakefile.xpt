@@ -124,6 +124,7 @@ xxxxx_LIBS      =
 #
 # Resolve here the dependencies of the generated stubs
 # This cleans up all missing symbols when building stubs libraries
+# ----------------------------------------------------------------
 «FOREACH getEInterfaces(getPackage(this)) AS eElement -»
 «eElement.name»Stubs_LIBS = «getPackage(this).name»CommonStubs«IF hasParent(eElement)»«FOREACH getParents(eElement) AS eParent-» «eParent.name»Stubs«ENDFOREACH-»«ENDIF»
 «ENDFOREACH-»

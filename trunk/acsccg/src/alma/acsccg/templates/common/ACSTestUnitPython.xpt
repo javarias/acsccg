@@ -82,8 +82,10 @@ from Acspy.Clients.SimpleClient import PySimpleClient
 
 class «eElement.name»TestPy(unittest.TestCase):
 
+	################################################
 	# lifecycle
-
+	################################################
+	
     def setUp(self):
     	self.simpleClient.getLogger().logInfo("pyUnitTest«eElement.name».«eElement.name»TestPy.setUp()...")
     	self.componentName = "«eElement.name»"
@@ -104,7 +106,9 @@ class «eElement.name»TestPy(unittest.TestCase):
     #__pPp__       
         
 	«IF !getERealization(eElement).getOperations().isEmpty-»
+	################################################
 	# test methods
+	################################################
 	
 	«FOREACH getERealization(eElement).getOperations() AS eOperation-»
 	def test«upperFirstChar(eOperation.name)»(self):
@@ -132,7 +136,9 @@ class «eElement.name»TestPy(unittest.TestCase):
 	«ENDFOREACH-»
 	«ENDIF-»	
 	«IF hasParent(getERealization(eElement))-»
+	################################################
 	# inherited test methods
+	################################################
 	
 	«FOREACH getAllParents(getERealization(eElement)) AS eParent-»
 	«FOREACH eParent.getOperations() AS eOperation-»

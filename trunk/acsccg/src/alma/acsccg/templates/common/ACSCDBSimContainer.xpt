@@ -25,7 +25,7 @@
 «EXTENSION acsccg::templates::util::common»
 
 «DEFINE Root FOR uml::Model»
-«FILE  getPackage(this).name+'/test/CDB/MACI/Containers/'+getPackage(this).name+'PySimulator/'+getPackage(this).name+'PySimulator.xml'-»
+«FILE  getPackage(this).name+'/test/CDB/MACI/Containers/'+getPackage(this).name+'Simulator/'+getPackage(this).name+'Simulator.xml'-»
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <Container 
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 

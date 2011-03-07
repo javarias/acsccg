@@ -165,7 +165,7 @@
 		<fileEncoding value="UTF-8" />
 		<metaModel idRef="default_profile"/>
 		<genPath value="${ouputFolderURI}"/>
-		<expand value="acsccg::templates::common::ACSCDBSimPyContainer::Root FOR model"/>
+		<expand value="acsccg::templates::common::ACSCDBSimContainer::Root FOR model"/>
 		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
 	</component>
 	

@@ -115,9 +115,20 @@ EXECUTABLES_L   =
 «FOREACH getEComponentsImpl(getPackage(this)) AS eElement -»
 #
 # «eElement.name» cpp unit test
+# -----------------------------
 cppUnitTest«eElement.name»_OBJECTS   = cppUnitTest«eElement.name»
 cppUnitTest«eElement.name»_LDFLAGS   =
-cppUnitTest«eElement.name»_LIBS      = maciClient «eElement.name»Stubs cppunit
+cppUnitTest«eElement.name»_LIBS      += cppunit
+cppUnitTest«eElement.name»_LIBS      += maciClient
+cppUnitTest«eElement.name»_LIBS		 += «getPackage(this).name»CommonStubs
+«FOREACH getEInterfaces(getPackage(this)) AS eElementInterface -»
+cppUnitTest«eElement.name»_LIBS		 += «eElementInterface.name»Stubs
+«IF hasParent(eElementInterface)-»
+«FOREACH getParents(eElementInterface) AS eParent-» 
+cppUnitTest«eElement.name»_LIBS 	 += «eParent.name»Stubs
+«ENDFOREACH-»
+«ENDIF-»
+«ENDFOREACH-»
 
 «ENDFOREACH-»
 
@@ -156,6 +167,9 @@ TCL_SCRIPTS_L   =
 # Python stuff (public and local)
 # ----------------------------
 PY_SCRIPTS         =
+«FOREACH getEComponentsImpl(getPackage(this)) AS eElement -»
+PY_SCRIPTS         += pyUnitTest«eElement.name»
+«ENDFOREACH-»
 PY_SCRIPTS_L       =
 
 PY_MODULES         =
@@ -197,7 +211,7 @@ USER_IDL =
 # Jarfiles and their directories
 #
 JARFILES= «getPackage(this).name»Test
-«getPackage(this).name»Test_DIRS= demo
+«getPackage(this).name»Test_DIRS= alma/«getPackage(this).name»
 jjj_EXTRAS= 
 
 #
