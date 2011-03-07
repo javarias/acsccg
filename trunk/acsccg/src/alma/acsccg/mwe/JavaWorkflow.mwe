@@ -246,6 +246,15 @@
 		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
 	</component>
 	
+	<!-- ACS Test Containers -->
+	<component id="ACS_TEST_CONTAINERS" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
+		<fileEncoding value="UTF-8" />
+		<metaModel idRef="default_profile"/>
+		<genPath value="${ouputFolderURI}"/>
+		<expand value="acsccg::templates::common::ACSTestContainer::Root FOR model"/>
+		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
+	</component>
+	
 	<!-- IDL Component -->
 	<component id="ACS_IDLCOMPONENT" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
 		<fileEncoding value="UTF-8" />

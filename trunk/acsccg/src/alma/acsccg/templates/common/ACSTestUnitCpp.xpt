@@ -31,33 +31,33 @@
 
 «DEFINE Root FOR uml::Model»
 «FOREACH getEComponentsImpl(getPackage(this)) AS eElement -»
-«FILE getPackage(this).name+'/test/cppUnitTest'+eElement.name+'.cpp'-»
+«FILE getPackage(this).name+'/test/unitcpp/cppUnitTest'+eElement.name+'.cpp'-»
 /*******************************************************************************
- *	ALMA - Atacama Large Millimiter Array
+ * ALMA - Atacama Large Millimiter Array
  *
- *	(c) European Southern Observatory, 2002
- *	Copyright by ESO (in the framework of the ALMA collaboration)
- *	and Cosylab 2002, All rights reserved
+ * (c) European Southern Observatory, 2002
+ * Copyright by ESO (in the framework of the ALMA collaboration)
+ * and Cosylab 2002, All rights reserved
  *
- *	This library is free software; you can redistribute it and/or
- *	modify it under the terms of the GNU Lesser General Public
- *	License as published by the Free Software Foundation; either
- *	version 2.1 of the License, or (at your option) any later version.
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
  *
- *	This library is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- *	Lesser General Public License for more details.
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
  *
- *	You should have received a copy of the GNU Lesser General Public
- *	License along with this library; if not, write to the Free Software
- *	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307  USA
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307  USA
  *
  * "@(#) «getPropSet('Id')»"
  *
- *	who                 when                             what
- *	----------------    -----------------------------    ------------------------
- *	ACSCCG              «getCommentDate()»     Creation of the file
+ * who                 when                             what
+ * ----------------    -----------------------------    ------------------------
+ * ACSCCG              «getCommentDate()»     Creation of the file
  * 
  */
  
@@ -90,7 +90,7 @@ class «eElement.name»Test: public CppUnit::TestFixture
 		void setUp() 
 		{
 			«FOREACH getEInterfaces(getPackage(this)) AS eElement -»
-			«eElement.name»Component = client.getComponent<«getPackage(this).name»::«eElement.name»>("«eElement.name»", 0, true);
+			«eElement.name»Component = client.getComponent<«getPackage(this).name»::«eElement.name»>("testInstance«eElement.name»", 0, true);
 			«ENDFOREACH-»
 		}//
 
@@ -137,7 +137,7 @@ int main(int argc, char *argv[])
 	«IF !getERealization(eElement).getOperations().isEmpty-»
 	«FOREACH getERealization(eElement).getOperations() AS eOperation-»
 	// test«upperFirstChar(eOperation.name)»
-	CppUnit::TestCaller<«eElement.name»Test> «upperFirstChar(eOperation.name)»Test ("«eElement.name»", &«eElement.name»Test::test«upperFirstChar(eOperation.name)»);
+	CppUnit::TestCaller<«eElement.name»Test> «upperFirstChar(eOperation.name)»Test ("testInstance«eElement.name»", &«eElement.name»Test::test«upperFirstChar(eOperation.name)»);
 	
 	«ENDFOREACH-»
 	«ENDIF-»

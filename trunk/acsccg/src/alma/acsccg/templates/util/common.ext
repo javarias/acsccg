@@ -380,7 +380,9 @@ String getEExceptionShortDescription(Element eElement):
  * @return String
  */
 String getEComponentLanguage(Element eElement):
-	getETagValue(eElement,'EComponentImpl','language').name.toLowerCase();
+	if getETagValue(eElement,'EComponentImpl','language').name.toLowerCase() =='c++'
+	then 'cpp'
+	else getETagValue(eElement,'EComponentImpl','language').name.toLowerCase();
 	
 /**
  * Get list of used interfaces in the EComponentImpl

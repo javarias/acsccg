@@ -122,10 +122,10 @@ cppUnitTest«eElement.name»_LIBS      += cppunit
 cppUnitTest«eElement.name»_LIBS      += maciClient
 cppUnitTest«eElement.name»_LIBS		 += «getPackage(this).name»CommonStubs
 «FOREACH getEInterfaces(getPackage(this)) AS eElementInterface -»
-cppUnitTest«eElement.name»_LIBS		 += «eElementInterface.name»Stubs
+cppUnitTest«eElement.name»_LIBS      += «eElementInterface.name»Stubs
 «IF hasParent(eElementInterface)-»
 «FOREACH getParents(eElementInterface) AS eParent-» 
-cppUnitTest«eElement.name»_LIBS 	 += «eParent.name»Stubs
+cppUnitTest«eElement.name»_LIBS      += «eParent.name»Stubs
 «ENDFOREACH-»
 «ENDIF-»
 «ENDFOREACH-»

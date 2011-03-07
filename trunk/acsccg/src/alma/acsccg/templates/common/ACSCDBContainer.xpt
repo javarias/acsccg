@@ -35,7 +35,7 @@
 	ImplLang="«getContainerLanguage(eElement)»">
 	
 	<Autoload>
-    </Autoload>
+	</Autoload>
     
     «IF getContainerLanguage(eElement)=='java'-»
     <LoggingConfig>
