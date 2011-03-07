@@ -19,16 +19,22 @@
 # $Id$
 # 
 
-# General Vars
+# GENERAL VARS
+# ------------
 ANT=ant
 RM=rm
 JCLI=java
 ENVDIR=$(shell pwd)
 
-# Example-test var
+# EXAMPLE TEST VAR
+# -----------------
 BINF=lib
 EXF=examples
 ACSCCG=$(BINF)/acsComponentCodeGenerator.jar
+
+# INSTALL SCRIPTS
+# ----------------
+INSTALL	 =
 
 all: clean build install message_done
 
@@ -46,7 +52,7 @@ install:
 	@echo ""
 	@# Calling the ant build script
 	@$(ANT) -f $(ENVDIR)/build.xml install
-	@cp acsccgdiff ../bin/acsccgdiff
+	@cp tools/acsccgdiff ../bin/acsccgdiff
 	@chmod +x ../bin/acsccgdiff
 	@echo ""
 	@echo "# Project binary (Jar) build into:"

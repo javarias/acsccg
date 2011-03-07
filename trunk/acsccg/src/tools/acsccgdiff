@@ -66,6 +66,8 @@ function printhelp
 #------------------------------
 function diff2html
 {
+	# TODO
+	echo ""
 }
 
 #
@@ -73,10 +75,12 @@ function diff2html
 #--------------------
 if [ "$1" = "" ]
 then
+	echo ""
 	echo " == Put the version to compare.. end execution.."
+	printhelp
 	exit 1
 else
-	VERSION1="$2"
+	VERSION1="$1"
 fi
 
 #
@@ -86,7 +90,7 @@ if [ "$2" = "" ]
 then
 	VERSION2=HEAD
 else
-	VERSION2="$3"
+	VERSION2="$2"
 fi
 
 #
@@ -98,8 +102,8 @@ mkdir $TEMPDIR
 #
 # PRINT A SUMMARY
 #--------------------
-echo " == Using $VERSION1 vs  $VERSION1"
 echo ""
+echo " == Using $VERSION1 vs $VERSION2"
 
 #
 # GET VERSION 1
