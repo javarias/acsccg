@@ -31,9 +31,9 @@ ACSCCG=$(LIBF)/acsComponentCodeGenerator.jar $(EXTRAFLAGS)
 #
 # Model list target, modelname_emodule
 #-------------------------------------
-MODELS_TARGETS= prototype \
-				notificationChannel \
-				singleComponent
+MODELS_TARGETS= eltins_prototype \
+				example_notificationChannel \
+				example_singleComponent
 
 #
 # Code Generation Testing variables
@@ -99,7 +99,7 @@ generate_all:
 # Testing targets
 #----------------
 
-prototype:
+eltins_prototype:
 		@echo ""
 		@echo " == Running eltins prototype"
 		@echo ""
@@ -109,7 +109,7 @@ prototype:
 		@echo " == eltins prototype generated"
 		@echo ""
 
-singleComponent:
+example_singleComponent:
 		@echo ""
 		@echo " == Running Example singleComponent"
 		@echo ""
@@ -119,7 +119,7 @@ singleComponent:
 		@echo " == singleComponent generated"
 		@echo ""
 
-characteristicComponent:
+example_characteristicComponent:
 		@echo ""
 		@echo " == Running Example characteristicComponent"
 		@echo ""
@@ -129,7 +129,7 @@ characteristicComponent:
 		@echo " == characteristicComponent generated"
 		@echo ""
 
-javaInterfaces:
+example_javaInterfaces:
 		@echo ""
 		@echo " == Running Example javaInterfaces"
 		@echo ""
@@ -139,7 +139,7 @@ javaInterfaces:
 		@echo " == javaInterfaces generated"
 		@echo ""
 
-inheritance:
+example_inheritance:
 		@echo ""
 		@echo " == Running Example inheritance"
 		@echo ""
@@ -149,7 +149,7 @@ inheritance:
 		@echo " == inheritance generated"
 		@echo ""
 
-notificationChannel:
+example_notificationChannel:
 		@echo ""
 		@echo " == Running Example notificationChannel"
 		@echo ""
