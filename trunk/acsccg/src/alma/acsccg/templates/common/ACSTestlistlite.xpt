@@ -58,29 +58,23 @@
 
 SOURCE TATEnvironment
 
-PROLOGUE ./test«getPackage(this).name»TATPrologue
+PROLOGUE ./«getPackage(this).name»TATPrologue
 
-«IF !getJavaImpl(getPackage(this)).isEmpty -»
 #java test
 «FOREACH getJavaImpl(getPackage(this)) AS eElement ITERATOR iterator -»
 «1000+iterator.counter1» «eElement.name»Test "acsStartJava -endorsed  alma.acs.testsupport.tat.TATJUnitRunner «getPackage(this).name».«eElement.name»Test"
 «ENDFOREACH-»
-«ENDIF-»
 
-«IF !getCppImpl(getPackage(this)).isEmpty -»
 #cpp test
 «FOREACH getCppImpl(getPackage(this)) AS eElement ITERATOR iterator -»
 «1000+iterator.counter1» cppUnitTest«eElement.name» "../bin/cppUnitTest«eElement.name»"
 «ENDFOREACH-»
-«ENDIF-»
 
-«IF !getPyImpl(getPackage(this)).isEmpty -»
 #python test
 «FOREACH getPyImpl(getPackage(this)) AS eElement ITERATOR iterator -»
 «3000+iterator.counter1» pyUnitTest«eElement.name» "python ../bin/pyUnitTest«eElement.name» testInstance«eElement.name»"
 «ENDFOREACH-»
-«ENDIF-»
 
-EPILOGUE ./test«getPackage(this).name»TATEpilogue
+EPILOGUE ./«getPackage(this).name»TATEpilogue
 «ENDFILE»
 «ENDDEFINE»
