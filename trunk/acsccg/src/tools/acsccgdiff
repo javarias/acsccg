@@ -186,7 +186,7 @@ $MAKE eltins_prototype -C $TEMPDIR/$VERSION1/test >> "$TEMPDIR/$VERSION1.log"
 # check if the code is already generated
 
 echo ""
-echo " == Generating the code for revision $VERSION1" # only eltins prototype is generated for now...
+echo " == Generating the code for revision $VERSION2" # only eltins prototype is generated for now...
 echo "" >>  "$TEMPDIR/$VERSION1.log"
 echo " == Generating the code" >>  "$TEMPDIR/$VERSION2.log"
 # cleaning the generated code before
