@@ -180,7 +180,7 @@ echo " == Generating the code" >> "$TEMPDIR/$VERSION1.log"
 # cleaning the generated code before
 rm -rf $TEMPDIR/$VERSION1/test/output
 # generating the code
-$MAKE eltins_prototype -C $TEMPDIR/$VERSION1/test >> "$TEMPDIR/$VERSION1.log"
+$MAKE prototype -C $TEMPDIR/$VERSION1/test >> "$TEMPDIR/$VERSION1.log"
 
 # for revision 2
 # check if the code is already generated
@@ -192,7 +192,7 @@ echo " == Generating the code" >>  "$TEMPDIR/$VERSION2.log"
 # cleaning the generated code before
 rm -rf $TEMPDIR/$VERSION2/test/output
 # generating the code
-$MAKE eltins_prototype -C $TEMPDIR/$VERSION2/test  >> "$TEMPDIR/$VERSION2.log"
+$MAKE prototype -C $TEMPDIR/$VERSION2/test  >> "$TEMPDIR/$VERSION2.log"
 
 #
 # GENERATE THE SUMMARY OF DIFFS
