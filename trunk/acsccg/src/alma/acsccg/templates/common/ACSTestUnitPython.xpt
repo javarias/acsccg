@@ -81,6 +81,7 @@ Test Inherited Methods:
 import unittest
 from Acspy.Clients.SimpleClient import PySimpleClient
 
+from «getPackage(this).name»Common *
 «FOREACH getEInterfaces(getPackage(this)) AS eElement -»
 from «eElement.name» import *
 «IF hasParent(eElement)-»

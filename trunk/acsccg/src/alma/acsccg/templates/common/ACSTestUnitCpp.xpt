@@ -96,7 +96,9 @@ class «eElement.name»Test: public CppUnit::TestFixture
 
 		void tearDown()
 		{
-			client.releaseComponent("«eElement.name»");
+			«FOREACH getEInterfaces(getPackage(this)) AS eElement -»
+			client.releaseComponent("testInstance«eElement.name»");
+			«ENDFOREACH-»
 		}//
 		
 		«IF !getERealization(eElement).getOperations().isEmpty-»

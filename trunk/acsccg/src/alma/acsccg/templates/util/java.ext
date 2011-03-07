@@ -105,6 +105,9 @@ string getJavaParamNew(Parameter this):
     if type.name == 'TimeInterval'
         then '0L'
     else
+    if type.name == 'CBstring'
+        then type.name + '.class.newInstance()'    
+    else
     'new ' + type.name+'()';    	
 
 /**

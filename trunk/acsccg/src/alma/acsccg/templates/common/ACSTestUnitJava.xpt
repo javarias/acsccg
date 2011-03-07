@@ -83,6 +83,11 @@ import alma.«getPackage(this).name».«getERealization(eElement).name»;
 import alma.«getPackage(this).name».«getParent(getERealization(eElement)).name»;
 «ENDIF-»
 
+«IF hasECharacteristicInterfaces(eElement)-»
+import alma.ACS.jbaci.*;
+import alma.ACS.impl.*;
+«ENDIF-»
+
 public class «eElement.name»Test extends ComponentClientTestCase 
 {
 	private Logger logger;
@@ -119,7 +124,7 @@ public class «eElement.name»Test extends ComponentClientTestCase
 	
 	«FOREACH getERealization(eElement).getOperations() AS eOperation-»
 	@org.junit.Test
-	public void test«upperFirstChar(eOperation.name)-»() 
+	public void test«upperFirstChar(eOperation.name)-»() throws Exception
     {
     	«IF !getOperationParams(eOperation).isEmpty-»
 		«FOREACH getOperationParams(eOperation) AS param -»
@@ -144,7 +149,7 @@ public class «eElement.name»Test extends ComponentClientTestCase
 	«FOREACH getAllParents(getERealization(eElement)) AS eParent-»
 	«FOREACH eParent.getOperations() AS eOperation-»
 	@org.junit.Test
-	public void test«upperFirstChar(eOperation.name)-»() 
+	public void test«upperFirstChar(eOperation.name)-»() throws Exception 
     {
     	«IF !getOperationParams(eOperation).isEmpty-»
 		«FOREACH getOperationParams(eOperation) AS param -»

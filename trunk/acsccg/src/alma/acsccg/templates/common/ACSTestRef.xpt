@@ -15,7 +15,7 @@
  * 
  * who     		when      		what
  * --------		--------		----------------------------------------------
- * atejeda 		2011-26-02  	Created
+ * atejeda 		2011-06-03  	Created
  * 
  * $Id$
  */
@@ -30,7 +30,6 @@
 «EXTENSION acsccg::templates::util::idl»
 
 «DEFINE Root FOR uml::Model»
-«FILE getPackage(this).name+'/test/TestList.lite'-»
 #*******************************************************************************
 # ALMA - Atacama Large Millimiter Array
 # (c) UNSPECIFIED - FILL IN, 2009 
@@ -56,27 +55,10 @@
 # ACSCCG              «getCommentDate()»      Creation of the file
 # 
 
-SOURCE TATEnvironment
-
-PROLOGUE ./«getPackage(this).name»TATPrologue
-
-#java test
-«FOREACH getEComponentsImpl(getPackage(this)) AS eElement ITERATOR iterator -»
-«1000+iterator.counter1» «eElement.name»Test "acsStartJava -endorsed  alma.acs.testsupport.tat.TATJUnitRunner «getPackage(this).name».«eElement.name»Test"
+«FOREACH getEComponentsImpl(getPackage(this)) AS eElement -»
+«FILE getPackage(this).name+'/test/ref/'+eElement.name+'Test.ref'»«ENDFILE»
+«FILE getPackage(this).name+'/test/ref/cppUnitTest'+eElement.name+'.ref'»«ENDFILE»
+«FILE getPackage(this).name+'/test/ref/pyUnitTest'+eElement.name+'.ref'»«ENDFILE»
 «ENDFOREACH-»
 
-#cpp test
-«FOREACH getEComponentsImpl(getPackage(this)) AS eElement ITERATOR iterator -»
-«2000+iterator.counter1» cppUnitTest«eElement.name» "../bin/cppUnitTest«eElement.name»"
-«ENDFOREACH-»
-
-#python test
-«FOREACH getEComponentsImpl(getPackage(this)) AS eElement ITERATOR iterator -»
-«3000+iterator.counter1» pyUnitTest«eElement.name» "python ../bin/pyUnitTest«eElement.name» testInstance«eElement.name»"
-«ENDFOREACH-»
-
-EPILOGUE ./«getPackage(this).name»TATEpilogue
-
-# ___oOo___
-«ENDFILE»
 «ENDDEFINE»
