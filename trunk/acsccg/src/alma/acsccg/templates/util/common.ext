@@ -493,3 +493,27 @@ String isVoid(String typeString):
  */
 List getOperationParams(Operation eOperation):
 	eOperation.ownedParameter.select(e|e.direction.toString()!= 'return');
+	
+/**
+ * get a list of Java implementations components
+ * @param package
+ * @return List
+ */
+List getJavaImpl(Package package):
+	getEComponentsImpl(package).select(e|getEComponentLanguage(e) == 'java');
+
+/**
+ * get a list of Cpp implementations components
+ * @param package
+ * @return List
+ */
+List getCppImpl(Package package):
+	getEComponentsImpl(package).select(e|getEComponentLanguage(e) == 'cpp');
+
+/**
+ * get a list of Python implementations components
+ * @param package
+ * @return List
+ */
+List getPyImpl(Package package):
+	getEComponentsImpl(package).select(e|getEComponentLanguage(e) == 'py');

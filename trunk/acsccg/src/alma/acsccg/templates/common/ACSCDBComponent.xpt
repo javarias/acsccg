@@ -67,39 +67,50 @@
 	   
 	   <!-- Instance to test components -->
 	   
+	   «IF !getJavaImpl(getPackage(this)).isEmpty -»
 	   <!-- Java Component Instances -->
-	   «FOREACH getEComponentsImpl(getPackage(this)) AS eElement -»
+	   
+	   «FOREACH getJavaImpl(getPackage(this)) AS eElement -»
 	   «IF getEComponentLanguage(eElement) == 'java' -»
 	   <_ Name="testInstance«eElement.name»" 
 			Code="alma.«getPackage(this).name».«eElement.name»Helper"
 			Type="IDL:alma/«getPackage(this).name-»/«getERealization(eElement).name»:1.0"
 			Container="«getPackage(this).name»JavaTest" 
 			ImplLang="«getEComponentLanguage(eElement)»" />
+			
 	   «ENDIF-»
 	   «ENDFOREACH-»
+	   «ENDIF-»
 	   
+	   «IF !getCppImpl(getPackage(this)).isEmpty -»
 	   <!-- Cpp Component Instances -->
-	   «FOREACH getEComponentsImpl(getPackage(this)) AS eElement -»
+	   
+	   «FOREACH getCppImpl(getPackage(this)) AS eElement -»
 	   «IF getEComponentLanguage(eElement) == 'cpp' -»
 	   <_ Name="testInstance«eElement.name»" 
 			Code="alma.«getPackage(this).name».«eElement.name»Helper"
 			Type="IDL:alma/«getPackage(this).name-»/«getERealization(eElement).name»:1.0"
 			Container="«getPackage(this).name»CppTest" 
 			ImplLang="«getEComponentLanguage(eElement)»" />
+			
 	   «ENDIF-»
 	   «ENDFOREACH-»
+	   «ENDIF-»
 	   
+	   «IF !getPyImpl(getPackage(this)).isEmpty -»
 	   <!-- Python Component Instances -->
-	   «FOREACH getEComponentsImpl(getPackage(this)) AS eElement -»
+	   
+	   «FOREACH getPyImpl(getPackage(this)) AS eElement -»
 	   «IF getEComponentLanguage(eElement) == 'py' -»
 	   <_ Name="testInstance«eElement.name»" 
 			Code="alma.«getPackage(this).name».«eElement.name»Helper"
 			Type="IDL:alma/«getPackage(this).name-»/«getERealization(eElement).name»:1.0"
 			Container="«getPackage(this).name»PyTest" 
 			ImplLang="«getEComponentLanguage(eElement)»" />
+			
 	   «ENDIF-»
 	   «ENDFOREACH-»
-	   
+	   «ENDIF-»     
 </Components>
 «ENDFILE»
 «ENDDEFINE»
