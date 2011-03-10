@@ -31,7 +31,7 @@ ACSCCG=$(LIBF)/acsComponentCodeGenerator.jar $(EXTRAFLAGS)
 #
 # Model list target, modelname_emodule
 #-------------------------------------
-MODELS_TARGETS= eltins_prototype \
+MODELS_TARGETS= eltins_prototype eltins_pinger \
 				example_notificationChannel \
 				example_singleComponent
 
@@ -103,10 +103,20 @@ eltins_prototype:
 		@echo ""
 		@echo " == Running eltins prototype"
 		@echo ""
-		@echo "$(JCLI) -jar $(ACSCCG) -m $(XMI_PATH)/ELT/ELT-InsPrototype.uml -p $(PROFILE_PATH)/$(PROFILE_XMI) -o $(OUTPUT_PATH) -e prototype" 
+		@echo "$(JCLI) -jar $(ACSCCG) -d -m $(XMI_PATH)/ELT/ELT-InsPrototype.uml -p $(PROFILE_PATH)/$(PROFILE_XMI) -o $(OUTPUT_PATH) -e prototype" 
 		@$(JCLI) -jar $(ACSCCG) -m $(XMI_PATH)/ELT/ELT-InsPrototype.uml -p $(PROFILE_PATH)/$(PROFILE_XMI) -o $(OUTPUT_PATH) -e prototype
 		@echo ""
 		@echo " == eltins prototype generated"
+		@echo ""
+
+eltins_pinger:
+		@echo ""
+		@echo " == Running eltins pinger"
+		@echo ""
+		@echo "$(JCLI) -jar $(ACSCCG) -m $(XMI_PATH)/ELT/ELT-InsPrototype.uml -p $(PROFILE_PATH)/$(PROFILE_XMI) -o $(OUTPUT_PATH) -e PINGER_M" 
+		@$(JCLI) -jar $(ACSCCG) -m $(XMI_PATH)/ELT/ELT-InsPrototype.uml -p $(PROFILE_PATH)/$(PROFILE_XMI) -o $(OUTPUT_PATH) -e PINGER_M
+		@echo ""
+		@echo " == eltins PINGER_M generated"
 		@echo ""
 
 example_singleComponent:
