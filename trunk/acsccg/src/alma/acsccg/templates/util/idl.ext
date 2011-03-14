@@ -153,7 +153,7 @@ string getIDLCorrectCase(Parameter this):
  * 
  */	
 string getIDLCorrectCaseString(String str, Model model):
-    if str == 'Boolean' || str == 'Long' || str == 'Double' || str == 'Float' || str == 'Char'|| str == 'String'  
+    if str.toLowerCase() == 'boolean' || str.toLowerCase() == 'long' || str.toLowerCase() == 'double' || str.toLowerCase() == 'float' || str.toLowerCase() == 'char'|| str.toLowerCase() == 'string'  
     	then str.toLowerCase()
     else if getPackage(model).allOwnedElements().typeSelect(uml::Signal).select(e|e.name == str).isEmpty
     	then getPackage(model).getModel().allOwnedElements().typeSelect(uml::Signal).select(e|e.name == str).first().package.name+"::"+str
@@ -163,7 +163,7 @@ string getIDLCorrectCaseString(String str, Model model):
  * 
  */	
 string getIDLCorrectCaseString(String str):
-    if str == 'Boolean' || str == 'Long' || str == 'Double' || str == 'Float' || str == 'Char'|| str == 'String'  
+    if str.toLowerCase() == 'boolean' || str.toLowerCase() == 'long' || str.toLowerCase() == 'double' || str.toLowerCase() == 'float' || str.toLowerCase() == 'char'|| str.toLowerCase() == 'string'  
     	then str.toLowerCase()
     else str;
 
@@ -174,3 +174,18 @@ string getIDLReturnType(Operation this):
     if hasModifier(getReturnParameter(this))
     then (getIDLCorrectCase(getReturnParameter(this)) + "Sequence").trim()
     else getIDLCorrectCase(getReturnParameter(this)).trim();
+    
+/**
+ * 
+ */	
+string getCorrectIDLSyntax(String str, Model model):
+    if getPackage(model).allOwnedElements().typeSelect(uml::Interface).select(e|e.name == str).isEmpty
+    then getPackage(model).getModel().allOwnedElements().typeSelect(uml::Interface).select(e|e.name == str).first().package.name+"::"+str
+    else str;
+    
+/**
+ * 
+ */	
+boolean isACSInterface(String str, Model model):
+    getPackage(model).getModel().allOwnedElements().typeSelect(uml::Interface).select(e|e.name == str).first().package.name.toLowerCase() == 'acs';
+    

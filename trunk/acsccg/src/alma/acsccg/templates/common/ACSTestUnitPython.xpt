@@ -71,9 +71,11 @@ Test Methods:
 «IF hasParent(getERealization(eElement))-»
 Test Inherited Methods:
 «FOREACH getAllParents(getERealization(eElement)) AS eParent-»
+«IF !isACSInterface(getParent(getERealization(eElement)).name,this)-»
 «FOREACH eParent.getOperations() AS eOperation-»
 	-	test«upperFirstChar(eOperation.name)»()		    
 «ENDFOREACH-»
+«ENDIF-»
 «ENDFOREACH-»
 «ENDIF-»
 '''
@@ -144,6 +146,18 @@ class «eElement.name»TestPy(unittest.TestCase):
 	################################################
 	
 	«FOREACH getAllParents(getERealization(eElement)) AS eParent-»
+	
+	«IF getParent(getERealization(eElement)).name == 'PingableResource'-»	
+	def testPing(self):
+		self.simpleClient.getLogger().logInfo("pyUnitTest«eElement.name».«eElement.name»TestPy.testPing()...")
+		fast = False
+		recursive = False
+		id = 0
+		response = self.componentping(fast, recursive, id)
+		assert response is not None
+	«ENDIF-»
+	
+	«IF !isACSInterface(getParent(getERealization(eElement)).name,this)-»
 	«FOREACH eParent.getOperations() AS eOperation-»
 	def test«upperFirstChar(eOperation.name)»(self):
 		self.simpleClient.getLogger().logInfo("pyUnitTest«eElement.name».«eElement.name»TestPy.test«upperFirstChar(eOperation.name)»()...")
@@ -164,6 +178,7 @@ class «eElement.name»TestPy(unittest.TestCase):
 	#__pPp__
 		    
 	«ENDFOREACH-»
+	«ENDIF-»
 	«ENDFOREACH-»
 	«ENDIF-»
 if __name__ == "__main__":

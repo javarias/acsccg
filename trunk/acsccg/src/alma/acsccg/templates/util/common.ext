@@ -292,7 +292,9 @@ boolean isECharacteristicInterface(Element eElement):
  * @return Boolean
  */
 boolean isECharacteristic(Element eElement):
-	getETagValue(getRealizationReference(eElement),'EInterface','configurable');
+	if eElement == null
+	then false
+	else 'true'.toLowerCase() == getETagValue(getRealizationReference(eElement),'EInterface','configurable');
 	
 /**
  * Check if the eElement is a ECharacteristicComponentImpl

@@ -124,8 +124,10 @@ cppUnitTest«eElement.name»_LIBS      += «getPackage(this).name»CommonStubs
 «FOREACH getEInterfaces(getPackage(this)) AS eElementInterface -»
 cppUnitTest«eElement.name»_LIBS      += «eElementInterface.name»Stubs
 «IF hasParent(eElementInterface)-»
-«FOREACH getParents(eElementInterface) AS eParent-» 
+«FOREACH getParents(eElementInterface) AS eParent-»
+«IF !isACSInterface(eParent.name,this)-» 
 cppUnitTest«eElement.name»_LIBS      += «eParent.name»Stubs
+«ENDIF-»
 «ENDFOREACH-»
 «ENDIF-»
 «ENDFOREACH-»

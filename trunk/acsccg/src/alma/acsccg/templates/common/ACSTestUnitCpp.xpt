@@ -70,7 +70,9 @@
 #include "«eElement.name»C.h"
 «IF hasParent(eElement)-»
 «FOREACH getParents(eElement) AS eParent-»
+«IF !isACSInterface(eParent.name,this)-»
 #include "«eParent.name»C.h"
+«ENDIF-»
 «ENDFOREACH-»
 «ENDIF-»
 «ENDFOREACH-»
@@ -111,10 +113,10 @@ class «eElement.name»Test: public CppUnit::TestFixture
 		{
 			// TODO (generator autoimplementation, protected region)
 		}//
-		
 		«ENDFOREACH-»
 		«ENDIF-»
 		«IF hasParent(getERealization(eElement))-»
+		
 		///////////////////////////////////////////////////////////
 		// Test inherited methods
 		///////////////////////////////////////////////////////////

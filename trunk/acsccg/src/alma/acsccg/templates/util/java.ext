@@ -28,6 +28,11 @@ import ecore;
  */
 boolean isVoid(Operation this):
 	type.name.toLowerCase() == "void";
+/**
+ * 
+ */
+boolean isReturnVoid(String rtype):
+	rtype.toLowerCase() == "void" || rtype.toLowerCase() == "";
 
 /**
  * 
@@ -96,17 +101,17 @@ string getJavaParam(Parameter this):
  * 
  */        
 string getJavaParamNew(Parameter this):
-    if  type.name == 'Long' || type.name == 'long'
+    if type.name.toLowerCase() == 'long'
        then '0'
     else
-    if type.name == 'Boolean'
-        then type.name.toLowerCase()
+    if type.name.toLowerCase() == 'boolean'
+        then 'false'
     else
-    if type.name == 'TimeInterval'
+    if type.name.toLowerCase() == 'timeInterval'
         then '0L'
     else
-    if type.name == 'CBstring'
-        then type.name + '.class.newInstance()'    
+    if type.name.toLowerCase() == 'cbstring'
+        then 'CBstring.class.newInstance()'    
     else
     'new ' + type.name+'()';    	
 

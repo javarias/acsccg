@@ -81,7 +81,7 @@ public final class BaseStaticConfig
 	/**
 	 * Logger Id of the generator
 	 */
-	public final static String ACSCCG_LOGGER = "cl.alma.acs.ccg"; 
+	public final static String ACSCCG_LOGGER = "alma.acsccg"; 
 	
 	/**
 	 * Name of the debug log file configuration
@@ -89,14 +89,14 @@ public final class BaseStaticConfig
 	public final static String DEBUG_LOG_FILE = "debug.log4j.properties";
 	
 	/**
-	 * Path of the debug lod file configuration
+	 * Path of the debug log file configuration
 	 */
-	public final static String DEBUG_LOG_PATH = TEMP_OS_DIR + File.separator  + DEBUG_LOG_FILE;
+	public final static String DEBUG_LOG_PATH = TEMP_OS_DIR + File.separator + DEBUG_LOG_FILE;
 	
 	/**
 	 * Get the ACS license template
 	 */
-	public final static String ACS_LICENSE_TEMPLATE = "alma/acsccg/license/DefaultLicense.tmpl";
+	public final static String ACS_LICENSE_TEMPLATE = "acsccg/license/DefaultLicense.tmpl";
 	
 	/**
 	 * Get the svn propset file information

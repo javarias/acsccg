@@ -87,8 +87,10 @@ import alma.«getPackage(this).name».*;
 import alma.«getPackage(this).name».«getERealization(eElement).name»;
 import alma.«getPackage(this).name».«getERealization(eElement).name»Operations;
 «IF hasParent(getERealization(eElement))-»
+«IF !isACSInterface(getParent(getERealization(eElement)).name,this)-»
 import alma.«getPackage(this).name».«getParent(getERealization(eElement)).name»;
 import alma.«getPackage(this).name».«getParent(getERealization(eElement)).name»Operations;
+«ENDIF-»
 «ENDIF-»
 
 «IF hasNCDefinitions(getERealization(eElement))-»«IF hasEPublishers(getERealization(eElement))-»
@@ -439,8 +441,22 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 	
 	«IF hasParent(getERealization(eElement))-»
 	«FOREACH getAllParents(getERealization(eElement)) AS eParent-»
+	
+	«IF getParent(getERealization(eElement)).name == 'PingableResource'-»
 	/////////////////////////////////////////////////////////////
-	// Implementation of Inherited «eParent.name»Operations
+	// Implementation of  PingableResourceOperations
+	/////////////////////////////////////////////////////////////
+	
+	public boolean ping(boolean fast, boolean recursive, int id)
+	{
+		return false;
+	}
+	«ENDIF-»
+	
+	«IF !isACSInterface(getParent(getERealization(eElement)).name,this)-»
+	
+	/////////////////////////////////////////////////////////////
+	// Implementation of  «eParent.name»Operations
 	/////////////////////////////////////////////////////////////
 	«FOREACH eParent.getOperations() AS eOperation-»
 	
@@ -458,6 +474,7 @@ public class «eElement.name» «IF hasECharacteristicInterfaces(eElement)-»ext
 		«ENDPROTECT»    
 	}
 	«ENDFOREACH-»
+	«ENDIF-»
 	«ENDFOREACH-»«ENDIF-»
 } 
 «ENDFILE»

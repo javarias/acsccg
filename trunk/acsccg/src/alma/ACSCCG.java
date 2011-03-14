@@ -62,9 +62,6 @@ public class ACSCCG
 	 */
 	public static void main(String[] args) throws IOException
 	{	
-		
-		Logger.getLogger(BaseStaticConfig.ACSCCG_LOGGER).log(Level.INFO, "");
-		
 		//////////////////////////////////////////////////////////////////////////////////////////////
 		// String paths variables
 		// Deprecated
@@ -129,7 +126,6 @@ public class ACSCCG
 			Logger.getLogger(BaseStaticConfig.ACSCCG_LOGGER).log(Level.INFO, "Build "+readBuildNumber());
 			Logger.getLogger(BaseStaticConfig.ACSCCG_LOGGER).log(Level.INFO, BaseStaticConfig.RELEASE_VERSION);
 			Logger.getLogger(BaseStaticConfig.ACSCCG_LOGGER).log(Level.INFO, BaseStaticConfig.DATE_VERSION);
-			Logger.getLogger(BaseStaticConfig.ACSCCG_LOGGER).log(Level.INFO, "Last change by - " + BaseStaticConfig.LAST_CHANGE_BY);
 			Logger.getLogger(BaseStaticConfig.ACSCCG_LOGGER).log(Level.INFO, "----------------------");
 		}
 		
@@ -208,13 +204,11 @@ public class ACSCCG
 	public static void about() 
 	{
 		System.out.println("");
-		System.out.println("ACS Component Code Generator");
-		System.out.println(BaseStaticConfig.RELEASE_VERSION);
-		System.out.println(BaseStaticConfig.DATE_VERSION);
-		System.out.println("Build Number: "+readBuildNumber());
-		System.out.println("");
-	    System.out.println("http://code.google.com/p/acsccg/");
-		System.out.println("");
+		Logger.getLogger(BaseStaticConfig.ACSCCG_LOGGER).log(Level.INFO, "ACS Component Code Generator");
+		Logger.getLogger(BaseStaticConfig.ACSCCG_LOGGER).log(Level.INFO, BaseStaticConfig.RELEASE_VERSION);
+		Logger.getLogger(BaseStaticConfig.ACSCCG_LOGGER).log(Level.INFO, BaseStaticConfig.DATE_VERSION);
+		Logger.getLogger(BaseStaticConfig.ACSCCG_LOGGER).log(Level.INFO, "Build Number: "+readBuildNumber());
+		Logger.getLogger(BaseStaticConfig.ACSCCG_LOGGER).log(Level.INFO, "http://code.google.com/p/acsccg/");
 	}
 	
 	/**

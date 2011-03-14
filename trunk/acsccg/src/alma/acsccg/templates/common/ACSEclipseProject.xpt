@@ -13,6 +13,7 @@
 	«ENDFOREACH-»
 	<classpathentry excluding=".cvsignore|.purifydir/|Makefile" kind="src" path="src"/>
 	<classpathentry excluding=".cvsignore|.purifydir/|Makefile" kind="src" path="test"/>
+	<classpathentry excluding=".cvsignore|.purifydir/|Makefile" kind="src" path="idl"/>
 	<classpathentry kind="var" path="ACSROOT/lib/abeansR2Components.jar"/>
 	<classpathentry kind="var" path="ACSROOT/lib/AbsoluteLayout.jar"/>
 	<classpathentry kind="var" path="ACSROOT/lib/acsAlarmClients.jar"/>

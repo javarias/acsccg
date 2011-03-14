@@ -64,25 +64,18 @@
 package alma.«getPackage(this).name»;
 
 import static org.junit.Assert.*;
+import org.junit.Before;
 
 import java.util.List;
 import java.util.logging.Logger;
 
-import org.junit.Before;
-
 import alma.acs.logging.ClientLogManager;
-
-import alma.ACS.*;
-
 import alma.acs.component.client.ComponentClientTestCase;
 
 import alma.«getPackage(this).name».*;
 import alma.«getPackage(this).name».«eElement.name»;
-import alma.«getPackage(this).name».«getERealization(eElement).name»;
-«IF hasParent(getERealization(eElement))-»
-import alma.«getPackage(this).name».«getParent(getERealization(eElement)).name»;
-«ENDIF-»
 
+import alma.ACS.*;
 «IF hasECharacteristicInterfaces(eElement)-»
 import alma.ACS.jbaci.*;
 import alma.ACS.impl.*;
@@ -131,7 +124,7 @@ public class «eElement.name»Test extends ComponentClientTestCase
 		«getJavaParam(param)» «param.name» = «getJavaParamNew(param)»;
 		«ENDFOREACH-»
 		«ENDIF-»
-    	«IF isVoid(getJavaReturnType(eOperation))-»
+    	«IF isReturnVoid(getJavaReturnType(eOperation))-»
 		this.component.«eOperation.name»(«FOREACH getOperationParams(eOperation) AS param SEPARATOR ', '-»«param.name»«ENDFOREACH-»);
 		«ELSE-»
 		«getJavaReturnType(eOperation)» response = this.component.«eOperation.name»(«FOREACH getOperationParams(eOperation) AS param SEPARATOR ', '-»«param.name»«ENDFOREACH-»);
@@ -147,24 +140,38 @@ public class «eElement.name»Test extends ComponentClientTestCase
 	/////////////////////////////////////////////////////////////
 	
 	«FOREACH getAllParents(getERealization(eElement)) AS eParent-»
+	«IF getParent(getERealization(eElement)).name == 'PingableResource'-»
+	public void testPing() throws Exception
+	{
+		boolean fast = false;
+		boolean recursive = false;
+		int id = 0;
+		boolean response;
+		response = this.component.ping(fast, recursive, id);
+		assertNotNull(response);
+	}
+	«ENDIF-»
+	
+	«IF !isACSInterface(getParent(getERealization(eElement)).name,this)-»
 	«FOREACH eParent.getOperations() AS eOperation-»
 	@org.junit.Test
 	public void test«upperFirstChar(eOperation.name)-»() throws Exception 
-    {
+	{
     	«IF !getOperationParams(eOperation).isEmpty-»
 		«FOREACH getOperationParams(eOperation) AS param -»
 		«getJavaParam(param)» «param.name» = «getJavaParamNew(param)»;
 		«ENDFOREACH-»
 		«ENDIF-»
-    	«IF isVoid(getJavaReturnType(eOperation))-»
+    	«IF isReturnVoid(getJavaReturnType(eOperation))-»
 		this.component.«eOperation.name»(«FOREACH getOperationParams(eOperation) AS param SEPARATOR ', '-»«param.name»«ENDFOREACH-»);
 		«ELSE-»
 		«getJavaReturnType(eOperation)» response = this.component.«eOperation.name»(«FOREACH getOperationParams(eOperation) AS param SEPARATOR ', '-»«param.name»«ENDFOREACH-»);
 		assertNotNull(response);
 		«ENDIF-»
-    }//
+	}//
     
 	«ENDFOREACH-»
+	«ENDIF-»
 	«ENDFOREACH-»
 	«ENDIF-»
 }

@@ -27,6 +27,8 @@
 «EXTENSION acsccg::templates::util::zzdev»
 «EXTENSION acsccg::templates::util::idl»
 
+
+
 «DEFINE Root FOR uml::Model»
 «FILE  'summary_'+getPackage(this).name+'.txt'-»
 ************************************************************************************
@@ -138,5 +140,7 @@ External Signals:
 	«ENDIF-»
 «ENDFOREACH»
 
+Used ACS Interfaces:
+************************************************************************************
 «ENDFILE»
 «ENDDEFINE»
