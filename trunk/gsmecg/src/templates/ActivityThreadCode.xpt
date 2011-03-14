@@ -1,5 +1,5 @@
 «IMPORT uml»
-«EXTENSION templates::scxmlutil»
+«EXTENSION templates::ScxmlUtil»
 
 «DEFINE ActivityThread FOR StateMachine»
 «FILE "ActivityThread.java"»

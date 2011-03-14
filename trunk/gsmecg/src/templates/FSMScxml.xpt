@@ -1,12 +1,12 @@
 «IMPORT uml»
-«EXTENSION templates::scxmlutil»
+«EXTENSION templates::ScxmlUtil»
 
 «DEFINE Root FOR StateMachine»
 
 «REM» Generate SCXML Model «ENDREM»
 «FILE this.name+".xml"»
 	«REM» Write the headers «ENDREM»
-	«EXPAND SCXMLcodeSnippet::Headers»
+	«EXPAND ScxmlCode::Headers»
 
 	«REM» Select TopStates and explore «ENDREM»
 	«FOREACH listStates().select(e|e.isTopState()).sortBy(e|e.name) AS st» 
@@ -14,9 +14,9 @@
 	«ENDFOREACH»	
 	
 	«REM» Outer FinalStates «ENDREM»
-	«EXPAND SCXMLcodeSnippet::FinalState»
+	«EXPAND ScxmlCode::FinalState»
 	
-«EXPAND SCXMLcodeSnippet::CloseScxml»
+«EXPAND ScxmlCode::CloseScxml»
 «ENDFILE»
 
 «REM» JAVA Custom Actions List«ENDREM»
@@ -51,12 +51,12 @@
 «REM» Explore Simple States «ENDREM»
 «DEFINE ExploreSimpleState FOR State»
 	«IF this.isFinalState()»
-		«EXPAND SCXMLcodeSnippet::SimFinalState»
+		«EXPAND ScxmlCode::SimFinalState»
 	«ELSE»	
-		«EXPAND SCXMLcodeSnippet::StateName»
+		«EXPAND ScxmlCode::StateName»
 		«EXPAND ExploreActions»
 		«EXPAND ExploreTransitions»
-		«EXPAND SCXMLcodeSnippet::CloseState»
+		«EXPAND ScxmlCode::CloseState»
 	«ENDIF»
 «ENDDEFINE»
 
@@ -65,7 +65,7 @@
 	«IF this.isOrthogonal()»
 		«EXPAND ExploreOrthState»
 	«ELSEIF !this.listStates().isEmpty»
-		«EXPAND SCXMLcodeSnippet::StateName»
+		«EXPAND ScxmlCode::StateName»
 		<initial><transition target="«this.getInitialState().getFullName()»"/></initial>
 		«FOREACH this.listCompChilds() AS cc»
 			«EXPAND ExploreCompState FOR cc»
@@ -78,7 +78,7 @@
 		«ENDIF»
 		«EXPAND ExploreActions»
 		«EXPAND ExploreTransitions»
-		«EXPAND SCXMLcodeSnippet::CloseState»
+		«EXPAND ScxmlCode::CloseState»
 	«ELSE»
 		«EXPAND ExploreSimpleState»
 	«ENDIF»
@@ -96,7 +96,7 @@
 		«FOREACH oreg.allOwnedElements().typeSelect(State).select(e|(e.owner == oreg)) AS ost»
 			«EXPAND ExploreState FOR ost»
 		«ENDFOREACH»
-		«EXPAND SCXMLcodeSnippet::CloseState»
+		«EXPAND ScxmlCode::CloseState»
 	«ENDFOREACH»
 	«IF this.hasHistory()»
 		«EXPAND ExploreHistory»
@@ -110,15 +110,15 @@
 «REM» Explore Actions and Activities «ENDREM»
 «DEFINE ExploreActions FOR State»
 	«IF this.hasOnEntry()»
-		«EXPAND SCXMLcodeSnippet::CAEntry»
+		«EXPAND ScxmlCode::CAEntry»
 		«EXPAND CustomActionCode::JCAEntry»
 	«ENDIF»
 	«IF this.hasDoActions()»
-		«EXPAND SCXMLcodeSnippet::Invoke»
+		«EXPAND ScxmlCode::Invoke»
 		«EXPAND ActivityThreadCode::InvActivity» 
 	«ENDIF» 
 	«IF this.hasOnExit()»
-		«EXPAND SCXMLcodeSnippet::CAExit»
+		«EXPAND ScxmlCode::CAExit»
 		«EXPAND CustomActionCode::JCAExit»
 	«ENDIF»
 «ENDDEFINE»

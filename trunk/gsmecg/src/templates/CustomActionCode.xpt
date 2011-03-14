@@ -1,5 +1,5 @@
 «IMPORT uml»
-«EXTENSION templates::scxmlutil»
+«EXTENSION templates::ScxmlUtil»
 
 
 «REM»List for custom actions«ENDREM»

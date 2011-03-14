@@ -1,5 +1,5 @@
 «IMPORT uml»
-«EXTENSION templates::scxmlutil»
+«EXTENSION templates::ScxmlUtil»
 
 «REM» JavaInvoker «ENDREM»
 «DEFINE JavaInvoker FOR StateMachine»

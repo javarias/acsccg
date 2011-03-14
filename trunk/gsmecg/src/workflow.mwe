@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <workflow>
-	<!-- Browse models and write some code -->
 	<!-- Setup URIs -->
 	<property name="modelFileURI" value="./examples/MasterComponent/MasterComponent.uml"/>
 	<property name="ouputFolderURI" value="./src-gen" />
@@ -13,11 +12,6 @@
     <!-- Setup UML2 support -->
     <!-- initializes resourcemaps, urimaps, etc. -->
     <bean class="org.eclipse.xtend.typesystem.uml2.Setup" standardUML2Setup="true"/> 
-    
-    <!-- 	At the moment not using any profile  
-	<bean id="profile" class="org.eclipse.xtend.typesystem.uml2.profile.ProfileMetaModel">
-         <profile value="asdmprofile.profile.uml"/>
-    </bean>		-->
     
     <!-- Reads the UML model and stores it into slot named 'mymodel' -->
 	<component class="org.eclipse.emf.mwe.utils.Reader">
@@ -32,24 +26,21 @@
 		<emfAllChildrenSlot value="mymodel"/>
 	</component> 
 	
-	
 	<!--  Cleaning the room. Delete all the files on the output dir --> 
 	<component id="dirCleaner" 
 		class="org.eclipse.emf.mwe.utils.DirectoryCleaner"
 		directory="${ouputFolderURI}"/> 
 
 	<!--  generate code -->
-	<component class="org.eclipse.xpand2.Generator" skipOnErrors="true">
+	<component class="org.eclipse.xpand2.Generator" skipOnErrors="false">
 		<metaModel class="org.eclipse.xtend.typesystem.uml2.UML2MetaModel"/>
 		<metaModel class="org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel"/>
 		<expand value="templates::Root::Root FOR mymodel" />
-		
 		<outlet path="${ouputFolderURI}">
-			<!-- Beautify the code. SLOOOOOOOW!!!! 
+			<!-- Code beautifier -->
+			<postprocessor class="org.fornax.utilities.formatter.xml.XmlFormatter"/>
 			<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" /> 
-			<postprocessor class="org.eclipse.xtend.typesystem.xsd.XMLBeautifier"/> -->
 		</outlet>
-
 	</component>
 	
 </workflow>
