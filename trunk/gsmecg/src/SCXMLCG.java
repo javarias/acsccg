@@ -116,7 +116,7 @@ public class SCXMLCG
 	public final class StaticConfig 
 	{
 		//private var for internal usage
-		private final static String BASE_MWE_DIR = "./";
+		private final static String BASE_MWE_DIR = "../../src/";
 		public final static String MWE = BASE_MWE_DIR + "workflow.mwe";
 	}
 	
