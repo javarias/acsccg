@@ -48,7 +48,7 @@ build:
 
 install:
 	@echo ""
-	@echo " == Installing the JAR file"
+	@echo " == Creating/Installing the JAR file"
 	@echo ""
 	@# Calling the ant build script
 	@$(ANT) -f $(ENVDIR)/build.xml install
