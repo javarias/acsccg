@@ -55,8 +55,8 @@ install:
 	@cp tools/acsccgdiff ../bin/acsccgdiff
 	@chmod +x ../bin/acsccgdiff
 	@echo ""
-	@echo "# Project binary (Jar) build into:"
-	@echo "          bin/acsComponentCodeGenerator.jar"
+	@echo " == Project binary (Jar) build into:"
+	@echo "          ..bin/acsComponentCodeGenerator.jar"
 	@echo "###########################################"
 	@echo ""
 	
