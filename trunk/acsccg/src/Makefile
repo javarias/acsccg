@@ -36,19 +36,19 @@ ACSCCG=$(BINF)/acsComponentCodeGenerator.jar
 # ----------------
 INSTALL	 =
 
-all: clean build install message_done
+all: build
 
 build:
 	@echo ""
-	@echo " == Compiling the project (build)"
+	@echo " == Building the project"
 	@echo ""
 	@# Calling the ant build script
-	@$(ANT) -f $(ENVDIR)/build.xml clean build
+	@$(ANT) -f $(ENVDIR)/build.xml build
 	@echo ""
 
 install:
 	@echo ""
-	@echo " == Building the JAR file"
+	@echo " == Creating/Installing the JAR file"
 	@echo ""
 	@# Calling the ant build script
 	@$(ANT) -f $(ENVDIR)/build.xml install
@@ -57,7 +57,8 @@ install:
 	@echo ""
 	@echo " == Project binary (Jar) build into:"
 	@echo "          ..bin/acsComponentCodeGenerator.jar"
-	@echo "###########################################"
+	@echo ""
+	@echo " == Done"
 	@echo ""
 	
 clean:
@@ -75,8 +76,3 @@ man:
 	@echo ""
 	@# Calling the ant doc script
 	@$(ANT) -f $(ENVDIR)/build.xml man
-	
-message_done:
-	@echo ""
-	@echo " == Done"
-	@echo ""

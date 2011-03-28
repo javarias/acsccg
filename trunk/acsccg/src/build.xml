@@ -52,6 +52,9 @@
             	<exclude name="**/*.svn"/>
             	<exclude name="**/*.project"/>
             	<exclude name="**/*.settings"/>
+            	<exclude name="**/Makefile"/>
+            	<exclude name="**/build.xml"/>
+            	<exclude name="**/build.properties"/>
             </fileset>
         </copy>
     </target>
