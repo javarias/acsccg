@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <workflow>
-	<!-- Setup URIs -->
+	<!-- Setup URIs
 	<property name="modelFileURI" value="./examples/MasterComponent/MasterComponent.uml"/>
 	<property name="ouputFolderURI" value="./src-gen" />
+	-->
 		
 	<!-- Setup path to platform. Usually this is the workspace location. -->
 	<bean class="org.eclipse.emf.mwe.utils.StandaloneSetup">
