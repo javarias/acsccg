@@ -1,0 +1,33 @@
+\begin{thebibliography}{10}
+
+\bibitem{Apache}
+Apache Commons SCXML project website
+\newblock {\em http://commons.apache.org/scxml/}.
+
+\bibitem{GoogleCode}
+ACS Code Generation Google Code repository (svn)
+\newblock {\em code.google.com/p/acsccg/}.
+
+\bibitem{GSME-UTFSM}
+Generic State Machine Engine (GSME) development team. Computer Systems Research Group, UTFSM, Valparaíso, Chile
+\newblock {\em https://csrg.inf.utfsm.cl/twiki4/bin/view/ACS/GenericStateMachineEngine}.
+
+\bibitem{ALMA-UTFSM}
+ALMA-UTFSM Group, belonging to Computer Systems Research Group, UTFSM, Valparaíso, Chile
+\newblock {\em https://csrg.inf.utfsm.cl/twiki4/bin/view/ACS/WebHome}.
+
+\bibitem{UTFSM}
+Universidad Técnica Federico Santa María (UTFSM), Valparaíso, Chile
+\newblock {\em http://www.utfsm.cl}.
+
+\bibitem{JavaComponentTut}
+Heiko Sommer, ACS Java Component Programming Tutorial, Programmer’s Manual
+\newblock {\em http://www.eso.org/~gchiozzi/AlmaAcs/OnlineDocs/ACS\_JAVA\_Component\_Tutorial.pdf}.
+\newblock 2005.
+
+\bibitem{StopWatchApache}
+Apache Commons SCXML stopwatch usecase. Using Commons SCXML to model and implement behavior of stateful objects (SCXML stopwatch example).
+\newblock {\em http://commons.apache.org/scxml/usecases/scxml-stopwatch.html}.
+
+
+\end{thebibliography}
