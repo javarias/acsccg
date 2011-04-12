@@ -1,0 +1,76 @@
+«REM»
+/**
+ * ACS Component Code Generator - http://code.google.com/p/acsccg/
+ * Copyright (C) 2010  Alexis Tejeda, alexis.tejeda@gmail.com
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * who     		when      		what
+ * --------		--------		----------------------------------------------
+ * atejeda 		2011-26-02  	Created
+ * 
+ * $Id$
+ */
+«ENDREM»
+
+«IMPORT uml»
+
+«EXTENSION cg::templates::zzutil::common»
+«EXTENSION cg::templates::zzutil::zzdev»
+«EXTENSION cg::templates::zzutil::tsort»
+«EXTENSION cg::templates::zzutil::java»
+«EXTENSION cg::templates::zzutil::idl»
+«EXTENSION cg::templates::zzutil::python»
+
+«DEFINE Root FOR uml::Model»
+«FOREACH getEComponentsImpl(getPackage(this)) AS eElement -»
+«FILE getPackage(this).name+'/src/'+eElement.name+'Sim/__init__.py'-»
+#*******************************************************************************
+# ALMA - Atacama Large Millimiter Array
+# (c) UNSPECIFIED - FILL IN, 2009 
+# 
+# This library is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public
+# License as published by the Free Software Foundation; either
+# version 2.1 of the License, or (at your option) any later version.
+# 
+# This library is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# Lesser General Public License for more details.
+# 
+# You should have received a copy of the GNU Lesser General Public
+# License along with this library; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307  USA
+#
+#  "@(#) «getPropSet('Id')»"
+#
+# who                 when                              what
+# ----------------    -----------------------------    --------------------------
+# ACSCCG              «getCommentDate()»     Creation of the file
+# 
+
+import TYPES
+import Acspy.Clients.SimpleClient
+from Acspy.Common.Log import getLogger
+
+«IF !getERealization(eElement).getOperations().isEmpty-»
+«FOREACH getERealization(eElement).getOperations() AS eOperation-»
+def «eOperation.name»(«IF !isEmptyParams(eOperation)»params«ENDIF»):
+	logger = getLogger("«eElement.name» Log")
+	logger.logTrace( "«eOperation.name-» executed...")
+	
+«ENDFOREACH-»
+«ENDIF-»
+# ___oOo___
+«ENDFILE»
+«ENDFOREACH-»
+«ENDDEFINE»

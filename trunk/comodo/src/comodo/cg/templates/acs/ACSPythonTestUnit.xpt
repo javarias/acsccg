@@ -1,0 +1,189 @@
+«REM»
+/**
+ * ACS Component Code Generator - http://code.google.com/p/acsccg/
+ * Copyright (C) 2010  Alexis Tejeda, alexis.tejeda@gmail.com
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * who     		when      		what
+ * --------		--------		----------------------------------------------
+ * atejeda 		2011-26-02  	Created
+ * 
+ * $Id$
+ */
+«ENDREM»
+
+«IMPORT uml»
+
+«EXTENSION cg::templates::zzutil::common»
+«EXTENSION cg::templates::zzutil::zzdev»
+«EXTENSION cg::templates::zzutil::tsort»
+«EXTENSION cg::templates::zzutil::java»
+«EXTENSION cg::templates::zzutil::idl»
+«EXTENSION cg::templates::zzutil::python»
+
+«DEFINE Root FOR uml::Model»
+«FOREACH getEComponentsImpl(getPackage(this)) AS eElement -»
+«FILE getPackage(this).name+'/test/pyUnitTest'+eElement.name+'.py'-»
+#*******************************************************************************
+# ALMA - Atacama Large Millimiter Array
+# (c) UNSPECIFIED - FILL IN, 2009 
+# 
+# This library is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public
+# License as published by the Free Software Foundation; either
+# version 2.1 of the License, or (at your option) any later version.
+# 
+# This library is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# Lesser General Public License for more details.
+# 
+# You should have received a copy of the GNU Lesser General Public
+# License along with this library; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307  USA
+#
+#  "@(#) «getPropSet('Id')»"
+#
+# who                 when                              what
+# ----------------    -----------------------------    --------------------------
+# ACSCCG              «getCommentDate()»     Creation of the file
+#
+
+#/usr/bin/env python
+'''
+DESCRIPTION
+«eElement.name»TestPy Class.
+«IF !getERealization(eElement).getOperations().isEmpty-»
+Test Methods:
+«FOREACH getERealization(eElement).getOperations() AS eOperation-»
+	-	test«upperFirstChar(eOperation.name)»()
+«ENDFOREACH-»
+«ENDIF-»
+«IF hasParent(getERealization(eElement))-»
+Test Inherited Methods:
+«FOREACH getAllParents(getERealization(eElement)) AS eParent-»
+«IF !isACSInterface(getParent(getERealization(eElement)).name,this)-»
+«FOREACH eParent.getOperations() AS eOperation-»
+	-	test«upperFirstChar(eOperation.name)»()		    
+«ENDFOREACH-»
+«ENDIF-»
+«ENDFOREACH-»
+«ENDIF-»
+'''
+
+import unittest
+from Acspy.Clients.SimpleClient import PySimpleClient
+
+from «getPackage(this).name»Common *
+«FOREACH getEInterfaces(getPackage(this)) AS eElement -»
+from «eElement.name» import *
+«IF hasParent(eElement)-»
+«FOREACH getParents(eElement) AS eParent-»
+from «eElement.name» import *
+«ENDFOREACH-»
+«ENDIF-»
+«ENDFOREACH-»
+
+class «eElement.name»TestPy(unittest.TestCase):
+
+	################################################
+	# lifecycle
+	################################################
+	
+	def setUp(self):
+		self.simpleClient = PySimpleClient()
+		self.componentName = "testInstance«eElement.name»"
+		self.simpleClient.getLogger().logInfo("pyUnitTest«eElement.name».«eElement.name»TestPy.setUp()...")
+        self.simpleClient.getLogger().logInfo("Get component " + self.componentName)
+        self.component = self.simpleClient.getComponent(self.componentName)
+	#__pPp__	    	           
+	
+	def tearDown(self):
+		self.simpleClient.getLogger().logInfo("pyUnitTest«eElement.name».«eElement.name»TestPy.tearDown()...")
+		self.simpleClient.getLogger().logInfo("Releasing component " + self.componentName)
+		self.simpleClient.releaseComponent(self.componentName)
+		self.simpleClient.disconnect()
+	#__pPp__       
+        
+	«IF !getERealization(eElement).getOperations().isEmpty-»
+	################################################
+	# test methods
+	################################################
+	
+	«FOREACH getERealization(eElement).getOperations() AS eOperation-»
+	def test«upperFirstChar(eOperation.name)»(self):
+		self.simpleClient.getLogger().logInfo("pyUnitTest«eElement.name».«eElement.name»TestPy.test«upperFirstChar(eOperation.name)»()...")
+		response = None
+		«IF !getOperationParams(eOperation).isEmpty-»
+		«FOREACH getOperationParams(eOperation) AS param -»
+		«param.name» = «getPythonParam(param)»
+		«ENDFOREACH-»
+		«ENDIF-»
+		response = self.component.«eOperation.name»(«FOREACH getOperationParams(eOperation) AS param SEPARATOR ', '-»«param.name»«ENDFOREACH-»)
+		«IF isVoid(getJavaReturnType(eOperation))-»
+		# no return is expected, response should be None
+		assert response is None
+		«ELSE-»
+		# a return is expected, response should be not None
+		assert response is not None
+		«ENDIF-»
+	#__pPp__
+			    
+	«ENDFOREACH-»
+	«ENDIF-»	
+	«IF hasParent(getERealization(eElement))-»
+	################################################
+	# inherited test methods
+	################################################
+	
+	«FOREACH getAllParents(getERealization(eElement)) AS eParent-»
+	
+	«IF getParent(getERealization(eElement)).name == 'PingableResource'-»	
+	def testPing(self):
+		self.simpleClient.getLogger().logInfo("pyUnitTest«eElement.name».«eElement.name»TestPy.testPing()...")
+		fast = False
+		recursive = False
+		id = 0
+		response = self.componentping(fast, recursive, id)
+		assert response is not None
+	«ENDIF-»
+	
+	«IF !isACSInterface(getParent(getERealization(eElement)).name,this)-»
+	«FOREACH eParent.getOperations() AS eOperation-»
+	def test«upperFirstChar(eOperation.name)»(self):
+		self.simpleClient.getLogger().logInfo("pyUnitTest«eElement.name».«eElement.name»TestPy.test«upperFirstChar(eOperation.name)»()...")
+		response = None
+		«IF !getOperationParams(eOperation).isEmpty-»
+		«FOREACH getOperationParams(eOperation) AS param -»
+		«param.name» = «getPythonParam(param)»
+		«ENDFOREACH-»
+		«ENDIF-»
+		response = self.component.«eOperation.name»(«FOREACH getOperationParams(eOperation) AS param SEPARATOR ', '-»«param.name»«ENDFOREACH-»)
+		«IF isVoid(getJavaReturnType(eOperation))-»
+		# no return is expected, response should be None
+		assert response is None
+		«ELSE-»
+		# a return is expected, response should be not None
+		assert response is not None
+		«ENDIF-»
+	#__pPp__
+		    
+	«ENDFOREACH-»
+	«ENDIF-»
+	«ENDFOREACH-»
+	«ENDIF-»
+if __name__ == "__main__":
+	unittest.main()
+	print "End of «eElement.name»TestPy test __oOo__"
+«ENDFILE»
+«ENDFOREACH-»
+«ENDDEFINE»
