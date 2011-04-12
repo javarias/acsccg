@@ -1,0 +1,117 @@
+«REM»
+/**
+ * ACS Component Code Generator - http://code.google.com/p/acsccg/
+ * Copyright (C) 2010  Alexis Tejeda, alexis.tejeda@gmail.com
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * who     		when      		what
+ * --------		--------		----------------------------------------------
+ * atejeda 		2010-00-00  	Created
+ * 
+ * $Id: ACSCDBComponent.xpt 170 2011-01-13 13:07:52Z alexis.tejeda $
+ */
+«ENDREM»
+
+«IMPORT uml»
+
+«EXTENSION cg::templates::zzutil::common»
+«EXTENSION cg::templates::zzutil::zzdev»
+«EXTENSION cg::templates::zzutil::tsort»
+«EXTENSION cg::templates::zzutil::java»
+«EXTENSION cg::templates::zzutil::idl»
+«EXTENSION cg::templates::zzutil::python»
+
+«DEFINE Root FOR uml::Model»
+«FILE  getPackage(this).name+'/test/CDB/MACI/Components/Components.xml'-»
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   - «getPropSet('Id')»
+   -
+   - History:
+   - 	ACSCCG «getCommentDate()» created	
+-->
+<Components  xmlns="urn:schemas-cosylab-com:Components:1.0"
+       xmlns:cdb="urn:schemas-cosylab-com:CDB:1.0"
+       xmlns:baci="urn:schemas-cosylab-com:BACI:1.0"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+       «FOREACH getEContainers(getPackage(this)) AS eElement -»
+	   «FOREACH eElement.getAllAttributes() AS eAttribute »
+	   «IF getEComponentLanguage(eAttribute.type) == getContainerLanguage(eElement)-»
+	   <_ Name="«eAttribute.name»" 
+			Code="alma.«getPackage(this).name».«eAttribute.type.name»Helper"
+			Type="IDL:alma/«getPackage(this).name-»/«getERealization(eAttribute.type).name»:1.0"
+			Container="«eElement.name»" 
+			ImplLang="«getEComponentLanguage(eAttribute.type)»" />
+       «ENDIF-»
+	   «ENDFOREACH-»
+	   «ENDFOREACH-»
+	   
+	   <!-- Component Simulators -->
+	   «FOREACH getEContainers(getPackage(this)) AS eElement -»
+	   «FOREACH eElement.getAllAttributes() AS eAttribute »
+	   <_ Name="«eAttribute.name»Simulator" 
+			Code="Acssim.Servants.GUISimulator"
+			Type="IDL:alma/«getPackage(this).name-»/«getERealization(eAttribute.type).name»:1.0"
+			Container="«getPackage(this).name»Simulator" 
+			ImplLang="py" />		
+	   «ENDFOREACH-»
+	   «ENDFOREACH-»
+	   
+	   <!-- Instance to test components -->
+	   
+	   «IF !getJavaImpl(getPackage(this)).isEmpty -»
+	   <!-- Java Component Instances -->
+	   
+	   «FOREACH getJavaImpl(getPackage(this)) AS eElement -»
+	   «IF getEComponentLanguage(eElement) == 'java' -»
+	   <_ Name="testInstance«eElement.name»" 
+			Code="alma.«getPackage(this).name».«eElement.name»Helper"
+			Type="IDL:alma/«getPackage(this).name-»/«getERealization(eElement).name»:1.0"
+			Container="«getPackage(this).name»JavaTest" 
+			ImplLang="«getEComponentLanguage(eElement)»" />
+			
+	   «ENDIF-»
+	   «ENDFOREACH-»
+	   «ENDIF-»
+	   
+	   «IF !getCppImpl(getPackage(this)).isEmpty -»
+	   <!-- Cpp Component Instances -->
+	   
+	   «FOREACH getCppImpl(getPackage(this)) AS eElement -»
+	   «IF getEComponentLanguage(eElement) == 'cpp' -»
+	   <_ Name="testInstance«eElement.name»" 
+			Code="alma.«getPackage(this).name».«eElement.name»Helper"
+			Type="IDL:alma/«getPackage(this).name-»/«getERealization(eElement).name»:1.0"
+			Container="«getPackage(this).name»CppTest" 
+			ImplLang="«getEComponentLanguage(eElement)»" />
+			
+	   «ENDIF-»
+	   «ENDFOREACH-»
+	   «ENDIF-»
+	   
+	   «IF !getPyImpl(getPackage(this)).isEmpty -»
+	   <!-- Python Component Instances -->
+	   
+	   «FOREACH getPyImpl(getPackage(this)) AS eElement -»
+	   «IF getEComponentLanguage(eElement) == 'py' -»
+	   <_ Name="testInstance«eElement.name»" 
+			Code="alma.«getPackage(this).name».«eElement.name»Helper"
+			Type="IDL:alma/«getPackage(this).name-»/«getERealization(eElement).name»:1.0"
+			Container="«getPackage(this).name»PyTest" 
+			ImplLang="«getEComponentLanguage(eElement)»" />
+			
+	   «ENDIF-»
+	   «ENDFOREACH-»
+	   «ENDIF-»     
+</Components>
+«ENDFILE»
+«ENDDEFINE»

@@ -1,0 +1,56 @@
+«REM»
+/**
+ * ACS Component Code Generator - http://code.google.com/p/acsccg/
+ * Copyright (C) 2010  Alexis Tejeda, alexis.tejeda@gmail.com
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * who     		when      		what
+ * --------		--------		----------------------------------------------
+ * atejeda 		2010-00-00  	Created
+ * 
+ * $Id: ACSModuleErr.xpt 170 2011-01-13 13:07:52Z alexis.tejeda $
+ */
+«ENDREM»
+
+«IMPORT uml»
+
+«EXTENSION cg::templates::zzutil::common»
+«EXTENSION cg::templates::zzutil::zzdev»
+«EXTENSION cg::templates::zzutil::tsort»
+«EXTENSION cg::templates::zzutil::java»
+«EXTENSION cg::templates::zzutil::idl»
+«EXTENSION cg::templates::zzutil::python»
+
+«DEFINE Root FOR uml::Model»
+
+«IF !getEExceptions(getPackage(this)).isEmpty-»
+«FILE  getPackage(this).name+'/idl/'+getPackage(this).name+'Err.xml'-»
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Type xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	  xmlns="Alma/ACSError" 
+	  xsi:schemaLocation="Alma/ACSError ACSError.xsd" 
+	  name="«getPackage(this).name»Err" 
+	  type="900907" 
+	  _prefix="alma">
+			
+			«FOREACH getEExceptions(getPackage(this)) AS eElement-»
+			<ErrorCode name="«eElement.name»" 
+					   shortDescription="«getEExceptionDescription(eElement)»" 
+					   description="«getEExceptionShortDescription(eElement)»">
+			</ErrorCode>
+                   
+			«ENDFOREACH-»
+</Type>			
+«ENDFILE»
+«ENDIF»
+
+«ENDDEFINE»

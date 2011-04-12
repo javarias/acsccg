@@ -1,0 +1,9 @@
+$Id$
+
+05/04/2011 
+	Alexis Tejeda 
+	Module COMODO created
+	
+11/04/2011
+	Alexis Tejeda
+	Both modules integrated as one (gsmecg and code generator), the output property was modified in order to map the generation of the output code. Also the classes are compiled into the object folder.

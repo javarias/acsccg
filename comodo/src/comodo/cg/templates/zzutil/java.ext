@@ -1,0 +1,133 @@
+/**
+ * ACS Component Code Generator - http://code.google.com/p/acsccg/
+ * Copyright (C) 2010  Alexis Tejeda, alexis.tejeda@gmail.com
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * who     		when      		what
+ * --------		--------		----------------------------------------------
+ * atejeda 		2010-00-00  	Created
+ * 
+ * $Id: java.ext 170 2011-01-13 13:07:52Z alexis.tejeda $
+ */
+ 
+import uml;
+import AlmaGenerator;
+import ecore;
+
+/**
+ * 
+ */
+boolean isVoid(Operation this):
+	type.name.toLowerCase() == "void";
+/**
+ * 
+ */
+boolean isReturnVoid(String rtype):
+	rtype.toLowerCase() == "void" || rtype.toLowerCase() == "";
+
+/**
+ * 
+ */
+boolean hasModifier(Parameter this):
+	!getAppliedStereotypes().select(e|e.name == "typeModifier").isEmpty;
+
+/**
+ * 
+ */
+string getModifier(Parameter this): 
+	getValue(getAppliedStereotypes().select(e|e.name == "typeModifier").first(), "typeModifier");
+
+/**
+ * 
+ */
+Parameter getReturnParameter(Operation this):
+	ownedParameter.select(e|e.direction.toString()== 'return').first();
+
+/**
+ * 
+ */
+string getJavaCorrectCase(Parameter this):
+    if type.name == 'Boolean' || type.name == 'Double' || type.name == 'Float' || type.name == 'Char'
+        then type.name.toLowerCase()
+    else if type.name == 'Long' || type.name == 'long'
+        then 'int'
+    else if type.name == 'string'
+        then 'String'
+    else type.name;   
+
+/**
+ * 
+ */
+string getJavaReturnType(Operation this):
+    if hasModifier(getReturnParameter(this))
+        then getJavaCorrectCase(getReturnParameter(this)) + getModifier(getReturnParameter(this))
+    else
+        getJavaCorrectCase(getReturnParameter(this));
+
+/**
+ * 
+ */
+string getJavaReturnType(Operation this):
+    if hasModifier(getReturnParameter(this))
+        then getJavaCorrectCase(getReturnParameter(this)) + getModifier(getReturnParameter(this))
+	else
+        getJavaCorrectCase(getReturnParameter(this));
+
+/**
+ * 
+ */        
+string getJavaParam(Parameter this):
+    if  type.name == 'Long' || type.name == 'long'
+       then 'int'
+    else
+    if type.name == 'Boolean'
+        then type.name.toLowerCase()
+    else
+    if type.name == 'TimeInterval'
+        then 'long'
+    else
+    	type.name;
+    	
+/**
+ * 
+ */        
+string getJavaParamNew(Parameter this):
+    if type.name.toLowerCase() == 'long'
+       then '0'
+    else
+    if type.name.toLowerCase() == 'boolean'
+        then 'false'
+    else
+    if type.name.toLowerCase() == 'timeInterval'
+        then '0L'
+    else
+    if type.name.toLowerCase() == 'cbstring'
+        then 'CBstring.class.newInstance()'    
+    else
+    'new ' + type.name+'()';    	
+
+/**
+ * 
+ */
+string getReturnValue(Operation this):
+    if getJavaReturnType(this) == 'boolean'
+       then 'false'
+    else
+    if getJavaReturnType(this) == 'TimeInterval'
+       then '0'
+    else
+    if getJavaReturnType(this) == 'int' || getJavaReturnType(this) == 'float' || getJavaReturnType(this) == 'double' || getJavaReturnType(this) == 'char'
+       then '0'
+    else
+    if hasModifier(getReturnParameter(this))
+       then 'new '+getJavaCorrectCase(getReturnParameter(this)) + '[0]'
+    else 'new '+ getJavaReturnType(this)+'()';

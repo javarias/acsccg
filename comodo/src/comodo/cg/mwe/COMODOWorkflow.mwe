@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- 
+ * COMODO - Multiplatform Component Code Generator 
+ * Copyright (C) 2010/2011  Alexis Tejeda, alexis.tejeda@gmail.com
+ * in colaboration with ESO.
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ * 
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307  USA
+ *
+ * who          when      		what
+ * 
+ * atejeda 	   2011-03-29  	    Created
+ * 
+ * $Id$
+ *
+!-->
+<workflow>
+	
+	<bean class="org.eclipse.emf.mwe.utils.StandaloneSetup" platformUri=".." />
+	
+	<bean class="org.eclipse.xtend.typesystem.uml2.Setup" standardUML2Setup="true"/>
+		
+    <!-- Register UML2 profile - metamodel -->
+	<bean id="default_profile" class="org.eclipse.xtend.typesystem.uml2.profile.ProfileMetaModel">
+		<profile value="${profileFileURI}"/>
+	</bean>
+    
+	<!-- load uml model -->
+    <component class="org.eclipse.emf.mwe.utils.Reader">
+        <uri value="${modelFileURI}" />
+        <modelSlot value="model" />
+    </component>
+
+	<!-- Clean output already generated before 
+	<component id="dirCleaner" 
+		class="org.eclipse.emf.mwe.utils.DirectoryCleaner"
+		directory="${ouputFolderURI}"/>
+	-->	
+	
+	<!-- Generators -->
+	
+	<!-- Protected Regions -->
+	<!--
+	<component id="COMODO_PROTECTED_REGIONS" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
+		<fileEncoding value="UTF-8" />
+		<metaModel idRef="default_profile"/>
+		<genPath value="${ouputFolderURI}"/>
+		<expand value="cg::templates::acs::ACSCCGProtectedRegions::Root FOR model"/>
+		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
+	</component>
+	-->
+	
+	<!-- Summary -->
+	<component id="COMODO_SUMMARY" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
+		<fileEncoding value="UTF-8" />
+		<metaModel idRef="default_profile"/>
+		<genPath value="${ouputFolderURI}"/>
+		<expand value="cg::templates::acs::ACSTxtSummary::Root FOR model"/>
+		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
+	</component>
+	
+	<!-- Makefile -->
+	<component id="COMODO_MAKEFILE" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
+		<fileEncoding value="UTF-8" />
+		<metaModel idRef="default_profile"/>
+		<genPath value="${ouputFolderURI}"/>
+		<expand value="cg::templates::acs::ACSTxtMakefile::Root FOR model"/>
+		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
+		<outlet path="${ouputFolderURI}">
+			<vetoStrategy class="comodo.cg.vetostrategy.ComodoVetoStrategy" />
+		</outlet>
+		<prSrcPaths value="${ouputFolderURI}"/>
+	</component>
+	
+	<!-- CDBComponent -->
+	<component id="COMODO_CDB_COMPONENT" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
+		<fileEncoding value="UTF-8" />
+		<metaModel idRef="default_profile"/>
+		<genPath value="${ouputFolderURI}"/>
+		<expand value="cg::templates::acs::ACSXmlComponents::Root FOR model"/>
+		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
+	</component>
+	
+	<!-- CDBContainer -->
+	<component id="COMODO_CDB_CONTAINER" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
+		<fileEncoding value="UTF-8" />
+		<metaModel idRef="default_profile"/>
+		<genPath value="${ouputFolderURI}"/>
+		<expand value="cg::templates::acs::ACSXmlContainers::Root FOR model"/>
+		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
+	</component>
+	
+	<!-- CDBManager -->
+	<component id="COMODO_CDB_MANAGER" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
+		<fileEncoding value="UTF-8" />
+		<metaModel idRef="default_profile"/>
+		<genPath value="${ouputFolderURI}"/>
+		<expand value="cg::templates::acs::ACSXmlManager::Root FOR model"/>
+		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
+	</component>
+	
+	<!-- CDBSchema -->
+	<component id="COMODO_CDB_SCHEMA" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
+		<fileEncoding value="UTF-8" />
+		<metaModel idRef="default_profile"/>
+		<genPath value="${ouputFolderURI}"/>
+		<expand value="cg::templates::acs::ACSXsdSchema::Root FOR model"/>
+		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
+	</component>
+	
+	<!-- CDBChannels -->
+	<!--
+	<component id="COMODO_CDB_CHANNELS" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
+		<fileEncoding value="UTF-8" />
+		<metaModel idRef="default_profile"/>
+		<genPath value="${ouputFolderURI}"/>
+		<expand value="cg::templates::acs::ACSXmlChannels::Root FOR model"/>
+		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
+	</component>
+	 -->
+	
+	<!-- CDBEventChannel -->
+	<!--
+	# See Notification Channel Document of ACS...
+	<component id="COMODO_CDB_EVENTCHANNEL" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
+		<fileEncoding value="UTF-8" />
+		<metaModel idRef="default_profile"/>
+		<genPath value="${ouputFolderURI}"/>
+		<expand value="templates::common::ACSXmlEventChannel::Root FOR model"/>
+		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
+	</component>
+	-->
+	
+	<!-- Python Sim Clients -->
+	<component id="COMODO_SIM_PY_CLIENT" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
+		<fileEncoding value="UTF-8" />
+		<metaModel idRef="default_profile"/>
+		<genPath value="${ouputFolderURI}"/>
+		<expand value="cg::templates::acs::ACSPythonSimClient::Root FOR model"/>
+		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
+	</component>
+	
+	<!-- CDB Simulator Simulator -->
+	<component id="COMODO_CDB_SIM_COMPONENT" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
+		<fileEncoding value="UTF-8" />
+		<metaModel idRef="default_profile"/>
+		<genPath value="${ouputFolderURI}"/>
+		<expand value="cg::templates::acs::ACSXmlSimComponent::Root FOR model"/>
+		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
+	</component>
+	
+	<!-- CDB Characteristic Simulator -->
+	<component id="COMODO_CDB_SIM_CHARACTERISTIC" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
+		<fileEncoding value="UTF-8" />
+		<metaModel idRef="default_profile"/>
+		<genPath value="${ouputFolderURI}"/>
+		<expand value="cg::templates::acs::ACSXmlSimComponentCharacteristic::Root FOR model"/>
+		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
+	</component>
+	
+	<!-- Module CDB Sim Py Container -->
+	<component id="COMODO_CDB_SIM_PY_CONTAINER" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
+		<fileEncoding value="UTF-8" />
+		<metaModel idRef="default_profile"/>
+		<genPath value="${ouputFolderURI}"/>
+		<expand value="cg::templates::acs::ACSXmlSimContainer::Root FOR model"/>
+		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
+	</component>
+	
+	<!-- ACS TestList.lite -->
+	<component id="COMODO_TEST_LIST_LITE" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
+		<fileEncoding value="UTF-8" />
+		<metaModel idRef="default_profile"/>
+		<genPath value="${ouputFolderURI}"/>
+		<expand value="cg::templates::acs::ACSTxtTATlistlite::Root FOR model"/>
+		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
+	</component>
+	
+	<!-- ACS Test Makefile -->
+	<component id="COMODO_TEST_MAKEFILE" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
+		<fileEncoding value="UTF-8" />
+		<metaModel idRef="default_profile"/>
+		<genPath value="${ouputFolderURI}"/>
+		<expand value="cg::templates::acs::ACSTxtTATMakefile::Root FOR model"/>
+		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
+	</component>
+	
+	<!-- ACS Test TAT Environment -->
+	<component id="COMODO_TEST_TAT_ENVIRONMENT" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
+		<fileEncoding value="UTF-8" />
+		<metaModel idRef="default_profile"/>
+		<genPath value="${ouputFolderURI}"/>
+		<expand value="cg::templates::acs::ACSTxtTATEnvironment::Root FOR model"/>
+		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
+	</component>
+	
+	<!-- ACS Test TAT Epilogue-->
+	<component id="COMODO_TEST_TAT_EPILOGUE" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
+		<fileEncoding value="UTF-8" />
+		<metaModel idRef="default_profile"/>
+		<genPath value="${ouputFolderURI}"/>
+		<expand value="cg::templates::acs::ACSTxtTATEpilogue::Root FOR model"/>
+		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
+	</component>
+	
+	<!-- ACS Test TAT Prologue-->
+	<component id="COMODO_TEST_TAT_PROLOGUE" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
+		<fileEncoding value="UTF-8" />
+		<metaModel idRef="default_profile"/>
+		<genPath value="${ouputFolderURI}"/>
+		<expand value="cg::templates::acs::ACSTxtTATPrologue::Root FOR model"/>
+		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
+	</component>
+	
+	<!-- ACS Test Unit Cpp -->
+	<component id="COMODO_TEST_UNIT_CPP" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
+		<fileEncoding value="UTF-8" />
+		<metaModel idRef="default_profile"/>
+		<genPath value="${ouputFolderURI}"/>
+		<expand value="cg::templates::acs::ACSCppTestUnit::Root FOR model"/>
+		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
+	</component>
+	
+	<!-- ACS Test Unit Java -->
+	<component id="COMODO_TEST_UNIT_JAVA" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
+		<fileEncoding value="UTF-8" />
+		<metaModel idRef="default_profile"/>
+		<genPath value="${ouputFolderURI}"/>
+		<expand value="cg::templates::acs::ACSJavaTestUnit::Root FOR model"/>
+		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
+		<outlet path="${ouputFolderURI}">
+			<vetoStrategy class="comodo.cg.vetostrategy.ComodoVetoStrategy" />
+			<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" configFile="cg/beautifier/COMODO_B_JAVA.xml" />
+		</outlet>
+		<prSrcPaths value="${ouputFolderURI}"/>
+	</component>
+	
+	<!-- ACS Test Unit Python -->
+	<component id="COMODO_TEST_UNIT_PYTHON" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
+		<fileEncoding value="UTF-8" />
+		<metaModel idRef="default_profile"/>
+		<genPath value="${ouputFolderURI}"/>
+		<expand value="cg::templates::acs::ACSPythonTestUnit::Root FOR model"/>
+		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
+	</component>
+	
+	<!-- ACS Test Containers -->
+	<component id="COMODO_TEST_CONTAINERS" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
+		<fileEncoding value="UTF-8" />
+		<metaModel idRef="default_profile"/>
+		<genPath value="${ouputFolderURI}"/>
+		<expand value="cg::templates::acs::ACSXmlTestContainers::Root FOR model"/>
+		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
+	</component>
+	
+	<!-- IDL Component -->
+	<component id="COMODO_IDLCOMPONENT" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
+		<fileEncoding value="UTF-8" />
+		<metaModel idRef="default_profile"/>
+		<genPath value="${ouputFolderURI}"/>
+		<expand value="cg::templates::acs::ACSIdlComponent::Root FOR model"/>
+		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
+		<outlet path="${ouputFolderURI}">
+			<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" configFile="cg/beautifier/COMODO_B_JAVA.xml" />
+		</outlet>
+	</component>
+	
+	<!-- IDL Common -->
+	<component id="COMODO_IDLCOMMON" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
+		<fileEncoding value="UTF-8" />
+		<metaModel idRef="default_profile"/>
+		<genPath value="${ouputFolderURI}"/>
+		<expand value="cg::templates::acs::ACSIdlCommon::Root FOR model"/>
+		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
+		<outlet path="${ouputFolderURI}">
+			<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" configFile="cg/beautifier/COMODO_B_JAVA.xml" />
+		</outlet>
+	</component>
+	
+	<!-- IDL Module Error -->
+	<component id="COMODO_MODULEERROR" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
+		<fileEncoding value="UTF-8" />
+		<metaModel idRef="default_profile"/>
+		<genPath value="${ouputFolderURI}"/>
+		<expand value="cg::templates::acs::ACSXmlModuleErr::Root FOR model"/>
+		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
+	</component>
+	
+	<!-- Component -->
+	<component id="COMODO_COMPONENT" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
+		<fileEncoding value="UTF-8" />
+		<metaModel idRef="default_profile"/>
+		<genPath value="${ouputFolderURI}"/>
+		<expand value="cg::templates::acs::ACSJavaComponent::Root FOR model"/>
+		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
+		<outlet path="${ouputFolderURI}">
+			<vetoStrategy class="comodo.cg.vetostrategy.ComodoVetoStrategy" />
+			<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" configFile="cg/beautifier/COMODO_B_JAVA.xml" />
+		</outlet>
+		<prSrcPaths value="${ouputFolderURI}"/>
+	</component>
+	
+	<!-- Component Helper -->
+	<component id="COMODO_COMPONENT_HELPER" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
+		<fileEncoding value="UTF-8" />
+		<metaModel idRef="default_profile"/>
+		<genPath value="${ouputFolderURI}"/>
+		<expand value="cg::templates::acs::ACSJavaComponentHelper::Root FOR model"/>
+		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
+		<outlet path="${ouputFolderURI}">
+			<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" configFile="cg/beautifier/COMODO_B_JAVA.xml" />
+		</outlet>
+	</component>
+	
+	<!-- Eclipse Project Setup -->
+	<component id="ECLIPSE_PROJECT_SETUP" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
+		<fileEncoding value="UTF-8" />
+		<metaModel idRef="default_profile"/>
+		<genPath value="${ouputFolderURI}"/>
+		<expand value="cg::templates::acs::ACSTxtEclipseProject::Root FOR model"/>
+		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
+	</component>
+	
+	<!-- Changelog -->
+	<component id="PROJECT_CHANGELOG" class="org.eclipse.xpand2.Generator" skipOnErrors="true">
+		<fileEncoding value="UTF-8" />
+		<metaModel idRef="default_profile"/>
+		<genPath value="${ouputFolderURI}"/>
+		<expand value="cg::templates::acs::ACSTxtChangelog::Root FOR model"/>
+		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
+	</component>
+	
+	<!--
+	<component class="org.eclipse.xtend.check.CheckComponent">
+		<metaModel id="mm" class="org.eclipse.xtend.typesystem.uml2.UML2MetaModel"/>
+		<checkFile value="comodo/cg/constraints/StateMachineConstraints"/>
+		<emfAllChildrenSlot value="model"/>
+	</component> 
+	
+	<component id="COMODO_SCXML_CG" class="org.eclipse.xpand2.Generator" skipOnErrors="false">
+		<metaModel class="org.eclipse.xtend.typesystem.uml2.UML2MetaModel"/>
+		<metaModel class="org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel"/>
+		<expand value="alma::scxml::templates::Root::Root FOR mymodel" />
+		<outlet path="${ouputFolderURI}">
+			<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" configFile="cg/beautifier/COMODO_B_JAVA.xml" />
+		</outlet>
+	</component>
+	-->
+</workflow>

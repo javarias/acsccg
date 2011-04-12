@@ -1,0 +1,4 @@
+«IMPORT uml»
+«DEFINE Root FOR uml::Model»
+	«EXPAND alma::scxml::templates::FSMScxml::Root FOREACH allOwnedElements().typeSelect(uml::StateMachine)»
+«ENDDEFINE»
