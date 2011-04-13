@@ -1,32 +1,97 @@
+/**
+ * COMODO - Multiplatform Component Code Generator 
+ * Copyright (C) 2010/2011  Alexis Tejeda, alexis.tejeda@gmail.com
+ * in colaboration with ESO.
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ * 
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307  USA
+ *
+ * who          when      		what
+ * ---------    -----------     ------------------------------------------------
+ * nmigliorini  2011-00-00  	Created
+ * atejeda 	    2011-03-29  	Added documentation
+ * 
+ * $Id$
+ */
+ 
 import uml;
-import ecore;
 
+/**
+ * 
+ * @param
+ * @return State
+ */
 State getTopState( StateMachine this ):
 	this.region.state.get(0);  
-
+/**
+ * 
+ * @param
+ */
 stateMachineName( StateMachine this ): name;
 
-// Get the State that contains this state. In case of the topmost, returns null
+/**
+ * Get the State that contains this state. In case of the topmost, returns null
+ * @param
+ * @return State 
+ */
 State parentState( State this ): 
 	this.container.state;
- 
+/**
+ *
+ * @param
+ * @return State 
+ */ 
 State parentState( Pseudostate this ):
 	this.container.state;  
 
+/**
+ *
+ * @param
+ * @return State 
+ */
 State parentState( Region this ):
 	this.owner;
 
+/**
+ *
+ * @param
+ * @return Region 
+ */
 Region parentRegion( State this ): 
 	this.owner;
 
-// Lists States, NOT including final
+/**
+ * Lists States, NOT including final
+ * @param
+ * @return List[State] 
+ */
 List[State] listStates( State this ): 
 	allOwnedElements().typeSelect(State).select(e|!(e.name == "Unavailable") && !(e.metaType.name == "uml::FinalState") );
 
+/**
+ *
+ * @param
+ * @return List[State] 
+ */
 List[State] listStates( StateMachine this ): 
 	allOwnedElements().typeSelect(State).select(e|!(e.name == "Unavailable") && !(e.metaType.name == "uml::FinalState"));
 
-// Get the first Initial state, that is inside this state.
+/**
+ * Get the first Initial state, that is inside this state.
+ * @param
+ * @return State 
+ */
 State getInitialState( State this ): 
 	if( !isComposite() ) 
 		then null 
@@ -35,40 +100,83 @@ State getInitialState( State this ):
 			then null 
 		else allOwnedElements().typeSelect(Pseudostate).select(e|(e.kind.toString() == "initial") && (e.parentState() == this)).get(0).outgoing.target.get(0);
 
+/**
+ *
+ * @param
+ * @return State 
+ */
 State getInitialState( Region this ): 
 	if( allOwnedElements().typeSelect(Pseudostate).select(e|e.kind.toString() == "initial").isEmpty ) 
 		then null 
 	else allOwnedElements().typeSelect(Pseudostate).select(e|(e.kind.toString() == "initial") && (e.parentState() == this.parentState())).get(0).outgoing.target.get(0);
 
+/**
+ *
+ * @param
+ * @return State 
+ */
 State getInitialState( StateMachine this ): 
 	if( allOwnedElements().typeSelect(Pseudostate).select(e|e.kind.toString() == "initial").isEmpty ) 
 		then null 
 	else allOwnedElements().typeSelect(Pseudostate).select(e|(e.kind.toString() == "initial") && (e.isTopState())).get(0).outgoing.target.get(0);
 
-//Get full qualified name
-//Every state is inside a region, every region is inside a state
+/**
+ * Get full qualified name
+ * Every state is inside a region, every region is inside a state
+ * @param
+ * @return String 
+ */
 string getFullName( State this ) : 
 	if !this.isTopState()
 		then (this.owner == null ? this.name : getFullName(this.parentRegion())+':'+this.name)
 	else this.name;
 
+/**
+ *
+ * @param
+ * @return String 
+ */
 string getFullName( Region this ) :
 	if !this.isTopState()
 		then (this.owner == null ? this.name : getFullName(this.parentState())+':'+this.name)
 	else this.name;
-	
+
+/**
+ *
+ * @param
+ * @return String 
+ */	
 string getFullName( StateMachine this ) : 
 	this.name;
 
+/**
+ *
+ * @param
+ * @return String 
+ */	
 string getFullName( Void this ) :
 	 this.toString() ;
 
 
-// Get the name for the superContext class
+/**
+ * Get the name for the superContext class
+ * @param
+ * @return String 
+ */	
 string getContextName( State this ): parentState().name;
+
+/**
+ *
+ * @param
+ * @return String 
+ */	
 string getContextName( Pseudostate this ): parentState().name;		
-		
-//Check if State is a FinalState
+	
+/**
+ * Check if State is a FinalState
+ * @param
+ * @return boolean
+ */		
 boolean isFinalState( State this ):
 	if isComposite
 		then false
@@ -77,74 +185,147 @@ boolean isFinalState( State this ):
 			then true
 		else false;
 
-// If this State is the topmost, returns true.
+/**
+ * If this State is the topmost, returns true.
+ * @param
+ * @return boolean 
+ */
 boolean isTopState( State this ): 
 	if( this.container.owner == containingStateMachine() ) 
 		then true 
 	else false;
 
+/**
+ * 
+ * @param
+ * @return boolean
+ */
 boolean isTopState( Pseudostate this ): 
 	if( this.container.owner == containingStateMachine() ) 
 		then true 
 	else false;
 
+/**
+ * 
+ * @param
+ * @return boolean
+ */
 boolean isTopState( Region this ): 
 	if( this.owner == containingStateMachine() ) 
 		then true 
 	else false;
-	
-// Lists composite child states	
+
+/**
+ * Lists composite child states	
+ * @param
+ * @return List[State]
+ */	
 List[State] listCompChilds( StateMachine this ):
 	allOwnedElements().typeSelect(State).select(e|(e.isComposite() && (e.parentState() == this))) ;	
 
+/**
+ *
+ * @param
+ * @return List[State] 
+ */
 List[State] listCompChilds( State this ):
 	allOwnedElements().typeSelect(State).select(e|(e.isComposite() && (e.parentState() == this))) ;	
-	
-//Lists simple child States	
+
+/**
+ * Lists simple child States
+ * @param
+ * @return List[State]
+ */	
 List[State] listSimpleChilds( StateMachine this): 
 	allOwnedElements().typeSelect(State).select(e|(!e.isComposite) && (e.parentState() == this)).removeAll(this.allOwnedElements().typeSelect(State).select(e|e.metaType == "uml::FinalState")) ;
 
+/**
+ *
+ * @param
+ * @return List[State] 
+ */
 List[State] listSimpleChilds( State this): 
 	allOwnedElements().typeSelect(State).select(e|(!e.isComposite) && (e.parentState() == this)).removeAll(this.allOwnedElements().typeSelect(State).select(e|e.metaType == "uml::FinalState")) ;
-	
-// Get all Transition owned by this State
+
+/**
+ * Get all Transition owned by this State
+ * @param
+ * @return List[State] 
+ */	
 List[Transition] getTransitions( State this ): 
 	allOwnedElements().typeSelect(Transition);
-	
-//Check if the state has entry or exit actions
+
+/**
+ * Check if the state has entry or exit actions
+ * @param
+ * @return boolean
+ */	
 boolean hasOnEntry( State this ):
 	!(this.entry.name.toString() == "null");
 
+/**
+ * Check if the state has entry or exit actions
+ * @param
+ * @return boolean
+ */	
 boolean hasOnExit( State this ):
 	!(this.exit.name.toString() == "null");
 
-//Check if State has activities
+/**
+ * Check if State has activities
+ * @param
+ * @return boolean
+ */
 boolean hasDoActions( State this ):
 	!(this.doActivity.name.toString() == "null" );
 
-//Check if transition has a guard	
+/**
+ * Check if transition has a guard
+ * @param
+ * @return boolean	
+ */
 boolean hasCond( Transition this ):
 	!(this.guard.name.toString() == "null");
 
-//Check if transitions has an event that triggers itself
+/**
+ * Check if transitions has an event that triggers itself
+ * @param
+ * @return boolean 
+ */
 boolean hasEvent( Transition this ):
 	!(this.trigger.isEmpty);
 
-//Check if transition has target
+/**
+ * Check if transition has target
+ * @param
+ * @return boolean 
+ */
 boolean hasTarget( Transition this ):
 	!(this.target.name.toString() == "null");
-	
-//Check if transition has Actions
+
+/**
+ * Check if transition has Actions
+ * @param
+ * @return boolean 
+ */
 boolean hasAction( Transition this ):
 	!(this.ownedElement.typeSelect(Activity).isEmpty);
 
-//Log action in transitions with the name of the action
+/**
+ * Log action in transitions with the name of the action
+ * @param
+ * @return string 
+ */
 string getActionInTransition ( Transition this ):
 	if this.hasAction()
 		then "<customActionDomain:"+this.ownedElement.typeSelect(Activity).get(0).name+" name=\"custom action "+this.ownedElement.typeSelect(Activity).get(0).name+"\" />" 
 	else "" ;
-	
-//7 types of transitions are possible
+
+/**
+ * 7 types of transitions are possible
+ * @param
+ * @return string 
+ */	
 string getTransition( Transition this ):
 switch {
 	case (this.hasEvent() && this.hasCond() && this.hasTarget()) : 
@@ -178,15 +359,23 @@ switch {
 	default : " "
 };
  
-//Check if a transition is an InternalTransition
+/**
+ * Check if a transition is an InternalTransition
+ * @param
+ * @return boolean
+ */
 boolean isInternalTransition( Transition this ) :
 	if this.kind.toString()=="internal"
 		then true
 	else false ;
 
-//Get Internal Transition
-//Internal transitions have no target
-//4 types of internal transitions are possible
+/**
+ * Get Internal Transition
+ * Internal transitions have no target
+ * 4 types of internal transitions are possible
+ * @param
+ * @return String
+ */
 string getIntTransition( Transition this ) : 
 switch {
 	case ( this.hasEvent() && this.hasCond() ) : 
@@ -204,7 +393,11 @@ switch {
 	default : ""
 };
 
-//History				
+/**
+ * History
+ * @param
+ * @return List[Pseudostate]
+ */			
 List[Pseudostate] getHistory( State this ): 
 	if( !isComposite() ) 
 		then null 
@@ -213,6 +406,11 @@ List[Pseudostate] getHistory( State this ):
 			then null 
 		else allOwnedElements().typeSelect(Pseudostate).select(e|(e.kind.toString().contains("History")) && (e.parentState() == this));
 
+/**
+ *
+ * @param
+ * @return boolean
+ */
 boolean hasHistory( State this ): 
 	if( !isComposite() ) 
 		then false 
@@ -220,7 +418,12 @@ boolean hasHistory( State this ):
 		if( this.ownedElement.typeSelect(Region).ownedElement.typeSelect(Pseudostate).select(e|e.kind.toString().contains("History")).isEmpty)
 				then false
 		else true;	
-			
+
+/**
+ * 
+ * @param
+ * @return String
+ */			
 string historyType( Pseudostate this ):
 	switch {
 case (this.kind.toString() == "shallowHistory") : "type=\"shallow\""
@@ -228,3 +431,5 @@ case (this.kind.toString() == "deepHistory") : "type=\"deep\""
 default : null
 }
 ;
+
+//___oOo___
