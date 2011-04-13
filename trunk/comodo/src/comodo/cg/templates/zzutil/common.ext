@@ -18,10 +18,8 @@
  * 
  * $Id: common.ext 170 2011-01-13 13:07:52Z alexis.tejeda $
  */
- 
+
 import uml;
-import AlmaGenerator;
-import ecore;
 
 /**
  * Check if the element has a EtopicError
@@ -519,3 +517,5 @@ List getCppImpl(Package package):
  */
 List getPyImpl(Package package):
 	getEComponentsImpl(package).select(e|getEComponentLanguage(e) == 'py');
+
+//___oOo___
