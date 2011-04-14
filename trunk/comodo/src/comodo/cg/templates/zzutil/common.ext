@@ -272,6 +272,25 @@ String getETagValue(Element eElement, String eStereotype, String tag):
 Element getRealizationReference(Element eElement):
 	getPackage(eElement.getModel()).allOwnedElements().select(e|isEInteface(e)).select(e| e.name==eElement.name).first();
 
+/**
+ * Get a element reference by his name
+ * if they are more than 1 it will return
+ * the first one found.
+ * @param String
+ * @return Element
+ */
+Element getElementReference(String eElement):
+	getPackage(eElement.getModel()).allOwnedElements().select(e| e.name == name).first();
+	
+/**
+ * Get a element reference by his name
+ * if they are more than 1 it will return
+ * the first one found.
+ * @param Element
+ * @return Element
+ */
+Element getElementReference(Element eElement):
+	getPackage(eElement.getModel()).allOwnedElements().select(e| e.name == name).first();	
 
 /////////////////////////////////////////////////////////////
 // Start of characteristic recognition

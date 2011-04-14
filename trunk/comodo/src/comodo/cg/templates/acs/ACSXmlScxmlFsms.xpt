@@ -1,32 +1,63 @@
+«REM»
+/**
+ * COMODO - Multiplatform Component Code Generator 
+ * Copyright (C) 2010/2011  Alexis Tejeda, alexis.tejeda@gmail.com
+ * in colaboration with ESO.
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ * 
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307  USA
+ *
+ * who          when      		what
+ * ---------    -----------     ------------------------------------------------
+ * nmigliorini 	2011-00-00  	Created
+ * atejeda 	    2011-03-29  	Modified name extension
+ * 
+ * $Id$
+ */
+«ENDREM»
+
 «IMPORT uml»
-«EXTENSION alma::scxml::templates::ScxmlUtil»
+
+«EXTENSION cg::templates::zzutil::scxmlutil»
+«EXTENSION cg::templates::zzutil::zzzacshelpers»
 
 «DEFINE Root FOR StateMachine»
 
 «REM» Generate SCXML Model «ENDREM»
-«FILE this.name+".xml"»
+«FILE getPackage(this.getModel()).name+"/scxml/"+this.name+"/"+this.name+".xml"»
 	«REM» Write the headers «ENDREM»
-	«EXPAND ScxmlCode::Headers»
+	«EXPAND cg::templates::acs::ACSXmlScxmlCode::Headers»
 	«REM» Select TopStates and explore «ENDREM»
 	«FOREACH listStates().select(e|e.isTopState()).sortBy(e|e.name) AS st» 
 		«EXPAND ExploreState FOR st»
 	«ENDFOREACH»	
 	«REM» Outer FinalStates «ENDREM»
-	«EXPAND ScxmlCode::FinalState»
-	«EXPAND ScxmlCode::CloseScxml»
+	«EXPAND cg::templates::acs::ACSXmlScxmlCode::FinalState»
+	«EXPAND cg::templates::acs::ACSXmlScxmlCode::CloseScxml»
 «ENDFILE»
 «REM» JAVA Custom Actions List«ENDREM»
 «IF !(this.allOwnedElements().typeSelect(State).entry.isEmpty) ||
 	!(this.allOwnedElements().typeSelect(State).exit.isEmpty) || 
 	!(this.allOwnedElements().typeSelect(Transition).hasAction().isEmpty)»
-	«EXPAND CustomActionCode::CActionList»
+	«EXPAND cg::templates::acs::ACSJavaScxmlCustomActionCode::CActionList»
 «ENDIF»
 «IF !(this.allOwnedElements().typeSelect(State).doActivity.isEmpty)»
-	«EXPAND JavaInvokerCode::JavaInvoker»
+	«EXPAND cg::templates::acs::ACSJavaScxmlInvokerCode::JavaInvoker»
 	
-	«EXPAND ActivityThreadCode::ActivityThread»
+	«EXPAND cg::templates::acs::ACSJavaScxmlActivityThreadCode::ActivityThread»
 
-	«EXPAND ApplicationCode::Application»
+	«EXPAND cg::templates::acs::ACSJavaScxmlApplicationCode::Application»
 «ENDIF»
 «ENDDEFINE»
 
@@ -44,12 +75,12 @@
 «REM» Explore Simple States «ENDREM»
 «DEFINE ExploreSimpleState FOR State»
 	«IF this.isFinalState()»
-		«EXPAND ScxmlCode::SimFinalState»
+		«EXPAND cg::templates::acs::ACSXmlScxmlCode::SimFinalState»
 	«ELSE»	
-		«EXPAND ScxmlCode::StateName»
+		«EXPAND cg::templates::acs::ACSXmlScxmlCode::StateName»
 		«EXPAND ExploreActions»
 		«EXPAND ExploreTransitions»
-		«EXPAND ScxmlCode::CloseState»
+		«EXPAND cg::templates::acs::ACSXmlScxmlCode::CloseState»
 	«ENDIF»
 «ENDDEFINE»
 
@@ -58,7 +89,7 @@
 	«IF this.isOrthogonal()»
 		«EXPAND ExploreOrthState»
 	«ELSEIF !this.listStates().isEmpty»
-		«EXPAND ScxmlCode::StateName»
+		«EXPAND cg::templates::acs::ACSXmlScxmlCode::StateName»
 		<initial><transition target="«this.getInitialState().getFullName()»"/></initial>
 		«FOREACH this.listCompChilds() AS cc»
 			«EXPAND ExploreCompState FOR cc»
@@ -71,7 +102,7 @@
 		«ENDIF»
 		«EXPAND ExploreActions»
 		«EXPAND ExploreTransitions»
-		«EXPAND ScxmlCode::CloseState»
+		«EXPAND cg::templates::acs::ACSXmlScxmlCode::CloseState»
 	«ELSE»
 		«EXPAND ExploreSimpleState»
 	«ENDIF»
@@ -88,7 +119,7 @@
 		«FOREACH oreg.allOwnedElements().typeSelect(State).select(e|(e.owner == oreg)) AS ost»
 			«EXPAND ExploreState FOR ost»
 		«ENDFOREACH»
-		«EXPAND ScxmlCode::CloseState»
+		«EXPAND cg::templates::acs::ACSXmlScxmlCode::CloseState»
 	«ENDFOREACH»
 	«IF this.hasHistory()»
 		«EXPAND ExploreHistory»
@@ -101,16 +132,16 @@
 «REM» Explore Actions and Activities «ENDREM»
 «DEFINE ExploreActions FOR State»
 	«IF this.hasOnEntry()»
-		«EXPAND ScxmlCode::CAEntry»
-		«EXPAND CustomActionCode::JCAEntry»
+		«EXPAND cg::templates::acs::ACSXmlScxmlCode::CAEntry»
+		«EXPAND cg::templates::acs::ACSJavaScxmlCustomActionCode::JCAEntry»
 	«ENDIF»
 	«IF this.hasDoActions()»
-		«EXPAND ScxmlCode::Invoke»
-		«EXPAND ActivityThreadCode::InvActivity» 
+		«EXPAND cg::templates::acs::ACSXmlScxmlCode::Invoke»
+		«EXPAND cg::templates::acs::ACSJavaScxmlActivityThreadCode::InvActivity» 
 	«ENDIF» 
 	«IF this.hasOnExit()»
-		«EXPAND ScxmlCode::CAExit»
-		«EXPAND CustomActionCode::JCAExit»
+		«EXPAND cg::templates::acs::ACSXmlScxmlCode::CAExit»
+		«EXPAND cg::templates::acs::ACSJavaScxmlCustomActionCode::JCAExit»
 	«ENDIF»
 «ENDDEFINE»
 
@@ -123,7 +154,7 @@
 			«tr.getTransition()»
 		«ENDIF»
 		«IF tr.hasAction()»
-			«EXPAND CustomActionCode::JCATran FOR tr»
+			«EXPAND cg::templates::acs::ACSJavaScxmlCustomActionCode::JCATran FOR tr»
 		«ENDIF»
 	«ENDFOREACH»
 «ENDDEFINE»
