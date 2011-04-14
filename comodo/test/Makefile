@@ -167,12 +167,12 @@ example_notificationChannel:
 		@echo "== notificationChannel generated"
 		@echo " . . . example_notificationChannel done"
 
-acscsxml_masterComponent:
+acsscxml_masterComponent:
 		@echo ""
 		@echo "== Running Example singleComponent using the MasterComponent state machine"
 		@echo ""
-		@echo "$(JCLI) -jar $(COMODO) -m $(XMI_PATH)/acsscxml/acsscxml.uml -p $(XMI_PATH)/acsscxml/$(PROFILE_XMI) -o $(OUTPUT_PATH) -e singleComponent" 
-		@$(JCLI) -jar $(COMODO) -m $(XMI_PATH)/acsscxml/acsscxml.uml -p $(XMI_PATH)/acsscxml/$(PROFILE_XMI) -o $(OUTPUT_PATH) -e singleComponent
+		@echo "$(JCLI) -jar $(COMODO) -m $(XMI_PATH)/acsscxml/acscsxml.uml -p $(XMI_PATH)/acsscxml/$(PROFILE_XMI) -o $(OUTPUT_PATH) -e singleComponent" 
+		@$(JCLI) -jar $(COMODO) -m $(XMI_PATH)/acsscxml/acscsxml.uml -p $(XMI_PATH)/acsscxml/$(PROFILE_XMI) -o $(OUTPUT_PATH) -e singleComponent
 		@echo ""
 		@echo "== singleComponent using state machine generated"
 		@echo " . . . acscsxml_masterComponent done"		

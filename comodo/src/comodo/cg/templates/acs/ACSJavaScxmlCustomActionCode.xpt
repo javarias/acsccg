@@ -1,10 +1,41 @@
-«IMPORT uml»
-«EXTENSION alma::scxml::templates::ScxmlUtil»
+«REM»
+/**
+ * COMODO - Multiplatform Component Code Generator 
+ * Copyright (C) 2010/2011  Alexis Tejeda, alexis.tejeda@gmail.com
+ * in colaboration with ESO.
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ * 
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307  USA
+ *
+ * who          when      		what
+ * ---------    -----------     ------------------------------------------------
+ * nmigliorini 	2011-00-00  	Created
+ * atejeda 	    2011-03-29  	Modified name extension
+ * 
+ * $Id$
+ */
+«ENDREM»
 
+«IMPORT uml»
+
+«EXTENSION cg::templates::zzutil::scxmlutil»
+«EXTENSION cg::templates::zzutil::zzzacshelpers»
 
 «REM»List for custom actions«ENDREM»
 «DEFINE CActionList FOR StateMachine»
-«FILE this.name+"ActionList.java"»
+
+«FILE getPackage(this.getModel()).name+"/scxml/"+this.name+"/java/"+this.name+"ActionList.java"»
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +73,8 @@ public class «this.name»ActionList {
 }
 «ENDFILE»
 
-«FILE "CustomActionListMap.txt"»
+«FILE getPackage(this.getModel()).name+"/scxml/"+this.name+"/java/"+"CustomActionListMap.txt"»
+
 «FOREACH this.allOwnedElements().typeSelect(State).entry.select(e|!(e.name.toString()=="null")) AS entAct-»
 «entAct.name»		«entAct.name».class
 «ENDFOREACH-»
@@ -58,7 +90,8 @@ public class «this.name»ActionList {
 
 «DEFINE JCAEntry FOR State»
 
-«FILE "CA"+this.entry.name+".java"»
+«FILE getPackage(this.getModel()).name+"/scxml/"+this.name+"/java/"+"CA"+this.entry.name+".java"»
+
 import java.util.Collection;
 
 import org.apache.commons.logging.Log;
@@ -114,7 +147,8 @@ public class CA«this.entry.name» extends Action {
 
 «DEFINE JCAExit FOR State»
 
-«FILE "CA"+this.exit.name+".java"»
+«FILE getPackage(this.getModel()).name+"/scxml/"+this.name+"/java/"+"CA"+this.exit.name+".java"»
+
 import java.util.Collection;
 
 import org.apache.commons.logging.Log;
@@ -169,7 +203,9 @@ public class CA«this.exit.name» extends Action {
 «ENDDEFINE»	
 
 «DEFINE JCATran FOR Transition»
-«FILE "CA"+this.ownedElement.typeSelect(Activity).get(0).name+".java"»
+
+«FILE getPackage(this.getModel()).name+"/scxml/"+this.name+"/java/"+"CA"+this.ownedElement.typeSelect(Activity).get(0).name+".java"»
+
 import java.util.Collection;
 
 import org.apache.commons.logging.Log;

@@ -347,14 +347,16 @@
 		<checkFile value="comodo/cg/constraints/StateMachineConstraints"/>
 		<emfAllChildrenSlot value="model"/>
 	</component> 
+	-->
 	
 	<component id="COMODO_SCXML_CG" class="org.eclipse.xpand2.Generator" skipOnErrors="false">
-		<metaModel class="org.eclipse.xtend.typesystem.uml2.UML2MetaModel"/>
-		<metaModel class="org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel"/>
-		<expand value="alma::scxml::templates::Root::Root FOR mymodel" />
+		<fileEncoding value="UTF-8" />
+		<metaModel idRef="default_profile"/>
+		<expand value="cg::templates::acs::ACSXmlScxml::Root FOR model" />
+		<globalVarDef name="ACSPackage" value="'${acsPackage}'"/>
 		<outlet path="${ouputFolderURI}">
 			<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" configFile="cg/beautifier/COMODO_B_JAVA.xml" />
 		</outlet>
 	</component>
-	-->
+	
 </workflow>
