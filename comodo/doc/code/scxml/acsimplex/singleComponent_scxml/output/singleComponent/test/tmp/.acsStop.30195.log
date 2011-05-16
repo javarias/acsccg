@@ -1,0 +1,4 @@
+2011-05-16T15:35:14.000 INFO Stopping all ACS processes using 'ACS_INSTANCE=0'
+2011-05-16T15:35:14.000 INFO Shutting down containers...
+2011-05-16T15:35:14.000 INFO Shutting down testContainer container
+2011-05-16T15:35:15.000 INFO Stopping Manager

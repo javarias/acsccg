@@ -1,0 +1,10 @@
+2011-05-16T15:34:22.000 DEBUG Unable to determine the process ID from /diska/home/almadev/GSME/singleComponent_scxml/output/singleComponent/test/tmp/ACS_INSTANCE.0/pids/ACS_CDB_PID.
+2011-05-16T15:34:22.000 DEBUG Unable to find the process ID for a program using the '3012' TCP port
+2011-05-16T15:34:22.000 DEBUG Unable to determine the process ID from TCP port 3012.
+2011-05-16T15:34:22.000 ERROR Unable to determine CDB's process ID.
+2011-05-16T15:34:22.000 WARNING /diska/home/almadev/GSME/singleComponent_scxml/output/singleComponent/test/tmp/ACS_INSTANCE.0 already exists!
+2011-05-16T15:34:22.000 WARNING /diska/home/almadev/GSME/singleComponent_scxml/output/singleComponent/test/tmp/ACS_INSTANCE.0/USED_CONTAINER_PORTS already exists!
+2011-05-16T15:34:22.000 WARNING /diska/home/almadev/GSME/singleComponent_scxml/output/singleComponent/test/tmp/ACS_INSTANCE.0/USED_NOTIFY_PORTS already exists!
+2011-05-16T15:34:23.000 WARNING /diska/home/almadev/GSME/singleComponent_scxml/output/singleComponent/test/tmp/ACS_INSTANCE.0/pids already exists!
+2011-05-16T15:34:23.000 INFO Starting ACS Configuration Database
+2011-05-16T15:34:23.000 INFO CDB data is in: /diska/home/almadev/GSME/singleComponent_scxml/output/singleComponent/test

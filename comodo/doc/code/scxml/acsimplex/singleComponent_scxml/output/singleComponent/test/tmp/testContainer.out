@@ -1,0 +1,19 @@
+2011-05-16T15:35:04.000 INFO [acsStartContainer] Running the container with these arguments: 'acsStartJavaContainer testContainer alma.acs.container.AcsContainerRunner -OAIAddr 192.168.153.129 -OAport 4000 -m corbaloc::192.168.153.129:3000/Manager'
+ --endorsed -D ORBgiopMaxMsgSize=25000000 -D ACS.manager=corbaloc::192.168.153.129:3000/Manager -- alma.acs.container.AcsContainerRunner -OAIAddr 192.168.153.129 -OAport 4000 -m corbaloc::192.168.153.129:3000/Manager -containerName testContainer
+2011-05-16T15:35:04.000 INFO [acsStartJava] Starting Java application: alma.acs.container.AcsContainerRunner -OAIAddr 192.168.153.129 -OAport 4000 -m corbaloc::192.168.153.129:3000/Manager -containerName testContainer
+2011-05-16T15:35:04.000 INFO [acsStartJava] Using endorsed jar files in: -Djava.endorsed.dirs=/diska/home/almadev/introot/lib/endorsed:/alma/ACS-9.0/ACSSW/lib/endorsed:
+2011-05-16T15:35:05.965 INFO [AcsContainerRunner] AcsContainerRunner#run with arguments -OAIAddr 192.168.153.129 -OAport 4000 -m corbaloc::192.168.153.129:3000/Manager -containerName testContainer 
+ContainerStatusMsg: Startup begins
+ContainerStatusMsg: ORB initialization begins
+ContainerStatusMsg: ORB initialization ends
+ContainerStatusMsg: Manager access initialization begins
+ContainerStatusMsg: Automatic component loading begins
+2011-05-16T15:35:07.057 INFO [testContainer] Info message from the manager: Startup statistics: 0 components queued to be activated.
+ContainerStatusMsg: Manager access initialization ends
+2011-05-16T15:35:07.101 INFO [testContainer] Info message from the manager: Startup statistics: 0 of 0 components activated.
+ContainerStatusMsg: Automatic component loading ends
+ContainerStatusMsg: Ready
+ContainerStatusMsg: Startup ends
+2011-05-16T15:35:14.642 INFO [testContainer] received call to 'shutdown', action=2 (encryptedAction=512), gracefully=true.
+2011-05-16T15:35:14.681 INFO [testContainer] about to exit the JVM...thanks for using our container, come back soon...
+2011-05-16T15:35:14.000 INFO [acsStartContainer] Container: 'testContainer' exited with code: 0.

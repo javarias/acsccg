@@ -1,0 +1,106 @@
+Application time: 0.2520530 seconds
+1.314: [GC 1.314: [DefNew
+Desired survivor size 819200 bytes, new threshold 1 (max 4)
+- age   1:    1003504 bytes,    1003504 total
+: 13184K->979K(14784K), 0.0196630 secs] 13184K->979K(63936K), 0.0197850 secs] [Times: user=0.01 sys=0.01, real=0.02 secs] 
+Total time for which application threads were stopped: 0.0200760 seconds
+Application time: 0.6410950 seconds
+1.976: [GC [1 CMS-initial-mark: 0K(49152K)] 6938K(63936K), 0.0094140 secs] [Times: user=0.01 sys=0.00, real=0.01 secs] 
+Total time for which application threads were stopped: 0.0102290 seconds
+1.986: [CMS-concurrent-mark-start]
+2.012: [CMS-concurrent-mark: 0.026/0.026 secs] [Times: user=0.02 sys=0.01, real=0.03 secs] 
+2.012: [CMS-concurrent-preclean-start]
+2.020: [CMS-concurrent-preclean: 0.007/0.008 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] 
+2.020: [CMS-concurrent-abortable-preclean-start]
+Application time: 3.3062060 seconds
+Total time for which application threads were stopped: 0.0035340 seconds
+Application time: 1.0458680 seconds
+Total time for which application threads were stopped: 0.0002500 seconds
+Application time: 0.0028270 seconds
+Total time for which application threads were stopped: 0.0001470 seconds
+Application time: 0.0019190 seconds
+Total time for which application threads were stopped: 0.0001340 seconds
+Application time: 0.0018800 seconds
+Total time for which application threads were stopped: 0.0001320 seconds
+Application time: 0.0018400 seconds
+Total time for which application threads were stopped: 0.0001260 seconds
+Application time: 0.0733440 seconds
+Total time for which application threads were stopped: 0.0001720 seconds
+Application time: 0.0028750 seconds
+Total time for which application threads were stopped: 0.0001680 seconds
+Application time: 0.0155640 seconds
+Total time for which application threads were stopped: 0.0001650 seconds
+Application time: 0.0019300 seconds
+Total time for which application threads were stopped: 0.0001500 seconds
+Application time: 0.0498280 seconds
+Total time for which application threads were stopped: 0.0002970 seconds
+Application time: 0.0493840 seconds
+Total time for which application threads were stopped: 0.0002530 seconds
+Application time: 0.0294600 seconds
+Total time for which application threads were stopped: 0.0002310 seconds
+Application time: 0.0001010 seconds
+Total time for which application threads were stopped: 0.0001290 seconds
+Application time: 0.0001970 seconds
+Total time for which application threads were stopped: 0.0000980 seconds
+Application time: 0.0166110 seconds
+Total time for which application threads were stopped: 0.0001250 seconds
+Application time: 0.2749630 seconds
+Total time for which application threads were stopped: 0.0002270 seconds
+Application time: 0.0419980 seconds
+Total time for which application threads were stopped: 0.0001850 seconds
+Application time: 7.2243640 seconds
+Total time for which application threads were stopped: 0.0002460 seconds
+Application time: 0.0012840 seconds
+Total time for which application threads were stopped: 0.0001900 seconds
+Application time: 0.0000530 seconds
+Total time for which application threads were stopped: 0.0000620 seconds
+Application time: 0.0339750 seconds
+Total time for which application threads were stopped: 0.0002320 seconds
+Application time: 0.0290260 seconds
+Total time for which application threads were stopped: 0.0001230 seconds
+Application time: 0.0077170 seconds
+Total time for which application threads were stopped: 0.0001600 seconds
+Application time: 0.0000940 seconds
+Total time for which application threads were stopped: 0.0000960 seconds
+Application time: 0.0001410 seconds
+Total time for which application threads were stopped: 0.0000950 seconds
+Application time: 1.8265380 seconds
+Total time for which application threads were stopped: 0.0002070 seconds
+Application time: 0.0013360 seconds
+Total time for which application threads were stopped: 0.0001350 seconds
+Application time: 0.0000530 seconds
+Total time for which application threads were stopped: 0.0000830 seconds
+Application time: 0.0499120 seconds
+Total time for which application threads were stopped: 0.0002180 seconds
+Application time: 0.0007100 seconds
+Total time for which application threads were stopped: 0.0002220 seconds
+Application time: 0.0001950 seconds
+Total time for which application threads were stopped: 0.0002260 seconds
+Application time: 0.0004470 seconds
+Total time for which application threads were stopped: 0.0001860 seconds
+Application time: 0.0001420 seconds
+Total time for which application threads were stopped: 0.0001870 seconds
+Application time: 0.0003860 seconds
+Total time for which application threads were stopped: 0.0001810 seconds
+Application time: 0.0075570 seconds
+Total time for which application threads were stopped: 0.0011480 seconds
+Application time: 0.0007530 seconds
+Total time for which application threads were stopped: 0.0001630 seconds
+Application time: 0.0284950 seconds
+Total time for which application threads were stopped: 0.0003820 seconds
+ CMS: abort preclean due to time 16.190: [CMS-concurrent-abortable-preclean: 0.107/14.169 secs] [Times: user=0.04 sys=0.20, real=13.81 secs] 
+Application time: 0.0599150 seconds
+16.190: [GC[YG occupancy: 9865 K (14784 K)]16.190: [Rescan (non-parallel) 16.190: [grey object rescan, 0.0002290 secs]16.191: [root rescan, 0.0102970 secs], 0.0106660 secs]16.201: [weak refs processing, 0.0000110 secs] [1 CMS-remark: 0K(49152K)] 9865K(63936K), 0.0109050 secs] [Times: user=0.00 sys=0.01, real=0.01 secs] 
+Total time for which application threads were stopped: 0.0118560 seconds
+16.209: [CMS-concurrent-sweep-start]
+16.209: [CMS-concurrent-sweep: 0.000/0.000 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] 
+16.209: [CMS-concurrent-reset-start]
+16.219: [CMS-concurrent-reset: 0.010/0.010 secs] [Times: user=0.00 sys=0.01, real=0.01 secs] 
+Heap
+ def new generation   total 14784K, used 9865K [0xaa200000, 0xab200000, 0xab200000)
+  eden space 13184K,  67% used [0xaa200000, 0xaaaad690, 0xaaee0000)
+  from space 1600K,  61% used [0xab070000, 0xab164ff0, 0xab200000)
+  to   space 1600K,   0% used [0xaaee0000, 0xaaee0000, 0xab070000)
+ concurrent mark-sweep generation total 49152K, used 0K [0xab200000, 0xae200000, 0xb0200000)
+ concurrent-mark-sweep perm gen total 16768K, used 10060K [0xb0200000, 0xb1260000, 0xb4200000)
+Application time: 0.0178960 seconds

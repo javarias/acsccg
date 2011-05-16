@@ -1,0 +1,427 @@
+
+	
+	
+<scxml xmlns="http://www.w3.org/2005/07/scxml" 
+xmlns:customActionDomain="http://my.custom-actions.domain/CUSTOM"
+version="1.0" initial="Available">
+
+	
+	 
+		
+	
+		
+			
+	
+		
+<state id="Available">
+
+		<initial><transition target="Available::Offline"/></initial>
+		
+			
+	
+		
+<state id="Available::Offline">
+
+		<initial><transition target="Available::Offline::Shutdown"/></initial>
+		
+		
+			
+		
+		
+<state id="Available::Offline::Shutdown">
+
+		
+	
+	 
+	
+
+		
+	
+		
+			<transition event="initPass1" target="Available::Offline::InitializingPass1"></transition>
+		
+		
+	
+
+		
+</state>
+
+	
+
+		
+			
+		
+		
+<state id="Available::Offline::InitializingPass1">
+
+		
+	
+	
+		
+<invoke targettype="java" id="initSubsysPass1" src="MyThreadinitSubsysPass1.java"/>
+
+		
+
+
+ 
+	 
+	
+
+		
+	
+		
+			<transition event="initSubsysPass1.done" target="Available::Offline::PreInitialized"></transition>
+		
+		
+	
+
+		
+</state>
+
+	
+
+		
+			
+		
+		
+<state id="Available::Offline::PreInitialized">
+
+		
+	
+	 
+	
+
+		
+	
+		
+			<transition event="initPass2" target="Available::Offline::InitializingPass2"></transition>
+		
+		
+	
+
+		
+</state>
+
+	
+
+		
+			
+		
+		
+<state id="Available::Offline::InitializingPass2">
+
+		
+	
+	
+		
+<invoke targettype="java" id="initSubsysPass2" src="MyThreadinitSubsysPass2.java"/>
+
+		
+
+
+ 
+	 
+	
+
+		
+	
+		
+			<transition event="initSubsysPass2.done" target="Available::Online"></transition>
+		
+		
+	
+
+		
+</state>
+
+	
+
+		
+			
+		
+		
+<state id="Available::Offline::Reinitializing">
+
+		
+	
+	
+		
+<invoke targettype="java" id="reinitSubsystem" src="MyThreadreinitSubsystem.java"/>
+
+		
+
+
+ 
+	 
+	
+
+		
+	
+		
+			<transition event="reinitSubsystem.done" target="Available::Online"></transition>
+		
+		
+	
+
+		
+</state>
+
+	
+
+		
+			
+		
+		
+<state id="Available::Offline::ShuttingdownPass1">
+
+		
+	
+	
+		
+<invoke targettype="java" id="shutdownSubsysPass1" src="MyThreadshutdownSubsysPass1.java"/>
+
+		
+
+
+ 
+	 
+	
+
+		
+	
+		
+			<transition event="shutdownSubsysPass1.done" target="Available::Offline::Preshutdown"></transition>
+		
+		
+	
+
+		
+</state>
+
+	
+
+		
+			
+		
+		
+<state id="Available::Offline::Preshutdown">
+
+		
+	
+	 
+	
+
+		
+	
+		
+			<transition event="shutdownPass2" target="Available::Offline::ShuttingdownPass2"></transition>
+		
+		
+	
+
+		
+</state>
+
+	
+
+		
+			
+		
+		
+<state id="Available::Offline::ShuttingdownPass2">
+
+		
+	
+	
+		
+<invoke targettype="java" id="shutdownSubsysPass2" src="MyThreadshutdownSubsysPass2.java"/>
+
+		
+
+
+ 
+	 
+	
+
+		
+	
+		
+			<transition event="shutdownSubsysPass2.done" target="Available::Offline::Shutdown"></transition>
+		
+		
+	
+
+		
+</state>
+
+	
+
+		
+		
+		
+	
+	 
+	
+
+		
+	
+
+		
+</state>
+
+	
+
+		
+			
+	
+		
+		
+		
+<state id="Available::Operational">
+
+		
+	
+	 
+	
+		
+<onexit>
+	<customActionDomain:exitaction name="exitaction" />
+</onexit>
+
+		
+
+
+
+	
+
+		
+	
+		
+			<transition event="start1" target="Available::Operational"></transition>
+		
+		
+	
+		
+			<transition event="stop" target="Available::Online"></transition>
+		
+		
+	
+
+		
+</state>
+
+	
+
+	
+
+		
+			
+	
+		
+		
+		
+<state id="Available::Online">
+
+		
+	
+		
+<onentry>
+	<customActionDomain:entryaction name="entryaction" />
+</onentry>
+
+		
+
+
+
+	
+	 
+	
+
+		
+	
+		
+			<transition event="start" target="Available::Operational"></transition>
+		
+		
+	
+		
+			<transition event="stop1" target="Available::Online"></transition>
+		
+		
+	
+
+		
+</state>
+
+	
+
+	
+
+		
+		
+			
+		
+		
+<state id="Available::Error">
+
+		
+	
+	 
+	
+
+		
+	
+
+		
+</state>
+
+	
+
+		
+		
+		
+	
+	 
+	
+
+		
+	
+		
+			<transition event="disaster" target="Unavailable"></transition>
+		
+		
+	
+		
+			<transition event="error" target="Available::Error"></transition>
+		
+		
+	
+		
+			<transition event="reinit" target="Available::Offline::Reinitializing"></transition>
+		
+		
+	
+		
+			<transition event="shutdownPass1" target="Available::Offline::ShuttingdownPass1"></transition>
+		
+		
+	
+
+		
+</state>
+
+	
+
+		
+		
+
+		
+	
+	
+
+<final id="Unavailable"/>
+
+
+	
+</scxml>
+

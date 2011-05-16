@@ -1,0 +1,18 @@
+2011-05-16T15:35:14.000 INFO [acsStop] Stopping all ACS processes using 'ACS_INSTANCE=0'
+2011-05-16T15:35:14.000 INFO [acsStop] Shutting down containers...
+2011-05-16T15:35:14.000 INFO [acsStop] Shutting down testContainer container
+2011-05-16T15:35:15.000 INFO [acsStop] Stopping Manager
+2011-05-16T15:35:18.000 INFO [acsManager] acsManager: done.
+2011-05-16T15:35:18.000 INFO [acsStopORBSRVC] Stopping the ORB Services and CDB using 'ACS_INSTANCE=0'
+2011-05-16T15:35:19.000 INFO [acsAlarmService] Stopping the AlarmService
+2011-05-16T15:35:23.000 INFO [acsConfigurationDatabase] Stopping the CDB
+2011-05-16T15:35:26.000 INFO [acsNamingService] Stopping the CORBA Naming Service
+2011-05-16T15:35:27.000 INFO [acsNotifyService] Stopping the CORBA Notification Service
+2011-05-16T15:35:27.000 INFO [acsNotifyService] Stopping the CORBA Logging Notification Service
+2011-05-16T15:35:28.000 INFO [acsNotifyService] Stopping the CORBA Archive Notification Service
+2011-05-16T15:35:29.000 INFO [acsNotifyService] Stopping the CORBA Alarm Notification Service
+2011-05-16T15:35:30.000 INFO [acsLoggingService] Stopping the CORBA Logging Service
+2011-05-16T15:35:30.000 INFO [acsInterfaceRepository] Stopping the CORBA Interface Repository
+2011-05-16T15:35:31.000 INFO [acsACSLogService] Stopping the ACS Log Service
+2011-05-16T15:35:31.000 INFO [acsStopORBSRVC] Killing any rogue ACS processes...
+2011-05-16T15:35:32.000 INFO [acsStopORBSRVC] Freeing /diska/home/almadev/GSME/singleComponent_scxml/output/singleComponent/test/tmp/ACS_INSTANCE.0
