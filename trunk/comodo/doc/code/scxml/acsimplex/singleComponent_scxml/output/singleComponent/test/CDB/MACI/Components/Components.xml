@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   - $Id$
+   -
+   - History:
+   - 	ACSCCG Tue Apr 19 00:13:26 CLT 2011 created	
+-->
+<Components  xmlns="urn:schemas-cosylab-com:Components:1.0"
+       xmlns:cdb="urn:schemas-cosylab-com:CDB:1.0"
+       xmlns:baci="urn:schemas-cosylab-com:BACI:1.0"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	   
+	   <_ Name="instance1-BasicAntenna" 
+			Code="alma.singleComponent.BasicAntennaJavaImplHelper"
+			Type="IDL:alma/singleComponent/BasicAntennaInterface:1.0"
+			Container="bilboContainer" 
+			ImplLang="java" />
+	   
+	   <_ Name="instance2-BasicAntenna" 
+			Code="alma.singleComponent.BasicAntennaJavaImplHelper"
+			Type="IDL:alma/singleComponent/BasicAntennaInterface:1.0"
+			Container="bilboContainer" 
+			ImplLang="java" />
+	   
+	   <!-- Component Simulators -->
+	   
+	   <_ Name="instance1-BasicAntennaSimulator" 
+			Code="Acssim.Servants.GUISimulator"
+			Type="IDL:alma/singleComponent/BasicAntennaInterface:1.0"
+			Container="singleComponentSimulator" 
+			ImplLang="py" />		
+	   
+	   <_ Name="instance2-BasicAntennaSimulator" 
+			Code="Acssim.Servants.GUISimulator"
+			Type="IDL:alma/singleComponent/BasicAntennaInterface:1.0"
+			Container="singleComponentSimulator" 
+			ImplLang="py" />		
+	   
+	   <!-- Instance to test components -->
+	   
+	   <!-- Java Component Instances -->
+	   
+	   <_ Name="testInstanceBasicAntennaJavaImpl" 
+			Code="alma.singleComponent.BasicAntennaJavaImplHelper"
+			Type="IDL:alma/singleComponent/BasicAntennaInterface:1.0"
+			Container="singleComponentJavaTest" 
+			ImplLang="java" />
+			
+	   
+	   
+</Components>

@@ -1,0 +1,72 @@
+2011-05-16T15:34:17.000 INFO [acsStart] Starting ACS version 9.0.0
+2011-05-16T15:34:17.000 INFO [acsStart] Using ALMA Base Software tag ACS-9_0_0-pre-20101102
+2011-05-16T15:34:17.000 INFO [acsStartORBSRVC] Starting CORBA Services
+2011-05-16T15:34:17.000 INFO [acsStartORBSRVC]     Orb options:  -ORBDottedDecimalAddresses 1
+2011-05-16T15:34:18.000 INFO [acsNamingService] Starting Naming Service
+2011-05-16T15:34:20.000 INFO [acsInterfaceRepository] Starting Interface Repository
+Bound ID: InterfaceRepository
+2011-05-16T15:34:23.000 INFO [acsConfigurationDatabase] Starting ACS Configuration Database
+2011-05-16T15:34:23.000 INFO [acsConfigurationDatabase]     CDB data is in:  /diska/home/almadev/GSME/singleComponent_scxml/output/singleComponent/test
+ --endorsed --maxHeapSize 512m -D jacorb.poa.thread_pool_max=200 -D jacorb.connection.client.pending_reply_timeout=30000 -D ACS.cdbpath=/diska/home/almadev/GSME/singleComponent_scxml/output/singleComponent/test/../config/CDB/schemas:/diska/home/almadev/GSME/singleComponent_scxml/output/singleComponent/test/CDB/schemas:/diska/home/almadev/introot/config/CDB/schemas:/alma/ACS-9.0/ACSSW/config/CDB/schemas -- com.cosylab.cdb.jdal.Server -jacorb -root /diska/home/almadev/GSME/singleComponent_scxml/output/singleComponent/test -OAIAddr 192.168.153.129 -OAport 3012 -n
+2011-05-16T15:34:25.000 INFO [acsStartJava] Starting Java application: com.cosylab.cdb.jdal.Server -jacorb -root /diska/home/almadev/GSME/singleComponent_scxml/output/singleComponent/test -OAIAddr 192.168.153.129 -OAport 3012 -n
+2011-05-16T15:34:25.000 INFO [acsStartJava] Using endorsed jar files in: -Djava.endorsed.dirs=/diska/home/almadev/introot/lib/endorsed:/alma/ACS-9.0/ACSSW/lib/endorsed:
+2011-05-16T15:34:25.000 INFO [acsNotifyService] Starting Notify Service
+2011-05-16T15:34:29.000 INFO [acsNotifyService] Starting Logging Notify Service
+2011-05-16T15:34:32.016 INFO [CDB] DALImpl will use XSD caching for xerces sax parser ? false
+2011-05-16T15:34:32.066 INFO [CDB] DAL root is: /diska/home/almadev/GSME/singleComponent_scxml/output/singleComponent/test/CDB/
+2011-05-16T15:34:33.081 INFO [CDB] JDAL is ready and waiting ...
+JDAL is ready and waiting ...
+2011-05-16T15:34:35.000 INFO [acsNotifyService] Starting Archive Notify Service
+2011-05-16T15:34:48.000 INFO [acsNotifyService] Starting Alarm Notify Service
+2011-05-16T15:34:50.000 INFO [acsstartupLoadIFR] Loading of IDL interfaces in Interface Repository completed OK
+2011-05-16T15:34:51.000 INFO [acsLoggingService] Starting Logging Service
+2011-05-16T15:34:53.000 INFO [acsACSLogService] Starting ACS Log service
+2011-05-16T15:34:55.000 INFO [acsAlarmService] Starting ACS AlarmService
+ --endorsed -- alma.acs.alarmsystem.corbaservice.AlarmSystemCorbaServer -jacorb -OAIAddr 192.168.153.129 -OAport 3013
+2011-05-16T15:34:55.000 INFO [acsStartJava] Starting Java application: alma.acs.alarmsystem.corbaservice.AlarmSystemCorbaServer -jacorb -OAIAddr 192.168.153.129 -OAport 3013
+2011-05-16T15:34:55.000 INFO [acsStartJava] Using endorsed jar files in: -Djava.endorsed.dirs=/diska/home/almadev/introot/lib/endorsed:/alma/ACS-9.0/ACSSW/lib/endorsed:
+2011-05-16T15:34:57.447 NOTICE [CDB] Curl 'Alarms/Administrative/AlarmSystemConfiguration' does not exist.
+2011-05-16T15:34:57.465 INFO [AlarmService] Starting the ACS implementation of the alarm service
+The alarm service is ready and waiting
+2011-05-16T15:34:58.000 INFO [acsStartORBSRVC] For this ACS session, please do an 'export ACS_INSTANCE=0' on all terminals running ACS clients.
+2011-05-16T15:34:58.000 INFO [acsStartORBSRVC] The acsStartORBSRVC script has now completed!
+2011-05-16T15:34:59.000 INFO [Starting jManager] 
+ --endorsed --noClassLoader --noAutoClasspath --addToClasspath acsASsources.jar:acscommon.jar:acscomponent.jar:acsContainerServices.jar:acsdaemon.jar:acsdaemonErrType.jar:acserr.jar:acserrj.jar:acsErrTypeAlarmSourceFactory.jar:ACSErrTypeCommon.jar:ACSErrTypeCORBA.jar:ACSErrTypeJavaNative.jar:acsjlog.jar:acsjms.jar:ACSJMSMessageEntity.jar:acsnc.jar:AlarmSourceSchemaBindings.jar:alarmsysteminterface.jar:avalon-framework.jar:castor.jar:cdbDAL.jar:cdbErrType.jar:CDB.jar:cmwmom.jar:commons-logging-1.1.1.jar:jACSUtil.jar:JavaContainerError.jar:jcontnc.jar:jmanagerErrType.jar:jManager.jar:jms.jar:laserutil.jar:log4j-1.2.15.jar:logging_idl.jar:maciErrType.jar:maci.jar:maciSchemaBindings.jar:NotifyExt.jar:NotifyMonitoringExt.jar:prevayler-1.02.001.jar:xalan.jar:xalan_serializer.jar -D jacorb.poa.thread_pool_max=200 -D NamingServiceRemoteDirectory.reference=iiop://192.168.153.129:3001 -D DAL.defaultReference=corbaloc::192.168.153.129:3012/CDB -D OAPort=3000 -D manager.debug.rememberOldHandles -- com.cosylab.acs.maci.manager.app.Manager -n
+2011-05-16T15:35:00.000 INFO [acsStartJava] Starting Java application: com.cosylab.acs.maci.manager.app.Manager -n
+2011-05-16T15:35:00.000 INFO [acsStartJava] Using endorsed jar files in: -Djava.endorsed.dirs=/diska/home/almadev/introot/lib/endorsed:/alma/ACS-9.0/ACSSW/lib/endorsed:
+2011-05-16T15:35:00.814 INFO [Manager] Initializing Manager.
+2011-05-16T15:35:01.113 INFO [Manager] Connecting to CORBA Naming Service with reference 'iiop://192.168.153.129:3001'...
+2011-05-16T15:35:01.313 INFO [Manager] Connected to CORBA Naming Service with reference 'iiop://192.168.153.129:3001'.
+Recovering system state...
+Skipping saved manager state!
+2011-05-16T15:35:01.393 INFO [Manager] Connecting to DAL 'corbaloc::192.168.153.129:3012/CDB'...
+2011-05-16T15:35:01.403 INFO [Manager] Connected to DAL 'corbaloc::192.168.153.129:3012/CDB'.
+2011-05-16T15:35:02.017 INFO [CDB] Recovery file: /diska/home/almadev/GSME/singleComponent_scxml/output/singleComponent/test/tmp/CDB_Recovery.txt
+2011-05-16T15:35:02.089 INFO [Manager] Found 5 component entries in the configuration database.
+2011-05-16T15:35:02.169 INFO [Manager] Manager activated with IOR:000000000000001C49444C3A696A732E73692F6D6163692F4D616E616765723A312E300000000001000000000000007000010200000000103139322E3136382E3135332E313239000BB80000000000164F52422F4D616E61676572504F412F4D616E616765720000000000020000000000000008000000004A414300000000010000001C00000000000100010000000105010001000101090000000105010001
+2011-05-16T15:35:02.183 INFO [Manager] All initializations done.
+2011-05-16T15:35:02.184 INFO [Manager] AcsManagerStatusMessage_ManagerStarted Manager Application initialized.
+
+2011-05-16T15:35:02.192 WARNING [Manager] No list of services daemons available in the CDB. In an operational environment using ACS daemons, this is a severe error!! It is OK only if you run the system without using these daemons. 
+2011-05-16T15:35:02.446 INFO [Manager] 'Manager' requested component 'curl:///Log'.
+2011-05-16T15:35:02.554 INFO [Manager] Component 'curl:///Log' provided to 'Manager'.
+2011-05-16T15:35:02.000 INFO [acsManager] Manager is up and running
+2011-05-16T15:35:04.000 INFO [acsStart] For this ACS session, please do an 'export ACS_INSTANCE=0' on all terminals running ACS clients.
+2011-05-16T15:35:04.000 INFO [acsStart] ACS is up and running
+2011-05-16T15:35:07.017 INFO [Manager] Manager persistence subsystem is functional.
+2011-05-16T15:35:07.023 ALERT [ManagerContainerServices] Alarm sent: &lt;Manager,Prevayler,2&gt; TERMINATE
+2011-05-16T15:35:07.049 INFO [Manager] Container 'testContainer' startup statistics: 0 components queued to be activated.
+2011-05-16T15:35:07.050 INFO [Manager] Container 'testContainer' logged in.
+2011-05-16T15:35:07.052 INFO [Manager] Container 'testContainer' startup statistics: 0 of 0 components activated.
+2011-05-16T15:35:07.065 INFO [Manager] 'testContainer' requested component 'curl:///CDB'.
+2011-05-16T15:35:07.070 INFO [Manager] Component 'curl:///CDB' provided to 'testContainer'.
+2011-05-16T15:35:07.214 NOTICE [CDB] Curl 'MACI/Containers/testContainer' does not exist.
+2011-05-16T15:35:07.340 INFO [Manager] 'testContainer' requested component 'curl:///CDB'.
+2011-05-16T15:35:07.345 INFO [Manager] Component 'curl:///CDB' provided to 'testContainer'.
+2011-05-16T15:35:07.383 INFO [Manager] 'testContainer' requested component 'curl:///Log'.
+2011-05-16T15:35:07.387 INFO [Manager] Component 'curl:///Log' provided to 'testContainer'.
+2011-05-16T15:35:14.654 INFO [Manager] Container 'testContainer' logged out.
+2011-05-16T15:35:16.553 INFO [Manager] Destroying Manager.
+2011-05-16T15:35:16.554 INFO [Manager] Manager is shutting down.
+2011-05-16T15:35:16.561 INFO [Manager] Manager shutdown completed.
+2011-05-16T15:35:25.114 INFO [CDB] JDAL exiting ORB loop ...

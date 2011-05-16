@@ -1,0 +1,5 @@
+2011-05-16T15:34:34.000 WARNING /diska/home/almadev/GSME/singleComponent_scxml/output/singleComponent/test/tmp/ACS_INSTANCE.0 already exists!
+2011-05-16T15:34:35.000 WARNING /diska/home/almadev/GSME/singleComponent_scxml/output/singleComponent/test/tmp/ACS_INSTANCE.0/USED_CONTAINER_PORTS already exists!
+2011-05-16T15:34:35.000 WARNING /diska/home/almadev/GSME/singleComponent_scxml/output/singleComponent/test/tmp/ACS_INSTANCE.0/USED_NOTIFY_PORTS already exists!
+2011-05-16T15:34:35.000 WARNING /diska/home/almadev/GSME/singleComponent_scxml/output/singleComponent/test/tmp/ACS_INSTANCE.0/pids already exists!
+2011-05-16T15:34:35.000 INFO Starting Archive Notify Service

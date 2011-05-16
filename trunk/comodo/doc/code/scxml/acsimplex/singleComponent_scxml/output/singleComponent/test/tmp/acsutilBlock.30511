@@ -1,0 +1,4 @@
+ --endorsed -- alma.acs.alarmsystem.corbaservice.AlarmServiceUtils -s
+2011-05-16T15:35:19.000 INFO [acsStartJava] Starting Java application: alma.acs.alarmsystem.corbaservice.AlarmServiceUtils -s
+2011-05-16T15:35:19.000 INFO [acsStartJava] Using endorsed jar files in: -Djava.endorsed.dirs=/diska/home/almadev/introot/lib/endorsed:/alma/ACS-9.0/ACSSW/lib/endorsed:
+HERE
