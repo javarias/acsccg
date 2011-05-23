@@ -16,7 +16,7 @@
  * --------		--------		----------------------------------------------
  * atejeda 		2010-00-00  	Created
  * 
- * $Id: ENodeElement.java 170 2011-01-13 13:07:52Z alexis.tejeda $
+ * $Id$
  */
 
 package comodo.cg.util.xtend;
